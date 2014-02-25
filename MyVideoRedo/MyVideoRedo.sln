@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MyVideoRedo", "MyVideoRedo.vbproj", "{0C1782EA-D75D-46F7-A754-A016E130AD62}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TvdbLib", "..\TvdbLib\TvdbLib.csproj", "{23C34CF0-4E66-4F02-9EDC-83F292C6005C}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "CutBars", "..\CutBars\CutBars.vbproj", "{152A255B-9AF8-42EB-BD60-9DD9ACD0A8AB}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "TestApp", "..\TestApp\TestApp.vbproj", "{3F50D2FF-FCF1-4471-BA81-6974E2D4A2F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StringComparer", "..\StringComparer\StringComparer.csproj", "{0B399C28-C321-49B8-8874-9E2B0E308D6A}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 6
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://s-patschka.visualstudio.com/defaultcollection
+		SccProjectUniqueName0 = ..\\CutBars\\CutBars.vbproj
+		SccProjectName0 = ../CutBars
+		SccLocalPath0 = ..\\CutBars
+		SccProjectUniqueName1 = ..\\TestApp\\TestApp.vbproj
+		SccProjectName1 = ../TestApp
+		SccLocalPath1 = ..\\TestApp
+		SccProjectUniqueName2 = ..\\TvdbLib\\TvdbLib.csproj
+		SccProjectName2 = ../TvdbLib
+		SccLocalPath2 = ..\\TvdbLib
+		SccProjectUniqueName3 = MyVideoRedo.vbproj
+		SccLocalPath3 = .
+		SccLocalPath4 = .
+		SccProjectUniqueName5 = ..\\StringComparer\\StringComparer.csproj
+		SccProjectName5 = ../StringComparer
+		SccLocalPath5 = ..\\StringComparer
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0C1782EA-D75D-46F7-A754-A016E130AD62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C1782EA-D75D-46F7-A754-A016E130AD62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C1782EA-D75D-46F7-A754-A016E130AD62}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C1782EA-D75D-46F7-A754-A016E130AD62}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{23C34CF0-4E66-4F02-9EDC-83F292C6005C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23C34CF0-4E66-4F02-9EDC-83F292C6005C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23C34CF0-4E66-4F02-9EDC-83F292C6005C}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{23C34CF0-4E66-4F02-9EDC-83F292C6005C}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{152A255B-9AF8-42EB-BD60-9DD9ACD0A8AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{152A255B-9AF8-42EB-BD60-9DD9ACD0A8AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{152A255B-9AF8-42EB-BD60-9DD9ACD0A8AB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{152A255B-9AF8-42EB-BD60-9DD9ACD0A8AB}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{3F50D2FF-FCF1-4471-BA81-6974E2D4A2F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F50D2FF-FCF1-4471-BA81-6974E2D4A2F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F50D2FF-FCF1-4471-BA81-6974E2D4A2F2}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F50D2FF-FCF1-4471-BA81-6974E2D4A2F2}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{0B399C28-C321-49B8-8874-9E2B0E308D6A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B399C28-C321-49B8-8874-9E2B0E308D6A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B399C28-C321-49B8-8874-9E2B0E308D6A}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B399C28-C321-49B8-8874-9E2B0E308D6A}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

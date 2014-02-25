@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<window>
+    <id>1208</id>
+    <defaultcontrol>10</defaultcontrol>
+    <allowoverlay>no</allowoverlay>
+    <define>#header.label:MyVideoReDo</define>
+    <controls>
+
+        <control>
+            <id>60</id>
+            <description>dummy label</description>
+            <type>label</type>
+            <visible>false</visible>
+            <posX>640</posX>
+            <posY>-1000</posY>
+            <label> </label>
+        </control>
+
+
+        <control>
+            <id>1</id>
+            <description>BG</description>
+            <type>image</type>
+            <width>1920</width>
+            <height>1080</height>
+            <texture>background.png</texture>
+        </control>
+
+        <control>
+            <id>1</id>
+            <description>Overlay</description>
+            <type>image</type>
+            <width>1920</width>
+            <height>1080</height>
+            <texture>overlay.png</texture>
+        </control>
+
+        <control>
+            <id>1</id>
+            <description>background for list</description>
+            <type>image</type>
+            <posX>1</posX>
+            <posY>92</posY>
+            <width>1893</width>
+            <height>646</height>
+            <texture>viewport_noposter_short.png</texture>
+        </control>
+
+        <control>
+            <id>0</id>
+            <description>RSS background</description>
+            <type>image</type>
+            <posX>0</posX>
+            <posY>680</posY>
+            <width>1865</width>
+            <height>96</height>
+            <texture>basichome_rss_bg.png</texture>
+        </control>
+
+        <control>
+            <id>0</id>
+            <description>background for seriesview</description>
+            <type>image</type>
+            <posX>243</posX>
+            <posY>120</posY>
+            <width>954</width>
+            <height>590</height>
+            <texture>viewport_poster_short.png</texture>
+            <visible>!control.isvisible(50)+control.isvisible(60)</visible>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+        <control>
+            <id>1</id>
+            <description>Poster shadow</description>
+            <type>image</type>
+            <visible>!control.isvisible(50)+control.isvisible(60)</visible>
+            <posX>695</posX>
+            <posY>101</posY>
+            <width>465</width>
+            <height>605</height>
+            <texture>list_poster_glow.png</texture>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+        <control>
+            <id>0</id>
+            <description>Default Cover Art</description>
+            <type>image</type>
+            <visible>!control.isvisible(50)+control.isvisible(60)</visible>
+            <posX>762</posX>
+            <posY>169</posY>
+            <width>330</width>
+            <height>470</height>
+            <texture flipY="true" diffuse="Thumb_Mask_test.png" mask="poster_mask.png">defaultVideoBig.png</texture>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+        <control>
+            <id>30</id>
+            <description>Cover Art</description>
+            <type>image</type>
+            <visible>!control.isvisible(50)+control.isvisible(60)</visible>
+            <posX>762</posX>
+            <posY>169</posY>
+            <width>330</width>
+            <height>470</height>
+            <texture flipY="true" diffuse="Thumb_Mask_test.png" mask="poster_mask.png">#Seriescover</texture>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+        <control>
+            <id>0</id>
+             <type>image</type>
+            <description>Recording Image if no Series</description>
+            <posX>55</posX>
+            <posY>169</posY>
+            <width>335</width>
+            <height>190</height>
+            <texture>#RecordingImage</texture>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+
+        <control>
+            <id>1</id>
+            <type>label</type>
+            <posX>185</posX>
+            <posY>38</posY>
+            <width>500</width>
+            <font>font22</font>
+            <textcolor>ff6aa5cb</textcolor>
+            <label>MyVideoReDo</label>
+            <animation effect="Fade" time="250">WindowOpen</animation>
+            <animation effect="Fade" time="250">WindowClose</animation>
+        </control>
+
+
+        <control>
+            <id>10</id>
+            <description>Recordings list</description>
+            <type>listcontrol</type>
+            <posX>1166</posX>
+            <posY>164</posY>
+            <width>684</width>
+            <height>550</height>
+            <onleft>4</onleft>
+            <onright>10</onright>
+            <visible>!control.isvisible(40)+!control.isvisible(60)</visible>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+            <dimColor>ffffffff</dimColor>
+            <scrollOffset>1</scrollOffset>
+            <itemWidth>40</itemWidth>
+            <itemHeight>30</itemHeight>
+            <textureFocus>listcontrol_item_selected_small.png</textureFocus>
+            <textureNoFocus>-</textureNoFocus>
+            <IconXOff>45</IconXOff>
+            <IconYOff>12</IconYOff>
+            <textXOff>50</textXOff>
+            <textpadding>20</textpadding>
+            <textXOff2>653</textXOff2>
+            <textYOff2>12</textYOff2>
+            <textalign2>right</textalign2>
+            <keepaspectratio>no</keepaspectratio>
+            <spinCanFocus>no</spinCanFocus>
+            <spinPosX>1832</spinPosX>
+            <spinPosY>730</spinPosY>
+            <spinAlign>right</spinAlign>
+        </control>
+
+        <control>
+            <id>40</id>
+            <description>Series list</description>
+            <type>listcontrol</type>
+            <posX>1166</posX>
+            <posY>164</posY>
+            <width>684</width>
+            <height>550</height>
+            <onleft>21</onleft>
+            <onright>40</onright>
+            <visible>!control.isvisible(50)+control.isvisible(60)</visible>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+            <dimColor>ffffffff</dimColor>
+            <scrollOffset>1</scrollOffset>
+            <itemWidth>30</itemWidth>
+            <itemHeight>30</itemHeight>
+            <textureFocus>listcontrol_item_selected_small.png</textureFocus>
+            <textureNoFocus>-</textureNoFocus>
+            <IconXOff>45</IconXOff>
+            <IconYOff>12</IconYOff>
+            <textXOff>50</textXOff>
+            <textpadding>20</textpadding>
+            <textXOff2>653</textXOff2>
+            <textYOff2>12</textYOff2>
+            <textalign2>right</textalign2>
+            <keepaspectratio>no</keepaspectratio>
+            <spinCanFocus>no</spinCanFocus>
+            <spinPosX>1832</spinPosX>
+            <spinPosY>730</spinPosY>
+            <spinAlign>right</spinAlign>
+        </control>
+
+
+        <control>
+            <id>11</id>
+            <description>Recording Titel</description>
+            <type>fadelabel</type>
+            <posX>55</posX>
+            <posY>375</posY>
+            <width>575</width>
+            <label>#RecordingTitle</label>
+            <font>fontB14</font>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+        <control>
+            <id>16</id>
+            <description>Recording Episode</description>
+            <type>label</type>
+            <posX>55</posX>
+            <posY>420</posY>
+            <width>575</width>
+            <label>#RecordingEpisodename</label>
+            <font>AvalonLight11</font>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+        <control>
+            <id>12</id>
+            <description>Recording Genre</description>
+            <type>label</type>
+            <posX>55</posX>
+            <posY>460</posY>
+            <width>575</width>
+            <label>#RecordingGenre</label>
+            <font>AvalonLight11</font>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+        <control>
+            <id>32</id>
+            <description>Summary</description>
+            <type>textboxscrollup</type>
+            <visible>!control.isvisible(50)+control.isvisible(60)</visible>
+            <posX>682</posX>
+            <posY>795</posY>
+            <width>1184</width>
+            <height>265</height>
+            <font>font11</font>
+            <label>#MovingPictures.SelectedMovie.summary</label>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+
+        <control>
+            <id>4</id>
+            <type>checkbutton</type>
+            <description>Is the file a movie or a series</description>
+            <onleft>4</onleft>
+            <onright>40</onright>
+            <onup>21</onup>
+            <ondown>21</ondown>
+            <posX>55</posX>
+            <posY>535</posY>
+            <width>575</width>
+            <height>58</height>
+            <textureFocus>settings_button_medium_focus.png</textureFocus>
+            <textureNoFocus>settings_button_medium_nofocus.png</textureNoFocus>
+            <textcolorNoFocus>FF6AA5CB</textcolorNoFocus>
+            <disabledcolor>ffffffff</disabledcolor>
+            <textXOff>15</textXOff>
+            <textalign>LEFT</textalign>
+            <textvalign>MIDDLE</textvalign>
+            <label>#MyVideoRedo.Translation.UseVideoAsSeries</label>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+        <control>
+            <id>21</id>
+            <type>button</type>
+            <description>Button CUT NOW</description>
+            <onleft>21</onleft>
+            <onright>10</onright>
+            <onup>4</onup>
+            <ondown>4</ondown>
+            <posX>55</posX>
+            <posY>605</posY>
+            <width>575</width>
+            <height>58</height>
+            <textureFocus>settings_button_medium_focus.png</textureFocus>
+            <textureNoFocus>settings_button_medium_nofocus.png</textureNoFocus>
+            <textcolorNoFocus>FF6AA5CB</textcolorNoFocus>
+            <label>#MyVideoRedo.Translation.EditVideo</label>
+            <textalign>CENTER</textalign>
+            <textvalign>middle</textvalign>
+            <animation effect="Fade" time="300">WindowOpen</animation>
+            <animation effect="Fade" time="300">WindowClose</animation>
+        </control>
+
+
+        <control>
+            <id>51</id>
+            <type>animation</type>
+            <visible>False</visible>
+            <posX>490</posX>
+            <posY>220</posY>
+            <width>96</width>
+            <height>96</height>
+            <textures>common.waiting.1.png;common.waiting.2.png;common.waiting.3.png;common.waiting.4.png;common.waiting.5.png;common.waiting.6.png;common.waiting.8.png</textures>
+            <Duration>0:0:01.5</Duration>
+        </control>
+
+        <control>
+            <id>52</id>
+            <type>animation</type>
+            <visible>False</visible>
+            <posX>490</posX>
+            <posY>220</posY>
+            <width>96</width>
+            <height>96</height>
+            <textures>common.waiting.1.png;common.waiting.2.png;common.waiting.3.png;common.waiting.4.png;common.waiting.5.png;common.waiting.6.png;common.waiting.8.png</textures>
+            <Duration>0:0:01.5</Duration>
+        </control>
+
+
+        <control>
+            <id>31</id>
+            <type>label</type>
+            <visible>False</visible>
+            <posX>-1000</posX>
+            <posY>-1000</posY>
+            <label>#NewSeriesName</label>
+        </control>
+
+        <control>
+            <id>31</id>
+            <type>label</type>
+            <visible>False</visible>
+            <posX>-1000</posX>
+            <posY>-1000</posY>
+            <label>#MyVideoRedo.Translation.IdentifiedEpisode</label>
+        </control>
+
+        <control>
+            <id>17</id>
+            <description>For Debugging Only</description>
+            <type>label</type>
+            <visible>False</visible>
+            <posX>-1000</posX>
+            <posY>-1000</posY>
+            <label>#RecordingNewFilename</label>
+        </control>
+
+
+        <import>common.time.xml</import>
+        <import>common.overlay.xml</import>
+
+    </controls>
+</window>

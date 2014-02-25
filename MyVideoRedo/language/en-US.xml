@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- English-US -->
+<!-- Note: German is the fallback for any strings not found in other languages -->
+<strings>
+  <string Field="duration">Duration:{0}</string>
+  <string Field="position">Actual Position:{0}</string>
+  <string Field="resttime">Remaining Time:{0}</string>
+  <string Field="generalOptions">General Options</string>
+  <string Field="optionsCutBars">Progress Bar Options</string>
+  <string Field="StartCutAtStart">Automatically Set Start-Cut</string>
+  <string Field="searchFolder">Search Folder</string>
+  <string Field="LabelRecordingsPath">MP Recording Path:</string>
+  <string Field="LabelSavePath">Edited Video Save Path:</string>
+  <string Field="DescriptionRecPathDialog">Choose the path where MP stores your TV recordings</string>
+  <string Field="DescriptionSavePathDialog">Choose the path where you want to save your edited videos</string>
+  <string Field="GroupCutSettingCaption">Cutter Options</string>
+  <string Field="LoadOtherVideo">Load Video</string>
+  <string Field="SaveVideo">Save Video</string>
+  <string Field="MakeCut">Cut Here</string>
+  <string Field="SelRecording">Select a Recording</string>
+  <string Field="SaveCuttedVideo">Save Edited Video</string>
+  <string Field="SaveProgressLabel">Saving Video At {0}%</string>
+  <string Field="Complete">Complete</string>
+  <string Field="CalculateResttime">Calculate</string>
+  <string Field="CalculatedResttime">Calculated Time Remaining: </string>
+  <string Field="ChooseSeries">Choose The Series?</string>
+  <string Field="HowHandleVideo">What Is This Video?</string>
+  <string Field="SeriesEpisode">Recording Is An Episode From a Series</string>
+  <string Field="EpisodeFound">Found Epsisode</string>
+  <string Field="FollowEpisodeWasFound">The following episode was found - Use it?</string>
+  <string Field="UserAbortDialog">User aborted - Use video as movie</string>
+  <string Field="Movie">Movie</string>
+  <string Field="NoEpisodesFoundDialog">User aborted - Save video as movie</string>
+  <string Field="NoSeriesFoundDialog">Nothing found for this series - Save as movie</string>
+  <string Field="editReplacementString">Edit Replacement Strings</string>
+  <string Field="addReplaceString">Add Replace String</string>
+  <string Field="delReplaceString">Delete Selected</string>
+  <string Field="AutoEndCutLabel">Automatically Set End-Cut</string>
+  <string Field="GroupRecordingSettingCaption">Group Recording Settings</string>
+  <string Field="GroupStringSettingCaption">Movie Folder Settings</string>
+  <string Field="ParseVideoFileLabel">Movie Naming Convention:</string>
+  <string Field="ParseSeriesFileLabel">Series Naming Convention:</string>
+  <string Field="ShowFileParserStrings">Show Strings</string>
+  <string Field="ConfigureSeekSteps">Configure Seek Steps</string>
+  <string Field="Step">Step {0}</string>
+  <string Field="ForwardStep">Step Forward</string>
+  <string Field="Forward">Forward</string>
+  <string Field="Rewind">Rewind</string>
+  <string Field="RewindStep">Step Rewind</string>
+  <string Field="GroupOnPlayCaption">During Play</string>
+  <string Field="GroupOnPauseCaption">When Paused</string>
+  <string Field="RecordingDialogDescription">Directory with the recordings</string>
+  <string Field="SaveDialogDescription">Where would you like to save your movies</string>
+  <string Field="AdDetectiveDone">Finish AdDetective-Scan</string>
+  <string Field="AdDetectiveRunning">AdDetective-Scan is running</string>
+  <string Field="Done">Done</string>
+  <string Field="FrageSetzeEndmarker">If this option is on, the plugin will set automatic set a StartCut.</string>
+  <string Field="FrageSetzeStartmarker">If this option is on, the plugin will set automatic set a EndCut.</string>
+  <string Field="FrageParseVideoFile">Here you can configure the filename after cutting the video. With click on the right Button you can see the options</string>
+  <string Field="FrageParseSerienfile">Here you can configure the filename after cutting the video. With click on the right Button you can see the options</string>
+  <string Field="GetNewFilename">Set new filename</string>
+  <string Field="IdentifiedEpisode">Identified Episode:</string>
+  <string Field="NothinFound">Nothing Found</string>
+  <string Field="NoRecordingsAviable">No Recordings Available. Abort</string>
+  <string Field="UseVideoAsSeries">Recording is an episode from a series!</string>
+  <string Field="Title">Title</string>
+  <string Field="Unknown">Unknown</string>
+  <string Field="Genre">Genre</string>
+  <string Field="EpisodeTitle">Episode</string>
+  <string Field="NewFilename">Filename</string>
+  <string Field="CreateFilmsubfolder">Create subfolder for movies</string>
+  <string Field="EditVideo">Cut it</string>
+  <string Field="SaveHere">Save here</string>
+  <string Field="SeekToCutDialog">Jump to select marker</string>
+  <string Field="DeleteCutDialog">Clear selected cut</string>
+  <string Field="SearchWithAnotherString">Search with another string</string>
+  <string Field="EditEndFilename">Edit end-filename</string>
+  <string Field="StartAdDetectiveScan">Start AdDetective-Scan</string>
+  <string Field="ClearCutlist">Delete all cut`s</string>
+  <string Field="SavingProfile">Savingprofile</string>
+  <string Field="ButtonCheckTVsuite4">Check for TVsuite 4...</string>
+  <string Field="DescriptionTVsuiteProfiles">Wenn die TVsuite 4 auf Ihrem System aktiv ist können Sie hier das aktive standardprofil wählen welches aktiv sein soll. Sie müssen zuerst prüfen ob die TVsuit 4 als aktive VideoRedo Applikation verwendet wird damit anschliessend die Profile ermittelt werden können. Klicken Sie hierzu auf den Button und warten Sie einen Moment. Anschliessend können Sie ein Profil auswählen und sehen die Detailinformationen zu dem Profil.</string>
+  <string Field="DeleteOriginalFile">Would you like delete the original videofile?</string>
+  <string Field="DeleteOriginalFileTitle">Delete original?</string>
+  <string Field="ClearCutsAtClose">Clear cuts?</string>
+  <string Field="ClearCutsAtClose1">Do you like clear the cutlist?</string>
+  <string Field="ContinueScan">Continue scan?</string>
+  <string Field="ContinueScan1">Continue the scan in the background?</string>
+  <string Field="CloseVRD">Close VideoRedo?</string>
+  <string Field="CloseVRD1">Do you like close VideoRedo and delete all of cuts?</string>
+  <string Field="VideoRedoCanNotHD">Your version of VideoRedo cannot open HD content, aborting...</string>
+  <string Field="RecordingPathIncorrect">Incorrect Recordingpath, please open config!!</string>
+  <string Field="Abbruch">Abort</string>
+  <string Field="KeinEndmarker">No endmarker</string>
+  <string Field="ForbittenCutCompleteVideo">You can not cut the complete video!!</string>
+  <string Field="AudioSyncLabel">Resync audioline:</string>
+  <string Field="AudioSyncLabelContext">Adjust audiosync</string>
+  <string Field="Encodingtype">Encodingtype:</string>
+  <string Field="Filetype">FileType:</string>
+  <string Field="Resolution">Resolution:</string>
+  <string Field="Ratio">Ratio:</string>
+  <string Field="Deinterlacemode">Deinterlacemode:</string>
+  <string Field="Framerate">Framerate:</string>
+  
+  
+  
+  
+  
+</strings>

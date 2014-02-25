@@ -1,0 +1,29 @@
+﻿----- Version 9.0.2 -----
+18.08.2013
+* clsRecordings.vb in GetRecordings()
+
+* Nach einer Warnmeldung das ein Videofile nicht gefunden werden kann wofür es allerdings ein XML 
+gibt wird die schleife der XML Tags verlassen, da unnötig weiter das XML zu untersuchen.
+
+
+
+----- Version 9.1.0 -----
+
+* Prüfung ob die installierte Version von VideoRedo H246 Material unterstützt wurde eingebaut. Bei false wird abgebrochen. (TESTEN)
+* Sprachfiles überarbeitet und vervollständigt.
+* Prüfung auf Nothing des VideoRedo Objekts in PlayerHelper.SetPlayerLabels.vb
+* AudioSyncValue Propertie VideoRedo.vb hinzugefügt.
+* #CurrentFrame Variable eingebaut um Skinnern den aktuellen Frame bereit zu stellen
+* Labels des Profildialogs wurden der Übersetzung und den Sprachfiles hinzugefügt
+
+  <string Field="Encodingtype">Encodierungstyp:</string>
+  <string Field="Filetype">Dateityp:</string>
+  <string Field="Resolution">Auflösung:</string>
+  <string Field="Ratio">Ratio:</string>
+  <string Field="Deinterlacemode">De-Interlace Modus:</string>
+  <string Field="Framerate">Bildrate:</string>
+
+* Nun kann ein eigenes Speicherprofil für HD Material in der config angegeben werden. Dieses wird automatisch verwendet 
+  wenn im Player ein HD Material geladen ist und dieses vom MediaPortal Player auch als H264 Material erkannt wird.
+* Screenfiles überarbeitet und den GUICheckmark auf ein GUICheckbutton geändert. Auch die Screenfiles von Pünktchen.
+* MyVideoRedoProfileDialog von alles Screenfiles wurde und die neuen Profilübersetzungen bearbeitet.
