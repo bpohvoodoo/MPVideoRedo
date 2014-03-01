@@ -77,7 +77,6 @@ Public Module Helper
 
 
         newFileName += ".%ext%"
-        MsgBox(newFileName)
         Return newFileName
     End Function
 
