@@ -1,4 +1,22 @@
-﻿----- Version 9.0.2 -----
+﻿----- Version 9.0.3 -----
+19.02.2014
+* Umstellung auf .NET 4.0
+* dlls von MP Aktualisiert auf 1.6.0.0
+* StreamedMP Skin Files hinzugefügt
+* Profil Details können auch im Saving Screen korrekt abgerufen werden.
+* Variable #itemcount für Skins eingebaut
+* Profilbestätigungsdialog beim Ändern über Settings abschaltbar
+* redoFolder.png redoHarddisk.png redoback.png von Skinfiles entfernt und auf default Icons in den Listviews umgestellt
+* Sprachdateien angepasst und erweitert.
+*
+* Bug beseitigt: Mediaportal Absturz, wenn ungülige Zeichen im Titel der Aufnahme war z.B. ":" bei CSI: Vegas
+* Bug beseitigt: MyVideoRedo erstellte keine Thumbnails, wenn ungülige Zeichen im Titel der Aufnahme war z.B. ":" bei CSI: Vegas
+*
+* Bekannte Probleme:
+* ThumbnailsCreator.vb arbeitet nicht korrekt bei SD Material
+* OrdnerIcons werden in den Listviews u.U. nicht korrekt dargestellt (überschrieben)
+
+----- Version 9.0.2 -----
 18.08.2013
 * clsRecordings.vb in GetRecordings()
 
@@ -7,7 +25,7 @@ gibt wird die schleife der XML Tags verlassen, da unnötig weiter das XML zu unt
 
 
 
------ Version 9.1.0 -----
+----- Version 9.0.1 -----
 
 * Prüfung ob die installierte Version von VideoRedo H246 Material unterstützt wurde eingebaut. Bei false wird abgebrochen. (TESTEN)
 * Sprachfiles überarbeitet und vervollständigt.

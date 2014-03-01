@@ -133,16 +133,16 @@ namespace TvdbLib
       return link;
     }
 
-    internal static String CreateUpdateLink(string _apiKey, Util.UpdateInterval _interval, bool _zipped)
+    internal static String CreateUpdateLink(string _apiKey, Interval _interval, bool _zipped)
     {
       String link = String.Format("{0}/api/{1}/updates/updates_{2}{3}", BASE_SERVER, _apiKey,
                                   _interval, (_zipped ? ".zip" : ".xml"));
       return link;
     }
 
-    internal static String CreateSearchLink(String _searchString)
+    internal static String CreateSearchLink(String _searchString, TvdbLanguage _language)
     {
-      String link = String.Format("{0}/api/GetSeries.php?seriesname={1}", BASE_SERVER.Trim('/'), _searchString);
+      String link = String.Format("{0}/api/GetSeries.php?seriesname={1}&language={2}", BASE_SERVER.Trim('/'), _searchString, _language.Abbriviation);
       return link;
     }
 
@@ -270,6 +270,32 @@ namespace TvdbLib
     {
       String link = CreateAllSeriesRatingsLink(_apiKey, _userIdentifier) + "&seriesid=" + _seriesId;
       return link;
+    }
+
+    /// <summary>
+    /// Creates a link to retrieve a series by external id (currently only imdb id supported)
+    /// 
+    /// http://forums.thetvdb.com/viewtopic.php?f=8&t=3724&start=0
+    /// </summary>
+    /// <param name="_apiKey">api key</param>
+    /// <param name="_site">type of external site</param>
+    /// <param name="_id">id on the site</param>
+    /// <returns></returns>
+    internal static String CreateGetSeriesByIdLink(String _apiKey, ExternalId _site, String _id)
+    {
+      String siteString = "";
+      switch(_site)
+      {
+        case ExternalId.ImdbId:
+          siteString = "imdbid";
+          break;
+        default:
+          return "";//unknown site
+      }
+
+      String link = String.Format("{0}/api/GetSeriesByRemoteID.php?{1}={2}", BASE_SERVER, siteString, _id);
+      return link;
+      //http://thetvdb.com/api/GetSeriesByRemoteID.php?imdbid=tt0411008
     }
 
 

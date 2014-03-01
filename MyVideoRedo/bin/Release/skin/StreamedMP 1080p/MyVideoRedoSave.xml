@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--version="1.0" encoding="utf-8" standalone="yes"-->
+<window>
+  <id>1210</id>
+  <defaultcontrol>11</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+  <define>#header.label:VideoRedo</define>
+  <define>#header.image:-</define>
+  <define>#header.hover:-</define>
+  <define>#useRandomTVSeriesFanart:Yes</define>
+  <controls>
+    <!-- Background & StreamedMP Layout -->
+    <import>common.time.xml</import>
+	<import>common.overlays.xml</import>
+	<import>myvideoredo.window.xml</import>
+	<import>myvideoredosave.info.xml</import>
+	<control>
+      <type>image</type>
+      <id>0</id>
+      <posX>0</posX>
+      <posY>1012</posY>
+      <width>1920</width>
+      <height>70</height>
+      <texture>imagestreamtitle.png</texture>
+      <animation effect="fade" time="250" delay="0">WindowClose</animation>
+      <visible>yes</visible>
+    </control>
+	<control>
+      <description>Page Count Background</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>1504</posX>
+      <posY>1026</posY>
+      <width>390</width>
+      <height>48</height>
+      <texture>mediacountbg_Spin.png</texture>
+      <visible>control.isvisible(11)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+      <animation effect="slide" time="150" start="1200,0">WindowOpen</animation>
+      <animation effect="slide" time="250" end="1200,0">WindowClose</animation>
+    </control>
+	<control>
+	<description>Page Count Label</description>
+      <type>label</type>
+      <label>30009</label>
+      <id>0</id>
+      <posX>1519</posX>
+      <posY>1033</posY>
+      <font>mediastream12tc</font>
+      <textcolor>ff909090</textcolor>
+      <visible>control.isvisible(11)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+      <animation effect="slide" time="150" start="1200,0">WindowOpen</animation>
+      <animation effect="slide" time="250" end="1200,0">WindowClose</animation>
+    </control>
+    <control>
+      <description>Item Count Background</description>
+      <type>image</type>
+      <id>0</id>
+      <posX>1597</posX>
+      <posY>19</posY>
+      <width>303</width>
+      <height>42</height>
+      <texture>mediacountbg.png</texture>
+      <visible>control.isvisible(11)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+    <control>
+      <type>label</type>
+      <description>Items Translation</description>
+      <id>0</id>
+      <posX>1615</posX>
+      <posY>25</posY>
+      <width>135</width>
+      <font>mediastream10tc</font>
+      <textcolor>ff909090</textcolor>
+      <label>507</label>
+      <visible>control.isvisible(11)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+    <control>
+      <type>label</type>
+      <description>Number of Files Label</description>
+      <id>0</id>
+      <posX>1860</posX>
+      <posY>24</posY>
+      <width>525</width>
+      <font>mediastream10c</font>
+      <textcolor>ff006698</textcolor>
+      <align>right</align>
+      <label>#itemcount</label>
+      <visible>control.isvisible(11)</visible>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+    </control>
+	<!-- Saving Path List Control -->
+    <control>
+      <type>group</type>
+      <description>group element</description>
+      <animation effect="fade" time="250">WindowOpen</animation>
+      <animation effect="fade" time="250">WindowClose</animation>
+      <animation effect="slide" time="150" start="1200,0">WindowOpen</animation>
+      <animation effect="slide" time="250" end="1200,0">WindowClose</animation>
+	  <control>
+	    <description>listcontrol</description>
+        <type>listcontrol</type>
+	    <id>11</id>
+		<posX>930</posX>
+        <posY>360</posY>
+        <height>675</height>
+        <width>990</width>
+        <onright>16</onright>
+        <ondown>16</ondown>
+        <onleft>15</onleft>
+        <font2>mediastream10c</font2>
+        <spinWidth>75</spinWidth>
+        <spinHeight>55</spinHeight>
+        <spinPosX>1747</spinPosX>
+        <spinPosY>1024</spinPosY>
+        <spinAlign>Right</spinAlign>
+        <textureUp>arrow_round_up_nofocus.png</textureUp>
+        <textureDown>arrow_round_down_nofocus.png</textureDown>
+        <textureUpFocus>arrow_round_up_focus.png</textureUpFocus>
+        <textureDownFocus>arrow_round_down_focus.png</textureDownFocus>
+        <IconXOff>3</IconXOff>
+        <IconYOff>3</IconYOff>
+        <textXOff>0</textXOff>
+        <textXOff2>1113</textXOff2>
+        <itemWidth>60</itemWidth>
+        <itemHeight>60</itemHeight>
+		<keepaspectratio>yes</keepaspectratio>
+      </control>
+    </control>
+	<!--Settings -->
+	<control>
+      <id>1</id>
+      <description>Seperator</description>
+      <type>image</type>
+      <colordiffuse>60ffffff</colordiffuse>
+      <posX>35</posX>
+      <posY>350</posY>
+      <width>865</width>
+      <height>1</height>
+      <texture>hbar1white.png</texture>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>35</posX>
+      <posY>360</posY>
+	  <font>mediastream12tc</font>
+      <label>#MyVideoRedo.Translation.LabelSavePath</label>
+    </control>
+    <control>
+      <id>21</id>
+      <description>SavingPathLabel</description>
+      <type>fadelabel</type>
+      <posX>35</posX>
+      <posY>400</posY>
+      <width>865</width>
+      <label>#Saving.Path</label>
+      <font>mediastream10c</font>
+    </control>
+	<control>
+      <id>1</id>
+      <description>Seperator</description>
+      <type>image</type>
+      <colordiffuse>60ffffff</colordiffuse>
+      <posX>35</posX>
+      <posY>440</posY>
+      <width>865</width>
+      <height>1</height>
+      <texture>hbar1white.png</texture>
+    </control>
+	<control>
+      <type>label</type>
+      <posX>35</posX>
+      <posY>460</posY>
+	  <font>mediastream12tc</font>
+      <label>#MyVideoRedo.Translation.NewFilename:</label>
+    </control>
+    <control>
+      <id>20</id>
+      <description>SavingName</description>
+      <type>fadelabel</type>
+      <posX>35</posX>
+      <posY>510</posY>
+      <width>900</width>
+      <label>#Saving.Name</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <id>1</id>
+      <description>Seperator</description>
+      <type>image</type>
+      <colordiffuse>60ffffff</colordiffuse>
+      <posX>35</posX>
+      <posY>570</posY>
+      <width>865</width>
+      <height>1</height>
+      <texture>hbar1white.png</texture>
+    </control>
+	<control>
+      <id>0</id>
+      <type>label</type>
+      <posX>35</posX>
+      <posY>590</posY>
+	  <font>mediastream12tc</font>
+      <label>#MyVideoRedo.Translation.SavingProfile:</label>
+    </control>
+    <control>
+      <id>0</id>
+      <description>SavingProfileLabel</description>
+      <type>label</type>
+      <posX>35</posX>
+      <posY>640</posY>
+      <label>#Saving.Profile</label>
+      <font>mediastream10</font>
+    </control>
+	<!-- Buttons -->
+    <control Style="skinbutton">
+      <id>16</id>
+      <description>SaveButton</description>
+      <visible>!control.isvisible(12)</visible>
+      <type>button</type>
+      <onleft>14</onleft>
+      <onup>11</onup>
+      <ondown>11</ondown>
+      <posX>1504</posX>
+	  <width>390</width>
+      <posY>960</posY>
+      <label>#MyVideoRedo.Translation.SaveVideo</label>
+      <textalign>CENTER</textalign>
+	  <textYOff>1</textYOff>
+      <scrollStartDelaySec>1</scrollStartDelaySec>
+      <scrollWrapString> | </scrollWrapString>
+    </control>
+	<control Style="skinbutton">
+      <id>15</id>
+      <description>ButtonChangeSaveName</description>
+	  <visible>!control.isvisible(12)</visible>
+      <type>button</type>
+      <onleft>11</onleft>
+      <onright>16</onright>
+      <ondown>14</ondown>
+      <onup>11</onup>
+      <posX>650</posX>
+      <posY>445</posY>
+      <width>250</width>
+      <label>6029</label>
+      <textalign>CENTER</textalign>
+	  <textYOff>1</textYOff>
+      <scrollStartDelaySec>1</scrollStartDelaySec>
+      <scrollWrapString> | </scrollWrapString>
+    </control>
+    <control Style="skinbutton">
+      <id>14</id>
+	  <description>ButtonChangeProfile</description>
+	  <visible>!control.isvisible(12)</visible>
+      <type>button</type>
+      <onleft>11</onleft>
+      <onright>16</onright>
+      <onup>15</onup>
+      <ondown>11</ondown>
+      <posX>650</posX>
+      <posY>575</posY>
+      <width>250</width>
+      <label>6029</label>
+      <textalign>CENTER</textalign>
+	  <textYOff>1</textYOff>
+      <scrollStartDelaySec>1</scrollStartDelaySec>
+      <scrollWrapString> | </scrollWrapString>
+    </control>	
+	
+	
+	
+	<control>
+      <id>1</id>
+      <description>Seperator</description>
+      <type>image</type>
+      <visible>facadeview.list + control.hasfocus(50)</visible>
+      <colordiffuse>60ffffff</colordiffuse>
+      <posX>1012</posX>
+      <posY>363</posY>
+      <width>799</width>
+      <height>1</height>
+      <texture>hbar1white.png</texture>
+    </control>
+    <control>
+      <id>1</id>
+      <description>Seperator</description>
+      <type>image</type>
+      <visible>facadeview.list + control.hasfocus(50)</visible>
+      <colordiffuse>60ffffff</colordiffuse>
+      <posX>1012</posX>
+      <posY>504</posY>
+      <width>799</width>
+      <height>1</height>
+      <texture>hbar1white.png</texture>
+    </control>
+    <control>
+      <id>1</id>
+      <description>Seperator</description>
+      <type>image</type>
+      <visible>facadeview.list + control.hasfocus(50)</visible>
+      <colordiffuse>60ffffff</colordiffuse>
+      <posX>1012</posX>
+      <posY>718</posY>
+      <width>799</width>
+      <height>1</height>
+      <texture>hbar1white.png</texture>
+    </control>
+	
+	
+	
+	<!-- Start Profile info -->
+	<!--<control>
+      <type>label</type>
+      <posX>15</posX>
+      <posY>650</posY>
+      <width>360</width>
+      <label>Profil:</label>
+      <font>mediastream12tc</font>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>150</posX>
+      <posY>650</posY>
+      <label>#Profile.Name</label>
+      <font>mediastream12tc</font>
+    </control> -->
+    <control>
+      <type>label</type>
+      <posX>35</posX>
+      <posY>690</posY>
+      <label>#MyVideoRedo.Translation.Encodingtype</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>35</posX>
+      <posY>735</posY>
+      <label>#MyVideoRedo.Translation.Filetype</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>35</posX>
+      <posY>780</posY>
+      <label>#MyVideoRedo.Translation.Resolution</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>35</posX>
+      <posY>825</posY>
+      <label>#MyVideoRedo.Translation.Ratio</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>35</posX>
+      <posY>870</posY>
+      <label>#MyVideoRedo.Translation.Deinterlacemode</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>label</type>
+      <posX>35</posX>
+      <posY>915</posY>
+      <label>#MyVideoRedo.Translation.Framerate</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>fadelabel</type>
+      <posX>400</posX>
+      <posY>690</posY>
+      <width>300</width>
+      <label>#Profile.EncodingType</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>fadelabel</type>
+      <posX>400</posX>
+      <posY>735</posY>
+      <width>300</width>
+      <label>#Profile.Filetype</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>fadelabel</type>
+      <posX>400</posX>
+      <posY>780</posY>
+      <width>300</width>
+      <label>#Profile.Resolution</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>fadelabel</type>
+      <posX>400</posX>
+      <posY>825</posY>
+      <width>300</width>
+      <label>#Profile.Ratio</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>fadelabel</type>
+      <posX>400</posX>
+      <posY>870</posY>
+      <width>300</width>
+      <label>#Profile.Deinterlacemode</label>
+      <font>mediastream10c</font>
+    </control>
+    <control>
+      <type>fadelabel</type>
+      <posX>400</posX>
+      <posY>915</posY>
+      <width>300</width>
+      <label>#Profile.Framerate</label>
+      <font>mediastream10c</font>
+    </control>
+	<!-- End Profile Info -->
+  </controls>
+</window>
+<!--Checksum:c5c8be7f790a96680fd90af63c17e719-->

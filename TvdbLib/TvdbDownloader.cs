@@ -367,6 +367,68 @@ namespace TvdbLib
       }
     }
 
+    /// <summary>
+    /// Download a series search for the id of an external site
+    /// </summary>
+    /// <param name="_site">The site that provides the external id</param>
+    /// <param name="_id">The id that identifies the series on the external site</param>
+    /// <exception cref="TvdbInvalidXmlException"><para>Exception is thrown when there was an error parsing the xml files. </para>
+    ///                                           <para>Feel free to post a detailed description of this issue on http://code.google.com/p/tvdblib 
+    ///                                           or http://forums.thetvdb.com/</para></exception>  
+    /// <exception cref="TvdbInvalidApiKeyException">The stored api key is invalid</exception>
+    /// <exception cref="TvdbNotAvailableException">The tvdb database is unavailable</exception>
+    /// <returns>the series object that corresponds to the given site and id</returns>
+    public TvdbSearchResult DownloadSeriesSearchByExternalId(ExternalId _site, String _id)
+    {
+      //download the xml data from this request
+      String xml = "";
+      String link = "";
+      try
+      {
+        link = TvdbLinkCreator.CreateGetSeriesByIdLink(m_apiKey, _site, _id);
+        xml = m_webClient.DownloadString(link);
+
+        //extract all series the xml file contains
+        List<TvdbSearchResult> seriesList = m_xmlHandler.ExtractSeriesSearchResults(xml);
+
+        //if a request is made on a series id, one and only one result
+        //should be returned, otherwise there obviously was an error
+        if (seriesList != null && seriesList.Count == 1)
+        {
+          TvdbSearchResult series = seriesList[0];
+
+          return series;
+        }
+        else
+        {
+          Log.Warn("More than one series returned when trying to retrieve series by id " + _id);
+          return null;
+        }
+      }
+      catch (XmlException ex)
+      {
+        Log.Error("Error parsing the xml file " + link + "\n\n" + xml, ex);
+        throw new TvdbInvalidXmlException("Error parsing the xml file " + link + "\n\n" + xml);
+      }
+      catch (WebException ex)
+      {
+        Log.Warn("Request not successfull", ex);
+        if (ex.Message.Equals("The remote server returned an error: (404) Not Found."))
+        {
+          throw new TvdbInvalidApiKeyException("Couldn't connect to Thetvdb.com to retrieve " + _id +
+                                               ", you may use an invalid api key  or the series doesn't exists");
+        }
+        else
+        {
+          throw new TvdbNotAvailableException("Couldn't connect to Thetvdb.com to retrieve " + _id +
+                                              ", check your internet connection and the status of http://thetvdb.com");
+        }
+      }
+
+    }
+
+
+
     internal TvdbSeriesFields DownloadSeriesFields(int _seriesId, TvdbLanguage _language)
     {
       String xml = "";
@@ -484,7 +546,7 @@ namespace TvdbLib
       switch (_order)
       {
         case TvdbEpisode.EpisodeOrdering.AbsoluteOrder:
-          order = "absolut";
+          order = "absolute";
           break;
         case TvdbEpisode.EpisodeOrdering.DefaultOrder:
           order = "default";
@@ -716,7 +778,7 @@ namespace TvdbLib
                                    out List<TvdbBanner> _updateBanners, int _interval,
                                     bool _zipped)
     {
-      return DownloadUpdate(out _updateSeries, out _updateEpisodes, out _updateBanners, (Util.UpdateInterval)_interval, _zipped);
+      return DownloadUpdate(out _updateSeries, out _updateEpisodes, out _updateBanners, (Interval)_interval, _zipped);
     }
 
     /// <summary>
@@ -733,8 +795,8 @@ namespace TvdbLib
     ///                                           or http://forums.thetvdb.com/</para></exception>  
     /// <exception cref="TvdbInvalidApiKeyException">The stored api key is invalid</exception>
     /// <exception cref="TvdbNotAvailableException">Exception is thrown when thetvdb isn't available.</exception>
-    internal DateTime DownloadUpdate(out List<TvdbSeries> _updateSeries, out List<TvdbEpisode> _updateEpisodes,
-                                     out List<TvdbBanner> _updateBanners, Util.UpdateInterval _interval, bool _zipped)
+    public DateTime DownloadUpdate(out List<TvdbSeries> _updateSeries, out List<TvdbEpisode> _updateEpisodes,
+                                     out List<TvdbBanner> _updateBanners, Interval _interval, bool _zipped)
     {
 
       String xml = "";
@@ -829,7 +891,7 @@ namespace TvdbLib
     }
 
     /// <summary>
-    /// Download search results for a series search
+    /// Download search results for a series search in the default language (english)
     /// </summary>
     /// <param name="_name">name of the series</param>
     /// <returns>List of possible matches for the search</returns>
@@ -840,11 +902,27 @@ namespace TvdbLib
     /// <exception cref="TvdbNotAvailableException">Exception is thrown when thetvdb isn't available.</exception>
     public List<TvdbSearchResult> DownloadSearchResults(String _name)
     {
+      return DownloadSearchResults(_name, TvdbLanguage.DefaultLanguage);
+    }
+
+    /// <summary>
+    /// Download search results for a series search
+    /// </summary>
+    /// <param name="_name">name of the series</param>
+    /// <param name="_language">language of the search</param>
+    /// <returns>List of possible matches for the search</returns>
+    /// <exception cref="TvdbInvalidXmlException"><para>Exception is thrown when there was an error parsing the xml files. </para>
+    ///                                           <para>Feel free to post a detailed description of this issue on http://code.google.com/p/tvdblib 
+    ///                                           or http://forums.thetvdb.com/</para></exception>  
+    /// <exception cref="TvdbInvalidApiKeyException">The stored api key is invalid</exception>
+    /// <exception cref="TvdbNotAvailableException">Exception is thrown when thetvdb isn't available.</exception>
+    public List<TvdbSearchResult> DownloadSearchResults(String _name, TvdbLanguage _language)
+    {
       String xml = "";
       String link = "";
       try
       {
-        link = TvdbLinkCreator.CreateSearchLink(_name);
+        link = TvdbLinkCreator.CreateSearchLink(_name, _language);
         xml = m_webClient.DownloadString(link);
         return m_xmlHandler.ExtractSeriesSearchResults(xml);
       }

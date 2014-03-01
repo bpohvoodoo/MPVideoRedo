@@ -15,7 +15,7 @@ Imports MediaPortal.Common.Utils
 <Assembly: AssemblyDescription("Cut Recordings with VideoRedo frameaccurate")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("MyVideoRedo")> 
-<Assembly: AssemblyCopyright("Copyright ©  2010")> 
+<Assembly: AssemblyCopyright("Copyright ©  2010-2014")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -34,5 +34,5 @@ Imports MediaPortal.Common.Utils
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.9.0.2")> 
-<Assembly: AssemblyFileVersion("0.9.0.2")> 
+<Assembly: AssemblyVersion("0.9.0.3")> 
+<Assembly: AssemblyFileVersion("0.9.0.3")> 

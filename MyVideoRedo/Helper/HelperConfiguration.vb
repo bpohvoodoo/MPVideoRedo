@@ -61,6 +61,7 @@ Module HelpConfig
         DebugVideoRedo = 26
         TVsuiteProfile = 27
         TVsuiteProfileH264 = 28
+        ProfileDetails = 29
     End Enum
 
     Private Function GetDefaultConfigValue(ByVal Key As ConfigKey) As String
@@ -120,6 +121,8 @@ Module HelpConfig
             Case ConfigKey.FilmFolderParsing
                 Return "%Title%"
             Case ConfigKey.DebugVideoRedo
+                Return "False"
+            Case ConfigKey.ProfileDetails
                 Return "False"
             Case ConfigKey.TVsuiteProfile
                 Return "MPEG2 Program Stream"

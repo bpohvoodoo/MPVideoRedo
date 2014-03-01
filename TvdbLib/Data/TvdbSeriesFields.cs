@@ -60,7 +60,7 @@ namespace TvdbLib.Data
     private String m_seriesName;
     private List<String> m_actors;
     private DayOfWeek? m_airsDayOfWeek;
-    private DateTime m_airsTime;
+    private String m_airsTime;
     private String m_contentRating;
     private DateTime m_firstAired;
     private List<String> m_genre;
@@ -80,6 +80,15 @@ namespace TvdbLib.Data
     private bool m_episodesLoaded;
     private List<TvdbEpisode> m_episodes = null;
     #endregion
+
+    /// <summary>
+    /// TvdbSeriesFields constructor
+    /// </summary>
+    public TvdbSeriesFields()
+    {
+      m_episodes = new List<TvdbEpisode>();
+      m_episodesLoaded = false;
+    }
 
     /// <summary>
     /// Returns a short description of the episode (e.g. 1x20 Episodename)
@@ -312,7 +321,7 @@ namespace TvdbLib.Data
     /// <summary>
     /// At which time does the series air
     /// </summary>
-    public DateTime AirsTime
+    public String AirsTime
     {
       get { return m_airsTime; }
       set { m_airsTime = value; }
@@ -385,7 +394,8 @@ namespace TvdbLib.Data
           }
         }
         this.EpisodesLoaded = _fields.EpisodesLoaded;
-        this.Episodes = _fields.Episodes;
+        this.Episodes.Clear();
+        this.Episodes.AddRange(_fields.Episodes);
       }
     }
   }

@@ -86,8 +86,10 @@
   <string Field="ClearCutsAtClose1">Do you like clear the cutlist?</string>
   <string Field="ContinueScan">Continue scan?</string>
   <string Field="ContinueScan1">Continue the scan in the background?</string>
-  <string Field="CloseVRD">Close VideoRedo?</string>
-  <string Field="CloseVRD1">Do you like close VideoRedo and delete all of cuts?</string>
+  <string Field="CloseVRD">Closing VideoRedo!</string>
+  <string Field="CloseVRD1">Do you want to discard</string>
+  <string Field="CloseVRD2">all of your cuts now</string>
+  <string Field="CloseVRD3">on closing VideoRedo?</string>
   <string Field="VideoRedoCanNotHD">Your version of VideoRedo cannot open HD content, aborting...</string>
   <string Field="RecordingPathIncorrect">Incorrect Recordingpath, please open config!!</string>
   <string Field="Abbruch">Abort</string>
@@ -101,6 +103,9 @@
   <string Field="Ratio">Ratio:</string>
   <string Field="Deinterlacemode">Deinterlacemode:</string>
   <string Field="Framerate">Framerate:</string>
-
-
+  <string Field="CheckMarkDebugMode">Debug Mode</string>
+  <string Field="CheckMarkDisableProfileDetails">Disable profile details dialog on change</string>
+  <string Field="ModuleStart">MyVideoRedo - Select Movie</string>
+  <string Field="ModuleMain">MyVideoRedo - Cut Movie"</string>
+  <string Field="ModuleSaveVideo">MyVideoRedo - Save Movie</string>
 </strings>

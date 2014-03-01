@@ -15,7 +15,7 @@ Imports TvdbLib.Data
 
 
 Namespace MyVideoRedo
-    <PluginIcons("MyVideoRedo.hover_myVideoReDo.png", "MyVideoRedo.myVideoReDo_disbled.png")> _
+    <PluginIcons("MyVideoRedo.myVideoReDo.png", "MyVideoRedo.myVideoReDo_disabled.png")> _
     Public Class GUIStart
         Inherits GUIWindow
         Implements ISetupForm
@@ -56,7 +56,7 @@ Namespace MyVideoRedo
         End Function
 
         Public Function Description() As String Implements MediaPortal.GUI.Library.ISetupForm.Description
-            Return "Plugin zum schneiden von Videos mit Hilfe von VideoRedo"
+            Return "Plugin zum Schneiden von Videos mit Hilfe von VideoRedo"
         End Function
 
         Public Function GetHome(ByRef strButtonText As String, ByRef strButtonImage As String, ByRef strButtonImageFocus As String, ByRef strPictureImage As String) As Boolean Implements MediaPortal.GUI.Library.ISetupForm.GetHome
@@ -72,6 +72,7 @@ Namespace MyVideoRedo
         End Function
 
         Public Overrides Function GetModuleName() As String
+            'Return Translation.ModuleStart
             Return PluginName()
         End Function
 
@@ -102,7 +103,7 @@ Namespace MyVideoRedo
 
         Public Overloads Overrides Function Init() As Boolean
             'Beim initialisieren des Plugin den Screen laden
-           AddHandler GUIGraphicsContext.form.KeyDown, AddressOf FormKeyDown
+            AddHandler GUIGraphicsContext.form.KeyDown, AddressOf FormKeyDown
             Return Load(GUIGraphicsContext.Skin + "\MyVideoRedoStart.xml")
         End Function
 
@@ -124,7 +125,7 @@ Namespace MyVideoRedo
 
         Protected Overrides Sub OnPageLoad()
             MyBase.OnPageLoad()
-            
+
             GUIWindowManager.NeedRefresh()
 
             If GUIWindowManager.ActiveWindow = GetID Then
@@ -267,8 +268,7 @@ Namespace MyVideoRedo
                 Dim lItem As New GUIListItem
                 lItem.ItemId = ctlRecList.ListItems.Count - 1
                 lItem.Label = ".."
-
-                lItem.IconImage = "redoFolderBack.png"
+                lItem.IconImage = "defaultFolderBack.png"
                 lItem.IsFolder = True
                 lItem.Path = Directory.GetParent(RecordingPath).FullName
                 MyLog.DebugM("Fülle Recordinglistcontrol mit Ordnerlabel {0} und Pfad: {1}", lItem.Label, lItem.Path)
@@ -281,31 +281,35 @@ Namespace MyVideoRedo
                     Dim lItem As New GUIListItem
                     lItem.ItemId = ctlRecList.ListItems.Count - 1
                     lItem.Label = Path.GetFileName(dire)
-                    lItem.IconImage = "redoFolder.png"
+                    lItem.IconImage = "defaultFolder.png"
+                    lItem.ThumbnailImage = lItem.IconImage
                     lItem.IsFolder = True
                     lItem.Path = dire
                     MyLog.DebugM("Fülle Recordinglistcontrol mit Ordnerlabel {0} und Pfad: {1}", lItem.Label, lItem.Path)
                     GUIControl.AddListItemControl(GetID, ctlRecList.GetID, lItem)
                 Next
 
-
-                'Jetzt mit den Aufnamen im Pfad füllen
+                ' ToDo Machbarkeitsprüfung für Odner alternativ zu Aufnahmeordnern
+                ' Jetzt mit den Aufnamen im Pfad füllen
                 For Each item As clsRecordings.Recordings In RecList.lRecordings
                     Dim lItem As New GUIListItem
-                    lItem.Label = item.Title & " - " & item.Channelname
-                    lItem.ItemId = ctlRecList.ListItems.Count - 1
-                    lItem.Label2 = item.StartTime.Date
-                    lItem.Path = item.VideoFilename
-
-                    lItem.IconImage = GetSaveThumbPath(item)
-
-
-
-                    lItem.IsFolder = False
-                    MyLog.DebugM("Fülle Recordinglistcontrol mit VideoFile {0} und Pfad: {1}", lItem.Label, lItem.Path)
-                    GUIControl.AddListItemControl(GetID, ctlRecList.GetID, lItem)
+                    If item.Title <> "" Then
+                        lItem.Label = item.Title & " - " & item.Channelname
+                        lItem.ItemId = ctlRecList.ListItems.Count - 1
+                        If item.Episodename <> "" Then
+                            lItem.Label2 = item.Episodename & " - "
+                        End If
+                        lItem.Label2 = lItem.Label2 & item.StartTime.Date
+                        lItem.Path = item.VideoFilename
+                        lItem.IconImage = GetSaveThumbPath(item)
+                        lItem.ThumbnailImage = GetSaveThumbPath(item)
+                        lItem.IsFolder = False
+                        MyLog.DebugM("Fülle Recordinglistcontrol mit VideoFile {0} und Pfad: {1}", lItem.Label, lItem.Path)
+                        GUIControl.AddListItemControl(GetID, ctlRecList.GetID, lItem)
+                    End If
                 Next
                 ctlRecList.SelectedListItemIndex = 0
+                GUIPropertyManager.SetProperty("#itemcount", RecList.lRecordings.Count)
                 MyLog.Info("Es wurden {0} Aufnahmen in der aktuellen Ansicht geladen.", RecList.lRecordings.Count)
             Catch ex As IO.IOException
                 MyLog.Warn("Fehler in FillRecListControl():{0}", ex.ToString)
@@ -681,12 +685,6 @@ Namespace MyVideoRedo
             MyLog.DebugM("Form KeyDown. Key: {0}", e.KeyCode)
         End Sub
 
-
-
-
-
-
-
 #Region "btnCutVideo & btnUseAsSeries"
 
         Private Sub btnUseAsSeries_Clicked()
@@ -699,7 +697,8 @@ Namespace MyVideoRedo
                     ctlWaitingEpisodes.Visible = False
                     MyLog.DebugM("Warte auf beendigung des Backgroudthreads...")
                     Do Until trSeries.IsAlive = False
-                        Threading.Thread.CurrentThread.Sleep(100)
+                        'Threading.Thread.CurrentThread.Sleep(100)
+                        Threading.Thread.Sleep(100)
                     Loop
                     MyLog.DebugM("Backgroudthreads wurde beendet")
                 End If
@@ -763,13 +762,6 @@ Namespace MyVideoRedo
 
 #End Region
 
-
-
-
-
-
-
-
         Protected Overrides Sub OnPageDestroy(ByVal new_windowId As Integer)
             MyBase.OnPageDestroy(new_windowId)
             If new_windowId < 1208 Or new_windowId > 1211 Then 'Wenn kein Fenster vom Plugin
@@ -783,6 +775,8 @@ Namespace MyVideoRedo
                     Dim dlgDelRec As GUIDialogYesNo = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_YES_NO, Integer)), GUIDialogYesNo)
                     dlgDelRec.SetHeading(Translation.CloseVRD)
                     dlgDelRec.SetLine(1, Translation.CloseVRD1)
+                    dlgDelRec.SetLine(2, Translation.CloseVRD2)
+                    dlgDelRec.SetLine(3, Translation.CloseVRD3)
                     dlgDelRec.DoModal(GetID)
 
                     If dlgDelRec.IsConfirmed Then

@@ -21,7 +21,6 @@ Public Class SetupForm
         HelpConfig.SetConfigString(ConfigKey.CutOnEnd, chkAutoEndmarker.Checked)
         HelpConfig.SetConfigString(ConfigKey.SaveFilename, Me.txtParseVideoFile.Text)
         HelpConfig.SetConfigString(ConfigKey.SaveSeriesFilename, Me.txtParseSeriesFile.Text)
-
         HelpConfig.SetConfigString(ConfigKey.SeekStepOnPause1, Me.numBackPause1.Value)
         HelpConfig.SetConfigString(ConfigKey.SeekStepOnPause4, Me.numBackPause2.Value)
         HelpConfig.SetConfigString(ConfigKey.SeekStepOnPause7, Me.numBackPause3.Value)
@@ -36,22 +35,18 @@ Public Class SetupForm
         HelpConfig.SetConfigString(ConfigKey.SeekStepOnPlay9, Me.numFFWPlay3.Value)
         HelpConfig.SetConfigString(ConfigKey.CreateFilmfolder, Me.chkCreateFilmFolder.Checked)
         HelpConfig.SetConfigString(ConfigKey.FilmFolderParsing, Me.txtFilmFolderParsing.Text)
-        HelpConfig.SetConfigString(ConfigKey.DebugVideoRedo, Me.CheckBoxdebugMode.Checked)
-
-
+        HelpConfig.SetConfigString(ConfigKey.DebugVideoRedo, Me.chkDebugMode.Checked)
+        HelpConfig.SetConfigString(ConfigKey.ProfileDetails, Me.chkDisableProfileDetails.Checked)
     End Sub
 
     Private Sub SetupForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         TranslateSetupForm()
-
         Me.txtRecPath.Text = HelpConfig.GetConfigString(ConfigKey.RecordingsPath)
         Me.txtSavePath.Text = HelpConfig.GetConfigString(ConfigKey.VideoSavePath)
         chkAutoStartmarker.Checked = HelpConfig.GetConfigString(ConfigKey.CutOnPlay)
         chkAutoEndmarker.Checked = HelpConfig.GetConfigString(ConfigKey.CutOnEnd)
         Me.txtParseVideoFile.Text = HelpConfig.GetConfigString(ConfigKey.SaveFilename)
         Me.txtParseSeriesFile.Text = HelpConfig.GetConfigString(ConfigKey.SaveSeriesFilename)
-
-
         Me.numBackPause1.Value = HelpConfig.GetConfigString(ConfigKey.SeekStepOnPause1)
         Me.numBackPause2.Value = HelpConfig.GetConfigString(ConfigKey.SeekStepOnPause4)
         Me.numBackPause3.Value = HelpConfig.GetConfigString(ConfigKey.SeekStepOnPause7)
@@ -66,15 +61,15 @@ Public Class SetupForm
         Me.numFFWPlay3.Value = HelpConfig.GetConfigString(ConfigKey.SeekStepOnPlay9)
         Me.chkCreateFilmFolder.Checked = HelpConfig.GetConfigString(ConfigKey.CreateFilmfolder)
         Me.txtFilmFolderParsing.Text = HelpConfig.GetConfigString(ConfigKey.FilmFolderParsing)
-        Me.CheckBoxdebugMode.Checked = HelpConfig.GetConfigString(ConfigKey.DebugVideoRedo)
-
+        Me.chkDebugMode.Checked = HelpConfig.GetConfigString(ConfigKey.DebugVideoRedo)
+        Me.chkDisableProfileDetails.Checked = HelpConfig.GetConfigString(ConfigKey.ProfileDetails)
         Replacer = Replacer.Load()
         'For Each item In Replacer.ReplacerList
         '    MsgBox(item.OriginalString & " - " & item.ReplaceString)
         'Next
         Me.DataGridView1.DataSource = Replacer.ReplacerList
 
-       
+
         Me.SaveDialog.SelectedPath = Me.txtSavePath.Text
         Me.RecDialog.SelectedPath = Me.txtRecPath.Text
     End Sub
@@ -85,28 +80,23 @@ Public Class SetupForm
 
         Me.TabPage1.Text = Translation.generalOptions
         Me.TabPage3.Text = Translation.editReplacementString
-
-        Me.GroupBox1.Text = Translation.GroupRecordingSettingCaption
+        Me.GroupBoxRecordings.Text = Translation.GroupRecordingSettingCaption
         Me.lblRecPath.Text = Translation.LabelRecordingsPath
         Me.lblSavePath.Text = Translation.LabelSavePath
         Me.btnRecDialog.Text = Translation.searchFolder
         Me.bntSaveDialog.Text = Translation.searchFolder
-
-        Me.GroupBox2.Text = Translation.GroupCutSettingCaption
+        Me.GroupBoxCutSettings.Text = Translation.GroupCutSettingCaption
         Me.chkAutoStartmarker.Text = Translation.StartCutAtStart
         Me.chkAutoEndmarker.Text = Translation.AutoEndCutLabel
-
-        Me.GroupBox3.Text = Translation.GroupStringSettingCaption
-        Me.GroupBoxFilmFolder.Text = Translation.GroupStringSettingCaption
+        Me.GroupBoxSaveSettings.Text = Translation.GroupStringSettingCaption
+        Me.GroupBoxFilmFolderSettings.Text = Translation.GroupStringSettingCaption
         Me.btnShowParseStrings.Text = Translation.ShowFileParserStrings
         Me.btnShowParseStrings2.Text = Translation.ShowFileParserStrings
         Me.lblParseVideofile.Text = Translation.ParseVideoFileLabel
         Me.lblParseSeriesFile.Text = Translation.ParseSeriesFileLabel
-
-        Me.GroupBox4.Text = Translation.editReplacementString
-        Me.Button4.Text = Translation.addReplaceString
-        Me.Button5.Text = Translation.delReplaceString
-
+        Me.GroupBoxEditReplacementString.Text = Translation.editReplacementString
+        Me.btnAddReplaceString.Text = Translation.addReplaceString
+        Me.btnDelReplaceString.Text = Translation.delReplaceString
         Me.TabPage2.Text = Translation.ConfigureSeekSteps
         Me.GroupBoxOnPlay.Text = Translation.GroupOnPlayCaption
         Me.GroupBoxOnPause.Text = Translation.GroupOnPauseCaption
@@ -121,18 +111,42 @@ Public Class SetupForm
         Me.lblSkipPart1Play.Text = String.Format(Translation.Step, "1")
         Me.lblSkipPart2Play.Text = String.Format(Translation.Step, "2")
         Me.lblSkipPart3Play.Text = String.Format(Translation.Step, "3")
-
+        Me.lblOriginalString.Text = Translation.OriginalString
+        Me.lblReplacementString.Text = Translation.ReplacementString
+        Me.txtFrames1.Text = Translation.Frames
+        Me.txtFrames2.Text = Translation.Frames
+        Me.txtFrames3.Text = Translation.Frames
+        Me.txtFrames4.Text = Translation.Frames
+        Me.txtFrames5.Text = Translation.Frames
+        Me.txtFrames6.Text = Translation.Frames
+        Me.txtSeconds1.Text = Translation.Seconds
+        Me.txtSeconds2.Text = Translation.Seconds
+        Me.txtSeconds3.Text = Translation.Seconds
+        Me.txtSeconds4.Text = Translation.Seconds
+        Me.txtSeconds5.Text = Translation.Seconds
+        Me.txtSeconds6.Text = Translation.Seconds
         Me.RecDialog.Description = Translation.RecordingDialogDescription
         Me.SaveDialog.Description = Translation.SaveDialogDescription
-
         Me.chkCreateFilmFolder.Text = Translation.CreateFilmsubfolder
-
         Me.lblDescriptionTVsuite.Text = Translation.DescriptionTVsuiteProfiles
         Me.btnCheckTVsuite.Text = Translation.ButtonCheckTVsuite4
-
+        Me.chkDebugMode.Text = Translation.DebugMode
+        Me.chkDisableProfileDetails.Text = Translation.DisableProfileDetails
+        Me.txtEncodingtype.Text = Translation.EncodingType
+        Me.txtEncodingTypeH264.Text = Translation.EncodingType
+        Me.txtFiletype.Text = Translation.Filetype
+        Me.txtFiletypeH264.Text = Translation.Filetype
+        Me.txtResolution.Text = Translation.Resolution
+        Me.txtResolutionH264.Text = Translation.Resolution
+        Me.txtRatio.Text = Translation.Ratio
+        Me.txtRatioH264.Text = Translation.Ratio
+        Me.txtDeinterlacemode.Text = Translation.DeinterlaceMode
+        Me.txtDeinterlacemodeH264.Text = Translation.DeinterlaceMode
+        Me.txtFramerate.Text = Translation.Framerate
+        Me.txtFramerateH264.Text = Translation.Framerate
     End Sub
 
-    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddReplaceString.Click
 
         Dim ri As New ReplacesStrings
         ri.OriginalString = Me.TextBox4.Text
@@ -150,7 +164,7 @@ Public Class SetupForm
 
     End Sub
 
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button5.Click
+    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelReplaceString.Click
         Replacer.ReplacerList.RemoveAt(Me.DataGridView1.SelectedRows(0).Index)
         Replacer.Save()
         Replacer = Replacer.Load()
@@ -163,7 +177,7 @@ Public Class SetupForm
     End Sub
 
     Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles lblDonate.LinkClicked
-        Dim p As Process = Process.Start("https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=X26J86PAAK93G&lc=AT&item_name=Sascha%20Patschka&currency_code=EUR&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted")
+        Dim p As Process = Process.Start("")
     End Sub
 
     Private Sub bntSaveDialog_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles bntSaveDialog.Click
@@ -221,12 +235,13 @@ Public Class SetupForm
         MsgBox(Translation.FrageParseSerienfile)
     End Sub
 
+    Private Sub imgDisableProfileDetails_Click(sender As Object, e As EventArgs) Handles imgDisableProfileDetails.Click
+        MsgBox(Translation.FrageDisableProfileDetails)
+    End Sub
+
     Private Sub txtParseVideoFile_TextChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
 
     End Sub
-
-
-
 
     Dim myVRD As VideoReDo
     Private Sub btnCheckTVsuite_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnCheckTVsuite.Click

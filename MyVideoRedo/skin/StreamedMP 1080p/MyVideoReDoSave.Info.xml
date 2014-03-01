@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<!--version="1.0" encoding="utf-8" standalone="yes"-->
+<window>
+  <id>1210</id>
+  <defaultcontrol>22</defaultcontrol>
+  <allowoverlay>no</allowoverlay>
+  <define>#header.label:MyVideoRedo</define>
+  <controls>
+  <!-- Saving Status & Progress -->
+    <control>
+      <type>image</type>
+      <id>0</id>
+      <posX>541</posX>
+      <posY>296</posY>
+      <width>840</width>
+      <height>449</height>
+      <texture>dlDialog.png</texture>
+	  <colordiffuse>FFffffff</colordiffuse>
+	  <visible>control.isvisible(12)</visible>
+      <animation effect="fade" time="200">WindowOpen</animation>
+      <animation effect="fade" time="200">WindowClose</animation>
+    </control>
+    <control>
+      <description>Saving Status</description>
+      <type>group</type>
+      <dimColor>0xffffffff</dimColor>
+      <animation effect="fade" time="200">WindowOpen</animation>
+      <animation effect="fade" time="200">WindowClose</animation>
+      <control>
+        <id>12</id>
+        <description>SavingStatusLabel</description>
+        <type>label</type>
+        <visible>false</visible>
+        <posX>576</posX>
+        <posY>331</posY>
+	    <width>770</width>
+        <align>left</align>
+        <label>#MyVideoRedo.Translation.SaveCuttedVideo</label>
+	    <animation effect="Fade" time="200">WindowOpen</animation>
+	    <animation effect="Fade" time="200">WindowClose</animation>
+      </control>
+	  <!-- Cancel Button on Save -->
+      <control Style="skinbutton">
+		<id>22</id>
+        <type>button</type>
+        <visible>control.isvisible(12)</visible>
+        <posX>836</posX>
+        <posY>675</posY>
+        <width>300</width>
+        <label>510</label>
+        <textalign>CENTER</textalign>
+	    <textYOff>1</textYOff>
+        <scrollStartDelaySec>1</scrollStartDelaySec>
+        <scrollWrapString> | </scrollWrapString>
+      </control>
+	  <control>
+        <description>Window Exit button</description>
+        <id>22</id>
+		<type>button</type>
+		<visible>control.isvisible(12)</visible>
+        <posX>1330</posX>
+        <posY>315</posY>
+	    <width>37</width>
+	    <height>35</height>
+        <textureFocus>button_close_focus.png</textureFocus>
+        <textureNoFocus>button_close_nofocus.png</textureNoFocus>
+        <label>-</label>
+        <animation effect="fade" time="200">WindowOpen</animation>
+        <animation effect="fade" time="200">WindowClose</animation>
+      </control>
+      <control>
+        <id>13</id>
+        <description>SavingProgressbar</description>
+        <type>progress</type>
+        <visible>control.isvisible(12)</visible>
+        <posX>561</posX>
+        <posY>490</posY>
+        <width>800</width>
+        <height>50</height>
+      </control>
+	  <control>
+        <description>SavingProgress2</description>
+        <type>label</type>
+        <visible>control.isvisible(12)</visible>
+        <posX>561</posX>
+        <posY>550</posY>
+	    <width>800</width>
+	    <align>CENTER</align>
+	    <textalign>CENTER</textalign>
+	    <textvalign>middle</textvalign>
+        <label>#Saving.Progress.Label2</label>
+        <font>mediastream10c</font>
+      </control>
+	  <control>
+        <description>SavingProgress1</description>
+        <type>label</type>
+        <visible>control.isvisible(12)</visible>
+        <posX>561</posX>
+        <posY>590</posY>
+	    <width>800</width>
+	    <align>CENTER</align>
+	    <textalign>CENTER</textalign>
+	    <textvalign>middle</textvalign>
+        <label>#Saving.Progress.Label1</label>
+        <font>mediastream10c</font>
+      </control>
+      <control>
+        <id>52</id>
+        <type>animation</type>
+        <visible>control.isvisible(12)</visible>
+        <posX>858</posX>
+        <posY>440</posY>
+        <width>235</width>
+        <height>36</height>
+        <textures>common.waiting.1.png;common.waiting.2.png;common.waiting.3.png;common.waiting.4.png;common.waiting.5.png;common.waiting.6.png;common.waiting.7.png;common.waiting.8.png</textures>
+        <Duration>0:0:01.5</Duration>
+      </control>
+	</control>
+  </controls>
+</window>
+<!--Checksum:5c863f599e596484cdc716ce85300424-->

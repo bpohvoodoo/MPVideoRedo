@@ -70,13 +70,14 @@ Public Module Helper
                 tFolder = Replace(tFolder, "%SeriesName%", Recording.Seriesname)
                 tFolder = Replace(tFolder, "%Genre%", Recording.Genre)
                 tFolder = Replace(tFolder, "%SeasonNumber%", Recording.SeriesNum)
-                ParseConfig = tFolder & "\" & CleanFilename(ParseConfig, "_")
+                ParseConfig = CleanPathname(tFolder, "_") & "\" & CleanFilename(ParseConfig, "_")
             End If
         End If
         newFileName = ParseConfig
 
 
         newFileName += ".%ext%"
+        MsgBox(newFileName)
         Return newFileName
     End Function
 
@@ -120,7 +121,7 @@ Public Module Helper
             End If
 
 
-            Dim NewPath As String = mFolder & "\" & Record.Title & "_" & Record.StartTime.Ticks & ".jpg"
+            Dim NewPath As String = mFolder & "\" & CleanFilename(Record.Title) & "_" & Record.StartTime.Ticks & ".jpg"
 
 
             If IO.File.Exists(NewPath) Then
@@ -130,7 +131,7 @@ Public Module Helper
                 MyLog.DebugM("Das angeforderte Bild war NICHT vorhanden. Es wird versucht ein Bild aus der Datei zu extrahieren (GetShellVideoThumbnail)...")
                 Dim img As Drawing.Bitmap = GetShellVideoThumbnail(Record.VideoFilename)
                 If img Is Nothing Then
-                    img = New Drawing.Bitmap(100, 100, Drawing.Imaging.PixelFormat.Format32bppArgb)
+                    'img = New Drawing.Bitmap(100, 100, Drawing.Imaging.PixelFormat.Format32bppArgb)
                     img.Save(NewPath)
                 Else
                     img.Save(NewPath)
@@ -155,6 +156,7 @@ Public Module Helper
             Return ShIcon.GetThumbnail(Filename)
         Catch ex As Exception
             MyLog.Info("Das Videothumbnail für " & Filename & " konnte leider nicht geladen werden.")
+            Return Nothing
         End Try
     End Function
 
@@ -295,12 +297,16 @@ Public Module Helper
 
     End Function
 
-    Public Function CleanFilename(ByVal sFilename As String, _
-  Optional ByVal sChar As String = "") As String
+    Public Function CleanFilename(ByVal sFilename As String, Optional ByVal sChar As String = "") As String
 
         ' alle nicht zulässigen Zeichen ersetzen
-        Return System.Text.RegularExpressions.Regex.Replace( _
-          sFilename, "[\\/:?*^""<>|]", sChar)
+        Return System.Text.RegularExpressions.Regex.Replace(sFilename, "[\\/:?*^""<>|]", sChar)
+    End Function
+
+    Public Function CleanPathname(ByVal sFilename As String, Optional ByVal sChar As String = "") As String
+
+        ' alle nicht zulässigen Zeichen ersetzen
+        Return System.Text.RegularExpressions.Regex.Replace(sFilename, "[/:?*^""<>|]", sChar)
     End Function
 
     Public Function GetGUIWindow(ByVal Windows As enumWindows) As Integer

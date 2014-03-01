@@ -22,6 +22,7 @@ Partial Class SetupForm
     'Das Bearbeiten mit dem Code-Editor ist nicht möglich.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(SetupForm))
         Me.txtRecPath = New System.Windows.Forms.TextBox()
         Me.btnRecDialog = New System.Windows.Forms.Button()
         Me.RecDialog = New System.Windows.Forms.FolderBrowserDialog()
@@ -31,11 +32,11 @@ Partial Class SetupForm
         Me.SplitContainer2 = New System.Windows.Forms.SplitContainer()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
-        Me.GroupBoxFilmFolder = New System.Windows.Forms.GroupBox()
+        Me.GroupBoxFilmFolderSettings = New System.Windows.Forms.GroupBox()
         Me.btnShowParseStrings2 = New System.Windows.Forms.Button()
         Me.txtFilmFolderParsing = New System.Windows.Forms.TextBox()
         Me.chkCreateFilmFolder = New System.Windows.Forms.CheckBox()
-        Me.GroupBox3 = New System.Windows.Forms.GroupBox()
+        Me.GroupBoxSaveSettings = New System.Windows.Forms.GroupBox()
         Me.lblTestVideoParsing = New System.Windows.Forms.Label()
         Me.lblTestSeriesParsing = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
@@ -47,11 +48,11 @@ Partial Class SetupForm
         Me.lblParseVideofile = New System.Windows.Forms.Label()
         Me.txtParseVideoFile = New System.Windows.Forms.TextBox()
         Me.imgParseVideoFile = New System.Windows.Forms.PictureBox()
-        Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.GroupBoxCutSettings = New System.Windows.Forms.GroupBox()
         Me.imgAutoEndMarker = New System.Windows.Forms.PictureBox()
         Me.chkAutoEndmarker = New System.Windows.Forms.CheckBox()
         Me.imgAutoStartmarker = New System.Windows.Forms.PictureBox()
-        Me.GroupBox1 = New System.Windows.Forms.GroupBox()
+        Me.GroupBoxRecordings = New System.Windows.Forms.GroupBox()
         Me.SplitContainer3 = New System.Windows.Forms.SplitContainer()
         Me.SplitContainer7 = New System.Windows.Forms.SplitContainer()
         Me.lblRecPath = New System.Windows.Forms.Label()
@@ -63,35 +64,35 @@ Partial Class SetupForm
         Me.bntSaveDialog = New System.Windows.Forms.Button()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.GroupBoxOnPause = New System.Windows.Forms.GroupBox()
-        Me.Label15 = New System.Windows.Forms.Label()
+        Me.txtFrames6 = New System.Windows.Forms.Label()
         Me.numBackPause3 = New System.Windows.Forms.NumericUpDown()
         Me.numFFWPause3 = New System.Windows.Forms.NumericUpDown()
         Me.lblSkipPart1Pause = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
+        Me.txtFrames3 = New System.Windows.Forms.Label()
         Me.lblSkipPart2Pause = New System.Windows.Forms.Label()
         Me.lblSkipPart3Pause = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
+        Me.txtFrames5 = New System.Windows.Forms.Label()
         Me.lblBackPause = New System.Windows.Forms.Label()
         Me.numFFWPause2 = New System.Windows.Forms.NumericUpDown()
         Me.lblFFWPause = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
+        Me.txtFrames2 = New System.Windows.Forms.Label()
         Me.numBackPause1 = New System.Windows.Forms.NumericUpDown()
         Me.numBackPause2 = New System.Windows.Forms.NumericUpDown()
-        Me.Label20 = New System.Windows.Forms.Label()
-        Me.Label19 = New System.Windows.Forms.Label()
+        Me.txtFrames1 = New System.Windows.Forms.Label()
+        Me.txtFrames4 = New System.Windows.Forms.Label()
         Me.numFFWPause1 = New System.Windows.Forms.NumericUpDown()
         Me.GroupBoxOnPlay = New System.Windows.Forms.GroupBox()
-        Me.Label13 = New System.Windows.Forms.Label()
+        Me.txtSeconds6 = New System.Windows.Forms.Label()
         Me.numFFWPlay3 = New System.Windows.Forms.NumericUpDown()
-        Me.Label14 = New System.Windows.Forms.Label()
+        Me.txtSeconds3 = New System.Windows.Forms.Label()
         Me.numBackPlay3 = New System.Windows.Forms.NumericUpDown()
-        Me.Label11 = New System.Windows.Forms.Label()
+        Me.txtSeconds5 = New System.Windows.Forms.Label()
         Me.numFFWPlay2 = New System.Windows.Forms.NumericUpDown()
-        Me.Label12 = New System.Windows.Forms.Label()
+        Me.txtSeconds2 = New System.Windows.Forms.Label()
         Me.numBackPlay2 = New System.Windows.Forms.NumericUpDown()
-        Me.Label10 = New System.Windows.Forms.Label()
+        Me.txtSeconds4 = New System.Windows.Forms.Label()
         Me.numFFWPlay1 = New System.Windows.Forms.NumericUpDown()
-        Me.Label9 = New System.Windows.Forms.Label()
+        Me.txtSeconds1 = New System.Windows.Forms.Label()
         Me.numBackPlay1 = New System.Windows.Forms.NumericUpDown()
         Me.lblSkipFFWPlay = New System.Windows.Forms.Label()
         Me.lblSkipBackPlay = New System.Windows.Forms.Label()
@@ -100,34 +101,16 @@ Partial Class SetupForm
         Me.lblSkipPart1Play = New System.Windows.Forms.Label()
         Me.lblconfigureSeekSteps = New System.Windows.Forms.Label()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.GroupBox4 = New System.Windows.Forms.GroupBox()
-        Me.Button5 = New System.Windows.Forms.Button()
-        Me.Label6 = New System.Windows.Forms.Label()
-        Me.Button4 = New System.Windows.Forms.Button()
-        Me.Label5 = New System.Windows.Forms.Label()
+        Me.GroupBoxEditReplacementString = New System.Windows.Forms.GroupBox()
+        Me.btnDelReplaceString = New System.Windows.Forms.Button()
+        Me.lblReplacementString = New System.Windows.Forms.Label()
+        Me.btnAddReplaceString = New System.Windows.Forms.Button()
+        Me.lblOriginalString = New System.Windows.Forms.Label()
         Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.TextBox5 = New System.Windows.Forms.TextBox()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.TabPage4 = New System.Windows.Forms.TabPage()
-        Me.CheckBoxdebugMode = New System.Windows.Forms.CheckBox()
-        Me.GroupBoxTVsuiteProfile = New System.Windows.Forms.GroupBox()
-        Me.lblFramerate = New System.Windows.Forms.Label()
-        Me.lblDeinterlacemode = New System.Windows.Forms.Label()
-        Me.lblRatio = New System.Windows.Forms.Label()
-        Me.lblResolution = New System.Windows.Forms.Label()
-        Me.lblFileType = New System.Windows.Forms.Label()
-        Me.lblEncodingType = New System.Windows.Forms.Label()
-        Me.Label23 = New System.Windows.Forms.Label()
-        Me.Label22 = New System.Windows.Forms.Label()
-        Me.Label21 = New System.Windows.Forms.Label()
-        Me.Label8 = New System.Windows.Forms.Label()
-        Me.Label7 = New System.Windows.Forms.Label()
-        Me.Label4 = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
-        Me.btnCheckTVsuite = New System.Windows.Forms.Button()
-        Me.lblDescriptionTVsuite = New System.Windows.Forms.Label()
-        Me.lblDonate = New System.Windows.Forms.LinkLabel()
-        Me.SaveDialog = New System.Windows.Forms.FolderBrowserDialog()
+        Me.chkDisableProfileDetails = New System.Windows.Forms.CheckBox()
         Me.GroupBoxTVsuiteProfileH264 = New System.Windows.Forms.GroupBox()
         Me.lblFramerateH264 = New System.Windows.Forms.Label()
         Me.lblDeinterlacemodeH264 = New System.Windows.Forms.Label()
@@ -135,41 +118,68 @@ Partial Class SetupForm
         Me.lblResolutionH264 = New System.Windows.Forms.Label()
         Me.lblFileTypeH264 = New System.Windows.Forms.Label()
         Me.lblEncodingTypeH264 = New System.Windows.Forms.Label()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.Label31 = New System.Windows.Forms.Label()
-        Me.Label32 = New System.Windows.Forms.Label()
-        Me.Label33 = New System.Windows.Forms.Label()
-        Me.Label34 = New System.Windows.Forms.Label()
-        Me.Label35 = New System.Windows.Forms.Label()
+        Me.txtFramerateH264 = New System.Windows.Forms.Label()
+        Me.txtDeinterlacemodeH264 = New System.Windows.Forms.Label()
+        Me.txtRatioH264 = New System.Windows.Forms.Label()
+        Me.txtResolutionH264 = New System.Windows.Forms.Label()
+        Me.txtFiletypeH264 = New System.Windows.Forms.Label()
+        Me.txtEncodingtypeH264 = New System.Windows.Forms.Label()
         Me.ComboBoxH264 = New System.Windows.Forms.ComboBox()
+        Me.chkDebugMode = New System.Windows.Forms.CheckBox()
+        Me.GroupBoxTVsuiteProfile = New System.Windows.Forms.GroupBox()
+        Me.lblFramerate = New System.Windows.Forms.Label()
+        Me.lblDeinterlacemode = New System.Windows.Forms.Label()
+        Me.lblRatio = New System.Windows.Forms.Label()
+        Me.lblResolution = New System.Windows.Forms.Label()
+        Me.lblFileType = New System.Windows.Forms.Label()
+        Me.lblEncodingType = New System.Windows.Forms.Label()
+        Me.txtFramerate = New System.Windows.Forms.Label()
+        Me.txtDeinterlacemode = New System.Windows.Forms.Label()
+        Me.txtRatio = New System.Windows.Forms.Label()
+        Me.txtResolution = New System.Windows.Forms.Label()
+        Me.txtFiletype = New System.Windows.Forms.Label()
+        Me.txtEncodingtype = New System.Windows.Forms.Label()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.btnCheckTVsuite = New System.Windows.Forms.Button()
+        Me.lblDescriptionTVsuite = New System.Windows.Forms.Label()
+        Me.lblDonate = New System.Windows.Forms.LinkLabel()
+        Me.SaveDialog = New System.Windows.Forms.FolderBrowserDialog()
+        Me.imgDisableProfileDetails = New System.Windows.Forms.PictureBox()
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer1.Panel1.SuspendLayout()
         Me.SplitContainer1.Panel2.SuspendLayout()
         Me.SplitContainer1.SuspendLayout()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer2.Panel1.SuspendLayout()
         Me.SplitContainer2.Panel2.SuspendLayout()
         Me.SplitContainer2.SuspendLayout()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
-        Me.GroupBoxFilmFolder.SuspendLayout()
-        Me.GroupBox3.SuspendLayout()
+        Me.GroupBoxFilmFolderSettings.SuspendLayout()
+        Me.GroupBoxSaveSettings.SuspendLayout()
         CType(Me.imgParseSeries, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.imgParseVideoFile, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox2.SuspendLayout()
+        Me.GroupBoxCutSettings.SuspendLayout()
         CType(Me.imgAutoEndMarker, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.imgAutoStartmarker, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.GroupBox1.SuspendLayout()
+        Me.GroupBoxRecordings.SuspendLayout()
+        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer3.Panel1.SuspendLayout()
         Me.SplitContainer3.Panel2.SuspendLayout()
         Me.SplitContainer3.SuspendLayout()
+        CType(Me.SplitContainer7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer7.Panel1.SuspendLayout()
         Me.SplitContainer7.Panel2.SuspendLayout()
         Me.SplitContainer7.SuspendLayout()
+        CType(Me.SplitContainer4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer4.Panel1.SuspendLayout()
         Me.SplitContainer4.Panel2.SuspendLayout()
         Me.SplitContainer4.SuspendLayout()
+        CType(Me.SplitContainer6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer6.Panel1.SuspendLayout()
         Me.SplitContainer6.Panel2.SuspendLayout()
         Me.SplitContainer6.SuspendLayout()
+        CType(Me.SplitContainer5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SplitContainer5.Panel1.SuspendLayout()
         Me.SplitContainer5.Panel2.SuspendLayout()
         Me.SplitContainer5.SuspendLayout()
@@ -189,11 +199,12 @@ Partial Class SetupForm
         CType(Me.numFFWPlay1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.numBackPlay1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage3.SuspendLayout()
-        Me.GroupBox4.SuspendLayout()
+        Me.GroupBoxEditReplacementString.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage4.SuspendLayout()
-        Me.GroupBoxTVsuiteProfile.SuspendLayout()
         Me.GroupBoxTVsuiteProfileH264.SuspendLayout()
+        Me.GroupBoxTVsuiteProfile.SuspendLayout()
+        CType(Me.imgDisableProfileDetails, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'txtRecPath
@@ -201,7 +212,7 @@ Partial Class SetupForm
         Me.txtRecPath.Dock = System.Windows.Forms.DockStyle.Top
         Me.txtRecPath.Location = New System.Drawing.Point(0, 0)
         Me.txtRecPath.Name = "txtRecPath"
-        Me.txtRecPath.Size = New System.Drawing.Size(335, 20)
+        Me.txtRecPath.Size = New System.Drawing.Size(340, 20)
         Me.txtRecPath.TabIndex = 0
         '
         'btnRecDialog
@@ -211,7 +222,7 @@ Partial Class SetupForm
         Me.btnRecDialog.Name = "btnRecDialog"
         Me.btnRecDialog.Size = New System.Drawing.Size(99, 23)
         Me.btnRecDialog.TabIndex = 1
-        Me.btnRecDialog.Text = "Button1"
+        Me.btnRecDialog.Text = "btnRecDialog"
         Me.btnRecDialog.UseVisualStyleBackColor = True
         '
         'RecDialog
@@ -224,9 +235,9 @@ Partial Class SetupForm
         Me.chkAutoStartmarker.AutoSize = True
         Me.chkAutoStartmarker.Location = New System.Drawing.Point(31, 24)
         Me.chkAutoStartmarker.Name = "chkAutoStartmarker"
-        Me.chkAutoStartmarker.Size = New System.Drawing.Size(109, 17)
+        Me.chkAutoStartmarker.Size = New System.Drawing.Size(120, 17)
         Me.chkAutoStartmarker.TabIndex = 2
-        Me.chkAutoStartmarker.Text = "setzte startmarker"
+        Me.chkAutoStartmarker.Text = "chkAutoStartmarker"
         Me.chkAutoStartmarker.UseVisualStyleBackColor = True
         '
         'SplitContainer1
@@ -254,7 +265,7 @@ Partial Class SetupForm
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label1.Location = New System.Drawing.Point(0, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(610, 23)
+        Me.Label1.Size = New System.Drawing.Size(610, 38)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "MyVideoReDo"
         Me.Label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
@@ -293,10 +304,10 @@ Partial Class SetupForm
         '
         'TabPage1
         '
-        Me.TabPage1.Controls.Add(Me.GroupBoxFilmFolder)
-        Me.TabPage1.Controls.Add(Me.GroupBox3)
-        Me.TabPage1.Controls.Add(Me.GroupBox2)
-        Me.TabPage1.Controls.Add(Me.GroupBox1)
+        Me.TabPage1.Controls.Add(Me.GroupBoxFilmFolderSettings)
+        Me.TabPage1.Controls.Add(Me.GroupBoxSaveSettings)
+        Me.TabPage1.Controls.Add(Me.GroupBoxCutSettings)
+        Me.TabPage1.Controls.Add(Me.GroupBoxRecordings)
         Me.TabPage1.Location = New System.Drawing.Point(4, 22)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
@@ -305,18 +316,18 @@ Partial Class SetupForm
         Me.TabPage1.Text = "TabPage1"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
-        'GroupBoxFilmFolder
+        'GroupBoxFilmFolderSettings
         '
-        Me.GroupBoxFilmFolder.Controls.Add(Me.btnShowParseStrings2)
-        Me.GroupBoxFilmFolder.Controls.Add(Me.txtFilmFolderParsing)
-        Me.GroupBoxFilmFolder.Controls.Add(Me.chkCreateFilmFolder)
-        Me.GroupBoxFilmFolder.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBoxFilmFolder.Location = New System.Drawing.Point(3, 250)
-        Me.GroupBoxFilmFolder.Name = "GroupBoxFilmFolder"
-        Me.GroupBoxFilmFolder.Size = New System.Drawing.Size(596, 51)
-        Me.GroupBoxFilmFolder.TabIndex = 7
-        Me.GroupBoxFilmFolder.TabStop = False
-        Me.GroupBoxFilmFolder.Text = "GroupBoxFilmFolderSettings"
+        Me.GroupBoxFilmFolderSettings.Controls.Add(Me.btnShowParseStrings2)
+        Me.GroupBoxFilmFolderSettings.Controls.Add(Me.txtFilmFolderParsing)
+        Me.GroupBoxFilmFolderSettings.Controls.Add(Me.chkCreateFilmFolder)
+        Me.GroupBoxFilmFolderSettings.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBoxFilmFolderSettings.Location = New System.Drawing.Point(3, 250)
+        Me.GroupBoxFilmFolderSettings.Name = "GroupBoxFilmFolderSettings"
+        Me.GroupBoxFilmFolderSettings.Size = New System.Drawing.Size(596, 51)
+        Me.GroupBoxFilmFolderSettings.TabIndex = 7
+        Me.GroupBoxFilmFolderSettings.TabStop = False
+        Me.GroupBoxFilmFolderSettings.Text = "GroupBoxFilmFolderSettings"
         '
         'btnShowParseStrings2
         '
@@ -324,7 +335,7 @@ Partial Class SetupForm
         Me.btnShowParseStrings2.Name = "btnShowParseStrings2"
         Me.btnShowParseStrings2.Size = New System.Drawing.Size(93, 25)
         Me.btnShowParseStrings2.TabIndex = 9
-        Me.btnShowParseStrings2.Text = "showstrings"
+        Me.btnShowParseStrings2.Text = "btnShowParseStrings2"
         Me.btnShowParseStrings2.UseVisualStyleBackColor = True
         '
         'txtFilmFolderParsing
@@ -344,26 +355,26 @@ Partial Class SetupForm
         Me.chkCreateFilmFolder.Text = "chkCreateFilmFolder"
         Me.chkCreateFilmFolder.UseVisualStyleBackColor = True
         '
-        'GroupBox3
+        'GroupBoxSaveSettings
         '
-        Me.GroupBox3.Controls.Add(Me.lblTestVideoParsing)
-        Me.GroupBox3.Controls.Add(Me.lblTestSeriesParsing)
-        Me.GroupBox3.Controls.Add(Me.Label3)
-        Me.GroupBox3.Controls.Add(Me.Label2)
-        Me.GroupBox3.Controls.Add(Me.lblParseSeriesFile)
-        Me.GroupBox3.Controls.Add(Me.txtParseSeriesFile)
-        Me.GroupBox3.Controls.Add(Me.imgParseSeries)
-        Me.GroupBox3.Controls.Add(Me.btnShowParseStrings)
-        Me.GroupBox3.Controls.Add(Me.lblParseVideofile)
-        Me.GroupBox3.Controls.Add(Me.txtParseVideoFile)
-        Me.GroupBox3.Controls.Add(Me.imgParseVideoFile)
-        Me.GroupBox3.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox3.Location = New System.Drawing.Point(3, 131)
-        Me.GroupBox3.Name = "GroupBox3"
-        Me.GroupBox3.Size = New System.Drawing.Size(596, 119)
-        Me.GroupBox3.TabIndex = 6
-        Me.GroupBox3.TabStop = False
-        Me.GroupBox3.Text = "groupSaveSettings"
+        Me.GroupBoxSaveSettings.Controls.Add(Me.lblTestVideoParsing)
+        Me.GroupBoxSaveSettings.Controls.Add(Me.lblTestSeriesParsing)
+        Me.GroupBoxSaveSettings.Controls.Add(Me.Label3)
+        Me.GroupBoxSaveSettings.Controls.Add(Me.Label2)
+        Me.GroupBoxSaveSettings.Controls.Add(Me.lblParseSeriesFile)
+        Me.GroupBoxSaveSettings.Controls.Add(Me.txtParseSeriesFile)
+        Me.GroupBoxSaveSettings.Controls.Add(Me.imgParseSeries)
+        Me.GroupBoxSaveSettings.Controls.Add(Me.btnShowParseStrings)
+        Me.GroupBoxSaveSettings.Controls.Add(Me.lblParseVideofile)
+        Me.GroupBoxSaveSettings.Controls.Add(Me.txtParseVideoFile)
+        Me.GroupBoxSaveSettings.Controls.Add(Me.imgParseVideoFile)
+        Me.GroupBoxSaveSettings.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBoxSaveSettings.Location = New System.Drawing.Point(3, 131)
+        Me.GroupBoxSaveSettings.Name = "GroupBoxSaveSettings"
+        Me.GroupBoxSaveSettings.Size = New System.Drawing.Size(596, 119)
+        Me.GroupBoxSaveSettings.TabIndex = 6
+        Me.GroupBoxSaveSettings.TabStop = False
+        Me.GroupBoxSaveSettings.Text = "GroupBoxSaveSettings"
         '
         'lblTestVideoParsing
         '
@@ -433,7 +444,7 @@ Partial Class SetupForm
         Me.btnShowParseStrings.Name = "btnShowParseStrings"
         Me.btnShowParseStrings.Size = New System.Drawing.Size(93, 89)
         Me.btnShowParseStrings.TabIndex = 8
-        Me.btnShowParseStrings.Text = "showstrings"
+        Me.btnShowParseStrings.Text = "btnShowParseStrings"
         Me.btnShowParseStrings.UseVisualStyleBackColor = True
         '
         'lblParseVideofile
@@ -462,19 +473,19 @@ Partial Class SetupForm
         Me.imgParseVideoFile.TabIndex = 6
         Me.imgParseVideoFile.TabStop = False
         '
-        'GroupBox2
+        'GroupBoxCutSettings
         '
-        Me.GroupBox2.Controls.Add(Me.imgAutoEndMarker)
-        Me.GroupBox2.Controls.Add(Me.chkAutoEndmarker)
-        Me.GroupBox2.Controls.Add(Me.imgAutoStartmarker)
-        Me.GroupBox2.Controls.Add(Me.chkAutoStartmarker)
-        Me.GroupBox2.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox2.Location = New System.Drawing.Point(3, 73)
-        Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(596, 58)
-        Me.GroupBox2.TabIndex = 5
-        Me.GroupBox2.TabStop = False
-        Me.GroupBox2.Text = "groupCutSettings"
+        Me.GroupBoxCutSettings.Controls.Add(Me.imgAutoEndMarker)
+        Me.GroupBoxCutSettings.Controls.Add(Me.chkAutoEndmarker)
+        Me.GroupBoxCutSettings.Controls.Add(Me.imgAutoStartmarker)
+        Me.GroupBoxCutSettings.Controls.Add(Me.chkAutoStartmarker)
+        Me.GroupBoxCutSettings.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBoxCutSettings.Location = New System.Drawing.Point(3, 73)
+        Me.GroupBoxCutSettings.Name = "GroupBoxCutSettings"
+        Me.GroupBoxCutSettings.Size = New System.Drawing.Size(596, 58)
+        Me.GroupBoxCutSettings.TabIndex = 5
+        Me.GroupBoxCutSettings.TabStop = False
+        Me.GroupBoxCutSettings.Text = "GroupBoxCutSettings"
         '
         'imgAutoEndMarker
         '
@@ -491,9 +502,9 @@ Partial Class SetupForm
         Me.chkAutoEndmarker.AutoSize = True
         Me.chkAutoEndmarker.Location = New System.Drawing.Point(319, 24)
         Me.chkAutoEndmarker.Name = "chkAutoEndmarker"
-        Me.chkAutoEndmarker.Size = New System.Drawing.Size(107, 17)
+        Me.chkAutoEndmarker.Size = New System.Drawing.Size(117, 17)
         Me.chkAutoEndmarker.TabIndex = 7
-        Me.chkAutoEndmarker.Text = "setzte endmarker"
+        Me.chkAutoEndmarker.Text = "chkAutoEndmarker"
         Me.chkAutoEndmarker.UseVisualStyleBackColor = True
         '
         'imgAutoStartmarker
@@ -506,16 +517,16 @@ Partial Class SetupForm
         Me.imgAutoStartmarker.TabIndex = 6
         Me.imgAutoStartmarker.TabStop = False
         '
-        'GroupBox1
+        'GroupBoxRecordings
         '
-        Me.GroupBox1.Controls.Add(Me.SplitContainer3)
-        Me.GroupBox1.Dock = System.Windows.Forms.DockStyle.Top
-        Me.GroupBox1.Location = New System.Drawing.Point(3, 3)
-        Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(596, 70)
-        Me.GroupBox1.TabIndex = 3
-        Me.GroupBox1.TabStop = False
-        Me.GroupBox1.Text = "groupRecordings"
+        Me.GroupBoxRecordings.Controls.Add(Me.SplitContainer3)
+        Me.GroupBoxRecordings.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupBoxRecordings.Location = New System.Drawing.Point(3, 3)
+        Me.GroupBoxRecordings.Name = "GroupBoxRecordings"
+        Me.GroupBoxRecordings.Size = New System.Drawing.Size(596, 70)
+        Me.GroupBoxRecordings.TabIndex = 3
+        Me.GroupBoxRecordings.TabStop = False
+        Me.GroupBoxRecordings.Text = "GroupBoxRecordings"
         '
         'SplitContainer3
         '
@@ -560,18 +571,18 @@ Partial Class SetupForm
         Me.lblRecPath.AutoSize = True
         Me.lblRecPath.Location = New System.Drawing.Point(3, 7)
         Me.lblRecPath.Name = "lblRecPath"
-        Me.lblRecPath.Size = New System.Drawing.Size(39, 13)
+        Me.lblRecPath.Size = New System.Drawing.Size(59, 13)
         Me.lblRecPath.TabIndex = 0
-        Me.lblRecPath.Text = "Label2"
+        Me.lblRecPath.Text = "lblRecPath"
         '
         'lblSavePath
         '
         Me.lblSavePath.AutoSize = True
         Me.lblSavePath.Location = New System.Drawing.Point(3, 5)
         Me.lblSavePath.Name = "lblSavePath"
-        Me.lblSavePath.Size = New System.Drawing.Size(39, 13)
+        Me.lblSavePath.Size = New System.Drawing.Size(64, 13)
         Me.lblSavePath.TabIndex = 3
-        Me.lblSavePath.Text = "Label3"
+        Me.lblSavePath.Text = "lblSavePath"
         '
         'SplitContainer4
         '
@@ -616,7 +627,7 @@ Partial Class SetupForm
         Me.txtSavePath.Dock = System.Windows.Forms.DockStyle.Top
         Me.txtSavePath.Location = New System.Drawing.Point(0, 0)
         Me.txtSavePath.Name = "txtSavePath"
-        Me.txtSavePath.Size = New System.Drawing.Size(335, 20)
+        Me.txtSavePath.Size = New System.Drawing.Size(340, 20)
         Me.txtSavePath.TabIndex = 2
         '
         'SplitContainer5
@@ -645,7 +656,7 @@ Partial Class SetupForm
         Me.bntSaveDialog.Name = "bntSaveDialog"
         Me.bntSaveDialog.Size = New System.Drawing.Size(99, 23)
         Me.bntSaveDialog.TabIndex = 4
-        Me.bntSaveDialog.Text = "Button2"
+        Me.bntSaveDialog.Text = "bntSaveDialog"
         Me.bntSaveDialog.UseVisualStyleBackColor = True
         '
         'TabPage2
@@ -663,38 +674,38 @@ Partial Class SetupForm
         '
         'GroupBoxOnPause
         '
-        Me.GroupBoxOnPause.Controls.Add(Me.Label15)
+        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames6)
         Me.GroupBoxOnPause.Controls.Add(Me.numBackPause3)
         Me.GroupBoxOnPause.Controls.Add(Me.numFFWPause3)
         Me.GroupBoxOnPause.Controls.Add(Me.lblSkipPart1Pause)
-        Me.GroupBoxOnPause.Controls.Add(Me.Label16)
+        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames3)
         Me.GroupBoxOnPause.Controls.Add(Me.lblSkipPart2Pause)
         Me.GroupBoxOnPause.Controls.Add(Me.lblSkipPart3Pause)
-        Me.GroupBoxOnPause.Controls.Add(Me.Label17)
+        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames5)
         Me.GroupBoxOnPause.Controls.Add(Me.lblBackPause)
         Me.GroupBoxOnPause.Controls.Add(Me.numFFWPause2)
         Me.GroupBoxOnPause.Controls.Add(Me.lblFFWPause)
-        Me.GroupBoxOnPause.Controls.Add(Me.Label18)
+        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames2)
         Me.GroupBoxOnPause.Controls.Add(Me.numBackPause1)
         Me.GroupBoxOnPause.Controls.Add(Me.numBackPause2)
-        Me.GroupBoxOnPause.Controls.Add(Me.Label20)
-        Me.GroupBoxOnPause.Controls.Add(Me.Label19)
+        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames1)
+        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames4)
         Me.GroupBoxOnPause.Controls.Add(Me.numFFWPause1)
         Me.GroupBoxOnPause.Location = New System.Drawing.Point(310, 40)
         Me.GroupBoxOnPause.Name = "GroupBoxOnPause"
         Me.GroupBoxOnPause.Size = New System.Drawing.Size(279, 210)
         Me.GroupBoxOnPause.TabIndex = 2
         Me.GroupBoxOnPause.TabStop = False
-        Me.GroupBoxOnPause.Text = "GroupBox6"
+        Me.GroupBoxOnPause.Text = "GroupBoxOnPause"
         '
-        'Label15
+        'txtFrames6
         '
-        Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(234, 148)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(41, 13)
-        Me.Label15.TabIndex = 33
-        Me.Label15.Text = "Frames"
+        Me.txtFrames6.AutoSize = True
+        Me.txtFrames6.Location = New System.Drawing.Point(234, 148)
+        Me.txtFrames6.Name = "txtFrames6"
+        Me.txtFrames6.Size = New System.Drawing.Size(58, 13)
+        Me.txtFrames6.TabIndex = 33
+        Me.txtFrames6.Text = "txtFrames6"
         '
         'numBackPause3
         '
@@ -725,14 +736,14 @@ Partial Class SetupForm
         Me.lblSkipPart1Pause.TabIndex = 17
         Me.lblSkipPart1Pause.Text = "Label25"
         '
-        'Label16
+        'txtFrames3
         '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(132, 148)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(41, 13)
-        Me.Label16.TabIndex = 31
-        Me.Label16.Text = "Frames"
+        Me.txtFrames3.AutoSize = True
+        Me.txtFrames3.Location = New System.Drawing.Point(132, 148)
+        Me.txtFrames3.Name = "txtFrames3"
+        Me.txtFrames3.Size = New System.Drawing.Size(58, 13)
+        Me.txtFrames3.TabIndex = 31
+        Me.txtFrames3.Text = "txtFrames3"
         '
         'lblSkipPart2Pause
         '
@@ -752,14 +763,14 @@ Partial Class SetupForm
         Me.lblSkipPart3Pause.TabIndex = 19
         Me.lblSkipPart3Pause.Text = "Label23"
         '
-        'Label17
+        'txtFrames5
         '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(234, 109)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(41, 13)
-        Me.Label17.TabIndex = 29
-        Me.Label17.Text = "Frames"
+        Me.txtFrames5.AutoSize = True
+        Me.txtFrames5.Location = New System.Drawing.Point(234, 109)
+        Me.txtFrames5.Name = "txtFrames5"
+        Me.txtFrames5.Size = New System.Drawing.Size(58, 13)
+        Me.txtFrames5.TabIndex = 29
+        Me.txtFrames5.Text = "txtFrames5"
         '
         'lblBackPause
         '
@@ -767,7 +778,7 @@ Partial Class SetupForm
         Me.lblBackPause.Name = "lblBackPause"
         Me.lblBackPause.Size = New System.Drawing.Size(101, 13)
         Me.lblBackPause.TabIndex = 20
-        Me.lblBackPause.Text = "Label22"
+        Me.lblBackPause.Text = "lblBackPause"
         Me.lblBackPause.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'numFFWPause2
@@ -786,17 +797,17 @@ Partial Class SetupForm
         Me.lblFFWPause.Name = "lblFFWPause"
         Me.lblFFWPause.Size = New System.Drawing.Size(101, 13)
         Me.lblFFWPause.TabIndex = 21
-        Me.lblFFWPause.Text = "Label21"
+        Me.lblFFWPause.Text = "lblFFWPause"
         Me.lblFFWPause.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'Label18
+        'txtFrames2
         '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(132, 109)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(41, 13)
-        Me.Label18.TabIndex = 27
-        Me.Label18.Text = "Frames"
+        Me.txtFrames2.AutoSize = True
+        Me.txtFrames2.Location = New System.Drawing.Point(132, 109)
+        Me.txtFrames2.Name = "txtFrames2"
+        Me.txtFrames2.Size = New System.Drawing.Size(58, 13)
+        Me.txtFrames2.TabIndex = 27
+        Me.txtFrames2.Text = "txtFrames2"
         '
         'numBackPause1
         '
@@ -818,23 +829,23 @@ Partial Class SetupForm
         Me.numBackPause2.TabIndex = 26
         Me.numBackPause2.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'Label20
+        'txtFrames1
         '
-        Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(132, 68)
-        Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(41, 13)
-        Me.Label20.TabIndex = 23
-        Me.Label20.Text = "Frames"
+        Me.txtFrames1.AutoSize = True
+        Me.txtFrames1.Location = New System.Drawing.Point(132, 68)
+        Me.txtFrames1.Name = "txtFrames1"
+        Me.txtFrames1.Size = New System.Drawing.Size(58, 13)
+        Me.txtFrames1.TabIndex = 23
+        Me.txtFrames1.Text = "txtFrames1"
         '
-        'Label19
+        'txtFrames4
         '
-        Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(234, 68)
-        Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(41, 13)
-        Me.Label19.TabIndex = 25
-        Me.Label19.Text = "Frames"
+        Me.txtFrames4.AutoSize = True
+        Me.txtFrames4.Location = New System.Drawing.Point(234, 68)
+        Me.txtFrames4.Name = "txtFrames4"
+        Me.txtFrames4.Size = New System.Drawing.Size(58, 13)
+        Me.txtFrames4.TabIndex = 25
+        Me.txtFrames4.Text = "txtFrames4"
         '
         'numFFWPause1
         '
@@ -848,17 +859,17 @@ Partial Class SetupForm
         '
         'GroupBoxOnPlay
         '
-        Me.GroupBoxOnPlay.Controls.Add(Me.Label13)
+        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds6)
         Me.GroupBoxOnPlay.Controls.Add(Me.numFFWPlay3)
-        Me.GroupBoxOnPlay.Controls.Add(Me.Label14)
+        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds3)
         Me.GroupBoxOnPlay.Controls.Add(Me.numBackPlay3)
-        Me.GroupBoxOnPlay.Controls.Add(Me.Label11)
+        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds5)
         Me.GroupBoxOnPlay.Controls.Add(Me.numFFWPlay2)
-        Me.GroupBoxOnPlay.Controls.Add(Me.Label12)
+        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds2)
         Me.GroupBoxOnPlay.Controls.Add(Me.numBackPlay2)
-        Me.GroupBoxOnPlay.Controls.Add(Me.Label10)
+        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds4)
         Me.GroupBoxOnPlay.Controls.Add(Me.numFFWPlay1)
-        Me.GroupBoxOnPlay.Controls.Add(Me.Label9)
+        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds1)
         Me.GroupBoxOnPlay.Controls.Add(Me.numBackPlay1)
         Me.GroupBoxOnPlay.Controls.Add(Me.lblSkipFFWPlay)
         Me.GroupBoxOnPlay.Controls.Add(Me.lblSkipBackPlay)
@@ -870,16 +881,16 @@ Partial Class SetupForm
         Me.GroupBoxOnPlay.Size = New System.Drawing.Size(283, 210)
         Me.GroupBoxOnPlay.TabIndex = 1
         Me.GroupBoxOnPlay.TabStop = False
-        Me.GroupBoxOnPlay.Text = "GroupBox5"
+        Me.GroupBoxOnPlay.Text = "GroupBoxOnPlay"
         '
-        'Label13
+        'txtSeconds6
         '
-        Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(231, 153)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(29, 13)
-        Me.Label13.TabIndex = 16
-        Me.Label13.Text = "Sec."
+        Me.txtSeconds6.AutoSize = True
+        Me.txtSeconds6.Location = New System.Drawing.Point(231, 153)
+        Me.txtSeconds6.Name = "txtSeconds6"
+        Me.txtSeconds6.Size = New System.Drawing.Size(66, 13)
+        Me.txtSeconds6.TabIndex = 16
+        Me.txtSeconds6.Text = "txtSeconds6"
         '
         'numFFWPlay3
         '
@@ -891,14 +902,14 @@ Partial Class SetupForm
         Me.numFFWPlay3.TabIndex = 15
         Me.numFFWPlay3.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'Label14
+        'txtSeconds3
         '
-        Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(129, 153)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(29, 13)
-        Me.Label14.TabIndex = 14
-        Me.Label14.Text = "Sec."
+        Me.txtSeconds3.AutoSize = True
+        Me.txtSeconds3.Location = New System.Drawing.Point(129, 153)
+        Me.txtSeconds3.Name = "txtSeconds3"
+        Me.txtSeconds3.Size = New System.Drawing.Size(66, 13)
+        Me.txtSeconds3.TabIndex = 14
+        Me.txtSeconds3.Text = "txtSeconds3"
         '
         'numBackPlay3
         '
@@ -910,14 +921,14 @@ Partial Class SetupForm
         Me.numBackPlay3.TabIndex = 13
         Me.numBackPlay3.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'Label11
+        'txtSeconds5
         '
-        Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(231, 114)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(29, 13)
-        Me.Label11.TabIndex = 12
-        Me.Label11.Text = "Sec."
+        Me.txtSeconds5.AutoSize = True
+        Me.txtSeconds5.Location = New System.Drawing.Point(231, 114)
+        Me.txtSeconds5.Name = "txtSeconds5"
+        Me.txtSeconds5.Size = New System.Drawing.Size(66, 13)
+        Me.txtSeconds5.TabIndex = 12
+        Me.txtSeconds5.Text = "txtSeconds5"
         '
         'numFFWPlay2
         '
@@ -929,14 +940,14 @@ Partial Class SetupForm
         Me.numFFWPlay2.TabIndex = 11
         Me.numFFWPlay2.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'Label12
+        'txtSeconds2
         '
-        Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(129, 114)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(29, 13)
-        Me.Label12.TabIndex = 10
-        Me.Label12.Text = "Sec."
+        Me.txtSeconds2.AutoSize = True
+        Me.txtSeconds2.Location = New System.Drawing.Point(129, 114)
+        Me.txtSeconds2.Name = "txtSeconds2"
+        Me.txtSeconds2.Size = New System.Drawing.Size(66, 13)
+        Me.txtSeconds2.TabIndex = 10
+        Me.txtSeconds2.Text = "txtSeconds2"
         '
         'numBackPlay2
         '
@@ -948,14 +959,14 @@ Partial Class SetupForm
         Me.numBackPlay2.TabIndex = 9
         Me.numBackPlay2.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'Label10
+        'txtSeconds4
         '
-        Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(231, 73)
-        Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(29, 13)
-        Me.Label10.TabIndex = 8
-        Me.Label10.Text = "Sec."
+        Me.txtSeconds4.AutoSize = True
+        Me.txtSeconds4.Location = New System.Drawing.Point(231, 73)
+        Me.txtSeconds4.Name = "txtSeconds4"
+        Me.txtSeconds4.Size = New System.Drawing.Size(66, 13)
+        Me.txtSeconds4.TabIndex = 8
+        Me.txtSeconds4.Text = "txtSeconds4"
         '
         'numFFWPlay1
         '
@@ -967,14 +978,14 @@ Partial Class SetupForm
         Me.numFFWPlay1.TabIndex = 7
         Me.numFFWPlay1.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'Label9
+        'txtSeconds1
         '
-        Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(129, 73)
-        Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(29, 13)
-        Me.Label9.TabIndex = 6
-        Me.Label9.Text = "Sec."
+        Me.txtSeconds1.AutoSize = True
+        Me.txtSeconds1.Location = New System.Drawing.Point(129, 73)
+        Me.txtSeconds1.Name = "txtSeconds1"
+        Me.txtSeconds1.Size = New System.Drawing.Size(66, 13)
+        Me.txtSeconds1.TabIndex = 6
+        Me.txtSeconds1.Text = "txtSeconds1"
         '
         'numBackPlay1
         '
@@ -992,7 +1003,7 @@ Partial Class SetupForm
         Me.lblSkipFFWPlay.Name = "lblSkipFFWPlay"
         Me.lblSkipFFWPlay.Size = New System.Drawing.Size(95, 13)
         Me.lblSkipFFWPlay.TabIndex = 4
-        Me.lblSkipFFWPlay.Text = "Label8"
+        Me.lblSkipFFWPlay.Text = "lblSkipFFWPlay"
         Me.lblSkipFFWPlay.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'lblSkipBackPlay
@@ -1001,7 +1012,7 @@ Partial Class SetupForm
         Me.lblSkipBackPlay.Name = "lblSkipBackPlay"
         Me.lblSkipBackPlay.Size = New System.Drawing.Size(95, 13)
         Me.lblSkipBackPlay.TabIndex = 3
-        Me.lblSkipBackPlay.Text = "Label7"
+        Me.lblSkipBackPlay.Text = "lblSkipBackPlay"
         Me.lblSkipBackPlay.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
         'lblSkipPart3Play
@@ -1043,7 +1054,7 @@ Partial Class SetupForm
         '
         'TabPage3
         '
-        Me.TabPage3.Controls.Add(Me.GroupBox4)
+        Me.TabPage3.Controls.Add(Me.GroupBoxEditReplacementString)
         Me.TabPage3.Controls.Add(Me.DataGridView1)
         Me.TabPage3.Location = New System.Drawing.Point(4, 22)
         Me.TabPage3.Name = "TabPage3"
@@ -1052,70 +1063,70 @@ Partial Class SetupForm
         Me.TabPage3.Text = "TabPage3"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'GroupBox4
+        'GroupBoxEditReplacementString
         '
-        Me.GroupBox4.Controls.Add(Me.Button5)
-        Me.GroupBox4.Controls.Add(Me.Label6)
-        Me.GroupBox4.Controls.Add(Me.Button4)
-        Me.GroupBox4.Controls.Add(Me.Label5)
-        Me.GroupBox4.Controls.Add(Me.TextBox4)
-        Me.GroupBox4.Controls.Add(Me.TextBox5)
-        Me.GroupBox4.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GroupBox4.Location = New System.Drawing.Point(0, 212)
-        Me.GroupBox4.Name = "GroupBox4"
-        Me.GroupBox4.Size = New System.Drawing.Size(602, 95)
-        Me.GroupBox4.TabIndex = 5
-        Me.GroupBox4.TabStop = False
-        Me.GroupBox4.Text = "editReplacementString"
+        Me.GroupBoxEditReplacementString.Controls.Add(Me.btnDelReplaceString)
+        Me.GroupBoxEditReplacementString.Controls.Add(Me.lblReplacementString)
+        Me.GroupBoxEditReplacementString.Controls.Add(Me.btnAddReplaceString)
+        Me.GroupBoxEditReplacementString.Controls.Add(Me.lblOriginalString)
+        Me.GroupBoxEditReplacementString.Controls.Add(Me.TextBox4)
+        Me.GroupBoxEditReplacementString.Controls.Add(Me.TextBox5)
+        Me.GroupBoxEditReplacementString.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.GroupBoxEditReplacementString.Location = New System.Drawing.Point(0, 212)
+        Me.GroupBoxEditReplacementString.Name = "GroupBoxEditReplacementString"
+        Me.GroupBoxEditReplacementString.Size = New System.Drawing.Size(602, 95)
+        Me.GroupBoxEditReplacementString.TabIndex = 5
+        Me.GroupBoxEditReplacementString.TabStop = False
+        Me.GroupBoxEditReplacementString.Text = "GroupBoxEditReplacementString"
         '
-        'Button5
+        'btnDelReplaceString
         '
-        Me.Button5.Location = New System.Drawing.Point(453, 20)
-        Me.Button5.Name = "Button5"
-        Me.Button5.Size = New System.Drawing.Size(75, 48)
-        Me.Button5.TabIndex = 6
-        Me.Button5.Text = "delReplaceString"
-        Me.Button5.UseVisualStyleBackColor = True
+        Me.btnDelReplaceString.Location = New System.Drawing.Point(522, 20)
+        Me.btnDelReplaceString.Name = "btnDelReplaceString"
+        Me.btnDelReplaceString.Size = New System.Drawing.Size(75, 48)
+        Me.btnDelReplaceString.TabIndex = 6
+        Me.btnDelReplaceString.Text = "btnDelReplaceString"
+        Me.btnDelReplaceString.UseVisualStyleBackColor = True
         '
-        'Label6
+        'lblReplacementString
         '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(8, 51)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(80, 13)
-        Me.Label6.TabIndex = 5
-        Me.Label6.Text = "Replace-String:"
+        Me.lblReplacementString.AutoSize = True
+        Me.lblReplacementString.Location = New System.Drawing.Point(8, 51)
+        Me.lblReplacementString.Name = "lblReplacementString"
+        Me.lblReplacementString.Size = New System.Drawing.Size(107, 13)
+        Me.lblReplacementString.TabIndex = 5
+        Me.lblReplacementString.Text = "lblReplacementString"
         '
-        'Button4
+        'btnAddReplaceString
         '
-        Me.Button4.Location = New System.Drawing.Point(333, 20)
-        Me.Button4.Name = "Button4"
-        Me.Button4.Size = New System.Drawing.Size(75, 48)
-        Me.Button4.TabIndex = 3
-        Me.Button4.Text = "addReplaceString"
-        Me.Button4.UseVisualStyleBackColor = True
+        Me.btnAddReplaceString.Location = New System.Drawing.Point(436, 20)
+        Me.btnAddReplaceString.Name = "btnAddReplaceString"
+        Me.btnAddReplaceString.Size = New System.Drawing.Size(75, 48)
+        Me.btnAddReplaceString.TabIndex = 3
+        Me.btnAddReplaceString.Text = "btnAddReplaceString"
+        Me.btnAddReplaceString.UseVisualStyleBackColor = True
         '
-        'Label5
+        'lblOriginalString
         '
-        Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(8, 25)
-        Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(75, 13)
-        Me.Label5.TabIndex = 4
-        Me.Label5.Text = "Original String:"
+        Me.lblOriginalString.AutoSize = True
+        Me.lblOriginalString.Location = New System.Drawing.Point(8, 25)
+        Me.lblOriginalString.Name = "lblOriginalString"
+        Me.lblOriginalString.Size = New System.Drawing.Size(79, 13)
+        Me.lblOriginalString.TabIndex = 4
+        Me.lblOriginalString.Text = "lblOriginalString"
         '
         'TextBox4
         '
-        Me.TextBox4.Location = New System.Drawing.Point(89, 22)
+        Me.TextBox4.Location = New System.Drawing.Point(128, 22)
         Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(228, 20)
+        Me.TextBox4.Size = New System.Drawing.Size(294, 20)
         Me.TextBox4.TabIndex = 1
         '
         'TextBox5
         '
-        Me.TextBox5.Location = New System.Drawing.Point(89, 48)
+        Me.TextBox5.Location = New System.Drawing.Point(128, 48)
         Me.TextBox5.Name = "TextBox5"
-        Me.TextBox5.Size = New System.Drawing.Size(228, 20)
+        Me.TextBox5.Size = New System.Drawing.Size(294, 20)
         Me.TextBox5.TabIndex = 2
         '
         'DataGridView1
@@ -1132,8 +1143,10 @@ Partial Class SetupForm
         '
         'TabPage4
         '
+        Me.TabPage4.Controls.Add(Me.imgDisableProfileDetails)
+        Me.TabPage4.Controls.Add(Me.chkDisableProfileDetails)
         Me.TabPage4.Controls.Add(Me.GroupBoxTVsuiteProfileH264)
-        Me.TabPage4.Controls.Add(Me.CheckBoxdebugMode)
+        Me.TabPage4.Controls.Add(Me.chkDebugMode)
         Me.TabPage4.Controls.Add(Me.GroupBoxTVsuiteProfile)
         Me.TabPage4.Controls.Add(Me.btnCheckTVsuite)
         Me.TabPage4.Controls.Add(Me.lblDescriptionTVsuite)
@@ -1145,182 +1158,16 @@ Partial Class SetupForm
         Me.TabPage4.Text = "TVsuite4"
         Me.TabPage4.UseVisualStyleBackColor = True
         '
-        'CheckBoxdebugMode
+        'chkDisableProfileDetails
         '
-        Me.CheckBoxdebugMode.AutoSize = True
-        Me.CheckBoxdebugMode.Location = New System.Drawing.Point(155, 61)
-        Me.CheckBoxdebugMode.Name = "CheckBoxdebugMode"
-        Me.CheckBoxdebugMode.Size = New System.Drawing.Size(85, 17)
-        Me.CheckBoxdebugMode.TabIndex = 4
-        Me.CheckBoxdebugMode.Text = "DebugMode"
-        Me.CheckBoxdebugMode.UseVisualStyleBackColor = True
-        '
-        'GroupBoxTVsuiteProfile
-        '
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblFramerate)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblDeinterlacemode)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblRatio)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblResolution)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblFileType)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblEncodingType)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.Label23)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.Label22)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.Label21)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.Label8)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.Label7)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.Label4)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.ComboBox1)
-        Me.GroupBoxTVsuiteProfile.Location = New System.Drawing.Point(3, 89)
-        Me.GroupBoxTVsuiteProfile.Name = "GroupBoxTVsuiteProfile"
-        Me.GroupBoxTVsuiteProfile.Size = New System.Drawing.Size(294, 212)
-        Me.GroupBoxTVsuiteProfile.TabIndex = 3
-        Me.GroupBoxTVsuiteProfile.TabStop = False
-        Me.GroupBoxTVsuiteProfile.Text = "TVsuite Profile"
-        Me.GroupBoxTVsuiteProfile.Visible = False
-        '
-        'lblFramerate
-        '
-        Me.lblFramerate.AutoSize = True
-        Me.lblFramerate.Location = New System.Drawing.Point(116, 172)
-        Me.lblFramerate.Name = "lblFramerate"
-        Me.lblFramerate.Size = New System.Drawing.Size(64, 13)
-        Me.lblFramerate.TabIndex = 14
-        Me.lblFramerate.Text = "lblFramerate"
-        '
-        'lblDeinterlacemode
-        '
-        Me.lblDeinterlacemode.AutoSize = True
-        Me.lblDeinterlacemode.Location = New System.Drawing.Point(116, 146)
-        Me.lblDeinterlacemode.Name = "lblDeinterlacemode"
-        Me.lblDeinterlacemode.Size = New System.Drawing.Size(97, 13)
-        Me.lblDeinterlacemode.TabIndex = 13
-        Me.lblDeinterlacemode.Text = "lblDeinterlacemode"
-        '
-        'lblRatio
-        '
-        Me.lblRatio.AutoSize = True
-        Me.lblRatio.Location = New System.Drawing.Point(116, 120)
-        Me.lblRatio.Name = "lblRatio"
-        Me.lblRatio.Size = New System.Drawing.Size(42, 13)
-        Me.lblRatio.TabIndex = 12
-        Me.lblRatio.Text = "lblRatio"
-        '
-        'lblResolution
-        '
-        Me.lblResolution.AutoSize = True
-        Me.lblResolution.Location = New System.Drawing.Point(116, 96)
-        Me.lblResolution.Name = "lblResolution"
-        Me.lblResolution.Size = New System.Drawing.Size(67, 13)
-        Me.lblResolution.TabIndex = 11
-        Me.lblResolution.Text = "lblResolution"
-        '
-        'lblFileType
-        '
-        Me.lblFileType.AutoSize = True
-        Me.lblFileType.Location = New System.Drawing.Point(116, 73)
-        Me.lblFileType.Name = "lblFileType"
-        Me.lblFileType.Size = New System.Drawing.Size(53, 13)
-        Me.lblFileType.TabIndex = 10
-        Me.lblFileType.Text = "lblFiletype"
-        '
-        'lblEncodingType
-        '
-        Me.lblEncodingType.AutoSize = True
-        Me.lblEncodingType.Location = New System.Drawing.Point(116, 51)
-        Me.lblEncodingType.Name = "lblEncodingType"
-        Me.lblEncodingType.Size = New System.Drawing.Size(82, 13)
-        Me.lblEncodingType.TabIndex = 9
-        Me.lblEncodingType.Text = "lblEncodingtype"
-        '
-        'Label23
-        '
-        Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(6, 172)
-        Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(57, 13)
-        Me.Label23.TabIndex = 8
-        Me.Label23.Text = "Framerate:"
-        '
-        'Label22
-        '
-        Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(6, 146)
-        Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(90, 13)
-        Me.Label22.TabIndex = 7
-        Me.Label22.Text = "Deinterlacemode:"
-        '
-        'Label21
-        '
-        Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(6, 120)
-        Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(35, 13)
-        Me.Label21.TabIndex = 6
-        Me.Label21.Text = "Ratio:"
-        '
-        'Label8
-        '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(6, 96)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(60, 13)
-        Me.Label8.TabIndex = 5
-        Me.Label8.Text = "Resolution:"
-        '
-        'Label7
-        '
-        Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(6, 73)
-        Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(46, 13)
-        Me.Label7.TabIndex = 4
-        Me.Label7.Text = "Filetype:"
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(6, 51)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(75, 13)
-        Me.Label4.TabIndex = 3
-        Me.Label4.Text = "Encodingtype:"
-        '
-        'ComboBox1
-        '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(107, 19)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(174, 21)
-        Me.ComboBox1.TabIndex = 2
-        '
-        'btnCheckTVsuite
-        '
-        Me.btnCheckTVsuite.Location = New System.Drawing.Point(11, 60)
-        Me.btnCheckTVsuite.Name = "btnCheckTVsuite"
-        Me.btnCheckTVsuite.Size = New System.Drawing.Size(137, 23)
-        Me.btnCheckTVsuite.TabIndex = 1
-        Me.btnCheckTVsuite.Text = "btnCheckTVsuite"
-        Me.btnCheckTVsuite.UseVisualStyleBackColor = True
-        '
-        'lblDescriptionTVsuite
-        '
-        Me.lblDescriptionTVsuite.Location = New System.Drawing.Point(8, 7)
-        Me.lblDescriptionTVsuite.Name = "lblDescriptionTVsuite"
-        Me.lblDescriptionTVsuite.Size = New System.Drawing.Size(581, 50)
-        Me.lblDescriptionTVsuite.TabIndex = 0
-        Me.lblDescriptionTVsuite.Text = "lblDescriptionTVsuite"
-        '
-        'lblDonate
-        '
-        Me.lblDonate.AutoSize = True
-        Me.lblDonate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lblDonate.Location = New System.Drawing.Point(156, 14)
-        Me.lblDonate.Name = "lblDonate"
-        Me.lblDonate.Size = New System.Drawing.Size(270, 15)
-        Me.lblDonate.TabIndex = 0
-        Me.lblDonate.TabStop = True
-        Me.lblDonate.Text = "Buy me a Coffee over PayPal !! Thanks ;-)"
+        Me.chkDisableProfileDetails.AutoSize = True
+        Me.chkDisableProfileDetails.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.chkDisableProfileDetails.Location = New System.Drawing.Point(328, 64)
+        Me.chkDisableProfileDetails.Name = "chkDisableProfileDetails"
+        Me.chkDisableProfileDetails.Size = New System.Drawing.Size(140, 17)
+        Me.chkDisableProfileDetails.TabIndex = 16
+        Me.chkDisableProfileDetails.Text = "chkDisableProfileDetails"
+        Me.chkDisableProfileDetails.UseVisualStyleBackColor = True
         '
         'GroupBoxTVsuiteProfileH264
         '
@@ -1330,19 +1177,19 @@ Partial Class SetupForm
         Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.lblResolutionH264)
         Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.lblFileTypeH264)
         Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.lblEncodingTypeH264)
-        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.Label30)
-        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.Label31)
-        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.Label32)
-        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.Label33)
-        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.Label34)
-        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.Label35)
+        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.txtFramerateH264)
+        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.txtDeinterlacemodeH264)
+        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.txtRatioH264)
+        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.txtResolutionH264)
+        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.txtFiletypeH264)
+        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.txtEncodingtypeH264)
         Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.ComboBoxH264)
         Me.GroupBoxTVsuiteProfileH264.Location = New System.Drawing.Point(303, 89)
         Me.GroupBoxTVsuiteProfileH264.Name = "GroupBoxTVsuiteProfileH264"
         Me.GroupBoxTVsuiteProfileH264.Size = New System.Drawing.Size(293, 212)
         Me.GroupBoxTVsuiteProfileH264.TabIndex = 15
         Me.GroupBoxTVsuiteProfileH264.TabStop = False
-        Me.GroupBoxTVsuiteProfileH264.Text = "TVsuite Profile H264"
+        Me.GroupBoxTVsuiteProfileH264.Text = "GroupBoxTVsuiteProfileH264"
         Me.GroupBoxTVsuiteProfileH264.Visible = False
         '
         'lblFramerateH264
@@ -1399,59 +1246,59 @@ Partial Class SetupForm
         Me.lblEncodingTypeH264.TabIndex = 9
         Me.lblEncodingTypeH264.Text = "lblEncodingtypeH264"
         '
-        'Label30
+        'txtFramerateH264
         '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(6, 172)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(57, 13)
-        Me.Label30.TabIndex = 8
-        Me.Label30.Text = "Framerate:"
+        Me.txtFramerateH264.AutoSize = True
+        Me.txtFramerateH264.Location = New System.Drawing.Point(6, 172)
+        Me.txtFramerateH264.Name = "txtFramerateH264"
+        Me.txtFramerateH264.Size = New System.Drawing.Size(91, 13)
+        Me.txtFramerateH264.TabIndex = 8
+        Me.txtFramerateH264.Text = "txtFramerateH264"
         '
-        'Label31
+        'txtDeinterlacemodeH264
         '
-        Me.Label31.AutoSize = True
-        Me.Label31.Location = New System.Drawing.Point(6, 146)
-        Me.Label31.Name = "Label31"
-        Me.Label31.Size = New System.Drawing.Size(90, 13)
-        Me.Label31.TabIndex = 7
-        Me.Label31.Text = "Deinterlacemode:"
+        Me.txtDeinterlacemodeH264.AutoSize = True
+        Me.txtDeinterlacemodeH264.Location = New System.Drawing.Point(6, 146)
+        Me.txtDeinterlacemodeH264.Name = "txtDeinterlacemodeH264"
+        Me.txtDeinterlacemodeH264.Size = New System.Drawing.Size(124, 13)
+        Me.txtDeinterlacemodeH264.TabIndex = 7
+        Me.txtDeinterlacemodeH264.Text = "txtDeinterlacemodeH264"
         '
-        'Label32
+        'txtRatioH264
         '
-        Me.Label32.AutoSize = True
-        Me.Label32.Location = New System.Drawing.Point(6, 120)
-        Me.Label32.Name = "Label32"
-        Me.Label32.Size = New System.Drawing.Size(35, 13)
-        Me.Label32.TabIndex = 6
-        Me.Label32.Text = "Ratio:"
+        Me.txtRatioH264.AutoSize = True
+        Me.txtRatioH264.Location = New System.Drawing.Point(6, 120)
+        Me.txtRatioH264.Name = "txtRatioH264"
+        Me.txtRatioH264.Size = New System.Drawing.Size(69, 13)
+        Me.txtRatioH264.TabIndex = 6
+        Me.txtRatioH264.Text = "txtRatioH264"
         '
-        'Label33
+        'txtResolutionH264
         '
-        Me.Label33.AutoSize = True
-        Me.Label33.Location = New System.Drawing.Point(6, 96)
-        Me.Label33.Name = "Label33"
-        Me.Label33.Size = New System.Drawing.Size(60, 13)
-        Me.Label33.TabIndex = 5
-        Me.Label33.Text = "Resolution:"
+        Me.txtResolutionH264.AutoSize = True
+        Me.txtResolutionH264.Location = New System.Drawing.Point(6, 96)
+        Me.txtResolutionH264.Name = "txtResolutionH264"
+        Me.txtResolutionH264.Size = New System.Drawing.Size(94, 13)
+        Me.txtResolutionH264.TabIndex = 5
+        Me.txtResolutionH264.Text = "txtResolutionH264"
         '
-        'Label34
+        'txtFiletypeH264
         '
-        Me.Label34.AutoSize = True
-        Me.Label34.Location = New System.Drawing.Point(6, 73)
-        Me.Label34.Name = "Label34"
-        Me.Label34.Size = New System.Drawing.Size(46, 13)
-        Me.Label34.TabIndex = 4
-        Me.Label34.Text = "Filetype:"
+        Me.txtFiletypeH264.AutoSize = True
+        Me.txtFiletypeH264.Location = New System.Drawing.Point(6, 73)
+        Me.txtFiletypeH264.Name = "txtFiletypeH264"
+        Me.txtFiletypeH264.Size = New System.Drawing.Size(80, 13)
+        Me.txtFiletypeH264.TabIndex = 4
+        Me.txtFiletypeH264.Text = "txtFiletypeH264"
         '
-        'Label35
+        'txtEncodingtypeH264
         '
-        Me.Label35.AutoSize = True
-        Me.Label35.Location = New System.Drawing.Point(6, 51)
-        Me.Label35.Name = "Label35"
-        Me.Label35.Size = New System.Drawing.Size(75, 13)
-        Me.Label35.TabIndex = 3
-        Me.Label35.Text = "Encodingtype:"
+        Me.txtEncodingtypeH264.AutoSize = True
+        Me.txtEncodingtypeH264.Location = New System.Drawing.Point(6, 51)
+        Me.txtEncodingtypeH264.Name = "txtEncodingtypeH264"
+        Me.txtEncodingtypeH264.Size = New System.Drawing.Size(109, 13)
+        Me.txtEncodingtypeH264.TabIndex = 3
+        Me.txtEncodingtypeH264.Text = "txtEncodingtypeH264"
         '
         'ComboBoxH264
         '
@@ -1461,52 +1308,248 @@ Partial Class SetupForm
         Me.ComboBoxH264.Size = New System.Drawing.Size(174, 21)
         Me.ComboBoxH264.TabIndex = 2
         '
+        'chkDebugMode
+        '
+        Me.chkDebugMode.AutoSize = True
+        Me.chkDebugMode.Cursor = System.Windows.Forms.Cursors.Arrow
+        Me.chkDebugMode.Location = New System.Drawing.Point(155, 64)
+        Me.chkDebugMode.Name = "chkDebugMode"
+        Me.chkDebugMode.Size = New System.Drawing.Size(103, 17)
+        Me.chkDebugMode.TabIndex = 4
+        Me.chkDebugMode.Text = "chkDebugMode"
+        Me.chkDebugMode.UseVisualStyleBackColor = True
+        '
+        'GroupBoxTVsuiteProfile
+        '
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblFramerate)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblDeinterlacemode)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblRatio)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblResolution)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblFileType)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.lblEncodingType)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.txtFramerate)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.txtDeinterlacemode)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.txtRatio)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.txtResolution)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.txtFiletype)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.txtEncodingtype)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.ComboBox1)
+        Me.GroupBoxTVsuiteProfile.Location = New System.Drawing.Point(3, 89)
+        Me.GroupBoxTVsuiteProfile.Name = "GroupBoxTVsuiteProfile"
+        Me.GroupBoxTVsuiteProfile.Size = New System.Drawing.Size(294, 212)
+        Me.GroupBoxTVsuiteProfile.TabIndex = 3
+        Me.GroupBoxTVsuiteProfile.TabStop = False
+        Me.GroupBoxTVsuiteProfile.Text = "GroupBoxTVsuiteProfile"
+        Me.GroupBoxTVsuiteProfile.Visible = False
+        '
+        'lblFramerate
+        '
+        Me.lblFramerate.AutoSize = True
+        Me.lblFramerate.Location = New System.Drawing.Point(116, 172)
+        Me.lblFramerate.Name = "lblFramerate"
+        Me.lblFramerate.Size = New System.Drawing.Size(64, 13)
+        Me.lblFramerate.TabIndex = 14
+        Me.lblFramerate.Text = "lblFramerate"
+        '
+        'lblDeinterlacemode
+        '
+        Me.lblDeinterlacemode.AutoSize = True
+        Me.lblDeinterlacemode.Location = New System.Drawing.Point(116, 146)
+        Me.lblDeinterlacemode.Name = "lblDeinterlacemode"
+        Me.lblDeinterlacemode.Size = New System.Drawing.Size(97, 13)
+        Me.lblDeinterlacemode.TabIndex = 13
+        Me.lblDeinterlacemode.Text = "lblDeinterlacemode"
+        '
+        'lblRatio
+        '
+        Me.lblRatio.AutoSize = True
+        Me.lblRatio.Location = New System.Drawing.Point(116, 120)
+        Me.lblRatio.Name = "lblRatio"
+        Me.lblRatio.Size = New System.Drawing.Size(42, 13)
+        Me.lblRatio.TabIndex = 12
+        Me.lblRatio.Text = "lblRatio"
+        '
+        'lblResolution
+        '
+        Me.lblResolution.AutoSize = True
+        Me.lblResolution.Location = New System.Drawing.Point(116, 96)
+        Me.lblResolution.Name = "lblResolution"
+        Me.lblResolution.Size = New System.Drawing.Size(67, 13)
+        Me.lblResolution.TabIndex = 11
+        Me.lblResolution.Text = "lblResolution"
+        '
+        'lblFileType
+        '
+        Me.lblFileType.AutoSize = True
+        Me.lblFileType.Location = New System.Drawing.Point(116, 73)
+        Me.lblFileType.Name = "lblFileType"
+        Me.lblFileType.Size = New System.Drawing.Size(53, 13)
+        Me.lblFileType.TabIndex = 10
+        Me.lblFileType.Text = "lblFiletype"
+        '
+        'lblEncodingType
+        '
+        Me.lblEncodingType.AutoSize = True
+        Me.lblEncodingType.Location = New System.Drawing.Point(116, 51)
+        Me.lblEncodingType.Name = "lblEncodingType"
+        Me.lblEncodingType.Size = New System.Drawing.Size(82, 13)
+        Me.lblEncodingType.TabIndex = 9
+        Me.lblEncodingType.Text = "lblEncodingtype"
+        '
+        'txtFramerate
+        '
+        Me.txtFramerate.AutoSize = True
+        Me.txtFramerate.Location = New System.Drawing.Point(6, 172)
+        Me.txtFramerate.Name = "txtFramerate"
+        Me.txtFramerate.Size = New System.Drawing.Size(65, 13)
+        Me.txtFramerate.TabIndex = 8
+        Me.txtFramerate.Text = "txtFramerate"
+        '
+        'txtDeinterlacemode
+        '
+        Me.txtDeinterlacemode.AutoSize = True
+        Me.txtDeinterlacemode.Location = New System.Drawing.Point(6, 146)
+        Me.txtDeinterlacemode.Name = "txtDeinterlacemode"
+        Me.txtDeinterlacemode.Size = New System.Drawing.Size(98, 13)
+        Me.txtDeinterlacemode.TabIndex = 7
+        Me.txtDeinterlacemode.Text = "txtDeinterlacemode"
+        '
+        'txtRatio
+        '
+        Me.txtRatio.AutoSize = True
+        Me.txtRatio.Location = New System.Drawing.Point(6, 120)
+        Me.txtRatio.Name = "txtRatio"
+        Me.txtRatio.Size = New System.Drawing.Size(43, 13)
+        Me.txtRatio.TabIndex = 6
+        Me.txtRatio.Text = "txtRatio"
+        '
+        'txtResolution
+        '
+        Me.txtResolution.AutoSize = True
+        Me.txtResolution.Location = New System.Drawing.Point(6, 96)
+        Me.txtResolution.Name = "txtResolution"
+        Me.txtResolution.Size = New System.Drawing.Size(68, 13)
+        Me.txtResolution.TabIndex = 5
+        Me.txtResolution.Text = "txtResolution"
+        '
+        'txtFiletype
+        '
+        Me.txtFiletype.AutoSize = True
+        Me.txtFiletype.Location = New System.Drawing.Point(6, 73)
+        Me.txtFiletype.Name = "txtFiletype"
+        Me.txtFiletype.Size = New System.Drawing.Size(54, 13)
+        Me.txtFiletype.TabIndex = 4
+        Me.txtFiletype.Text = "txtFiletype"
+        '
+        'txtEncodingtype
+        '
+        Me.txtEncodingtype.AutoSize = True
+        Me.txtEncodingtype.Location = New System.Drawing.Point(6, 51)
+        Me.txtEncodingtype.Name = "txtEncodingtype"
+        Me.txtEncodingtype.Size = New System.Drawing.Size(83, 13)
+        Me.txtEncodingtype.TabIndex = 3
+        Me.txtEncodingtype.Text = "txtEncodingtype"
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(107, 19)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(174, 21)
+        Me.ComboBox1.TabIndex = 2
+        '
+        'btnCheckTVsuite
+        '
+        Me.btnCheckTVsuite.Location = New System.Drawing.Point(11, 60)
+        Me.btnCheckTVsuite.Name = "btnCheckTVsuite"
+        Me.btnCheckTVsuite.Size = New System.Drawing.Size(137, 23)
+        Me.btnCheckTVsuite.TabIndex = 1
+        Me.btnCheckTVsuite.Text = "btnCheckTVsuite"
+        Me.btnCheckTVsuite.UseVisualStyleBackColor = True
+        '
+        'lblDescriptionTVsuite
+        '
+        Me.lblDescriptionTVsuite.Location = New System.Drawing.Point(8, 7)
+        Me.lblDescriptionTVsuite.Name = "lblDescriptionTVsuite"
+        Me.lblDescriptionTVsuite.Size = New System.Drawing.Size(581, 50)
+        Me.lblDescriptionTVsuite.TabIndex = 0
+        Me.lblDescriptionTVsuite.Text = "lblDescriptionTVsuite"
+        '
+        'lblDonate
+        '
+        Me.lblDonate.AutoSize = True
+        Me.lblDonate.Font = New System.Drawing.Font("Microsoft Sans Serif", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblDonate.Location = New System.Drawing.Point(304, 22)
+        Me.lblDonate.Name = "lblDonate"
+        Me.lblDonate.Size = New System.Drawing.Size(53, 15)
+        Me.lblDonate.TabIndex = 0
+        Me.lblDonate.TabStop = True
+        Me.lblDonate.Text = "Donate"
+        '
+        'imgDisableProfileDetails
+        '
+        Me.imgDisableProfileDetails.Image = Global.MyVideoRedo.My.Resources.Resources.help
+        Me.imgDisableProfileDetails.Location = New System.Drawing.Point(303, 63)
+        Me.imgDisableProfileDetails.Name = "imgDisableProfileDetails"
+        Me.imgDisableProfileDetails.Size = New System.Drawing.Size(19, 17)
+        Me.imgDisableProfileDetails.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.imgDisableProfileDetails.TabIndex = 17
+        Me.imgDisableProfileDetails.TabStop = False
+        '
         'SetupForm
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(610, 435)
         Me.Controls.Add(Me.SplitContainer1)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "SetupForm"
         Me.Text = "SetupForm"
         Me.SplitContainer1.Panel1.ResumeLayout(False)
         Me.SplitContainer1.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer1.ResumeLayout(False)
         Me.SplitContainer2.Panel1.ResumeLayout(False)
         Me.SplitContainer2.Panel2.ResumeLayout(False)
         Me.SplitContainer2.Panel2.PerformLayout()
+        CType(Me.SplitContainer2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer2.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
-        Me.GroupBoxFilmFolder.ResumeLayout(False)
-        Me.GroupBoxFilmFolder.PerformLayout()
-        Me.GroupBox3.ResumeLayout(False)
-        Me.GroupBox3.PerformLayout()
+        Me.GroupBoxFilmFolderSettings.ResumeLayout(False)
+        Me.GroupBoxFilmFolderSettings.PerformLayout()
+        Me.GroupBoxSaveSettings.ResumeLayout(False)
+        Me.GroupBoxSaveSettings.PerformLayout()
         CType(Me.imgParseSeries, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.imgParseVideoFile, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox2.ResumeLayout(False)
-        Me.GroupBox2.PerformLayout()
+        Me.GroupBoxCutSettings.ResumeLayout(False)
+        Me.GroupBoxCutSettings.PerformLayout()
         CType(Me.imgAutoEndMarker, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.imgAutoStartmarker, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.GroupBox1.ResumeLayout(False)
+        Me.GroupBoxRecordings.ResumeLayout(False)
         Me.SplitContainer3.Panel1.ResumeLayout(False)
         Me.SplitContainer3.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer3.ResumeLayout(False)
         Me.SplitContainer7.Panel1.ResumeLayout(False)
         Me.SplitContainer7.Panel1.PerformLayout()
         Me.SplitContainer7.Panel2.ResumeLayout(False)
         Me.SplitContainer7.Panel2.PerformLayout()
+        CType(Me.SplitContainer7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer7.ResumeLayout(False)
         Me.SplitContainer4.Panel1.ResumeLayout(False)
         Me.SplitContainer4.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer4.ResumeLayout(False)
         Me.SplitContainer6.Panel1.ResumeLayout(False)
         Me.SplitContainer6.Panel1.PerformLayout()
         Me.SplitContainer6.Panel2.ResumeLayout(False)
         Me.SplitContainer6.Panel2.PerformLayout()
+        CType(Me.SplitContainer6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer6.ResumeLayout(False)
         Me.SplitContainer5.Panel1.ResumeLayout(False)
         Me.SplitContainer5.Panel2.ResumeLayout(False)
+        CType(Me.SplitContainer5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.SplitContainer5.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
         Me.GroupBoxOnPause.ResumeLayout(False)
@@ -1526,15 +1569,16 @@ Partial Class SetupForm
         CType(Me.numFFWPlay1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.numBackPlay1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage3.ResumeLayout(False)
-        Me.GroupBox4.ResumeLayout(False)
-        Me.GroupBox4.PerformLayout()
+        Me.GroupBoxEditReplacementString.ResumeLayout(False)
+        Me.GroupBoxEditReplacementString.PerformLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPage4.ResumeLayout(False)
         Me.TabPage4.PerformLayout()
-        Me.GroupBoxTVsuiteProfile.ResumeLayout(False)
-        Me.GroupBoxTVsuiteProfile.PerformLayout()
         Me.GroupBoxTVsuiteProfileH264.ResumeLayout(False)
         Me.GroupBoxTVsuiteProfileH264.PerformLayout()
+        Me.GroupBoxTVsuiteProfile.ResumeLayout(False)
+        Me.GroupBoxTVsuiteProfile.PerformLayout()
+        CType(Me.imgDisableProfileDetails, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1547,33 +1591,33 @@ Partial Class SetupForm
     Friend WithEvents SplitContainer2 As System.Windows.Forms.SplitContainer
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
-    Friend WithEvents GroupBox1 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBoxRecordings As System.Windows.Forms.GroupBox
     Friend WithEvents lblSavePath As System.Windows.Forms.Label
     Friend WithEvents txtSavePath As System.Windows.Forms.TextBox
     Friend WithEvents bntSaveDialog As System.Windows.Forms.Button
     Friend WithEvents lblRecPath As System.Windows.Forms.Label
     Friend WithEvents SaveDialog As System.Windows.Forms.FolderBrowserDialog
-    Friend WithEvents GroupBox2 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBoxCutSettings As System.Windows.Forms.GroupBox
     Friend WithEvents imgAutoStartmarker As System.Windows.Forms.PictureBox
     Friend WithEvents SplitContainer3 As System.Windows.Forms.SplitContainer
     Friend WithEvents SplitContainer7 As System.Windows.Forms.SplitContainer
     Friend WithEvents SplitContainer4 As System.Windows.Forms.SplitContainer
     Friend WithEvents SplitContainer6 As System.Windows.Forms.SplitContainer
     Friend WithEvents SplitContainer5 As System.Windows.Forms.SplitContainer
-    Friend WithEvents GroupBox3 As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBoxSaveSettings As System.Windows.Forms.GroupBox
     Friend WithEvents btnShowParseStrings As System.Windows.Forms.Button
     Friend WithEvents lblParseVideofile As System.Windows.Forms.Label
     Friend WithEvents txtParseVideoFile As System.Windows.Forms.TextBox
     Friend WithEvents imgParseVideoFile As System.Windows.Forms.PictureBox
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
-    Friend WithEvents Button4 As System.Windows.Forms.Button
+    Friend WithEvents btnAddReplaceString As System.Windows.Forms.Button
     Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
     Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents GroupBox4 As System.Windows.Forms.GroupBox
-    Friend WithEvents Label5 As System.Windows.Forms.Label
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Button5 As System.Windows.Forms.Button
+    Friend WithEvents GroupBoxEditReplacementString As System.Windows.Forms.GroupBox
+    Friend WithEvents lblOriginalString As System.Windows.Forms.Label
+    Friend WithEvents lblReplacementString As System.Windows.Forms.Label
+    Friend WithEvents btnDelReplaceString As System.Windows.Forms.Button
     Friend WithEvents lblParseSeriesFile As System.Windows.Forms.Label
     Friend WithEvents txtParseSeriesFile As System.Windows.Forms.TextBox
     Friend WithEvents imgParseSeries As System.Windows.Forms.PictureBox
@@ -1589,40 +1633,40 @@ Partial Class SetupForm
     Friend WithEvents lblSkipPart2Play As System.Windows.Forms.Label
     Friend WithEvents lblSkipPart1Play As System.Windows.Forms.Label
     Friend WithEvents lblconfigureSeekSteps As System.Windows.Forms.Label
-    Friend WithEvents Label15 As System.Windows.Forms.Label
+    Friend WithEvents txtFrames6 As System.Windows.Forms.Label
     Friend WithEvents numBackPause3 As System.Windows.Forms.NumericUpDown
     Friend WithEvents numFFWPause3 As System.Windows.Forms.NumericUpDown
     Friend WithEvents lblSkipPart1Pause As System.Windows.Forms.Label
-    Friend WithEvents Label16 As System.Windows.Forms.Label
+    Friend WithEvents txtFrames3 As System.Windows.Forms.Label
     Friend WithEvents lblSkipPart2Pause As System.Windows.Forms.Label
     Friend WithEvents lblSkipPart3Pause As System.Windows.Forms.Label
-    Friend WithEvents Label17 As System.Windows.Forms.Label
+    Friend WithEvents txtFrames5 As System.Windows.Forms.Label
     Friend WithEvents lblBackPause As System.Windows.Forms.Label
     Friend WithEvents numFFWPause2 As System.Windows.Forms.NumericUpDown
     Friend WithEvents lblFFWPause As System.Windows.Forms.Label
-    Friend WithEvents Label18 As System.Windows.Forms.Label
+    Friend WithEvents txtFrames2 As System.Windows.Forms.Label
     Friend WithEvents numBackPause1 As System.Windows.Forms.NumericUpDown
     Friend WithEvents numBackPause2 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label20 As System.Windows.Forms.Label
-    Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents txtFrames1 As System.Windows.Forms.Label
+    Friend WithEvents txtFrames4 As System.Windows.Forms.Label
     Friend WithEvents numFFWPause1 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label13 As System.Windows.Forms.Label
+    Friend WithEvents txtSeconds6 As System.Windows.Forms.Label
     Friend WithEvents numFFWPlay3 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label14 As System.Windows.Forms.Label
+    Friend WithEvents txtSeconds3 As System.Windows.Forms.Label
     Friend WithEvents numBackPlay3 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label11 As System.Windows.Forms.Label
+    Friend WithEvents txtSeconds5 As System.Windows.Forms.Label
     Friend WithEvents numFFWPlay2 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label12 As System.Windows.Forms.Label
+    Friend WithEvents txtSeconds2 As System.Windows.Forms.Label
     Friend WithEvents numBackPlay2 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label10 As System.Windows.Forms.Label
+    Friend WithEvents txtSeconds4 As System.Windows.Forms.Label
     Friend WithEvents numFFWPlay1 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents Label9 As System.Windows.Forms.Label
+    Friend WithEvents txtSeconds1 As System.Windows.Forms.Label
     Friend WithEvents numBackPlay1 As System.Windows.Forms.NumericUpDown
     Friend WithEvents lblTestVideoParsing As System.Windows.Forms.Label
     Friend WithEvents lblTestSeriesParsing As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents GroupBoxFilmFolder As System.Windows.Forms.GroupBox
+    Friend WithEvents GroupBoxFilmFolderSettings As System.Windows.Forms.GroupBox
     Friend WithEvents btnShowParseStrings2 As System.Windows.Forms.Button
     Friend WithEvents txtFilmFolderParsing As System.Windows.Forms.TextBox
     Friend WithEvents chkCreateFilmFolder As System.Windows.Forms.CheckBox
@@ -1631,19 +1675,19 @@ Partial Class SetupForm
     Friend WithEvents lblDescriptionTVsuite As System.Windows.Forms.Label
     Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
     Friend WithEvents GroupBoxTVsuiteProfile As System.Windows.Forms.GroupBox
-    Friend WithEvents Label21 As System.Windows.Forms.Label
-    Friend WithEvents Label8 As System.Windows.Forms.Label
-    Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents Label22 As System.Windows.Forms.Label
-    Friend WithEvents Label23 As System.Windows.Forms.Label
+    Friend WithEvents txtRatio As System.Windows.Forms.Label
+    Friend WithEvents txtResolution As System.Windows.Forms.Label
+    Friend WithEvents txtFiletype As System.Windows.Forms.Label
+    Friend WithEvents txtEncodingtype As System.Windows.Forms.Label
+    Friend WithEvents txtDeinterlacemode As System.Windows.Forms.Label
+    Friend WithEvents txtFramerate As System.Windows.Forms.Label
     Friend WithEvents lblFramerate As System.Windows.Forms.Label
     Friend WithEvents lblDeinterlacemode As System.Windows.Forms.Label
     Friend WithEvents lblRatio As System.Windows.Forms.Label
     Friend WithEvents lblResolution As System.Windows.Forms.Label
     Friend WithEvents lblFileType As System.Windows.Forms.Label
     Friend WithEvents lblEncodingType As System.Windows.Forms.Label
-    Friend WithEvents CheckBoxdebugMode As System.Windows.Forms.CheckBox
+    Friend WithEvents chkDebugMode As System.Windows.Forms.CheckBox
     Friend WithEvents GroupBoxTVsuiteProfileH264 As System.Windows.Forms.GroupBox
     Friend WithEvents lblFramerateH264 As System.Windows.Forms.Label
     Friend WithEvents lblDeinterlacemodeH264 As System.Windows.Forms.Label
@@ -1651,11 +1695,13 @@ Partial Class SetupForm
     Friend WithEvents lblResolutionH264 As System.Windows.Forms.Label
     Friend WithEvents lblFileTypeH264 As System.Windows.Forms.Label
     Friend WithEvents lblEncodingTypeH264 As System.Windows.Forms.Label
-    Friend WithEvents Label30 As System.Windows.Forms.Label
-    Friend WithEvents Label31 As System.Windows.Forms.Label
-    Friend WithEvents Label32 As System.Windows.Forms.Label
-    Friend WithEvents Label33 As System.Windows.Forms.Label
-    Friend WithEvents Label34 As System.Windows.Forms.Label
-    Friend WithEvents Label35 As System.Windows.Forms.Label
+    Friend WithEvents txtFramerateH264 As System.Windows.Forms.Label
+    Friend WithEvents txtDeinterlacemodeH264 As System.Windows.Forms.Label
+    Friend WithEvents txtRatioH264 As System.Windows.Forms.Label
+    Friend WithEvents txtResolutionH264 As System.Windows.Forms.Label
+    Friend WithEvents txtFiletypeH264 As System.Windows.Forms.Label
+    Friend WithEvents txtEncodingtypeH264 As System.Windows.Forms.Label
     Friend WithEvents ComboBoxH264 As System.Windows.Forms.ComboBox
+    Friend WithEvents chkDisableProfileDetails As System.Windows.Forms.CheckBox
+    Friend WithEvents imgDisableProfileDetails As System.Windows.Forms.PictureBox
 End Class

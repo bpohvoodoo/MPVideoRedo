@@ -134,5 +134,6 @@ Namespace MyVideoRedo
             Translator.SetProperty("#Profile.Deinterlacemode", AktProfile.DeintarlaceModus)
             Translator.SetProperty("#Profile.Framerate", AktProfile.FrameRate)
         End Sub
+
     End Class
 End Namespace

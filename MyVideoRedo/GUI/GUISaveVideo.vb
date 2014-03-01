@@ -58,7 +58,7 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
         End Function
 
         Public Overrides Function GetModuleName() As String
-            Return "MyVideoRedo - SaveVideo"
+            Return Translation.ModuleSaveVideo
         End Function
 
         Protected Overrides Sub OnPageLoad()
@@ -68,10 +68,7 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
             FillDirectoryListControl(HelpConfig.GetConfigString(ConfigKey.VideoSavePath))
             Translator.SetProperty("#Saving.Path", HelpConfig.GetConfigString(ConfigKey.VideoSavePath))
             Translator.SetProperty("#Saving.Name", AktRecToCut.SavingFilename)
-        
             Translator.SetProperty("#Saving.Profile", VRD.AktSavingProfile)
-
-            
             AddHandler VRD.SaveVideoStart, AddressOf SaveVideoProgressStart
             AddHandler VRD.SaveVideoProgressCanged, AddressOf SaveVideoProgressChanged
             AddHandler VRD.SaveVideoFinished, AddressOf SaveVideoProgressFinish
@@ -121,7 +118,8 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
                 ShowProfileDialog() : Translator.SetProperty("#Saving.Profile", VRD.AktSavingProfile)
             End If
 
-            If control Is ctlDirectoryList And ctlDirectoryList.IsFocused Then
+            If control Is
+                ctlDirectoryList And ctlDirectoryList.IsFocused Then
                 FillDirectoryListControl(ctlDirectoryList.SelectedListItem.Path)
                 'Translator.SetProperty("#SavingPath", ctlDirectoryList.SelectedListItem.Path)
             End If
@@ -156,7 +154,6 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
             MyLog.DebugM("Clear DirectoryListControlItems")
             ctlDirectoryList.ListItems.Clear()
             Dim rootInfo As IO.DirectoryInfo
-
             If path = "Drives" Then
                 For Each Drive In IO.DriveInfo.GetDrives()
                     MyLog.DebugM("Setze Menüitem für Ordner '{0}'", Drive)
@@ -167,7 +164,16 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
                         nItem.IsFolder = True
                         nItem.Label = Drive.Name & " " & Drive.VolumeLabel
                         nItem.Path = Drive.Name
-                        nItem.IconImage = "redoHarddisk.png"
+                        If dInfo.DriveType = 5 Then
+                            nItem.IconImage = "defaultDVDRom.png"
+                        ElseIf dInfo.DriveType = 4 Then
+                            nItem.IconImage = "defaultNetwork.png"
+                        ElseIf dInfo.DriveType = 3 Then
+                            nItem.IconImage = "defaultHarddisk.png"
+                        Else
+                            nItem.IconImage = "defaultHarddisk.png"
+                        End If
+                        nItem.ThumbnailImage = nItem.IconImage
                         ctlDirectoryList.Add(nItem)
                     Else
                         MyLog.DebugM("Das Laufwerk {0} ist nicht bereit und wird der Liste nicht hinzugefügt...", Drive.Name)
@@ -175,6 +181,7 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
                 Next Drive
 
                 GUIWindowManager.Process()
+                GUIPropertyManager.SetProperty("#itemcount", ctlDirectoryList.Count)
                 Return ctlDirectoryList.SelectedListItem.Path
             Else
                 rootInfo = New IO.DirectoryInfo(path)
@@ -185,16 +192,15 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
                     nItemPArent.IsFolder = True
                     nItemPArent.Label = ".." 'Mid(rootInfo.Parent.FullName, InStrRev(rootInfo.Parent.FullName, "\") + 1)
                     nItemPArent.Path = rootInfo.Parent.FullName
-                    nItemPArent.IconImage = "redoFolderBack.png"
+                    nItemPArent.IconImage = "defaultFolderBack.png"
                     ctlDirectoryList.Add(nItemPArent)
                 Else
                     Dim nItemDrive As New GUIListItem
                     nItemDrive.Label = ".."
                     nItemDrive.Path = "Drives"
-                    nItemDrive.IconImage = "redoHarddisk.png"
+                    nItemDrive.IconImage = "defaultFolderBack.png"
                     ctlDirectoryList.Add(nItemDrive)
                 End If
-
 
                 For Each item As IO.DirectoryInfo In rootInfo.GetDirectories
                     Try
@@ -204,16 +210,19 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
                         nItem1.IsFolder = True
                         nItem1.Label = item.Name
                         nItem1.Path = item.FullName
-                        nItem1.IconImage = "redoFolder.png"
+                        nItem1.IconImage = "defaultFolder.png"
+                        nItem1.ThumbnailImage = nItem1.IconImage
                         ctlDirectoryList.Add(nItem1)
                     Catch ex As System.UnauthorizedAccessException
                         MyLog.Info("Der zugriff auf wurde verweigert Text: {0}", ex.ToString)
+                        'Return Nothing
                     End Try
                 Next
                 ctlDirectoryList.SelectedListItemIndex = 0
+                Return Nothing
             End If
-
-
+            GUIPropertyManager.SetProperty("#itemcount", ctlDirectoryList.Count)
+            Return Nothing
         End Function
 
 
@@ -370,22 +379,31 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
             Next
             dlgProfiles.SetHeading(Translation.SavingProfile)
             dlgProfiles.DoModal(GetID)
-            Dim newprofilename As String = "Nothing"
-            Do
-                If dlgProfiles.SelectedLabel > -1 Then
-                    Dim dlgProfileDetail As GUIProfileDetail = CType(GUIWindowManager.GetWindow(1210), GUIProfileDetail)
-                    dlgProfileDetail.Reset()
-                    dlgProfileDetail.SetHeading(dlgProfiles.SelectedLabelText)
-                    dlgProfileDetail.DoModal(GetID)
-                    'MsgBox(dlgProfileDetail.SelectedLabelText)
-                    newprofilename = dlgProfileDetail.SelectedLabelText
-                    dlgProfileDetail = Nothing
-                Else
-                    Exit Sub
-                End If
-            Loop While newprofilename = "Nothing"
-            VRD.AktSavingProfile = newprofilename
-
+            If HelpConfig.GetConfigString(ConfigKey.ProfileDetails) = False Then
+                Dim newprofilename As String = "Nothing"
+                Do
+                    If dlgProfiles.SelectedLabel > -1 Then
+                        Dim dlgProfileDetail As GUIProfileDetail = CType(GUIWindowManager.GetWindow(1210), GUIProfileDetail)
+                        dlgProfileDetail.Reset()
+                        dlgProfileDetail.SetHeading(dlgProfiles.SelectedLabelText)
+                        dlgProfileDetail.DoModal(GetID)
+                        'MsgBox(dlgProfileDetail.SelectedLabelText)
+                        newprofilename = dlgProfileDetail.SelectedLabelText
+                        dlgProfileDetail = Nothing
+                    Else
+                        Exit Sub
+                    End If
+                Loop While newprofilename = "Nothing"
+                VRD.AktSavingProfile = newprofilename
+            Else
+                VRD.AktSavingProfile = dlgProfiles.SelectedLabelText
+                Translator.SetProperty("#Profile.EncodingType", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).Encodingtype)
+                Translator.SetProperty("#Profile.Filetype", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).DateiType)
+                Translator.SetProperty("#Profile.Resolution", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).Resolution)
+                Translator.SetProperty("#Profile.Ratio", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).Ratio)
+                Translator.SetProperty("#Profile.Deinterlacemode", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).DeintarlaceModus)
+                Translator.SetProperty("#Profile.Framerate", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).FrameRate)
+            End If
         End Sub
 #End Region
 

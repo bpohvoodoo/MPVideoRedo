@@ -13,7 +13,7 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\CutBars.dll</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\CutBars.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{b3a58af7-d188-482e-8908-85264ba05243}-CutBars.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\CutBars.dll</DestinationFilename>
             </FileItem>
@@ -27,49 +27,49 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\TvdbLib.dll</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\TvdbLib.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{2b15666b-27d4-41fd-a591-3a6d3638560e}-TvdbLib.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\TvdbLib.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\redo.dll</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Common\redo.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{4e8027be-da8b-4fad-971e-3a3332d51160}-redo.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\redo.dll</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\Sprachfiles\de.xml</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\language\de.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{58940f26-5b34-4641-9609-ccb5cb07f930}-de.xml</ZipFileName>
               <DestinationFilename>%Language%\MyVideoRedo\de.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\Sprachfiles\en.xml</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\language\en.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{fedbcfd2-a0bc-4b74-996d-a3a33e9f3188}-en.xml</ZipFileName>
               <DestinationFilename>%Language%\MyVideoRedo\en.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\Sprachfiles\en-GB.xml</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\language\en-GB.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{8b7e3a89-3b49-48cd-9e5b-33c679e37a78}-en-GB.xml</ZipFileName>
               <DestinationFilename>%Language%\MyVideoRedo\en-GB.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\Sprachfiles\en-US.xml</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\language\en-US.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{26fd211e-526e-4835-9866-d2fce5525898}-en-US.xml</ZipFileName>
               <DestinationFilename>%Language%\MyVideoRedo\en-US.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\StringComparer.dll</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\StringComparer.dll</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{2550ffb7-9b6a-4f9f-82c3-dabfb9a85a51}-StringComparer.dll</ZipFileName>
               <DestinationFilename>%Plugins%\Windows\StringComparer.dll</DestinationFilename>
             </FileItem>
@@ -94,112 +94,91 @@
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\MyVideoRedo.xml</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\MyVideoRedo.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{61ff9207-4b2d-4b65-9383-4433c7952009}-MyVideoRedo.xml</ZipFileName>
               <DestinationFilename>%Skin%\Titan\MyVideoRedo.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\MyVideoReDoProfileDetail.xml</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\MyVideoReDoProfileDetail.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{26ad0a75-e3dc-4331-8720-30df2c8568ee}-MyVideoReDoProfileDetail.xml</ZipFileName>
               <DestinationFilename>%Skin%\Titan\MyVideoReDoProfileDetail.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\MyVideoRedoSave.xml</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\MyVideoRedoSave.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{f71cb1f2-f1a7-4bb0-b16c-80f4ac7566f1}-MyVideoRedoSave.xml</ZipFileName>
               <DestinationFilename>%Skin%\Titan\MyVideoRedoSave.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\MyVideoReDoStart.xml</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\MyVideoReDoStart.xml</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{f22eed76-cae6-414d-bea1-c8883af93a5b}-MyVideoReDoStart.xml</ZipFileName>
               <DestinationFilename>%Skin%\Titan\MyVideoReDoStart.xml</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\hover_myVideoReDo.png</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\hover_myVideoReDo.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{4e979968-d31e-4ba7-a20c-5d3ce28e1c7b}-hover_myVideoReDo.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\hover_myVideoReDo.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoCheck.png</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoCheck.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{69d95797-aacf-45dd-afa3-2b46517dd6ea}-redoCheck.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\redoCheck.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoFolder.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{33744e13-8c33-4b62-8342-50aeb39c5abe}-redoFolder.png</ZipFileName>
-              <DestinationFilename>%Skin%\Titan\Media\redoFolder.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoFolderBack.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{7c1a86e4-84de-46e7-9274-b31cd07d0bdb}-redoFolderBack.png</ZipFileName>
-              <DestinationFilename>%Skin%\Titan\Media\redoFolderBack.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoHarddisk.png</LocalFileName>
-              <ZipFileName>Installer{CopyFile}\{22027d64-1cb9-485b-885b-eea591e41ec4}-redoHarddisk.png</ZipFileName>
-              <DestinationFilename>%Skin%\Titan\Media\redoHarddisk.png</DestinationFilename>
-            </FileItem>
-            <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-              <Param1 />
-              <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoHelp_focus.png</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoHelp_focus.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{69bac8ab-6ca8-4509-8355-8a95364f090c}-redoHelp_focus.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\redoHelp_focus.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoHelp_nofocus.png</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoHelp_nofocus.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{557857fd-23c4-4183-8bd8-fc3446ab6bbb}-redoHelp_nofocus.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\redoHelp_nofocus.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoKeyboard.png</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoKeyboard.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{57ef6d19-fb61-44b5-b433-a3cfbdbf6fb5}-redoKeyboard.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\redoKeyboard.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoRemote.png</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoRemote.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{d3a3ee15-28d4-4bfa-a3cb-69d2aab74a69}-redoRemote.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\redoRemote.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoSelectedEpisode.png</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoSelectedEpisode.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{2327c1be-3a57-4dd0-b8ab-757b20f8afcd}-redoSelectedEpisode.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\redoSelectedEpisode.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\VideoRedoBackground.png</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\VideoRedoBackground.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{c94e2247-8e62-4851-a90a-8884c52fa3e6}-VideoRedoBackground.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\VideoRedoBackground.png</DestinationFilename>
             </FileItem>
             <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
               <Param1 />
               <UpdateOption>OverwriteIfOlder</UpdateOption>
-              <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\VideoRedoIconGray.png</LocalFileName>
+              <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\VideoRedoIconGray.png</LocalFileName>
               <ZipFileName>Installer{CopyFile}\{e4828479-265d-47d6-9c95-59446395627d}-VideoRedoIconGray.png</ZipFileName>
               <DestinationFilename>%Skin%\Titan\Media\VideoRedoIconGray.png</DestinationFilename>
             </FileItem>
@@ -404,39 +383,51 @@ Please make sure you have "VideoRedo" installed and you have run it once at Admi
   <GeneralInfo>
     <Name>MyVideoRedo</Name>
     <Id>b02550cc-c5f1-4a1c-9c07-abc875e2e82f</Id>
-    <Author>Sascha Patschka</Author>
-    <HomePage>http://s-patschka.homeserver.com/blog/page/MyVideoRedo.aspx</HomePage>
+    <Author>Sascha Patschka,BPoH_Voodoo</Author>
+    <HomePage>https://github.com/bpohvoodoo/MPVideoRedo</HomePage>
     <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/new-plugin-myvideoredo-cut-your-recordings-frame-accurate-90053/</ForumPage>
     <UpdateUrl>http://s-patschka.homeserver.com/blog/file.axd?file=2013%2f8%2fMPEIUpdateXML.xml</UpdateUrl>
     <Version>
       <Major>0</Major>
       <Minor>9</Minor>
       <Build>0</Build>
-      <Revision>0</Revision>
+      <Revision>3</Revision>
     </Version>
-    <ExtensionDescription>With this plugin you can cut your recordings by the software VideoRedo within MediaPortal.
-
-
-
-
-
+    <ExtensionDescription>With this plugin you can cut your recordings by the software VideoRedo within MediaPortal.
+
+
+
+
+
+
+
+
+
+
+
 It can cut the video on each frame and rename the videos.</ExtensionDescription>
-    <VersionDescription>- MediaPortal 1.3.0 Beta compatible
-
-- New skinfiles for DefaultWide
-
-- Fixed file rename button on save screen
-- Fixed some MediaPortal focus problems
+    <VersionDescription>- MediaPortal 1.6.0 compatible
+
+
+
+- New skinfiles for DefaultWide
+
+
+
+- Fixed file rename button on save screen
+
+- Fixed some MediaPortal focus problems
+
 - Added background process to kill "Quickstreamfix popup"</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>http://mpvideoredo.googlecode.com/files/[Name]_[Version]_[DevelopmentStatus].mpe1 </OnlineLocation>
+    <OnlineLocation>https://github.com/bpohvoodoo/MPVideoRedo/tree/master/MPEI/[Name]_[Version]_[DevelopmentStatus].mpe1 </OnlineLocation>
     <ReleaseDate>2013-01-03T08:25:57</ReleaseDate>
     <Tags>filme,videos,
 cut,
 schneiden,
 recording,
 aufnahme,videoredo,
-nofear23m</Tags>
+nofear23m,bpohvoodoo</Tags>
     <Location>D:\MyVideoReDo\MPEI\[Name]_[Version]_[DevelopmentStatus].mpe1</Location>
     <Params>
       <Items>
@@ -475,7 +466,7 @@ nofear23m</Tags>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\CutBars.dll</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\CutBars.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{b3a58af7-d188-482e-8908-85264ba05243}-CutBars.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\CutBars.dll</DestinationFilename>
       </FileItem>
@@ -489,161 +480,140 @@ nofear23m</Tags>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\TvdbLib.dll</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\TvdbLib.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{2b15666b-27d4-41fd-a591-3a6d3638560e}-TvdbLib.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\TvdbLib.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\redo.dll</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Common\redo.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{4e8027be-da8b-4fad-971e-3a3332d51160}-redo.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\redo.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\Sprachfiles\de.xml</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\language\de.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{58940f26-5b34-4641-9609-ccb5cb07f930}-de.xml</ZipFileName>
         <DestinationFilename>%Language%\MyVideoRedo\de.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\Sprachfiles\en.xml</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\language\en.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{fedbcfd2-a0bc-4b74-996d-a3a33e9f3188}-en.xml</ZipFileName>
         <DestinationFilename>%Language%\MyVideoRedo\en.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\Sprachfiles\en-GB.xml</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\language\en-GB.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{8b7e3a89-3b49-48cd-9e5b-33c679e37a78}-en-GB.xml</ZipFileName>
         <DestinationFilename>%Language%\MyVideoRedo\en-GB.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\Sprachfiles\en-US.xml</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\language\en-US.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{26fd211e-526e-4835-9866-d2fce5525898}-en-US.xml</ZipFileName>
         <DestinationFilename>%Language%\MyVideoRedo\en-US.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\StringComparer.dll</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\StringComparer.dll</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{2550ffb7-9b6a-4f9f-82c3-dabfb9a85a51}-StringComparer.dll</ZipFileName>
         <DestinationFilename>%Plugins%\Windows\StringComparer.dll</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\MyVideoRedo.xml</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\MyVideoRedo.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{61ff9207-4b2d-4b65-9383-4433c7952009}-MyVideoRedo.xml</ZipFileName>
         <DestinationFilename>%Skin%\Titan\MyVideoRedo.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\MyVideoReDoProfileDetail.xml</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\MyVideoReDoProfileDetail.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{26ad0a75-e3dc-4331-8720-30df2c8568ee}-MyVideoReDoProfileDetail.xml</ZipFileName>
         <DestinationFilename>%Skin%\Titan\MyVideoReDoProfileDetail.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\MyVideoRedoSave.xml</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\MyVideoRedoSave.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{f71cb1f2-f1a7-4bb0-b16c-80f4ac7566f1}-MyVideoRedoSave.xml</ZipFileName>
         <DestinationFilename>%Skin%\Titan\MyVideoRedoSave.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\MyVideoReDoStart.xml</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\MyVideoReDoStart.xml</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{f22eed76-cae6-414d-bea1-c8883af93a5b}-MyVideoReDoStart.xml</ZipFileName>
         <DestinationFilename>%Skin%\Titan\MyVideoReDoStart.xml</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\hover_myVideoReDo.png</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\hover_myVideoReDo.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{4e979968-d31e-4ba7-a20c-5d3ce28e1c7b}-hover_myVideoReDo.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\hover_myVideoReDo.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoCheck.png</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoCheck.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{69d95797-aacf-45dd-afa3-2b46517dd6ea}-redoCheck.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\redoCheck.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoFolder.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{33744e13-8c33-4b62-8342-50aeb39c5abe}-redoFolder.png</ZipFileName>
-        <DestinationFilename>%Skin%\Titan\Media\redoFolder.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoFolderBack.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{7c1a86e4-84de-46e7-9274-b31cd07d0bdb}-redoFolderBack.png</ZipFileName>
-        <DestinationFilename>%Skin%\Titan\Media\redoFolderBack.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoHarddisk.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{22027d64-1cb9-485b-885b-eea591e41ec4}-redoHarddisk.png</ZipFileName>
-        <DestinationFilename>%Skin%\Titan\Media\redoHarddisk.png</DestinationFilename>
-      </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoHelp_focus.png</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoHelp_focus.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{69bac8ab-6ca8-4509-8355-8a95364f090c}-redoHelp_focus.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\redoHelp_focus.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoHelp_nofocus.png</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoHelp_nofocus.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{557857fd-23c4-4183-8bd8-fc3446ab6bbb}-redoHelp_nofocus.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\redoHelp_nofocus.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoKeyboard.png</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoKeyboard.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{57ef6d19-fb61-44b5-b433-a3cfbdbf6fb5}-redoKeyboard.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\redoKeyboard.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoRemote.png</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoRemote.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{d3a3ee15-28d4-4bfa-a3cb-69d2aab74a69}-redoRemote.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\redoRemote.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\redoSelectedEpisode.png</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\redoSelectedEpisode.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{2327c1be-3a57-4dd0-b8ab-757b20f8afcd}-redoSelectedEpisode.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\redoSelectedEpisode.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\VideoRedoBackground.png</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\VideoRedoBackground.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{c94e2247-8e62-4851-a90a-8884c52fa3e6}-VideoRedoBackground.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\VideoRedoBackground.png</DestinationFilename>
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="false" Modified="false">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\bin\Debug\Screenfiles\Titan\Media\VideoRedoIconGray.png</LocalFileName>
+        <LocalFileName>..\MyVideoRedo\bin\Release\skin\Titan\Media\VideoRedoIconGray.png</LocalFileName>
         <ZipFileName>Installer{CopyFile}\{e4828479-265d-47d6-9c95-59446395627d}-VideoRedoIconGray.png</ZipFileName>
         <DestinationFilename>%Skin%\Titan\Media\VideoRedoIconGray.png</DestinationFilename>
       </FileItem>
@@ -664,13 +634,13 @@ nofear23m</Tags>
         <LocalFileName />
         <ZipFileName>Installer{CopyFile}\{ade49db4-1dba-4666-a021-eddfe67e33e8}-</ZipFileName>
         <DestinationFilename>%Skin%\Titan</DestinationFilename>
-        <Folder>..\MyVideoRedo\bin\Debug\Screenfiles\Titan</Folder>
+        <Folder>..\MyVideoRedo\bin\Release\skin\Titan</Folder>
         <Group>Titan</Group>
         <Recursive>true</Recursive>
       </FolderGroup>
     </FolderGroups>
     <ProjectFilename>MyVideoRedo.xmp2</ProjectFilename>
-    <UpdatePath1>D:\MyVideoReDo\MPEI\MPEIUpdateXML.xml</UpdatePath1>
+    <UpdatePath1>D:\GitHub\MPVideoRedo\mpvideoredo\MPEI\MPEIUpdateXML.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
   </ProjectSettings>

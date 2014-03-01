@@ -10,7 +10,6 @@ Public NotInheritable Class Translation
     Private Sub New()
     End Sub
     ' A
-    Public Shared SelRecording As String = "Wähle eine Aufnahme"
     Public Shared addReplaceString As String = "Replace-String hinzufügen"
     Public Shared AutoEndCutLabel As String = "Endmarker automatisch setzen wenn nötig"
     Public Shared AdDetectiveDone As String = "Der AdDetective Scan wurde abgeschlossen."
@@ -34,8 +33,10 @@ Public NotInheritable Class Translation
     Public Shared ClearCutsAtClose1 As String = "Willst du die Schnitte verwerfen?"
     Public Shared ContinueScan As String = "Continue scan?"
     Public Shared ContinueScan1 As String = "Continue the scan in the background?"
-    Public Shared CloseVRD As String = "VideoRedo schliessen?"
-    Public Shared CloseVRD1 As String = "Möchtest du VideoReDo schliessen und alles vorhandenen Schnitte löschen?"
+    Public Shared CloseVRD As String = "VideoRedo schließen!"
+    Public Shared CloseVRD1 As String = "Möchten Sie, dass beim"
+    Public Shared CloseVRD2 As String = "Schliessen alle vorhanden"
+    Public Shared CloseVRD3 As String = "Schnitte gelöscht werden?"
 
     ' D
     Public Shared duration As String = "Gesamtlaufzeit:{0}"
@@ -47,7 +48,9 @@ Public NotInheritable Class Translation
     Public Shared DescriptionTVsuiteProfiles As String = "Wenn die TVsuite 4 auf Ihrem System aktiv ist können Sie hier das aktive standardprofil wählen welches aktiv sein soll. Sie müssen zuerst prüfen ob die TVsuite 4 als aktive VideoRedo-Applikation verwendet wird damit anschließend die Profile ermittelt werden können. Klicken Sie auf den Button und warten Sie einen moment bis Sie ein Profil auswählen können."
     Public Shared DeleteOriginalFile As String = "Möchtest du das Originalfile löschen?"
     Public Shared DeleteOriginalFileTitle As String = "Original löschen?"
-    Public Shared DeinterlaceMode As String = "DeInterlacemodus:"
+    Public Shared Deinterlacemode As String = "De-Interlace Modus:"
+    Public Shared DebugMode As String = "Debug Modus"
+    Public Shared DisableProfileDetails As String = "Deaktivieren der Profildetailanzeige beim Profilwechsel"
 
 
     ' E
@@ -56,7 +59,7 @@ Public NotInheritable Class Translation
     Public Shared EpisodeTitle As String = "Episodetitel"
     Public Shared EditVideo As String = "Schneiden"
     Public Shared EditEndFilename As String = "End-Dateinamen bearbeiten"
-    Public Shared EncodingType As String = "Encodingtype:"
+    Public Shared Encodingtype As String = "Encodierungstyp:"
 
     ' F
     Public Shared FollowEpisodeWasFound As String = "Folgende Episode wurde gefunden. Verwenden?"
@@ -65,11 +68,12 @@ Public NotInheritable Class Translation
     Public Shared ForbittenCutCompleteVideo As String = "Es ist nicht möglich das ganze Video zu beschneiden!!"
     Public Shared FrageSetzeEndmarker As String = "Wenn diese Option aktiviert ist wird beim laden des Videos ein StartCut erstellt. Sollte aktiviert sein wenn eine Vorlaufzeit für Aufnahmen eingestellt ist."
     Public Shared FrageSetzeStartmarker As String = "Wenn diese Option aktiviert ist wird beim speichern des Videos ein EndCut automatisch erstellt sofern nicht vorhanden. Sollte aktiviert sein wenn eine Nachlaufzeit für Aufnahmen eingestellt ist."
-    Public Shared FrageParseVideoFile As String = "Konfigurieren Sie dieses Feld nach deinen wünschen. Mit klick auf den Button rechts können sie die möglichen Optionen sehen"
-    Public Shared FrageParseSerienfile As String = "Konfigurieren Sie dieses Feld nach deinen wünschen. Mit klick auf den Button rechts können sie die möglichen Optionen sehen"
-    Public Shared Filetype As String = "Filetype:"
+    Public Shared FrageParseVideoFile As String = "Konfigurieren Sie dieses Feld nach Ihren Wünschen. Mit klick auf den Button rechts können sie die möglichen Optionen sehen"
+    Public Shared FrageParseSerienfile As String = "Konfigurieren Sie dieses Feld nach Ihren Wünschen. Mit klick auf den Button rechts können sie die möglichen Optionen sehen"
+    Public Shared FrageDisableProfileDetails As String = "Konfigurieren Sie dieses Feld nach Ihren Wünschen. Mit klick auf den Button rechts können sie die möglichen Optionen sehen"
+    Public Shared Filetype As String = "Dateityp:"
     Public Shared Framerate As String = "Bildrate:"
-
+    Public Shared Frames As String = "Bilder"
 
     ' G
     Public Shared generalOptions As String = "Grundeinstellungen"
@@ -99,6 +103,9 @@ Public NotInheritable Class Translation
     ' M
     Public Shared MakeCut As String = "Schneide hier"
     Public Shared Movie As String = "Film"
+    Public Shared ModuleStart = "MyVideoRedo - Film Auswahl"
+    Public Shared ModuleMain = "MyVideoRedo - Film schneiden"
+    Public Shared ModuleSaveVideo = "MyVideoRedo - Film speichern"
 
     ' N
     Public Shared NoEpisodesFoundDialog As String = "Es wurde keine Episode gefunden. Es wird normal gespeichert..."
@@ -109,6 +116,7 @@ Public NotInheritable Class Translation
 
     ' O
     Public Shared optionsCutBars As String = "Progressbaroptionen"
+    Public Shared OriginalString As String = "Orig. Zeichenkette"
 
     ' P
     Public Shared position As String = "Aktuelle Position:{0}"
@@ -122,7 +130,8 @@ Public NotInheritable Class Translation
     Public Shared RecordingDialogDescription As String = "Ordner der gespeicherten Aufnahmen"
     Public Shared RecordingPathIncorrect As String = "Ungültiger Pfad zu den Aufnahmen, bitte öffne die Configuration!!"
     Public Shared Resolution As String = "Auflösung:"
-    Public Shared Ratio As String = "Verhältniss:"
+    Public Shared Ratio As String = "Verhältnis:"
+    Public Shared ReplacementString As String = "Ersatz Zeichenkette"
 
     ' S
     Public Shared StartCutAtStart As String = "Startmarker beim Abspielen setzten"
@@ -136,6 +145,9 @@ Public NotInheritable Class Translation
     Public Shared SearchWithAnotherString As String = "Suche mit anderer Zeichenfolge"
     Public Shared StartAdDetectiveScan As String = "Starte AdDetective-Scan"
     Public Shared SavingProfile As String = "Speicherprofil"
+    Public Shared Seconds As String = "Sek."
+    Public Shared SelRecording As String = "Wähle Sie eine Aufnahme"
+
 
     'Public Shared SeriesEpisodeNumber As String = "Episodennummer"
     Public Shared ShowFileParserStrings As String = "Zeige Strings"
@@ -152,7 +164,7 @@ Public NotInheritable Class Translation
     Public Shared UseVideoAsSeries As String = "Aufnahme ist eine Serienfolge!"
 
     ' V
-    Public Shared VideoRedoCanNotHD As String = "Deine Version von VideoRedo kann kein HD Material verarbeiten, es wird abgebrochen."
+    Public Shared VideoRedoCanNotHD As String = "Diese Version von VideoRedo kann kein HD Material verarbeiten, es wird abgebrochen."
 
     ' W
 
