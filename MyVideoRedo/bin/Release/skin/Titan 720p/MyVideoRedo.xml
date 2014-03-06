@@ -2,7 +2,7 @@
   <id>1209</id>
   <defaultcontrol>4</defaultcontrol>
   <allowoverlay>no</allowoverlay>
-  <define>#header.label:MyVideoRedo</define>
+  <define>#header.label:#currentmodule</define>
   
   <controls>
 
@@ -93,6 +93,36 @@
       <spinPosY>930</spinPosY>
       <spinCanFocus>no</spinCanFocus>
     </control>
+<!-- Neu -->
+    <control> 
+       <type>label</type> 
+       <id>45</id> 
+       <description>Audiosync Label</description> 
+       <posX>1200</posX> 
+       <posY>500</posY> 
+       <width>400</width> 
+       <label>#MyVideoRedo.Translation.AudioSyncLabel</label> 
+       <font>font10</font> 
+       <align>right</align> 
+       <visible>control.isvisible(46)</visible>
+     </control> 
+     <control> 
+       <description>Audio Sync Slider</description> 
+       <type>slider</type> 
+       <id>46</id> 
+       <posX>1220</posX> 
+       <posY>500</posY> 
+       <spintype>int</spintype> 
+       <showrange>yes</showrange> 
+       <textureSliderBar>sliderbackground.png</textureSliderBar> 
+       <textureSliderNib>slidernibnf.png</textureSliderNib> 
+       <textureSliderNibFocus>slidernibfo.png</textureSliderNibFocus> 
+       <onup>51</onup> 
+       <ondown>4</ondown> 
+       <onleft></onleft> 
+       <onright></onright> 
+       <visible>no</visible>
+     </control>
 	
     
     <control>
@@ -101,7 +131,7 @@
       <posX>85</posX>
       <posY>995</posY>
       <width>400</width>
-      <label>#MyVideoRedo.Translation.duration</label>
+      <label>#MyVideoRedo.Translation.Duration</label>
       <font>fontB12</font>
 	  <align>left</align>
 	  <textcolor>FF000000</textcolor>
@@ -116,7 +146,7 @@
       <posX>0</posX>
       <posY>1013</posY>
       <width>1920</width>
-      <label>#MyVideoRedo.Translation.position</label>
+      <label>#MyVideoRedo.Translation.Position</label>
       <font>fontB12</font>
 	  <align>center</align>
 	  <textcolor>FF000000</textcolor>
@@ -127,11 +157,11 @@
     
     <control>
       <type>label</type>
-      <description>Videoresttime</description>
+      <description>VideoTimeLeft</description>
       <posX>1840</posX>
       <posY>995</posY>
       <width>400</width>
-      <label>#MyVideoRedo.Translation.resttime</label>
+      <label>#MyVideoRedo.Translation.TimeLeft</label>
       <font>fontB12</font>
 	  <align>right</align>
 	  <textcolor>FF000000</textcolor>

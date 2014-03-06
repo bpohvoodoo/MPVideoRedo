@@ -3,12 +3,8 @@
     <id>1210</id>
     <defaultcontrol>13</defaultcontrol>
     <allowoverlay>no</allowoverlay>
-    <define>#header.label:MyVideoRedo</define>
-    <controls>
-
-
-      
-      
+    <define>#header.label:#currentmodule</define>
+    <controls>      
       <control>
           <id>1</id>
           <type>label</type>
@@ -49,7 +45,7 @@
             <width>540</width>
             <font>font14</font>
             <textcolor>ff6fafe1</textcolor>
-            <label>Profile: #Profile.Name   </label>
+            <label>Profile: #ProfileTmp.Name   </label>
       </control>
       
       <control>
@@ -76,7 +72,7 @@
             <posY>257</posY>
             <font>font10</font>
             <textcolor>ff6fafe1</textcolor>
-            <label>#MyVideoRedo.Translation.EncodingType</label>
+            <label>#MyVideoRedo.Translation.Encodingtype</label>
       </control>
       
       
@@ -116,7 +112,7 @@
             <posY>417</posY>
             <font>font10</font>
             <textcolor>ff6fafe1</textcolor>
-            <label>#MyVideoRedo.Translation.DeinterlaceMode</label>
+            <label>#MyVideoRedo.Translation.Deinterlacemode</label>
       </control>
       
       
@@ -136,7 +132,7 @@
             <posY>255</posY>
             <width>442</width>
             <align>RIGHT</align>
-            <label>#Profile.EncodingType</label>
+            <label>#ProfileTmp.Encodingtype</label>
       </control>
       
       
@@ -146,7 +142,7 @@
             <posY>295</posY>
             <width>443</width>
             <align>RIGHT</align>
-            <label>#Profile.Filetype</label>
+            <label>#ProfileTmp.Filetype</label>
       </control>
       
       
@@ -156,7 +152,7 @@
             <posY>335</posY>
             <width>443</width>
             <align>RIGHT</align>
-            <label>#Profile.Resolution</label>
+            <label>#ProfileTmp.Resolution</label>
       </control>
       
       
@@ -166,7 +162,7 @@
             <posY>375</posY>
             <width>445</width>
             <align>RIGHT</align>
-            <label>#Profile.Ratio</label>
+            <label>#ProfileTmp.Ratio</label>
       </control>
       
       
@@ -176,7 +172,7 @@
             <posY>415</posY>
             <width>413</width>
             <align>RIGHT</align>
-            <label>#Profile.Deinterlacemode</label>
+            <label>#ProfileTmp.Deinterlacemode</label>
       </control>
       
       
@@ -186,7 +182,7 @@
             <posY>455</posY>
             <width>443</width>
             <align>RIGHT</align>
-            <label>#Profile.Framerate</label>
+            <label>#ProfileTmp.Framerate</label>
       </control>
       
       

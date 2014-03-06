@@ -3,7 +3,7 @@
     <id>1210</id>
     <defaultcontrol>11</defaultcontrol>
     <allowoverlay>no</allowoverlay>
-    <define>#header.label:MyVideoRedo</define>
+    <define>#header.label:#currentmodule</define>
 	<controls>
 
 		<control>
@@ -146,33 +146,173 @@
     
     
         <!--Speicherprofil LAbel und Textfeld + Button-->
-        <control>
-		    <description>SavingProfile Label</description>
-			<id>0</id>
-			<type>label</type>
-			<posX>90</posX>
-			<posY>485</posY>
-		    <width>790</width>
-			<label>#MyVideoRedo.Translation.SavingProfile:</label>
-		    <font>font10</font>
-			<align>left</align>
-			<textcolor>ff6FAFE1</textcolor>
-			<animation effect="Fade" time="250">WindowOpen</animation>
-			<animation effect="Fade" time="250">WindowClose</animation>
-        </control>
-    
+    <control>
+      <description>SavingProfile Label</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>90</posX>
+      <posY>485</posY>
+      <width>380</width>
+      <label>#MyVideoRedo.Translation.SavingProfile:</label>
+      <font>font10</font>
+      <align>left</align>
+      <textcolor>ff6FAFE1</textcolor>
+      <animation effect="Fade" time="250">WindowOpen</animation>
+      <animation effect="Fade" time="250">WindowClose</animation>
+    </control>
 		<control>
 		    <description>SavingProfile Value</description>
 			<id>0</id>
 			<type>label</type>
-			<posX>90</posX>
-			<posY>515</posY>
-		    <width>790</width>
+			<posX>480</posX>
+			<posY>485</posY>
+		    <width>380</width>
 			<label>#Saving.Profile</label>
 			<animation effect="Fade" time="250">WindowOpen</animation>
 			<animation effect="Fade" time="250">WindowClose</animation>
         </control>
-   
+    <control>
+      <description>SavingEncodingtype Label</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>90</posX>
+      <posY>515</posY>
+      <width>380</width>
+      <label>#MyVideoRedo.Translation.Encodingtype</label>
+      <font>font10</font>
+      <align>left</align>
+      <textcolor>ff6FAFE1</textcolor>
+    </control>
+    <control>
+      <description>SavingEncodingtype Value</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>480</posX>
+      <posY>515</posY>
+      <width>380</width>
+      <label>#Profile.Encodingtype</label>
+      <font>font10</font>
+      <align>left</align>
+    </control>
+    <control>
+      <description>SavingFiletype Label</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>90</posX>
+      <posY>545</posY>
+      <width>380</width>
+      <label>#MyVideoRedo.Translation.Filetype</label>
+      <font>font10</font>
+      <align>left</align>
+      <textcolor>ff6FAFE1</textcolor>
+    </control>
+    <control>
+      <description>SavingFiletype Value</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>480</posX>
+      <posY>545</posY>
+      <width>380</width>
+      <label>#Profile.Filetype</label>
+      <font>font10</font>
+      <align>left</align>
+    </control>
+    <control>
+      <description>SavingResolution Label</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>90</posX>
+      <posY>575</posY>
+      <width>380</width>
+      <label>#MyVideoRedo.Translation.Resolution</label>
+      <font>font10</font>
+      <align>left</align>
+      <textcolor>ff6FAFE1</textcolor>
+    </control>
+    <control>
+      <description>SavingResolution Value</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>480</posX>
+      <posY>575</posY>
+      <width>380</width>
+      <label>#Profile.Resolution</label>
+      <font>font10</font>
+      <align>left</align>
+    </control>
+    <control>
+      <description>SavingRatio Label</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>90</posX>
+      <posY>605</posY>
+      <width>380</width>
+      <label>#MyVideoRedo.Translation.Ratio</label>
+      <font>font10</font>
+      <align>left</align>
+      <textcolor>ff6FAFE1</textcolor>
+    </control>
+    <control>
+      <description>SavingRatio Value</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>480</posX>
+      <posY>605</posY>
+      <width>380</width>
+      <label>#Profile.Ratio</label>
+      <font>font10</font>
+      <align>left</align>
+    </control>
+    <control>
+      <description>SavingDeInterlacemode Label</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>90</posX>
+      <posY>635</posY>
+      <width>380</width>
+      <label>#MyVideoRedo.Translation.Deinterlacemode</label>
+      <font>font10</font>
+      <align>left</align>
+      <textcolor>ff6FAFE1</textcolor>
+    </control>
+    <control>
+      <description>SavingDeInterlacemode Value</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>480</posX>
+      <posY>635</posY>
+      <width>380</width>
+      <label>#Profile.Deinterlacemode</label>
+      <font>font10</font>
+      <align>left</align>
+    </control>
+    <control>
+      <description>SavingFramerate Label</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>90</posX>
+      <posY>665</posY>
+      <width>380</width>
+      <label>#MyVideoRedo.Translation.Framerate</label>
+      <font>font10</font>
+      <align>left</align>
+      <textcolor>ff6FAFE1</textcolor>
+    </control>
+    <control>
+      <description>SavingFramerate Value</description>
+      <id>0</id>
+      <type>label</type>
+      <posX>480</posX>
+      <posY>665</posY>
+      <width>380</width>
+      <label>#Profile.Framerate</label>
+      <font>font10</font>
+      <align>left</align>
+    </control>
+    
+    
+    
+    
         <control>
 		    <description>ButtonChangeProfile</description>
 			<id>14</id>

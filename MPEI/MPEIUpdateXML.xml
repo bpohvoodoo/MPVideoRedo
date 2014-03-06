@@ -79,6 +79,147 @@
       </PluginDependencies>
       <GeneralInfo>
         <Name>MyVideoRedo</Name>
+        <Id>61500954-844d-4aaa-9872-03adf020dc5c</Id>
+        <Author>Sascha Patschka</Author>
+        <HomePage>http://s-patschka.homeserver.com/blog/page/MyVideoRedo.aspx</HomePage>
+        <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/new-plugin-myvideoredo-cut-your-recordings-frame-accurate-90053/</ForumPage>
+        <UpdateUrl>http://mpvideoredo.googlecode.com/files/MPEIUpdateXML.xml</UpdateUrl>
+        <Version>
+          <Major>0</Major>
+          <Minor>9</Minor>
+          <Build>0</Build>
+          <Revision>0</Revision>
+        </Version>
+        <ExtensionDescription>With this plugin you can cut your recordings by the software VideoRedo within MediaPortal.
+It can cut the video on each frame and rename the videos.</ExtensionDescription>
+        <VersionDescription>- MediaPortal 1.3.0 Beta compatible
+- New skinfiles for DefaultWide
+- Fixed file rename button on save screen
+- Fixed some MediaPortal focus problems
+- Added background process to kill "Quickstreamfix popup"</VersionDescription>
+        <DevelopmentStatus>Beta</DevelopmentStatus>
+        <OnlineLocation>http://mpvideoredo.googlecode.com/files/MyVideoRedo_0.9.0.0_Beta.mpe1</OnlineLocation>
+        <ReleaseDate>2013-01-03T08:25:57</ReleaseDate>
+        <Tags>filme,videos,
+cut,
+schneiden,
+recording,
+aufnahme,videoredo,
+nofear23m</Tags>
+        <Location>C:\Users\Sascha\Documents\Visual Studio 2012\Projects\ mpvideoredo\MPEI\[Name]_[Version]_[DevelopmentStatus].mpe1</Location>
+        <Params>
+          <Items>
+            <SectionParam Name="Online Icon">
+              <Value>http://mpvideoredo.googlecode.com/files/hover_myVideoReDo.png</Value>
+              <ValueType>String</ValueType>
+              <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
+            </SectionParam>
+            <SectionParam Name="Configuration file">
+              <Value>%Config%\MediaPortal.xml</Value>
+              <ValueType>Template</ValueType>
+              <Description>The file used to configure the extension.
+ If have .exe extension the will be executed
+ If have .dll extension used like MP plugin configuration</Description>
+            </SectionParam>
+            <SectionParam Name="Online Screenshots">
+              <Value>http://mpvideoredo.googlecode.com/files/Plugin_GUI003.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI004.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI009.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI015.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI021.png;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config1.PNG;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config2.PNG;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config3.PNG;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config4.PNG</Value>
+              <ValueType>String</ValueType>
+              <Description>Online stored screenshot urls separated by ; </Description>
+            </SectionParam>
+            <SectionParam Name="Force to uninstall on update">
+              <Value>NO</Value>
+              <ValueType>Bool</ValueType>
+              <Description>Show dialog and force to uninstall previous version when updating an extension. Should only be disabled if you are using an NSIS/MSI installer.</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+      </GeneralInfo>
+      <UniqueFileList>
+        <Items />
+      </UniqueFileList>
+      <ProjectSettings>
+        <FolderGroups />
+      </ProjectSettings>
+      <IsSkin>false</IsSkin>
+    </PackageClass>
+    <PackageClass>
+      <Version>2.0</Version>
+      <Groups>
+        <Items>
+          <GroupItem Name="General">
+            <DisplayName>General</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>General</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+          <GroupItem Name="Skins">
+            <DisplayName>Skins</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>Skins</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+          <GroupItem Name="Titan">
+            <DisplayName>Titan</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>Titan</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+        </Items>
+      </Groups>
+      <Sections>
+        <Items />
+      </Sections>
+      <Dependencies>
+        <Items>
+          <DependencyItem>
+            <Type>MediaPortal</Type>
+            <Id />
+            <MinVersion>
+              <Major>1</Major>
+              <Minor>1</Minor>
+              <Build>6</Build>
+              <Revision>27644</Revision>
+            </MinVersion>
+            <MaxVersion>
+              <Major>1</Major>
+              <Minor>1</Minor>
+              <Build>6</Build>
+              <Revision>27644</Revision>
+            </MaxVersion>
+            <WarnOnly>false</WarnOnly>
+            <Message>requires MediaPortal version 1.1.6.27644 to 1.1.6.27644.</Message>
+            <Name>MediaPortal</Name>
+          </DependencyItem>
+        </Items>
+      </Dependencies>
+      <PluginDependencies>
+        <Items>
+          <PluginDependencyItem AssemblyName="MyVideoRedo.dll">
+            <CompatibleVersion>
+              <Items>
+                <CompatibleVersionItem>
+                  <MinRequiredVersion>1.2.0.0</MinRequiredVersion>
+                  <DesignedForVersion>1.4.0.0</DesignedForVersion>
+                </CompatibleVersionItem>
+              </Items>
+            </CompatibleVersion>
+            <SubSystemsUsed>
+              <Items>
+                <SubSystemItem Name="MP.Config" />
+                <SubSystemItem Name="MP.SkinEngine" />
+              </Items>
+            </SubSystemsUsed>
+          </PluginDependencyItem>
+        </Items>
+      </PluginDependencies>
+      <GeneralInfo>
+        <Name>MyVideoRedo</Name>
         <Id>b02550cc-c5f1-4a1c-9c07-abc875e2e82f</Id>
         <Author>Sascha Patschka</Author>
         <HomePage>http://s-patschka.homeserver.com/blog/page/MyVideoRedo.aspx</HomePage>
@@ -91,438 +232,11 @@
           <Revision>0</Revision>
         </Version>
         <ExtensionDescription>With this plugin you can cut your recordings by the software VideoRedo within MediaPortal.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 It can cut the video on each frame and rename the videos.</ExtensionDescription>
         <VersionDescription>- MediaPortal 1.3.0 Beta compatible
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - New skinfiles for DefaultWide
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - Fixed file rename button on save screen
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - Fixed some MediaPortal focus problems
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 - Added background process to kill "Quickstreamfix popup"</VersionDescription>
         <DevelopmentStatus>Beta</DevelopmentStatus>
         <OnlineLocation>http://mpvideoredo.googlecode.com/files/MyVideoRedo_0.9.0.0_Beta.mpe1</OnlineLocation>
@@ -656,606 +370,14 @@ nofear23m</Tags>
           <Major>0</Major>
           <Minor>9</Minor>
           <Build>0</Build>
-          <Revision>0</Revision>
-        </Version>
-        <ExtensionDescription>With this plugin you can cut your recordings by the software VideoRedo within MediaPortal.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-It can cut the video on each frame and rename the videos.</ExtensionDescription>
-        <VersionDescription>- MediaPortal 1.3.0 Beta compatible
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- New skinfiles for DefaultWide
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- Fixed file rename button on save screen
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- Fixed some MediaPortal focus problems
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-- Added background process to kill "Quickstreamfix popup"</VersionDescription>
-        <DevelopmentStatus>Beta</DevelopmentStatus>
-        <OnlineLocation>http://mpvideoredo.googlecode.com/files/MyVideoRedo_0.9.0.0_Beta.mpe1</OnlineLocation>
-        <ReleaseDate>2013-01-03T08:25:57</ReleaseDate>
-        <Tags>filme,videos,
-cut,
-schneiden,
-recording,
-aufnahme,videoredo,
-nofear23m</Tags>
-        <Location>C:\Users\Sascha\Documents\Visual Studio 2012\Projects\ mpvideoredo\MPEI\[Name]_[Version]_[DevelopmentStatus].mpe1</Location>
-        <Params>
-          <Items>
-            <SectionParam Name="Online Icon">
-              <Value>http://mpvideoredo.googlecode.com/files/hover_myVideoReDo.png</Value>
-              <ValueType>String</ValueType>
-              <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
-            </SectionParam>
-            <SectionParam Name="Configuration file">
-              <Value>%Config%\MediaPortal.xml</Value>
-              <ValueType>Template</ValueType>
-              <Description>The file used to configure the extension.
- If have .exe extension the will be executed
- If have .dll extension used like MP plugin configuration</Description>
-            </SectionParam>
-            <SectionParam Name="Online Screenshots">
-              <Value>http://mpvideoredo.googlecode.com/files/Plugin_GUI003.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI004.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI009.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI015.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI021.png;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config1.PNG;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config2.PNG;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config3.PNG;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config4.PNG</Value>
-              <ValueType>String</ValueType>
-              <Description>Online stored screenshot urls separated by ; </Description>
-            </SectionParam>
-            <SectionParam Name="Force to uninstall on update">
-              <Value>NO</Value>
-              <ValueType>Bool</ValueType>
-              <Description>Show dialog and force to uninstall previous version when updating an extension. Should only be disabled if you are using an NSIS/MSI installer.</Description>
-            </SectionParam>
-          </Items>
-        </Params>
-      </GeneralInfo>
-      <UniqueFileList>
-        <Items />
-      </UniqueFileList>
-      <ProjectSettings>
-        <FolderGroups />
-      </ProjectSettings>
-      <IsSkin>false</IsSkin>
-    </PackageClass>
-    <PackageClass>
-      <Version>2.0</Version>
-      <Groups>
-        <Items>
-          <GroupItem Name="General">
-            <DisplayName>General</DisplayName>
-            <DefaulChecked>true</DefaulChecked>
-            <Description>General</Description>
-            <Files>
-              <Items />
-            </Files>
-          </GroupItem>
-          <GroupItem Name="Skins">
-            <DisplayName>Skins</DisplayName>
-            <DefaulChecked>true</DefaulChecked>
-            <Description>Skins</Description>
-            <Files>
-              <Items />
-            </Files>
-          </GroupItem>
-          <GroupItem Name="Titan">
-            <DisplayName>Titan</DisplayName>
-            <DefaulChecked>true</DefaulChecked>
-            <Description>Titan</Description>
-            <Files>
-              <Items />
-            </Files>
-          </GroupItem>
-        </Items>
-      </Groups>
-      <Sections>
-        <Items />
-      </Sections>
-      <Dependencies>
-        <Items>
-          <DependencyItem>
-            <Type>MediaPortal</Type>
-            <Id />
-            <MinVersion>
-              <Major>1</Major>
-              <Minor>1</Minor>
-              <Build>6</Build>
-              <Revision>27644</Revision>
-            </MinVersion>
-            <MaxVersion>
-              <Major>1</Major>
-              <Minor>1</Minor>
-              <Build>6</Build>
-              <Revision>27644</Revision>
-            </MaxVersion>
-            <WarnOnly>false</WarnOnly>
-            <Message>requires MediaPortal version 1.1.6.27644 to 1.1.6.27644.</Message>
-            <Name>MediaPortal</Name>
-          </DependencyItem>
-        </Items>
-      </Dependencies>
-      <PluginDependencies>
-        <Items>
-          <PluginDependencyItem AssemblyName="MyVideoRedo.dll">
-            <CompatibleVersion>
-              <Items>
-                <CompatibleVersionItem>
-                  <MinRequiredVersion>1.2.0.0</MinRequiredVersion>
-                  <DesignedForVersion>1.4.0.0</DesignedForVersion>
-                </CompatibleVersionItem>
-              </Items>
-            </CompatibleVersion>
-            <SubSystemsUsed>
-              <Items>
-                <SubSystemItem Name="MP.Config" />
-                <SubSystemItem Name="MP.SkinEngine" />
-              </Items>
-            </SubSystemsUsed>
-          </PluginDependencyItem>
-        </Items>
-      </PluginDependencies>
-      <GeneralInfo>
-        <Name>MyVideoRedo</Name>
-        <Id>61500954-844d-4aaa-9872-03adf020dc5c</Id>
-        <Author>Sascha Patschka</Author>
-        <HomePage>http://s-patschka.homeserver.com/blog/page/MyVideoRedo.aspx</HomePage>
-        <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/new-plugin-myvideoredo-cut-your-recordings-frame-accurate-90053/</ForumPage>
-        <UpdateUrl>http://mpvideoredo.googlecode.com/files/MPEIUpdateXML.xml</UpdateUrl>
-        <Version>
-          <Major>0</Major>
-          <Minor>9</Minor>
-          <Build>0</Build>
           <Revision>1</Revision>
         </Version>
         <ExtensionDescription>With this plugin you can cut your recordings by the software VideoRedo within MediaPortal.
-
-
-
-
-
-
-
-
-
-
-
-
 It can cut the video on each frame and rename the videos.</ExtensionDescription>
         <VersionDescription>- MediaPortal 1.4.0 compatible
-
-
-
 - function to detect when video needs a QuickStreamFix
-
-
-
 - QuickStreamFix function
-
-
-
 - Bugfix with AdDetective scan
-
-
-
 - many other bugfixes
 </VersionDescription>
         <DevelopmentStatus>Beta</DevelopmentStatus>
@@ -1394,57 +516,11 @@ nofear23m</Tags>
           <Revision>2</Revision>
         </Version>
         <ExtensionDescription>With this plugin you can cut your recordings by the software VideoRedo within MediaPortal.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 It can cut the video on each frame and rename the videos.</ExtensionDescription>
         <VersionDescription>- MediaPortal 1.4.0 compatible
-
-
-
-
-
-
-
 - function to detect when video needs a QuickStreamFix
-
-
-
-
-
-
-
 - QuickStreamFix function
-
-
-
-
-
-
-
 - Bugfix with AdDetective scan
-
-
-
-
-
-
-
 - many other bugfixes
 </VersionDescription>
         <DevelopmentStatus>Beta</DevelopmentStatus>
@@ -1474,6 +550,173 @@ nofear23m</Tags>
             <SectionParam Name="Online Screenshots">
               <Value>http://mpvideoredo.googlecode.com/files/Plugin_GUI003.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI004.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI009.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI015.png;http://mpvideoredo.googlecode.com/files/Plugin_GUI021.png;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config1.PNG;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config2.PNG;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config3.PNG;http://mpvideoredo.googlecode.com/files/MyVideoRedo_Config4.PNG
 </Value>
+              <ValueType>String</ValueType>
+              <Description>Online stored screenshot urls separated by ; </Description>
+            </SectionParam>
+            <SectionParam Name="Force to uninstall on update">
+              <Value>NO</Value>
+              <ValueType>Bool</ValueType>
+              <Description>Show dialog and force to uninstall previous version when updating an extension. Should only be disabled if you are using an NSIS/MSI installer.</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+      </GeneralInfo>
+      <UniqueFileList>
+        <Items />
+      </UniqueFileList>
+      <ProjectSettings>
+        <FolderGroups />
+      </ProjectSettings>
+      <IsSkin>false</IsSkin>
+    </PackageClass>
+    <PackageClass>
+      <Version>2.0</Version>
+      <Groups>
+        <Items>
+          <GroupItem Name="General">
+            <DisplayName>General</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>General</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+          <GroupItem Name="Skins">
+            <DisplayName>Skins</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>Skins</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+          <GroupItem Name="Titan">
+            <DisplayName>Titan</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>Titan</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+          <GroupItem Name="StreamedMP">
+            <DisplayName>StreamedMP</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>StreamedMP</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+        </Items>
+      </Groups>
+      <Sections>
+        <Items />
+      </Sections>
+      <Dependencies>
+        <Items>
+          <DependencyItem>
+            <Type>MediaPortal</Type>
+            <Id />
+            <MinVersion>
+              <Major>1</Major>
+              <Minor>1</Minor>
+              <Build>6</Build>
+              <Revision>27644</Revision>
+            </MinVersion>
+            <MaxVersion>
+              <Major>1</Major>
+              <Minor>1</Minor>
+              <Build>6</Build>
+              <Revision>27644</Revision>
+            </MaxVersion>
+            <WarnOnly>false</WarnOnly>
+            <Message>requires MediaPortal version 1.1.6.27644 to 1.1.6.27644.</Message>
+            <Name>MediaPortal</Name>
+          </DependencyItem>
+        </Items>
+      </Dependencies>
+      <PluginDependencies>
+        <Items>
+          <PluginDependencyItem AssemblyName="MyVideoRedo.dll">
+            <CompatibleVersion>
+              <Items>
+                <CompatibleVersionItem>
+                  <MinRequiredVersion>1.2.0.0</MinRequiredVersion>
+                  <DesignedForVersion>1.4.0.0</DesignedForVersion>
+                </CompatibleVersionItem>
+              </Items>
+            </CompatibleVersion>
+            <SubSystemsUsed>
+              <Items>
+                <SubSystemItem Name="MP.Config" />
+                <SubSystemItem Name="MP.SkinEngine" />
+              </Items>
+            </SubSystemsUsed>
+          </PluginDependencyItem>
+        </Items>
+      </PluginDependencies>
+      <GeneralInfo>
+        <Name>MyVideoRedo</Name>
+        <Id>b02550cc-c5f1-4a1c-9c07-abc875e2e82f</Id>
+        <Author>BPoH_Voodoo, Sascha Patschka</Author>
+        <HomePage>https://github.com/bpohvoodoo/MPVideoRedo</HomePage>
+        <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/new-plugin-myvideoredo-cut-your-recordings-frame-accurate-90053/</ForumPage>
+        <UpdateUrl>https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MPEIUpdateXML.xml</UpdateUrl>
+        <Version>
+          <Major>0</Major>
+          <Minor>9</Minor>
+          <Build>1</Build>
+          <Revision>0</Revision>
+        </Version>
+        <ExtensionDescription>With this plugin youare able to cut your recordings with the software VideoRedo within MediaPortal.
+It can cut the video frameaccurate and rename the videos.</ExtensionDescription>
+        <VersionDescription>- MediaPortal 1.6.0 compatible
+----- Version 9.1.0 -----
+05.03.2014
+* Umgestellt auf die Benutzung von Thumbs des TVServers, falls vorhanden. Fallback bleibt weiterhin der interne ThumbnailCreator
+* Code Cleanup 
+* Schnitte Löschen Dialog beim Verlassen über Settings abschaltbar
+* Originaldatei Löschen Dialog nach dem Schneiden über Settings abschaltbar
+* Modul Name für die Menüs kann nun über Settings gesetzt werden (fall einem MyVideoRedo nicht gefällt)
+* Möglichkeit der Speicherung in Unterordner auch für Serien in den Setting hinzugefügt
+* Entsprechende Übersetzungen hinzugefügt
+* Angefangen die Debugmeldung und anderes im Code auf Englisch zu Übersetzen, damit das Projekt ggf. internationaler wird.
+*
+* Bug beseitigt: Textfeld in der virtuellen Tastatur wurde beim Ändern des Speichernamens nicht gefüllt
+*
+* Bekannte Probleme:
+* interner ThumbnailsCreator.vb arbeitet nicht korrekt bei SD Material.
+* Profilname wird im Skin falsch angezeigt, wenn mann den Bestätigungsdialog beim Profilwechsel mit ESC verläßt.
+* Textlänge in der Virtuellen Tastatur ist zu begrenzt.
+* 
+* ToDo:
+* Speichen mit Originalname (Speichen mit temporärem Namen und dann Löschen der Orginaldatei und Umbenennen der Temporären)
+* internen Thumbnailer möglicher Weise gegen ffmpeg tauschen (s.o, mal sehen)
+* laden von Cutlists (ComSkip) (mal sehen)
+* Speichern in Cutlists (mal sehen)</VersionDescription>
+        <DevelopmentStatus>Beta</DevelopmentStatus>
+        <OnlineLocation>https://github.com/bpohvoodoo/MPVideoRedo/tree/master/MPEI/MyVideoRedo_0.9.0.3_Beta.mpe1 </OnlineLocation>
+        <ReleaseDate>2014-03-03T08:25:57</ReleaseDate>
+        <Tags>filme,videos,
+cut,
+schneiden,
+recording,
+aufnahme,videoredo,nofear23m</Tags>
+        <Location>D:\GitHub\MPVideoRedo\MPEI\[Name]_[Version]_[DevelopmentStatus].mpe1</Location>
+        <Params>
+          <Items>
+            <SectionParam Name="Online Icon">
+              <Value>https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MyVideoRedo/Resources/myVideoReDo.png</Value>
+              <ValueType>String</ValueType>
+              <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
+            </SectionParam>
+            <SectionParam Name="Configuration file">
+              <Value>%Config%\MediaPortal.xml</Value>
+              <ValueType>Template</ValueType>
+              <Description>The file used to configure the extension.
+ If have .exe extension the will be executed
+ If have .dll extension used like MP plugin configuration</Description>
+            </SectionParam>
+            <SectionParam Name="Online Screenshots">
+              <Value>https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MyVideoRedo_Config1_EN.png;https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MyVideoRedo_Config2_EN.png;https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MyVideoRedo_Config3_EN.png;https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MyVideoRedo_Config4_EN.png;https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MyVideoRedo_Config5_EN.png;</Value>
               <ValueType>String</ValueType>
               <Description>Online stored screenshot urls separated by ; </Description>
             </SectionParam>

@@ -2,7 +2,7 @@
   <id>1209</id>
   <defaultcontrol>4</defaultcontrol>
   <allowoverlay>no</allowoverlay>
-  <define>#header.label:MyVideoRedo</define>
+  <define>#header.label:#currentmodule</define>
   
   <controls>
 
@@ -134,7 +134,7 @@
       <posX>460</posX>
       <posY>850</posY>
       <width>400</width>
-      <label>#MyVideoRedo.Translation.duration</label>
+      <label>#MyVideoRedo.Translation.Duration</label>
       <font>font10</font>
 	    <align>left</align>
 	    <visible>True</visible>
@@ -146,7 +146,7 @@
       <posX>200</posX>
       <posY>870</posY>
       <width>1920</width>
-      <label>#MyVideoRedo.Translation.position</label>
+      <label>#MyVideoRedo.Translation.Position</label>
       <font>font10</font>
 	    <align>center</align>
 	    <visible>True</visible>
@@ -154,11 +154,11 @@
     
     <control>
       <type>label</type>
-      <description>Videoresttime</description>
+      <description>VideoTimeLeft</description>
       <posX>1860</posX>
       <posY>850</posY>
       <width>400</width>
-      <label>#MyVideoRedo.Translation.resttime</label>
+      <label>#MyVideoRedo.Translation.TimeLeft</label>
       <font>font10</font>
 	    <align>right</align>
 	    <visible>True</visible>

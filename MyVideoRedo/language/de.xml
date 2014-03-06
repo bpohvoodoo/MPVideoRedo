@@ -2,110 +2,179 @@
 <!-- German -->
 <!-- Note: German is the fallback for any strings not found in other languages -->
 <strings>
-  <string Field="duration">Gesamtlaufzeit:{0}</string>
-  <string Field="position">Aktuelle Position:{0}</string>
-  <string Field="resttime">Restdauer:{0}</string>
-  <string Field="generalOptions">Grundeinstellungen</string>
-  <string Field="optionsCutBars">Progressbaroptionen</string>
-  <string Field="StartCutAtStart">Autom. Startmarker setzten</string>
-  <string Field="searchFolder">Ordner suchen</string>
-  <string Field="LabelRecordingsPath">Pfad zu den Aufnahmen:</string>
-  <string Field="LabelSavePath">Speicherpfad:</string>
-  <string Field="DescriptionRecPathDialog">Wählen Sie den Ordnerin dem die gespeicherten Aufnahmen liegen.</string>
-  <string Field="DescriptionSavePathDialog">Wählen Sie den Ordner in dem die fertigen Videos gespeichert werden sollen.</string>
-  <string Field="GroupCutSettingCaption">Schnitt-Einstellungen</string>
-  <string Field="LoadOtherVideo">Lade Video</string>
-  <string Field="SaveVideo">Video speichern</string>
-  <string Field="MakeCut">Schneide hier</string>
-  <string Field="SelRecording">Wählen Sie eine Aufnahme</string>
-  <string Field="SaveCuttedVideo">Speichere geschnittenes Video...</string>
-  <string Field="SaveProgressLabel">Speichern zu {0}% abgeschlossen</string>
-  <string Field="Complete">Abgeschlossen</string>
-  <string Field="CalculateResttime">Berechne</string>
-  <string Field="CalculatedResttime">Voraussichtliche Restzeit: </string>
-  <string Field="ChooseSeries">Wählen Sie die Serie aus...</string>
-  <string Field="HowHandleVideo">Was ist das für ein Video?</string>
-  <string Field="SeriesEpisode">Episode</string>
-  <string Field="EpisodeFound">Episode gefunden</string>
-  <string Field="FollowEpisodeWasFound">Folgende Episode wurde gefunden. Verwenden?</string>
-  <string Field="UserAbortDialog">Benutzerabbruch - Es wird normal gespeichert...</string>
-  <string Field="Movie">Film</string>
-  <string Field="NoEpisodesFoundDialog">Es wurde keine Episode gefunden. Es wird normal gespeichert...</string>
-  <string Field="NoSeriesFoundDialog">Für diese Serie wurde nichts gefunden. Es wird normal gespeichert...</string>
-  <string Field="editReplacementString">Replacement-Strings bearbeiten</string>
-  <string Field="addReplaceString">ReplacementString hinzufügen</string>
-  <string Field="delReplaceString">Ausgewählte Zeichenkette entfernen</string>
-  <string Field="AutoEndCutLabel">Endmarker automatisch setzen</string>
-  <string Field="GroupRecordingSettingCaption">Pfadeinstellungen</string>
-  <string Field="GroupStringSettingCaption">Dateibenennungseinstellungen</string>
-  <string Field="ParseVideoFileLabel">Filmdateimuster:</string>
-  <string Field="ParseSeriesFileLabel">Episodendateimuster:</string>
-  <string Field="ShowFileParserStrings">Zeige Strings</string>
-  <string Field="ConfigureSeekSteps">Spulsprünge Konfigurieren</string>
-  <string Field="Step">Sprung {0}</string>
-  <string Field="ForwardStep">Vor</string>
-  <string Field="Forward">Vorspulen</string>
-  <string Field="Rewind">Zurückspulen</string>
-  <string Field="RewindStep">Zurück</string>
-  <string Field="GroupOnPlayCaption">Während der Wiedergabe</string>
-  <string Field="GroupOnPauseCaption">Während der Pause</string>
-  <string Field="RecordingDialogDescription">Ordner der gespeicherten Aufnahmen</string>
+  
+  <!--A-->
+  <string Field="Abort">Abbruch</string>
   <string Field="AdDetectiveDone">Der AdDetective Scan wurde abgeschlossen.</string>
   <string Field="AdDetectiveRunning">AdDetective Scan läuft</string>
-  <string Field="SaveDialogDescription">AdDetective Scan läuft</string>
-  <string Field="Done">Fertig</string>
-  <string Field="FrageSetzeEndmarker">Wenn diese Option aktiviert ist wird beim laden des Videos ein StartCut erstellt. Sollte aktiviert sein wenn eine Vorlaufzeit für Aufnahmen eingestellt ist.</string>
-  <string Field="FrageSetzeStartmarker">Wenn diese Option aktiviert ist wird beim speichern des Videos ein EndCut automatisch erstellt sofern nicht vorhanden. Sollte aktiviert sein wenn eine Nachlaufzeit für Aufnahmen eingestellt ist.</string>
-  <string Field="FrageParseVideoFile">Konfigurieren Sie dieses Feld nach deinen wünschen. Mit klick auf den Button rechts können sie die möglichen Optionen sehen</string>
-  <string Field="FrageParseSerienfile">Konfigurieren Sie dieses Feld nach deinen wünschen. Mit klick auf den Button rechts können sie die möglichen Optionen sehen</string>
-  <string Field="GetNewFilename">Bestimme neuen Dateinamen</string>
-  <string Field="IdentifiedEpisode">Gefundene Episode:</string>
-  <string Field="NothinFound">Nichts gefunden</string>
-  <string Field="NoRecordingsAviable">Keine Aufnahmen vorhanden. Abbruch</string>
-  <string Field="UseVideoAsSeries">Aufnahme ist eine Serienfolge!</string>
-  <string Field="Unknown">Unbekannt</string>
-  <string Field="Title">Titel</string>
-  <string Field="Genre">Genre</string>
-  <string Field="EpisodeTitle">Folge</string>
-  <string Field="NewFilename">Dateiname</string>
-  <string Field="CreateFilmsubfolder">Erstelle Unterordner für Filme</string>
-  <string Field="EditVideo">Schneiden</string>
-  <string Field="SaveHere">Hier speichern</string>
-  <string Field="SeekToCutDialog">Springe zum gewählten Marker</string>
-  <string Field="DeleteCutDialog">Gewählte Scene ausschneiden</string>
-  <string Field="SearchWithAnotherString">Suche mit anderer Zeichenfolge</string>
-  <string Field="EditEndFilename">End-Dateinamen bearbeiten</string>
-  <string Field="StartAdDetectiveScan">Starte AdDetective-Scan</string>
-  <string Field="ClearCutlist">Lösche alle Cut`s</string>
-  <string Field="SavingProfile">Speicherprofil</string>
+  <string Field="AddReplaceString">ReplacementString hinzufügen</string>
+  <string Field="AlwaysKeepCuts">Beim Beenden Schnitte immer behalten</string>
+  <string Field="AlwaysKeepOriginalFile">Beim Speichern immer die Originaldatei behalten</string>
+  <string Field="AudioSyncLabel">Nachsyncronisierung der Audiospur:</string>
+  <string Field="AudioSyncLabelContext">Audiospur synchronisieren</string>
+  <string Field="AutoEndCutLabel">Endmarker automatisch setzen</string>
+  
+  <!--B-->
   <string Field="ButtonCheckTVsuite4">Auf TVsuite 4 prüfen...</string>
-  <string Field="DescriptionTVsuiteProfiles">Wenn die TVsuite 4 auf Ihrem System aktiv ist können Sie hier das aktive standardprofil wählen welches aktiv sein soll. Sie müssen zuerst prüfen ob die TVsuite 4 als aktive VideoRedo-Applikation verwendet wird damit anschließend die Profile ermittelt werden können. Klicken Sie auf den Button und warten Sie einen moment bis Sie ein Profil auswählen können.</string>
-  <string Field="DeleteOriginalFile">Möchtest du die Originalaufnahme löschen?</string>
-  <string Field="DeleteOriginalFileTitle">Original löschen?</string>
+ 
+  <!--C-->
+  <string Field="CalculateTimeLeft">Berechne ...</string>
+  <string Field="CalculatedTimeLeft">Voraussichtliche Restzeit: </string>
+  <string Field="ChooseSeries">Wählen Sie die Serie aus...</string>
+  <string Field="ClearCutlist">Lösche alle Cut`s</string>
   <string Field="ClearCutsAtClose">Schnitte verwerfen?</string>
   <string Field="ClearCutsAtClose1">Willst du die Schnitte verwerfen?</string>
-  <string Field="ContinueScan">Weiterscannen?</string>
-  <string Field="ContinueScan1">Im Hintergrund weiterscannen?</string>
   <string Field="CloseVRD">VideoRedo schließen!</string>
   <string Field="CloseVRD1">Möchtest Du, dass beim</string>
   <string Field="CloseVRD2">Schliessen alle vorhanden</string>
   <string Field="CloseVRD3">Schnitte gelöscht werden?</string>
-  <string Field="VideoRedoCanNotHD">Deine Version von VideoRedo kann kein HD Material verarbeiten, es wird abgebrochen.</string>
-  <string Field="RecordingPathIncorrect">Incorrect Recordingpath, please open config!!</string>
-  <string Field="Abbruch">Abbruch</string>
-  <string Field="KeinEndmarker">Kein Endmarker</string>
-  <string Field="ForbittenCutCompleteVideo">Es ist nicht möglich das ganze Video zu auszuschneiden!</string>
-  <string Field="AudioSyncLabel">Nachsyncronisierung der Audiospur:</string> 
-  <string Field="AudioSyncLabelContext">Audiospur synchronisieren</string>
-  <string Field="Encodingtype">Encodierungstyp:</string>
-  <string Field="Filetype">Dateityp:</string>
-  <string Field="Resolution">Auflösung:</string>
-  <string Field="Ratio">Verhältnis:</string>
+  <string Field="Complete">Abgeschlossen</string>
+  <string Field="ConfigureSeekSteps">Spulsprünge Konfigurieren</string>
+  <string Field="ContinueScan">Weiterscannen?</string>
+  <string Field="ContinueScan1">Im Hintergrund weiterscannen?</string>
+  <string Field="CreateMovieSubfolder">Erstelle Unterordner für Filme</string>
+  <string Field="CreateSeriesSubfolder">Erstelle Unterordner für Serien</string>
+ 
+  <!--D-->
+  <string Field="DebugMode">Debug Modus</string>
   <string Field="Deinterlacemode">De-Interlace Modus:</string>
+  <string Field="DeleteCutDialog">Gewählte Scene ausschneiden</string>
+  <string Field="DeleteOriginalFile">Möchtest du die Originalaufnahme löschen?</string>
+  <string Field="DeleteOriginalFileTitle">Original löschen?</string>
+  <string Field="DelReplaceString">Ausgewählte Zeichenkette entfernen</string>
+  <string Field="DescriptionRecPathDialog">Wählen Sie den Ordner in dem die gespeicherten Aufnahmen liegen.</string>
+  <string Field="DescriptionSavePathDialog">Wähle den Ordner in dem die geschnittenen Videos gespeichert werden sollen.</string>
+  <string Field="DescriptionTVsuiteProfiles">Wenn TVsuite 4 auf Ihrem System aktiv ist, können Sie hier das Standardprofil für die Konvertierung auswählen. Wenn dies der Fall ist wird eine Profile Liste erzeugt. Klicken Sie auf den Button um zu prüfen, ob die TVSuite 4 Anwendung aktiv ist und warten Sie einen Moment bis Sie die Profile auswählen können. Die Details des Profile werden dann angezeigt.</string>
+  <string Field="DisableProfileDetails">Deaktivieren der Profildetailanzeige beim Profilwechsel</string>
+  <string Field="Done">Fertig</string>
+  <string Field="Duration">Gesamtlaufzeit:{0}</string>
+ 
+  <!--E-->
+  <string Field="EditEndFilename">End-Dateinamen bearbeiten</string>
+  <string Field="EditReplacementString">Replacement-Strings bearbeiten</string>
+  <string Field="EditVideo">Schneiden</string>
+  <string Field="Encodingtype">Encodierungstyp:</string>
+  <string Field="EpisodeFound">Episode gefunden</string>
+  <string Field="EpisodeTitle">Folge</string>
+  <string Field="ErrorOccured">Fehler</string>
+
+  <!--F-->
+  <string Field="Filetype">Dateityp:</string>
+  <string Field="FollowEpisodeWasFound">Folgende Episode wurde gefunden. Verwenden?</string>
+  <string Field="ForbiddenCutCompleteVideo">Es ist nicht möglich das ganze Video zu auszuschneiden!</string>
+  <string Field="Forward">Vorspulen</string>
+  <string Field="ForwardStep">Vor</string>
   <string Field="Framerate">Bildrate:</string>
-  <string Field="CheckMarkDebugMode">Debug Modus</string>
-  <string Field="CheckMarkDisableProfileDetails">Deaktivieren der Profildetailanzeige beim Profilwechsel</string>
-  <string Field="ModuleStart">MyVideoRedo - Film Auswahl</string>
-  <string Field="ModuleMain">MyVideoRedo - Film schneiden"</string>
-  <string Field="ModuleSaveVideo">MyVideoRedo - Film speichern</string>
+  <string Field="Frames">Bilder</string>
+  
+  <!--G-->
+  <string Field="GeneralOptions1">Grundeinstellungen 1</string>
+  <string Field="GeneralOptions2">Grundeinstellungen 2</string>
+  <string Field="Genre">Genre</string>
+  <string Field="GetNewFilename">Bestimme neuen Dateinamen</string>
+  <string Field="GroupCutSettingCaption">Schnitt-Einstellungen</string>
+  <string Field="GroupDialogs">Dialog Einstellungen</string>
+  <string Field="GroupModuleName">Plugin-Name</string>
+  <string Field="GroupOnPauseCaption">Während der Pause</string>
+  <string Field="GroupOnPlayCaption">Während der Wiedergabe</string>
+  <string Field="GroupRecordingSettingCaption">Pfadeinstellungen</string>
+  <string Field="GroupStringSettingCaption">Dateibenennungseinstellungen</string>
+  <string Field="GroupTVSuiteProfile As">Standard Profil</string>
+  <string Field="GroupTVSuiteProfileH264">Standard Profil H.264</string>
+
+  <!--H-->
+  <string Field="HelpSetEndmarker">Wenn diese Option aktiviert ist wird beim laden des Videos ein StartCut erstellt. Sollte aktiviert sein wenn eine Vorlaufzeit für Aufnahmen eingestellt ist.</string>
+  <string Field="HelpSetStartmarker">Wenn diese Option aktiviert ist wird beim speichern des Videos ein EndCut automatisch erstellt sofern nicht vorhanden. Sollte aktiviert sein wenn eine Nachlaufzeit für Aufnahmen eingestellt ist.</string>
+  <string Field="HelpParseMovieFile">Konfigurieren Sie dieses Feld nach deinen wünschen. Mit klick auf den Button rechts können sie die möglichen Optionen sehen</string>
+  <string Field="HelpParseSeriesFile">Konfigurieren Sie dieses Feld nach deinen wünschen. Mit klick auf den Button rechts können sie die möglichen Optionen sehen</string>
+  <string Field="HelpDisableProfileDetails">Konfigurieren Sie dieses Feld nach deinen wünschen. Mit klick auf den Button rechts können sie die möglichen Optionen sehen</string>
+  <string Field="HowHandleVideo">Was ist das für ein Video?</string>
+
+  <!--I-->
+  <string Field="IdentifiedEpisode">Gefundene Episode:</string>
+
+  <!--J-->
+  
+  <!--K-->
+  
+  <!--L-->
+  <string Field="LabelRecordingsPath">Pfad zu den Aufnahmen:</string>
+  <string Field="LabelSavePath">Speicherpfad:</string>
+  <string Field="LoadOtherVideo">Lade Video</string>
+  
+  <!--M-->
+  <string Field="MakeCut">Schneide hier</string>
+  <string Field="ModuleName">Modul Name</string>
+  <string Field="ModuleStart">Film Auswahl</string>
+  <string Field="ModuleMain">Film schneiden</string>
+  <string Field="ModuleSaveVideo">Film speichern</string>
+  <string Field="Movie">Film</string>
+  
+  <!--N-->
+  <string Field="NewFilename">Dateiname</string>
+  <string Field="NoEndmarker">Kein Endmarker</string>
+  <string Field="NoEpisodesFoundDialog">Es wurde keine Episode gefunden. Es wird normal gespeichert...</string>
+  <string Field="NoSeriesFoundDialog">Für diese Serie wurde nichts gefunden. Es wird normal gespeichert...</string>
+  <string Field="NothingFound">Nichts gefunden</string>
+  <string Field="NoRecordingsAviable">Keine Aufnahmen vorhanden. Abbruch</string>
+  
+  <!--O-->
+  <string Field="optionsCutBars">Progressbaroptionen</string>
+  <string Field="OriginalString">Orig. Zeichenkette</string>
+  
+  <!--P-->
+  <string Field="ParseMovieFileLabel">Filmdateimuster:</string>
+  <string Field="ParseSeriesFileLabel">Episodendateimuster:</string>
+  <string Field="Position">Aktuelle Position:{0}</string>
+  
+  <!--Q-->
+  
+  <!--R-->
+  <string Field="Ratio">Verhältnis:</string>
+  <string Field="RecordingDialogDescription">Ordner der gespeicherten Aufnahmen</string>
+  <string Field="RecordingPathIncorrect">Aufnahmepfad ist falsch, Bitte die Konfig prüfen!!</string>
+  <string Field="Resolution">Auflösung:</string>
+  <string Field="ReplacementString">Ersatz Zeichenkette:</string>
+  <string Field="Rewind">Zurückspulen</string>
+  <string Field="RewindStep">Zurück</string>
+  
+  <!--S-->
+  <string Field="SaveCuttedVideo">Speichere geschnittenes Video...</string>
+  <string Field="SaveDialogDescription">AdDetective Scan läuft</string>
+  <string Field="SaveHere">Hier speichern</string>
+  <string Field="SavingProfile">Speicherprofil</string>
+  <string Field="SaveProgressLabel">Speichern zu {0}% abgeschlossen</string>
+  <string Field="SaveVideo">Video speichern</string>
+  <string Field="SearchFolder">Ordner suchen</string>
+  <string Field="SearchWithAnotherString">Suche mit anderer Zeichenfolge</string>
+  <string Field="Seconds">Sek.</string>
+  <string Field="SeekToCutDialog">Springe zum gewählten Marker</string>
+  <string Field="SelRecording">Wählen Sie eine Aufnahme</string>
+  <string Field="SeriesEpisode">Episode</string>
+  <string Field="ShowFileParserStrings">Zeige Strings</string>
+  <string Field="StartAdDetectiveScan">Starte AdDetective-Scan</string>
+  <string Field="StartCutAtStart">Autom. Startmarker setzten</string>
+  <string Field="Step">Sprung {0}</string>
+  
+  <!--T-->
+  <string Field="TimeLeft">Restdauer:{0}</string>
+  <string Field="Title">Titel</string>
+  <string Field="TVSuite">TV Suite</string>
+  
+  <!--U-->
+  <string Field="Unknown">Unbekannt</string>
+  <string Field="UserAbortDialog">Benutzerabbruch - Es wird normal gespeichert...</string>
+  <string Field="UseVideoAsSeries">Aufnahme ist eine Serienfolge!</string>
+  
+  <!--V-->
+  <string Field="VideoRedoCanNotHD">Deine Version von VideoRedo kann kein HD Material verarbeiten, es wird abgebrochen.</string>
+  
+  <!--W-->
+  
+  <!--X-->
+  
+  <!--Y-->
+  
+  <!--Z-->
+
 </strings>

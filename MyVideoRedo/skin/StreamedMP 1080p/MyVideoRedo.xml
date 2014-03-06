@@ -168,7 +168,7 @@
       <description>Videoduration</description>
       <posX>35</posX>
       <posY>1033</posY>
-      <label>#MyVideoRedo.Translation.duration</label>
+      <label>#MyVideoRedo.Translation.Duration</label>
       <font>mediastream10c</font>
 	  <visible>!window.isactive(1210)</visible>
 	  <animation effect="Fade" time="250">WindowOpen</animation>
@@ -180,7 +180,7 @@
       <description>Videoposition</description>
       <posX>500</posX>
       <posY>1033</posY>
-      <label>#MyVideoRedo.Translation.position</label>
+      <label>#MyVideoRedo.Translation.Position</label>
       <font>mediastream10c</font>
 	  <visible>!window.isactive(1210)</visible>
 	  <animation effect="Fade" time="250">WindowOpen</animation>
@@ -189,10 +189,10 @@
     
     <control>
       <type>label</type>
-      <description>Videoresttime</description>
+      <description>VIdeoTimeLeft</description>
       <posX>1000</posX>
       <posY>1033</posY>
-      <label>#MyVideoRedo.Translation.resttime</label>
+      <label>#MyVideoRedo.Translation.</label>
       <font>mediastream10c</font>
 	  <visible>!window.isactive(1210)</visible>
 	  <animation effect="Fade" time="250">WindowOpen</animation>

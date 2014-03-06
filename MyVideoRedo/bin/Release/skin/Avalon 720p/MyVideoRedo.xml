@@ -170,7 +170,7 @@
             <posX>55</posX>
             <posY>880</posY>
             <width>340</width>
-            <label>#MyVideoRedo.Translation.duration</label>
+            <label>#MyVideoRedo.Translation.Duration</label>
             <font>AvalonLight10</font>
             <align>left</align>
             <visible>!control.isvisible(46)+!window.isactive(1210)</visible>
@@ -184,7 +184,7 @@
             <posX>420</posX>
             <posY>896</posY>
             <width>340</width>
-            <label>#MyVideoRedo.Translation.position</label>
+            <label>#MyVideoRedo.Translation.Position</label>
             <font>AvalonLight10</font>
             <align>center</align>
             <visible>!control.isvisible(46)+!window.isactive(1210)</visible>
@@ -194,11 +194,11 @@
 
         <control>
             <type>label</type>
-            <description>Videoresttime</description>
+            <description>VIdeoTimeLeft</description>
             <posX>1115</posX>
             <posY>880</posY>
             <width>340</width>
-            <label>#MyVideoRedo.Translation.resttime</label>
+            <label>#MyVideoRedo.Translation.</label>
             <font>AvalonLight10</font>
             <align>right</align>
             <visible>!control.isvisible(46)+!window.isactive(1210)</visible>

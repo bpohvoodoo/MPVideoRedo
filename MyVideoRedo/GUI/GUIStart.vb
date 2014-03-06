@@ -6,13 +6,9 @@ Imports MediaPortal.Dialogs
 Imports MediaPortal.Player
 Imports MediaPortal.Profile
 Imports MediaPortal.Configuration
-
 Imports TvdbLib
 Imports TvdbLib.Cache
 Imports TvdbLib.Data
-
-
-
 
 Namespace MyVideoRedo
     <PluginIcons("MyVideoRedo.myVideoReDo.png", "MyVideoRedo.myVideoReDo_disabled.png")> _
@@ -44,7 +40,7 @@ Namespace MyVideoRedo
 #Region "iSetupFormImplementation"
 
         Public Function Author() As String Implements MediaPortal.GUI.Library.ISetupForm.Author
-            Return "NoFear23m"
+            Return "BPoHVoodoo; NoFear23m"
         End Function
 
         Public Function CanEnable() As Boolean Implements MediaPortal.GUI.Library.ISetupForm.CanEnable
@@ -60,7 +56,7 @@ Namespace MyVideoRedo
         End Function
 
         Public Function GetHome(ByRef strButtonText As String, ByRef strButtonImage As String, ByRef strButtonImageFocus As String, ByRef strPictureImage As String) As Boolean Implements MediaPortal.GUI.Library.ISetupForm.GetHome
-            strButtonText = PluginName() : strButtonImage = String.Empty : strButtonImageFocus = String.Empty : strPictureImage = "hover_myVideoReDo.png" : Return True
+            strButtonText = HelpConfig.GetConfigString(ConfigKey.ModuleName) : strButtonImage = String.Empty : strButtonImageFocus = String.Empty : strPictureImage = "hover_myVideoReDo.png" : Return True
         End Function
 
         Public Function GetWindowId() As Integer Implements MediaPortal.GUI.Library.ISetupForm.GetWindowId
@@ -72,8 +68,7 @@ Namespace MyVideoRedo
         End Function
 
         Public Overrides Function GetModuleName() As String
-            'Return Translation.ModuleStart
-            Return PluginName()
+            Return HelpConfig.GetConfigString(ConfigKey.ModuleName) & " - " & Translation.ModuleStart
         End Function
 
         Public Function PluginName() As String Implements MediaPortal.GUI.Library.ISetupForm.PluginName
@@ -118,10 +113,6 @@ Namespace MyVideoRedo
         'Der Thread für das abrufen der Serieninfos
         Dim trSeries As New Threading.Thread(AddressOf GetSeriesInfosBackground)
 #End Region
-
-
-
-
 
         Protected Overrides Sub OnPageLoad()
             MyBase.OnPageLoad()
@@ -170,7 +161,7 @@ Namespace MyVideoRedo
 
                 Else
                     'Wenn es keine Aufnahmen gibt
-                    ShowNothingFoundDialog(GetID, Translation.NoRecordingsAviable, Translation.NothinFound)
+                    ShowNothingFoundDialog(GetID, Translation.NoRecordingsAviable, Translation.NothingFound)
                     GUIWindowManager.CloseCurrentWindow()
                     Exit Sub
                 End If
@@ -192,7 +183,7 @@ Namespace MyVideoRedo
                 '#Else
 
                 MyLog.DebugM("Bringe MediaPortal wieder in den Fordergrund...")
-                Helper.SetMPtoForeground()
+                Helper.SetMPtoForeground(HelpConfig.GetConfigString(ConfigKey.ModuleName) & " - " & Translation.ModuleStart)
                 MyLog.DebugM("Mediaportal wieder im Fordergrund")
                 '#End If
 
@@ -264,6 +255,8 @@ Namespace MyVideoRedo
             MyLog.DebugM("Fülle Recordinglistcontrol mit Path {0}", RecordingPath)
             MyLog.DebugM("Es gibt im aktuellen Pfad {0} Aufnahmen zu laden.", RecList.lRecordings.Count)
             'Wenn es nicht der RecordingRoot ist dann .. einfügen
+            Dim itemcount As Integer
+            itemcount = 0
             If RecordingPath <> RecRootPath Then
                 Dim lItem As New GUIListItem
                 lItem.ItemId = ctlRecList.ListItems.Count - 1
@@ -287,6 +280,7 @@ Namespace MyVideoRedo
                     lItem.Path = dire
                     MyLog.DebugM("Fülle Recordinglistcontrol mit Ordnerlabel {0} und Pfad: {1}", lItem.Label, lItem.Path)
                     GUIControl.AddListItemControl(GetID, ctlRecList.GetID, lItem)
+                    itemcount = itemcount + 1
                 Next
 
                 ' ToDo Machbarkeitsprüfung für Odner alternativ zu Aufnahmeordnern
@@ -306,10 +300,11 @@ Namespace MyVideoRedo
                         lItem.IsFolder = False
                         MyLog.DebugM("Fülle Recordinglistcontrol mit VideoFile {0} und Pfad: {1}", lItem.Label, lItem.Path)
                         GUIControl.AddListItemControl(GetID, ctlRecList.GetID, lItem)
+                        itemcount = itemcount + 1
                     End If
                 Next
                 ctlRecList.SelectedListItemIndex = 0
-                GUIPropertyManager.SetProperty("#itemcount", RecList.lRecordings.Count)
+                GUIPropertyManager.SetProperty("#itemcount", itemcount)
                 MyLog.Info("Es wurden {0} Aufnahmen in der aktuellen Ansicht geladen.", RecList.lRecordings.Count)
             Catch ex As IO.IOException
                 MyLog.Warn("Fehler in FillRecListControl():{0}", ex.ToString)
@@ -657,13 +652,15 @@ Namespace MyVideoRedo
                     'Bei abbruch Dialog zeigen
                     If selindex = -1 Then ShowNothingFoundDialog(GetID, Translation.UserAbortDialog, "Aborted") : Return Nothing
                     If selindex = listFoundedSeries.Count Then
-                        Return GetSerieWithKeyboard(NewSeriesTitle)
+                        AktRecToCut.Title = ShowKeyboard(NewSeriesTitle, GetID)
+                        Return GetAktSerie(AktRecToCut)
                     End If
                     ctlDummyAsSeries.Visible = True
                     Return TheTVdbHandler.GetSeries(listFoundedSeries(selindex).Id, myLanguages, True, False, True)
 
                 Else
-                    Dim KeySerie As TvdbSeries = GetSerieWithKeyboard(NewSeriesTitle)
+                    AktRecToCut.Title = ShowKeyboard(NewSeriesTitle, GetID)
+                    Dim KeySerie As TvdbSeries = GetAktSerie(AktRecToCut)
                     If KeySerie Is Nothing Then
                         'KEINE SERIE GEFUNDEN,ABBRUCHDIALOG ZEIGEN
                         ShowNothingFoundDialog(GetID, Translation.NoSeriesFoundDialog)
@@ -738,30 +735,6 @@ Namespace MyVideoRedo
 
 #End Region
 
-#Region "Dialoge"
-
-
-        Private Function GetSerieWithKeyboard(ByVal Text As String) As TvdbSeries
-            Dim keyboard As VirtualKeyboard = DirectCast(GUIWindowManager.GetWindow(CInt(GUIWindow.Window.WINDOW_VIRTUAL_KEYBOARD)), VirtualKeyboard)
-            If keyboard Is Nothing Then
-                Return Nothing
-            End If
-            keyboard.Reset()
-            keyboard.Label = Text
-
-            keyboard.SetLabelAsInitialText(True)
-            keyboard.DoModal(GetID)
-            ' Do something here. The typed value is stored in "keyboard.Text" 
-            If keyboard.IsConfirmed Then
-                AktRecToCut.Title = keyboard.Text
-                Return GetAktSerie(AktRecToCut)
-            Else
-                Exit Function
-            End If
-        End Function
-
-#End Region
-
         Protected Overrides Sub OnPageDestroy(ByVal new_windowId As Integer)
             MyBase.OnPageDestroy(new_windowId)
             If new_windowId < 1208 Or new_windowId > 1211 Then 'Wenn kein Fenster vom Plugin
@@ -771,26 +744,17 @@ Namespace MyVideoRedo
                     MyLog.DebugM("VRD.CutMarkerList.count = {0} ; VRD is Nothing = {1}", VRD.CutMarkerList.Count, IIf(VRD Is Nothing, "True", "False").ToString)
 
                     'Dialog ob man wirklich beenden will
-                    MyLog.DebugM("Zeige Dialog ob VRD gelöscht werden sollen...")
-                    Dim dlgDelRec As GUIDialogYesNo = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_YES_NO, Integer)), GUIDialogYesNo)
-                    dlgDelRec.SetHeading(Translation.CloseVRD)
-                    dlgDelRec.SetLine(1, Translation.CloseVRD1)
-                    dlgDelRec.SetLine(2, Translation.CloseVRD2)
-                    dlgDelRec.SetLine(3, Translation.CloseVRD3)
-                    dlgDelRec.DoModal(GetID)
-
-                    If dlgDelRec.IsConfirmed Then
-                        MyLog.DebugM("Dialog wurde bestätigt... VRD-Objekte werden zerstört.")
-                        VRD.Close()
-                        VRD.Dispose()
-                        VRD = Nothing
-                    Else
-                        MyLog.DebugM("User hat den Dialog nicht bestätigt, VRD wird beendet.")
+                    If HelpConfig.GetConfigString(ConfigKey.AlwaysKeepCuts) = False Then
+                        MyLog.DebugM("Zeige Dialog ob VRD gelöscht werden sollen...")
+                        If ShowYesNoDialog(GetID, Translation.CloseVRD, Translation.CloseVRD1, Translation.CloseVRD2, Translation.CloseVRD3) = True Then
+                            MyLog.DebugM("Dialog wurde bestätigt... VRD-Objekte werden zerstört.")
+                            VRD.Close()
+                            VRD.Dispose()
+                            VRD = Nothing
+                        Else
+                            MyLog.DebugM("User hat den Dialog nicht bestätigt, VRD wird beendet.")
+                        End If
                     End If
-                    MyLog.DebugM("Zerstöre Dialogobjekte...")
-                    dlgDelRec.Reset()
-                    dlgDelRec = Nothing
-                    MyLog.DebugM("Dialogobjekte zerstört")
                 End If
                 MyLog.DebugM("Startseite geschlossen")
             Else
@@ -822,7 +786,7 @@ Namespace MyVideoRedo
             End If
             UnloadFilmstripbar()
             UnloadCutbar()
-            If ShowYeyNoDialog(GUIWindowManager.ActiveWindow, Title, Text) = True Then
+            If ShowYesNoDialog(GUIWindowManager.ActiveWindow, Title, Text) = True Then
                 If oldMedia IsNot Nothing Then
                     VRD = New VideoReDo(False)
                     VRD.LoadMediaToCut(oldMedia, True)
@@ -837,6 +801,5 @@ Namespace MyVideoRedo
             End If
 
         End Sub
-
     End Class
 End Namespace

@@ -3,7 +3,7 @@
     <id>1210</id>
     <defaultcontrol>11</defaultcontrol>
     <allowoverlay>no</allowoverlay>
-    <define>#header.label:MyVideoRedo</define>
+    <define>#header.label:#currentmodule</define>
     <controls>
 
         <control>

@@ -15,11 +15,12 @@ Public Class SetupForm
             myVRD.Close()
             myVRD.Dispose()
         End If
+        HelpConfig.SetConfigString(ConfigKey.ModuleName, Me.txtModulName.Text)
         HelpConfig.SetConfigString(ConfigKey.RecordingsPath, Me.txtRecPath.Text)
         HelpConfig.SetConfigString(ConfigKey.VideoSavePath, Me.txtSavePath.Text)
         HelpConfig.SetConfigString(ConfigKey.CutOnPlay, chkAutoStartmarker.Checked)
         HelpConfig.SetConfigString(ConfigKey.CutOnEnd, chkAutoEndmarker.Checked)
-        HelpConfig.SetConfigString(ConfigKey.SaveFilename, Me.txtParseVideoFile.Text)
+        HelpConfig.SetConfigString(ConfigKey.SaveMovieFilename, Me.txtParseMovieFile.Text)
         HelpConfig.SetConfigString(ConfigKey.SaveSeriesFilename, Me.txtParseSeriesFile.Text)
         HelpConfig.SetConfigString(ConfigKey.SeekStepOnPause1, Me.numBackPause1.Value)
         HelpConfig.SetConfigString(ConfigKey.SeekStepOnPause4, Me.numBackPause2.Value)
@@ -33,19 +34,24 @@ Public Class SetupForm
         HelpConfig.SetConfigString(ConfigKey.SeekStepOnPlay3, Me.numFFWPlay1.Value)
         HelpConfig.SetConfigString(ConfigKey.SeekStepOnPlay6, Me.numFFWPlay2.Value)
         HelpConfig.SetConfigString(ConfigKey.SeekStepOnPlay9, Me.numFFWPlay3.Value)
-        HelpConfig.SetConfigString(ConfigKey.CreateFilmfolder, Me.chkCreateFilmFolder.Checked)
-        HelpConfig.SetConfigString(ConfigKey.FilmFolderParsing, Me.txtFilmFolderParsing.Text)
+        HelpConfig.SetConfigString(ConfigKey.CreateMoviefolder, Me.chkCreateMovieFolder.Checked)
+        HelpConfig.SetConfigString(ConfigKey.MovieFolder, Me.txtParseMovieFolder.Text)
+        HelpConfig.SetConfigString(ConfigKey.CreateSeriesfolder, Me.chkCreateSeriesFolder.Checked)
+        HelpConfig.SetConfigString(ConfigKey.SeriesFolder, Me.txtParseSeriesFolder.Text)
         HelpConfig.SetConfigString(ConfigKey.DebugVideoRedo, Me.chkDebugMode.Checked)
         HelpConfig.SetConfigString(ConfigKey.ProfileDetails, Me.chkDisableProfileDetails.Checked)
+        HelpConfig.SetConfigString(ConfigKey.AlwaysKeepOriginalFile, Me.chkAlwaysKeepOriginalFile.Checked)
+        HelpConfig.SetConfigString(ConfigKey.AlwaysKeepCuts, Me.chkAlwaysKeepCuts.Checked)
     End Sub
 
     Private Sub SetupForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
         TranslateSetupForm()
+        Me.txtModulName.Text = HelpConfig.GetConfigString(ConfigKey.ModuleName)
         Me.txtRecPath.Text = HelpConfig.GetConfigString(ConfigKey.RecordingsPath)
         Me.txtSavePath.Text = HelpConfig.GetConfigString(ConfigKey.VideoSavePath)
-        chkAutoStartmarker.Checked = HelpConfig.GetConfigString(ConfigKey.CutOnPlay)
-        chkAutoEndmarker.Checked = HelpConfig.GetConfigString(ConfigKey.CutOnEnd)
-        Me.txtParseVideoFile.Text = HelpConfig.GetConfigString(ConfigKey.SaveFilename)
+        Me.chkAutoStartmarker.Checked = HelpConfig.GetConfigString(ConfigKey.CutOnPlay)
+        Me.chkAutoEndmarker.Checked = HelpConfig.GetConfigString(ConfigKey.CutOnEnd)
+        Me.txtParseMovieFile.Text = HelpConfig.GetConfigString(ConfigKey.SaveMovieFilename)
         Me.txtParseSeriesFile.Text = HelpConfig.GetConfigString(ConfigKey.SaveSeriesFilename)
         Me.numBackPause1.Value = HelpConfig.GetConfigString(ConfigKey.SeekStepOnPause1)
         Me.numBackPause2.Value = HelpConfig.GetConfigString(ConfigKey.SeekStepOnPause4)
@@ -59,10 +65,14 @@ Public Class SetupForm
         Me.numFFWPlay1.Value = HelpConfig.GetConfigString(ConfigKey.SeekStepOnPlay3)
         Me.numFFWPlay2.Value = HelpConfig.GetConfigString(ConfigKey.SeekStepOnPlay6)
         Me.numFFWPlay3.Value = HelpConfig.GetConfigString(ConfigKey.SeekStepOnPlay9)
-        Me.chkCreateFilmFolder.Checked = HelpConfig.GetConfigString(ConfigKey.CreateFilmfolder)
-        Me.txtFilmFolderParsing.Text = HelpConfig.GetConfigString(ConfigKey.FilmFolderParsing)
+        Me.chkCreateMovieFolder.Checked = HelpConfig.GetConfigString(ConfigKey.CreateMoviefolder)
+        Me.txtParseMovieFolder.Text = HelpConfig.GetConfigString(ConfigKey.MovieFolder)
+        Me.chkCreateSeriesFolder.Checked = HelpConfig.GetConfigString(ConfigKey.CreateSeriesfolder)
+        Me.txtParseSeriesFolder.Text = HelpConfig.GetConfigString(ConfigKey.SeriesFolder)
         Me.chkDebugMode.Checked = HelpConfig.GetConfigString(ConfigKey.DebugVideoRedo)
         Me.chkDisableProfileDetails.Checked = HelpConfig.GetConfigString(ConfigKey.ProfileDetails)
+        Me.chkAlwaysKeepCuts.Checked = HelpConfig.GetConfigString(ConfigKey.AlwaysKeepCuts)
+        Me.chkAlwaysKeepOriginalFile.Checked = HelpConfig.GetConfigString(ConfigKey.AlwaysKeepOriginalFile)
         Replacer = Replacer.Load()
         'For Each item In Replacer.ReplacerList
         '    MsgBox(item.OriginalString & " - " & item.ReplaceString)
@@ -78,26 +88,28 @@ Public Class SetupForm
         Translator.TranslateSkin()
         Me.Text = My.Application.Info.Title
 
-        Me.TabPage1.Text = Translation.generalOptions
-        Me.TabPage3.Text = Translation.editReplacementString
+        Me.tabCommon1.Text = Translation.GeneralOptions1
+        Me.tabCommon2.Text = Translation.GeneralOptions2
+        Me.tabSeekSteps.Text = Translation.ConfigureSeekSteps
+        Me.tabTVSuite.Text = Translation.TVSuite
+        Me.lblModulName.Text = Translation.ModuleName
+        Me.tabReplacementStrings.Text = Translation.EditReplacementString
         Me.GroupBoxRecordings.Text = Translation.GroupRecordingSettingCaption
+        Me.GroupBoxModuleName.Text = Translation.GroupModuleName
         Me.lblRecPath.Text = Translation.LabelRecordingsPath
         Me.lblSavePath.Text = Translation.LabelSavePath
-        Me.btnRecDialog.Text = Translation.searchFolder
-        Me.bntSaveDialog.Text = Translation.searchFolder
+        Me.btnRecDialog.Text = Translation.SearchFolder
+        Me.bntSaveDialog.Text = Translation.SearchFolder
         Me.GroupBoxCutSettings.Text = Translation.GroupCutSettingCaption
         Me.chkAutoStartmarker.Text = Translation.StartCutAtStart
         Me.chkAutoEndmarker.Text = Translation.AutoEndCutLabel
         Me.GroupBoxSaveSettings.Text = Translation.GroupStringSettingCaption
-        Me.GroupBoxFilmFolderSettings.Text = Translation.GroupStringSettingCaption
         Me.btnShowParseStrings.Text = Translation.ShowFileParserStrings
-        Me.btnShowParseStrings2.Text = Translation.ShowFileParserStrings
-        Me.lblParseVideofile.Text = Translation.ParseVideoFileLabel
+        Me.lblParseMoviefile.Text = Translation.ParseMovieFileLabel
         Me.lblParseSeriesFile.Text = Translation.ParseSeriesFileLabel
-        Me.GroupBoxEditReplacementString.Text = Translation.editReplacementString
-        Me.btnAddReplaceString.Text = Translation.addReplaceString
-        Me.btnDelReplaceString.Text = Translation.delReplaceString
-        Me.TabPage2.Text = Translation.ConfigureSeekSteps
+        Me.GroupBoxEditReplacementString.Text = Translation.EditReplacementString
+        Me.btnAddReplaceString.Text = Translation.AddReplaceString
+        Me.btnDelReplaceString.Text = Translation.DelReplaceString
         Me.GroupBoxOnPlay.Text = Translation.GroupOnPlayCaption
         Me.GroupBoxOnPause.Text = Translation.GroupOnPauseCaption
         Me.lblconfigureSeekSteps.Text = Translation.ConfigureSeekSteps
@@ -127,21 +139,27 @@ Public Class SetupForm
         Me.txtSeconds6.Text = Translation.Seconds
         Me.RecDialog.Description = Translation.RecordingDialogDescription
         Me.SaveDialog.Description = Translation.SaveDialogDescription
-        Me.chkCreateFilmFolder.Text = Translation.CreateFilmsubfolder
+        Me.chkCreateMovieFolder.Text = Translation.CreateMovieSubfolder
+        Me.chkCreateSeriesFolder.Text = Translation.CreateSeriesSubfolder
         Me.lblDescriptionTVsuite.Text = Translation.DescriptionTVsuiteProfiles
         Me.btnCheckTVsuite.Text = Translation.ButtonCheckTVsuite4
         Me.chkDebugMode.Text = Translation.DebugMode
         Me.chkDisableProfileDetails.Text = Translation.DisableProfileDetails
-        Me.txtEncodingtype.Text = Translation.EncodingType
-        Me.txtEncodingTypeH264.Text = Translation.EncodingType
+        Me.chkAlwaysKeepCuts.Text = Translation.AlwaysKeepCuts
+        Me.chkAlwaysKeepOriginalFile.Text = Translation.AlwaysKeepOriginalFile
+        Me.GroupBoxDialogs.Text = Translation.GroupDialogs
+        Me.GroupBoxTVsuiteProfile.Text = Translation.GroupTVSuiteProfile
+        Me.GroupBoxTVsuiteProfileH264.Text = Translation.GroupTVSuiteProfileH264
+        Me.txtEncodingtype.Text = Translation.Encodingtype
+        Me.txtEncodingtypeH264.Text = Translation.Encodingtype
         Me.txtFiletype.Text = Translation.Filetype
         Me.txtFiletypeH264.Text = Translation.Filetype
         Me.txtResolution.Text = Translation.Resolution
         Me.txtResolutionH264.Text = Translation.Resolution
         Me.txtRatio.Text = Translation.Ratio
         Me.txtRatioH264.Text = Translation.Ratio
-        Me.txtDeinterlacemode.Text = Translation.DeinterlaceMode
-        Me.txtDeinterlacemodeH264.Text = Translation.DeinterlaceMode
+        Me.txtDeinterlacemode.Text = Translation.Deinterlacemode
+        Me.txtDeinterlacemodeH264.Text = Translation.Deinterlacemode
         Me.txtFramerate.Text = Translation.Framerate
         Me.txtFramerateH264.Text = Translation.Framerate
     End Sub
@@ -171,7 +189,7 @@ Public Class SetupForm
         Me.DataGridView1.DataSource = Replacer.ReplacerList
     End Sub
 
-    Private Sub btnShowParseStrings_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnShowParseStrings.Click, btnShowParseStrings2.Click
+    Private Sub btnShowParseStrings_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnShowParseStrings.Click
         Dim info As New InfoParseStrings
         info.Show()
     End Sub
@@ -189,7 +207,7 @@ Public Class SetupForm
         End With
     End Sub
 
-    Private Sub txtParseVideoFile_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtParseVideoFile.TextChanged, txtParseVideoFile.KeyUp
+    Private Sub txtParseFile_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtParseMovieFile.TextChanged, txtParseMovieFile.KeyUp
         Dim temprec As New clsRecordings.Recordings
         temprec.Title = "Superman Returns"
         temprec.StartTime = Now
@@ -197,8 +215,9 @@ Public Class SetupForm
         temprec.Genre = "Action"
         temprec.Channelname = "Pro7"
         temprec.Filename = "Superman Returns.mpg"
-        HelpConfig.SetConfigString(ConfigKey.SaveFilename, Me.txtParseVideoFile.Text)
-        Me.lblTestVideoParsing.Text = ParseSaveVideoFilename(temprec)
+        txtParseMovieFile.Text = CleanFilename(txtParseMovieFile.Text, "_")
+        HelpConfig.SetConfigString(ConfigKey.SaveMovieFilename, Me.txtParseMovieFile.Text)
+        Me.lblTestMovieParsing.Text = Parse(temprec, txtParseMovieFile.Text)
         temprec = Nothing
     End Sub
 
@@ -214,32 +233,65 @@ Public Class SetupForm
         temprec.EpisodeNum = 13
         temprec.Episodename = "Homer and Apu"
         temprec.Filename = "The Simpsons - Homer and Apu.mpg"
+        txtParseSeriesFile.Text = CleanFilename(txtParseSeriesFile.Text, "_")
         HelpConfig.SetConfigString(ConfigKey.SaveSeriesFilename, Me.txtParseSeriesFile.Text)
-        Me.lblTestSeriesParsing.Text = ParseSaveVideoFilename(temprec, True)
+        Me.lblTestSeriesParsing.Text = Parse(temprec, txtParseSeriesFile.Text)
+        temprec = Nothing
+    End Sub
+
+    Private Sub txtParseMovieFolder_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtParseMovieFolder.TextChanged, txtParseMovieFolder.KeyUp
+        Dim temprec As New clsRecordings.Recordings
+        temprec.Title = "Superman Returns"
+        temprec.StartTime = Now
+        temprec.EndTime = DateAdd(DateInterval.Hour, 2, Now)
+        temprec.Genre = "Action"
+        temprec.Channelname = "Pro7"
+        temprec.Filename = "Superman Returns.mpg"
+        txtParseMovieFolder.Text = CleanPathname(txtParseMovieFolder.Text, "_")
+        HelpConfig.SetConfigString(ConfigKey.MovieFolder, Me.txtParseMovieFolder.Text)
+        Me.lblTestMovieFolderParsing.Text = Parse(temprec, txtParseMovieFolder.Text)
+        temprec = Nothing
+    End Sub
+
+    Private Sub txtParseSeriesFolder_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtParseSeriesFolder.TextChanged, txtParseSeriesFolder.KeyUp
+        Dim temprec As New clsRecordings.Recordings
+        temprec.Title = "The Simpsons"
+        temprec.StartTime = Now
+        temprec.EndTime = DateAdd(DateInterval.Hour, 2, Now)
+        temprec.Genre = "Animation"
+        temprec.Channelname = "Pro7"
+        temprec.Seriesname = "The Simpsons"
+        temprec.SeriesNum = 5
+        temprec.EpisodeNum = 13
+        temprec.Episodename = "Homer and Apu"
+        temprec.Filename = "The Simpsons - Homer and Apu.mpg"
+        txtParseSeriesFolder.Text = CleanPathname(txtParseSeriesFolder.Text, "_")
+        HelpConfig.SetConfigString(ConfigKey.SeriesFolder, Me.txtParseSeriesFolder.Text)
+        Me.lblTestSeriesFolderParsing.Text = Parse(temprec, txtParseSeriesFolder.Text)
         temprec = Nothing
     End Sub
 
     Private Sub imgAutoStartmarker_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles imgAutoStartmarker.Click
-        MsgBox(Translation.FrageSetzeStartmarker)
+        MsgBox(Translation.HelpSetStartmarker)
     End Sub
 
     Private Sub imgAutoEndMarker_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles imgAutoEndMarker.Click
-        MsgBox(Translation.FrageSetzeEndmarker)
+        MsgBox(Translation.HelpSetEndmarker)
     End Sub
 
-    Private Sub imgParseVideoFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles imgParseVideoFile.Click
-        MsgBox(Translation.FrageParseVideoFile)
+    Private Sub imgParseMovieFile_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles imgParseMovieFile.Click
+        MsgBox(Translation.HelpParseMovieFile)
     End Sub
 
     Private Sub imgParseSeries_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles imgParseSeries.Click
-        MsgBox(Translation.FrageParseSerienfile)
+        MsgBox(Translation.HelpParseSeriesFile)
     End Sub
 
     Private Sub imgDisableProfileDetails_Click(sender As Object, e As EventArgs) Handles imgDisableProfileDetails.Click
-        MsgBox(Translation.FrageDisableProfileDetails)
+        MsgBox(Translation.HelpDisableProfileDetails)
     End Sub
 
-    Private Sub txtParseVideoFile_TextChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
+    Private Sub txtParseMovieFile_TextChanged(ByVal sender As System.Object, ByVal e As System.Windows.Forms.KeyEventArgs)
 
     End Sub
 
@@ -294,7 +346,7 @@ Public Class SetupForm
         AktProfile = myVRD.GetProfileInfo(Me.ComboBox1.Text)
         'myVRD.AktSavingProfile = Me.ComboBox1.Text
 
-        Me.lblEncodingType.Text = AktProfile.Encodingtype
+        Me.lblEncodingtype.Text = AktProfile.Encodingtype
         Me.lblFileType.Text = AktProfile.DateiType
         Me.lblRatio.Text = AktProfile.Ratio
         Me.lblDeinterlacemode.Text = AktProfile.DeintarlaceModus
@@ -310,7 +362,7 @@ Public Class SetupForm
         AktProfile = myVRD.GetProfileInfo(Me.ComboBoxH264.Text)
         'myVRD.AktSavingProfile = Me.ComboBoxH264.Text
 
-        Me.lblEncodingTypeH264.Text = AktProfile.Encodingtype
+        Me.lblEncodingtypeH264.Text = AktProfile.Encodingtype
         Me.lblFileTypeH264.Text = AktProfile.DateiType
         Me.lblRatioH264.Text = AktProfile.Ratio
         Me.lblDeinterlacemodeH264.Text = AktProfile.DeintarlaceModus

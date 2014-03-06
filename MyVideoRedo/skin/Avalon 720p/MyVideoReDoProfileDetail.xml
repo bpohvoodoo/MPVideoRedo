@@ -3,7 +3,7 @@
     <id>1210</id>
     <defaultcontrol>13</defaultcontrol>
     <allowoverlay>no</allowoverlay>
-    <define>#header.label:MyVideoRedo</define>
+    <define>#header.label:#currentmodule</define>
     <controls>
 
         <control>
@@ -34,7 +34,7 @@
             <width>800</width>
             <font>font22</font>
             <textcolor>ff393939</textcolor>
-            <label>Profile: #Profile.Name   </label>
+            <label>Profile: #ProfileTmp.Name   </label>
         </control>
 
         <control>
@@ -43,7 +43,7 @@
             <posY>490</posY>
             <font>AvalonLight12</font>
             <textcolor>ff393939</textcolor>
-            <label>#MyVideoRedo.Translation.EncodingType</label>
+            <label>#MyVideoRedo.Translation.Encodingtype</label>
         </control>
 
         <control>
@@ -79,7 +79,7 @@
             <posY>690</posY>
             <font>AvalonLight12</font>
             <textcolor>ff393939</textcolor>
-            <label>#MyVideoRedo.Translation.DeinterlaceMode</label>
+            <label>#MyVideoRedo.Translation.Deinterlacemode</label>
         </control>
 
         <control>
@@ -99,7 +99,7 @@
             <font>AvalonLight12</font>
             <textcolor>ff6fafe1</textcolor>
             <align>RIGHT</align>
-            <label>#Profile.EncodingType</label>
+            <label>#ProfileTmp.Encodingtype</label>
         </control>
 
         <control>
@@ -110,7 +110,7 @@
             <font>AvalonLight12</font>
             <textcolor>ff6fafe1</textcolor>
             <align>RIGHT</align>
-            <label>#Profile.Filetype</label>
+            <label>#ProfileTmp.Filetype</label>
         </control>
 
         <control>
@@ -121,7 +121,7 @@
             <font>AvalonLight12</font>
             <textcolor>ff6fafe1</textcolor>
             <align>RIGHT</align>
-            <label>#Profile.Resolution</label>
+            <label>#ProfileTmp.Resolution</label>
         </control>
 
         <control>
@@ -132,7 +132,7 @@
             <font>AvalonLight12</font>
             <textcolor>ff6fafe1</textcolor>
             <align>RIGHT</align>
-            <label>#Profile.Ratio</label>
+            <label>#ProfileTmp.Ratio</label>
         </control>
 
         <control>
@@ -143,7 +143,7 @@
             <font>AvalonLight12</font>
             <textcolor>ff6fafe1</textcolor>
             <align>RIGHT</align>
-            <label>#Profile.Deinterlacemode</label>
+            <label>#ProfileTmp.Deinterlacemode</label>
         </control>
 
         <control>
@@ -154,7 +154,7 @@
             <font>AvalonLight12</font>
             <textcolor>ff6fafe1</textcolor>
             <align>RIGHT</align>
-            <label>#Profile.Framerate</label>
+            <label>#ProfileTmp.Framerate</label>
         </control>
 
 

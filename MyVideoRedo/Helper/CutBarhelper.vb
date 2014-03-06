@@ -9,26 +9,19 @@ Module CutBarhelper
     Friend myFilmstripBar As New CutBars.StandartCutBar
 
     Friend Sub LoadCutbar(ByVal BarProperties As PropertyCollection, ByVal VideoWindow As GUIVideoControl)
-        MyLog.DebugM("Lade die Filmstripbar mit folgenden Properties:")
+        MyLog.DebugM("Loading the Filmstripbar with properties of: ")
         For i As Integer = 0 To BarProperties.Count - 1
-            MyLog.DebugM("{0}-Propertie:{1}", BarProperties.Keys(i), BarProperties.Values(i))
+            MyLog.DebugM("{0}-Property: {1}", BarProperties.Keys(i), BarProperties.Values(i))
         Next
-
         MyCutbar.Top = VideoWindow.Location.Y + VideoWindow.Size.Height + BarProperties("Top")
         MyCutbar.Left = VideoWindow.Location.X + BarProperties("Left")
-
         MyCutbar.Width = BarProperties("Width")
         MyCutbar.Height = BarProperties("Height")
-
         MyCutbar.StartCutValues.Clear()
         MyCutbar.EndCutValues.Clear()
-
-
         MyCutbar.LineMarkerForeground = BarProperties("LineMarkerForeground")
-
         MyCutbar.LineMakerColor = Drawing.Color.FromName(BarProperties("LinemarkerColor"))
         MyCutbar.LineMarkerThickness = BarProperties("LineMarkerThickness")
-
         MyCutbar.DarkBackColor = Drawing.Color.FromName(BarProperties("DarkBackColor"))
         MyCutbar.LightFillColor = Drawing.Color.FromName(BarProperties("LightFillColor"))
         MyCutbar.LightBackColor = Drawing.Color.FromName(BarProperties("LightBackColor"))
@@ -37,20 +30,19 @@ Module CutBarhelper
         GUIGraphicsContext.form.Controls.Add(MyCutbar)
         GUIGraphicsContext.form.Focus()
         'GUIGraphicsContext.form.Focus()
-        MyLog.DebugM("Filmstripbar erfolgreich geladen")
+        MyLog.DebugM("Filmstripbar successfully loaded.")
     End Sub
     Friend Sub UnloadCutbar()
-        MyLog.DebugM("Entferne Filmstripbar...")
+        MyLog.DebugM("Removing Filmstripbar...")
         GUIGraphicsContext.form.Controls.Remove(MyCutbar)
-        MyLog.DebugM("Filmstripbar entfernt")
+        MyLog.DebugM("Filmstripbar was removed.")
     End Sub
 
     Friend Sub LoadFilmstripbar(ByVal BarProperties As PropertyCollection, ByVal VideoWindow As GUIVideoControl)
-        MyLog.DebugM("Lade die Cutbar mit folgenden Properties:")
+        MyLog.DebugM("Loading the Cutbar with properties of: ")
         For i As Integer = 0 To BarProperties.Count - 1
-            MyLog.DebugM("{0}-Propertie:{1}", BarProperties.Keys(i), BarProperties.Values(i))
+            MyLog.DebugM("{0}-Property: {1}", BarProperties.Keys(i), BarProperties.Values(i))
         Next
-
         myFilmstripBar.Top = VideoWindow.Location.Y + VideoWindow.Size.Height + BarProperties("Top")
         myFilmstripBar.Left = VideoWindow.Location.X + BarProperties("Left")
         myFilmstripBar.Width = BarProperties("Width")
@@ -61,7 +53,6 @@ Module CutBarhelper
         myFilmstripBar.LineMarkerThickness = BarProperties("LineMarkerThickness")
         myFilmstripBar.LineMakerColor = Drawing.Color.FromName(BarProperties("LinemarkerColor"))
         myFilmstripBar.LineMarkerThickness = BarProperties("LineMarkerThickness")
-
         myFilmstripBar.DarkBackColor = Drawing.Color.FromName(BarProperties("DarkBackColor"))
         myFilmstripBar.LightFillColor = Drawing.Color.FromName(BarProperties("LightFillColor"))
         myFilmstripBar.LightBackColor = Drawing.Color.FromName(BarProperties("LightBackColor"))
@@ -70,14 +61,14 @@ Module CutBarhelper
         GUIGraphicsContext.form.Controls.Add(myFilmstripBar)
         GUIGraphicsContext.form.Focus()
         'GUIGraphicsContext.form.Focus()
-        MyLog.DebugM("Cutbar erfolgreich geladen")
-    End Sub
-    Friend Sub UnloadFilmstripbar()
-        MyLog.DebugM("Entferne Cutbar...")
-        GUIGraphicsContext.form.Controls.Remove(myFilmstripBar)
-        MyLog.DebugM("Cutbar entfernt")
+        MyLog.DebugM("Cutbar successfully loaded.")
     End Sub
 
+    Friend Sub UnloadFilmstripbar()
+        MyLog.DebugM("Removing the Cutbar...")
+        GUIGraphicsContext.form.Controls.Remove(myFilmstripBar)
+        MyLog.DebugM("Cutbar was removed.")
+    End Sub
 
     Friend Function GetCutbarProperties(ByVal XMLfile As String, Optional ByVal Cutbar As Boolean = False) As PropertyCollection
         GetCutbarProperties = New PropertyCollection
@@ -106,17 +97,9 @@ Module CutBarhelper
                 Next
                 GetCutbarProperties.Add(Left(arrPropStrings(i), InStr(arrPropStrings(i), "=") - 1), Mid(arrPropStrings(i), InStr(arrPropStrings(i), "=") + 1))
             Next
-
             Return GetCutbarProperties
         Else
             Return Nothing
         End If
-
-
     End Function
-
-
-
-
-
 End Module

@@ -3,11 +3,8 @@
     <id>1208</id>
     <defaultcontrol>10</defaultcontrol>
     <allowoverlay>no</allowoverlay>
-    <define>#header.label:MyVideoRedo</define>
+    <define>#header.label:#currentmodule</define>
     <controls>
-      
-      
-      
       <control>
             <description>BG</description>
             <type>image</type>
@@ -79,10 +76,7 @@
             <spinCanFocus>no</spinCanFocus>
             <spinPosX>1832</spinPosX>
             <spinPosY>950</spinPosY>
-      </control>
-      
-      
-      
+      </control>  
       
       <control Style="smallTitle">
             <description>Recording Titel</description>

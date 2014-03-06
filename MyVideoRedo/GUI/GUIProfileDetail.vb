@@ -9,17 +9,9 @@ Namespace MyVideoRedo
         Inherits GUIDialogWindow
         Implements MediaPortal.GUI.Library.IDialogbox
 
-        <SkinControlAttribute(12)> _
-       Protected btnExit As GUIButtonControl = Nothing
-        <SkinControlAttribute(13)> _
-      Protected btnUseIt As GUIButtonControl = Nothing
-        <SkinControlAttribute(14)> _
-     Protected lblProfileName As GUILabelControl = Nothing
-
-
-        Public Sub New()
-
-        End Sub
+        <SkinControlAttribute(12)> Protected btnExit As GUIButtonControl = Nothing
+        <SkinControlAttribute(13)> Protected btnUseIt As GUIButtonControl = Nothing
+        <SkinControlAttribute(14)> Protected btnCancel As GUILabelControl = Nothing
 
         Private DoExit As Boolean = -1
         Private AktProfile As VideoReDo.VRDProfileInfo
@@ -66,17 +58,15 @@ Namespace MyVideoRedo
 
 
         Protected Overrides Sub OnClicked(ByVal controlId As Integer, ByVal control As MediaPortal.GUI.Library.GUIControl, ByVal actionType As MediaPortal.GUI.Library.Action.ActionType)
-            If control Is btnExit Then
+            If control Is btnUseIt Then
+                'VRD.AktSavingProfile = AktProfile.DateiType.ToLower
+                GetProfileDetail(AktProfile.Profilename)
+                PageDestroy()
+            Else
                 AktProfile.Profilename = VRD.AktSavingProfile
                 PageDestroy()
             End If
-            If control Is btnUseIt Then
-                VRD.AktSavingProfile = AktProfile.DateiType.ToLower
-
-                PageDestroy()
-            End If
             MyBase.OnClicked(controlId, control, actionType)
-
         End Sub
 #End Region
 
@@ -119,20 +109,19 @@ Namespace MyVideoRedo
         End Property
 
         Public Sub SetHeading(ByVal iString As Integer) Implements MediaPortal.GUI.Library.IDialogbox.SetHeading
-            Translator.SetProperty("#Profile.Name", iString)
+            Translator.SetProperty("#ProfileTmp.Name", iString)
         End Sub
 
         Public Sub SetHeading(ByVal strLine As String) Implements MediaPortal.GUI.Library.IDialogbox.SetHeading
-            Translator.SetProperty("#Profile.Name", strLine)
+            Translator.SetProperty("#ProfileTmp.Name", strLine)
             AktProfile = VRD.GetProfileInfo(strLine)
-
             AktProfile.Profilename = strLine
-            Translator.SetProperty("#Profile.EncodingType", AktProfile.Encodingtype)
-            Translator.SetProperty("#Profile.Filetype", AktProfile.DateiType)
-            Translator.SetProperty("#Profile.Resolution", AktProfile.Resolution)
-            Translator.SetProperty("#Profile.Ratio", AktProfile.Ratio)
-            Translator.SetProperty("#Profile.Deinterlacemode", AktProfile.DeintarlaceModus)
-            Translator.SetProperty("#Profile.Framerate", AktProfile.FrameRate)
+            Translator.SetProperty("#ProfileTmp.Encodingtype", AktProfile.Encodingtype)
+            Translator.SetProperty("#ProfileTmp.Filetype", AktProfile.DateiType)
+            Translator.SetProperty("#ProfileTmp.Resolution", AktProfile.Resolution)
+            Translator.SetProperty("#ProfileTmp.Ratio", AktProfile.Ratio)
+            Translator.SetProperty("#ProfileTmp.Deinterlacemode", AktProfile.DeintarlaceModus)
+            Translator.SetProperty("#ProfileTmp.Framerate", AktProfile.FrameRate)
         End Sub
 
     End Class

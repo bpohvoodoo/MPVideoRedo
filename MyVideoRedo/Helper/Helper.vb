@@ -6,6 +6,9 @@ Imports TvdbLib.Cache
 Imports TvdbLib.Data
 Imports MediaPortal.Profile
 Imports MediaPortal.Configuration
+Imports MediaPortal.Util
+Imports TvControl
+Imports System.IO
 
 Public Module Helper
     Friend VRD As VideoReDo
@@ -14,7 +17,7 @@ Public Module Helper
     Public AktRecToCut As clsRecordings.Recordings
 
     Public Function CreateFilmImageList() As System.Windows.Forms.ImageList
-        MyLog.DebugM("Lade die CutBar mit den Bildern der ersten Frames...")
+        MyLog.DebugM("Loading the CutBar with pictures of the first frame ... ")
         Dim props As PropertyCollection = GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml")
         Dim AnzThumbs As Integer = props("ThumbnailsCount")
         Dim listFilmImg As New ImageList
@@ -23,147 +26,135 @@ Public Module Helper
         Dim splitter As Integer = 0
         For i As Integer = 0 To AnzThumbs - 1
             listFilmImg.Images.Add(VRD.MakeScreenshotToClipboard(splitter + ((VRD.GetFramerate / 100) * i + 1), 7))
-
         Next
-        MyLog.DebugM("Erledigt")
+        MyLog.DebugM("Done.")
         Return listFilmImg
     End Function
 
-
     Public Function ParseSaveVideoFilename(ByVal Recording As clsRecordings.Recordings, Optional ByVal IsSerie As Boolean = False) As String
-        Dim newFileName As String = Mid(Recording.VideoFilename, InStrRev(Recording.VideoFilename, "\") + 1)
-        Dim ParseConfig As String
+        'Dim newFileName As String = Mid(Recording.VideoFilename, InStrRev(Recording.VideoFilename, "\") + 1)
+        Dim Filename As String
+        Dim Folder As String = Nothing
         If IsSerie Then
-            ParseConfig = HelpConfig.GetConfigString(ConfigKey.SaveSeriesFilename)
-            ParseConfig = Replace(ParseConfig, "%Title%", Recording.Title)
-            ParseConfig = Replace(ParseConfig, "%ChannelName%", Recording.Channelname)
-            ParseConfig = Replace(ParseConfig, "%StartTime%", Recording.StartTime)
-            ParseConfig = Replace(ParseConfig, "%EndTime%", Recording.EndTime)
-            ParseConfig = Replace(ParseConfig, "%EpisodeName%", Recording.Episodename)
-            ParseConfig = Replace(ParseConfig, "%EpisodeNumber%", Recording.EpisodeNum)
-            ParseConfig = Replace(ParseConfig, "%SeriesName%", Recording.Seriesname)
-            ParseConfig = Replace(ParseConfig, "%Genre%", Recording.Genre)
-            ParseConfig = Replace(ParseConfig, "%SeasonNumber%", Recording.SeriesNum)
-
-            ParseConfig = CleanFilename(ParseConfig, "_")
+            Filename = HelpConfig.GetConfigString(ConfigKey.SaveSeriesFilename)
+            If HelpConfig.GetConfigString(ConfigKey.CreateSeriesfolder) Then
+                Folder = HelpConfig.GetConfigString(ConfigKey.SeriesFolder)
+                Folder = Parse(Recording, Folder)
+            End If
         Else
-            ParseConfig = HelpConfig.GetConfigString(ConfigKey.SaveFilename)
-            ParseConfig = Replace(ParseConfig, "%Title%", Recording.Title)
-            ParseConfig = Replace(ParseConfig, "%ChannelName%", Recording.Channelname)
-            ParseConfig = Replace(ParseConfig, "%StartTime%", Recording.StartTime)
-            ParseConfig = Replace(ParseConfig, "%EndTime%", Recording.EndTime)
-            ParseConfig = Replace(ParseConfig, "%EpisodeName%", Recording.Episodename)
-            ParseConfig = Replace(ParseConfig, "%EpisodeNumber%", Recording.EpisodeNum)
-            ParseConfig = Replace(ParseConfig, "%SeriesName%", Recording.Seriesname)
-            ParseConfig = Replace(ParseConfig, "%Genre%", Recording.Genre)
-            ParseConfig = Replace(ParseConfig, "%SeasonNumber%", Recording.SeriesNum)
-
-            ParseConfig = CleanFilename(ParseConfig, "_")
-            If HelpConfig.GetConfigString(ConfigKey.CreateFilmfolder) Then
-                Dim tFolder As String = HelpConfig.GetConfigString(ConfigKey.FilmFolderParsing)
-                tFolder = Replace(tFolder, "%Title%", Recording.Title)
-                tFolder = Replace(tFolder, "%ChannelName%", Recording.Channelname)
-                tFolder = Replace(tFolder, "%StartTime%", Recording.StartTime)
-                tFolder = Replace(tFolder, "%EndTime%", Recording.EndTime)
-                tFolder = Replace(tFolder, "%EpisodeName%", Recording.Episodename)
-                tFolder = Replace(tFolder, "%EpisodeNumber%", Recording.EpisodeNum)
-                tFolder = Replace(tFolder, "%SeriesName%", Recording.Seriesname)
-                tFolder = Replace(tFolder, "%Genre%", Recording.Genre)
-                tFolder = Replace(tFolder, "%SeasonNumber%", Recording.SeriesNum)
-                ParseConfig = CleanPathname(tFolder, "_") & "\" & CleanFilename(ParseConfig, "_")
+            Filename = HelpConfig.GetConfigString(ConfigKey.SaveMovieFilename)
+            If HelpConfig.GetConfigString(ConfigKey.CreateMoviefolder) Then
+                Folder = HelpConfig.GetConfigString(ConfigKey.MovieFolder)
+                Folder = Parse(Recording, Folder)
             End If
         End If
-        newFileName = ParseConfig
-
-
-        newFileName += ".%ext%"
-        Return newFileName
+        Filename = Parse(Recording, Filename)
+        Filename = CleanFilename(Filename, "_")
+        Folder = Parse(Recording, Folder)
+        Folder = CleanPathname(Folder, "_")
+        Filename = Folder & "\" & Filename
+        Filename += ".%ext%"
+        Return Filename
     End Function
-
-
 
     Public Function GetSaveImagePath(ByVal img As Drawing.Image, SeriesID As Integer) As String
         Try
             Dim mFolder As String = Config.GetFolder(Config.Dir.Thumbs) & "\VideoRedo\SeriesBanners"
             If IO.Directory.Exists(mFolder) Then
-
             Else
                 IO.Directory.CreateDirectory(mFolder)
             End If
             Dim NewPath As String = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & SeriesID.ToString & ".jpg"
             If IO.File.Exists(NewPath) Then
-                MyLog.DebugM("Das angeforderte Bild war bereits unter '{0}' vorhanden. Gebe dieses zurück.(GetSaveImagePath)", NewPath)
+                MyLog.DebugM("The deserved thumbnail already exists in '{0}'. Returning path (GetSaveImagePath): ", NewPath)
                 Return NewPath
             End If
             'IO.File.Delete(NewPath)
             img.Save(NewPath)
-            MyLog.DebugM("Das angeforderte Bild wurde unter '{0}' gespeichert. Gebe neues Bild zurück.(GetSaveImagePath)", NewPath)
+            MyLog.DebugM("The deserved thumbnail was saved at '{0}'. Returning path (GetSaveImagePath): ", NewPath)
             Return NewPath
         Catch ex As Exception
-            MyLog.Info("Das angeforderte Bild konnte nicht geladen werden.(GetSaveImagePath)")
-            Return ""
+            MyLog.Info("Could not get the deserved thumbnail.(GetSaveImagePath)")
+            Return Nothing
         End Try
     End Function
 
     Public Function GetSaveThumbPath(ByVal Record As clsRecordings.Recordings) As String
-        Try
-            MyLog.DebugM("GetSaveThumbnailPath für Aufnahme: {0}", Record.Filename)
-            Dim mFolder As String = ""
-            mFolder = Config.GetFolder(Config.Dir.Thumbs) & "\VideoRedo"
-            MyLog.DebugM("Thumbsfolder: " & mFolder)
-            If IO.Directory.Exists(mFolder) Then
-
-            Else
-                MyLog.DebugM("Thumbnailfolder nicht vorhanden... erstelle Folder...")
-                IO.Directory.CreateDirectory(mFolder)
-                MyLog.DebugM("Thumbnailfolder erfolgreich erstellt.")
-            End If
-
-
-            Dim NewPath As String = mFolder & "\" & CleanFilename(Record.Title) & "_" & Record.StartTime.Ticks & ".jpg"
-
-
-            If IO.File.Exists(NewPath) Then
-                MyLog.DebugM("Das angeforderte Bild war vorhanden unter '{0}' und wird geladen.(GetSaveThumbPath)", NewPath)
-                Return NewPath
-            Else
-                MyLog.DebugM("Das angeforderte Bild war NICHT vorhanden. Es wird versucht ein Bild aus der Datei zu extrahieren (GetShellVideoThumbnail)...")
-                Dim img As Drawing.Bitmap = GetShellVideoThumbnail(Record.VideoFilename)
-                If img Is Nothing Then
-                    'img = New Drawing.Bitmap(100, 100, Drawing.Imaging.PixelFormat.Format32bppArgb)
-                    img.Save(NewPath)
+        'ffmpeg -an -ss 0:10:0 -t 0:0:0.001 -i "\\HTPC\Daten\Aufnahmen\American Blackout\American Blackout.ts" -f image2 -s 320x200 thumb.jpg
+        Dim PreviewThumb As String
+        Dim thumbnailFilename = System.IO.Path.GetFileNameWithoutExtension(Record.VideoFilename) + ".jpg"
+        PreviewThumb = Thumbs.TVRecorded + "\\" + thumbnailFilename
+        If Not Utils.FileExistsInCache(PreviewThumb) Then
+            MyLog.DebugM("Thumbnail {0} does not exist in local thumbs folder - get it from TV server", PreviewThumb)
+            Try
+                Dim thumbData As Byte() = RemoteControl.Instance.GetRecordingThumbnail(thumbnailFilename)
+                If (thumbData.Length > 0) Then
+                    Dim fs As New FileStream(PreviewThumb, FileMode.Create)
+                        fs.Write(thumbData, 0, thumbData.Length)
+                        fs.Close()
+                        fs.Dispose()
+                    Utils.DoInsertExistingFileIntoCache(PreviewThumb)
                 Else
-                    img.Save(NewPath)
-                    MyLog.DebugM("Das angeforderte Bild wurde unter '{0}' gespeichert.(GetSaveThumbPath)", NewPath)
+                    MyLog.DebugM("Thumbnail {0} not found on TV server", PreviewThumb)
                 End If
-                Return NewPath
-            End If
+            Catch ex As Exception
+                MyLog.DebugM("Error fetching thumbnail {0} from TV server - {1}", PreviewThumb, ex.Message)
+            End Try
+        End If
+        If Utils.FileExistsInCache(PreviewThumb) Then
+            Return PreviewThumb
+            Exit Function
+        Else
+            Try
+                MyLog.DebugM("GetSaveThumbnailPath for recording: {0}", Record.VideoFilename)
+                Dim mFolder As String = ""
+                mFolder = Config.GetFolder(Config.Dir.Thumbs) & "\VideoRedo"
+                MyLog.DebugM("Thumbsfolder: " & mFolder)
+                If IO.Directory.Exists(mFolder) Then
+                Else
+                    MyLog.DebugM("Thumbnailfolder does not exist. Creating folder.")
+                    IO.Directory.CreateDirectory(mFolder)
+                    MyLog.DebugM("Thumbnailfolder successfully created.")
+                End If
+                Dim NewPath As String = mFolder & "\" & CleanFilename(Record.Title) & "_" & Record.StartTime.Ticks & ".jpg"
+                If IO.File.Exists(NewPath) Then
+                    MyLog.DebugM("The deserved thumbnail already exists in '{0}' and is loaded (GetSaveThumbPath) from: ", NewPath)
+                    Return NewPath
+                Else
+                    MyLog.DebugM("The deserved thumbnail does not exists . Trying to extract thumbnail from the videofile (GetShellVideoThumbnail)...")
+                    Dim img As Drawing.Bitmap = GetShellVideoThumbnail(Record.VideoFilename)
+                    If img Is Nothing Then
+                        'img = New Drawing.Bitmap(100, 100, Drawing.Imaging.PixelFormat.Format32bppArgb)
+                        img.Save(NewPath)
+                    Else
+                        img.Save(NewPath)
+                        MyLog.DebugM("The deserved thumbnail was saved in '{0}' (GetSaveThumbPath).", NewPath)
+                    End If
+                    Return NewPath
+                End If
 
-        Catch ex As Exception
-            MyLog.Info("Das angeforderte Bild konnte nicht geladen werden.(GetSaveThumbPath)")
-            Return ""
-        End Try
+            Catch ex As Exception
+                MyLog.Info("The deserved thumbnail could not be loaded.(GetSaveThumbPath)")
+                Return Nothing
+            End Try
+        End If
     End Function
-
-
 
     Public Function GetShellVideoThumbnail(ByVal Filename As String) As Drawing.Bitmap
         Try
             Dim ShIcon As New ShellThumbnail
             ShIcon.DesiredSize = New System.Drawing.Size(330, 220)
-
             Return ShIcon.GetThumbnail(Filename)
         Catch ex As Exception
-            MyLog.Info("Das Videothumbnail für " & Filename & " konnte leider nicht geladen werden.")
+            MyLog.Info("The deserved thumbnail " & Filename & " could not be loaded.")
             Return Nothing
         End Try
     End Function
 
 #Region "Dialoge"
     Friend Sub ShowNothingFoundDialog(ByVal windowID As Integer, ByVal Text As String, Optional ByVal HeaderText As String = "Nothing found")
-        MyLog.DebugM("NothingFound Dialog wird erstellt mit Meldung: {0}", Text)
+        MyLog.DebugM("Creating NothingFound Dialog with message: {0}", Text)
         Dim dlgNotFound As GUIDialogNotify = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_NOTIFY, Integer)), GUIDialogNotify)
-
         Try
             dlgNotFound.SetHeading(HeaderText)
             dlgNotFound.SetText(Text)
@@ -182,11 +173,9 @@ Public Module Helper
 
 
     Friend Sub ShowNotifyDialog(ByVal WindowID As Integer, ByVal Title As String, ByVal Text As String)
-        MyLog.DebugM("NotifyDialog wird erstellt mit Meldung: {0}", Text)
+        MyLog.DebugM("Creating NotifyDialog with message: {0}", Text)
         Dim dlg As GUIDialogNotify = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_NOTIFY, Integer)), GUIDialogNotify)
-
         Try
-
             dlg.SetHeading(Title)
             dlg.SetText(Text)
             dlg.TimeOut = 5
@@ -206,7 +195,7 @@ Public Module Helper
     End Sub
 
     Friend Sub ShowDebugDialog(ByVal windowID As Integer, ByVal Text As String)
-        MyLog.DebugM("DebugDialog wird erstellt mit Meldung: {0}", Text)
+        MyLog.DebugM("Creating DebugDialog with message: {0}", Text)
         Dim dlgNotFound As GUIDialogNotify = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_NOTIFY, Integer)), GUIDialogNotify)
 
         Try
@@ -230,12 +219,9 @@ Public Module Helper
     End Sub
 
     Friend Sub ShowErrorDialog(ByVal windowID As Integer, ByVal Text As String)
-
-        MyLog.DebugM("ErrorDialog wird erstellt mit Meldung: {0}", Text)
+        MyLog.DebugM("Creating ErrorDialog with message: {0}", Text)
         Dim dlgNotFound As GUIDialogNotify = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_NOTIFY, Integer)), GUIDialogNotify)
-
         Try
-
             dlgNotFound.SetHeading("Error-Message")
             dlgNotFound.SetText(Text)
             dlgNotFound.TimeOut = 10
@@ -255,23 +241,6 @@ Public Module Helper
 
         End Try
     End Sub
-
-    Friend Function ShowYeyNoDialog(ByVal WindowID As Integer, ByVal Title As String, ByVal Text As String) As Boolean
-        MyLog.DebugM("Erstelle YesNo-Dialog... WindowID:'{0}', Title:'{1}', Text:'{2}'", WindowID, Title, Text)
-        Dim dlgDelRec As GUIDialogYesNo = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_YES_NO, Integer)), GUIDialogYesNo)
-        dlgDelRec.SetHeading(Title)
-        dlgDelRec.SetLine(1, Text)
-        dlgDelRec.DoModal(WindowID)
-        MyLog.DebugM("Dialog erstellt...")
-        If dlgDelRec.IsConfirmed Then
-            MyLog.DebugM("Dialog wurde mit JA beantwortet")
-            Return True
-        Else
-            MyLog.DebugM("Dialog wurde mit NEIN beantwortet")
-            Return False
-        End If
-    End Function
-
 #End Region
 
     Public Function GetNegativeInt(ByVal PositiveInt) As Integer
@@ -279,32 +248,29 @@ Public Module Helper
     End Function
 
     Public Function HasPathSubDirectories(ByVal Path As String) As Boolean
-        MyLog.DebugM("Prüfe ob Ordner Unterordner hat...")
+        MyLog.DebugM("Checking for existance of subfolders in the folder ...")
         Dim aktDir As New IO.DirectoryInfo(Path)
         If aktDir.Exists Then
             If aktDir.GetDirectories().Count > 0 Then
-                MyLog.DebugM("Es gibt {0} Unterordner", aktDir.GetDirectories.Count)
+                MyLog.DebugM("There are {0} subfolders", aktDir.GetDirectories.Count)
                 Return True
             Else
-                MyLog.DebugM("Es gibt keine Unterordner mehr")
+                MyLog.DebugM("There are no more subfolders.")
                 Return False
             End If
         Else
-            MyLog.Warn("HasPathSubDirectories gibt zurück das der Pfad nicht korrekt ist.")
+            MyLog.Warn("HasPathSubDirectories returns that the path is not correct.")
             Return False
         End If
-
     End Function
 
     Public Function CleanFilename(ByVal sFilename As String, Optional ByVal sChar As String = "") As String
-
-        ' alle nicht zulässigen Zeichen ersetzen
+        ' replace all ineligible characters
         Return System.Text.RegularExpressions.Regex.Replace(sFilename, "[\\/:?*^""<>|]", sChar)
     End Function
 
     Public Function CleanPathname(ByVal sFilename As String, Optional ByVal sChar As String = "") As String
-
-        ' alle nicht zulässigen Zeichen ersetzen
+        ' replace all ineligible characters
         Return System.Text.RegularExpressions.Regex.Replace(sFilename, "[/:?*^""<>|]", sChar)
     End Function
 
@@ -317,16 +283,83 @@ Public Module Helper
         GUIMain = 1209
         GUIProfileDetails = 1210
         GUISave = 1211
+        'GUISaveDetails = 1212
     End Enum
-
 
     Public Declare Function FindWindow Lib "user32.dll" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
     Public Declare Function SetFocusAPI Lib "user32.dll" Alias "SetFocus" (ByVal hWnd As Long) As Long
     Public Declare Function SetForegroundWindow Lib "user32" (ByVal hWnd As Long) As Long
 
-    Public Sub SetMPtoForeground()
+    Public Sub SetMPtoForeground(ModuleScreen As String)
         Dim hWnd As Long
-        hWnd = FindWindow(vbNullString, "MediaPortal - MyVideoRedo")
+        hWnd = FindWindow(vbNullString, "MediaPortal - " + ModuleScreen)
         SetForegroundWindow(hWnd)
     End Sub
+
+    Public Sub GetProfileDetail(profile As String)
+        Dim SavingFilename As String
+        If Left(VRD.ReDoVersion, 1) = 4 Then
+            SavingFilename = Replace(AktRecToCut.SavingFilename, "%ext%", VRD.GetProfileInfo(profile).DateiType.ToLower)
+        Else
+            SavingFilename = Replace(AktRecToCut.SavingFilename, "%ext%", "mpeg")
+        End If
+        Translator.SetProperty("#Saving.Name", SavingFilename)
+        Translator.SetProperty("#Saving.Profile", profile)
+        Translator.SetProperty("#Profile.Encodingtype", VRD.GetProfileInfo(profile).Encodingtype)
+        Translator.SetProperty("#Profile.Filetype", VRD.GetProfileInfo(profile).DateiType)
+        Translator.SetProperty("#Profile.Resolution", VRD.GetProfileInfo(profile).Resolution)
+        Translator.SetProperty("#Profile.Ratio", VRD.GetProfileInfo(profile).Ratio)
+        Translator.SetProperty("#Profile.Deinterlacemode", VRD.GetProfileInfo(profile).DeintarlaceModus)
+        Translator.SetProperty("#Profile.Framerate", VRD.GetProfileInfo(profile).FrameRate)
+
+    End Sub
+
+    Public Function Parse(ByVal Recording As clsRecordings.Recordings, ByVal ParseConfig As String) As String
+        ParseConfig = Replace(ParseConfig, "%OriginalFilename%", Recording.Filename)
+        ParseConfig = Replace(ParseConfig, "%Title%", Recording.Title)
+        ParseConfig = Replace(ParseConfig, "%ChannelName%", Recording.Channelname)
+        ParseConfig = Replace(ParseConfig, "%StartTime%", Recording.StartTime)
+        ParseConfig = Replace(ParseConfig, "%EndTime%", Recording.EndTime)
+        ParseConfig = Replace(ParseConfig, "%EpisodeName%", Recording.Episodename)
+        ParseConfig = Replace(ParseConfig, "%EpisodeNumber%", Recording.EpisodeNum)
+        ParseConfig = Replace(ParseConfig, "%SeriesName%", Recording.Seriesname)
+        ParseConfig = Replace(ParseConfig, "%Genre%", Recording.Genre)
+        ParseConfig = Replace(ParseConfig, "%SeasonNumber%", Recording.SeriesNum)
+        Return ParseConfig
+    End Function
+
+    Public Function ShowKeyboard(ByVal Text As String, ByVal WindowID As Integer) As String
+        Dim keyboard As VirtualKeyboard = DirectCast(GUIWindowManager.GetWindow(CInt(GUIWindow.Window.WINDOW_VIRTUAL_KEYBOARD)), VirtualKeyboard)
+        If keyboard Is Nothing Then
+            Return Nothing
+        End If
+        keyboard.Reset()
+        keyboard.Text = Text
+        keyboard.DoModal(WindowID)
+        ' Do something here. The typed value is stored in "keyboard.Text" 
+        If keyboard.IsConfirmed Then
+            If keyboard.Text.Length = 0 Then Return Text
+            Return keyboard.Text
+        Else
+            Return Nothing
+        End If
+    End Function
+
+    Public Function ShowYesNoDialog(ByVal WindowID As Integer, ByVal Title As String, ByVal Text1 As String, Optional ByVal Text2 As String = "", Optional ByVal Text3 As String = "") As Boolean
+        MyLog.DebugM("Creating YesNo-Dialog... WindowID:'{0}', Title:'{1}', Text:'{2} {3} {4}'", WindowID, Title, Text1, Text2, Text3)
+        Dim dlgDelRec As GUIDialogYesNo = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_YES_NO, Integer)), GUIDialogYesNo)
+        dlgDelRec.SetHeading(Title)
+        dlgDelRec.SetLine(1, Text1)
+        dlgDelRec.SetLine(2, Text2)
+        dlgDelRec.SetLine(3, Text3)
+        dlgDelRec.DoModal(WindowID)
+        MyLog.DebugM("Dialog created...")
+        If dlgDelRec.IsConfirmed Then
+            MyLog.DebugM("Dialog was answered with YES.")
+            Return True
+        Else
+            MyLog.DebugM("Dialog was answered with NO.")
+            Return False
+        End If
+    End Function
 End Module

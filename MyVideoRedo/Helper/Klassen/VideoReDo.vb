@@ -137,7 +137,7 @@ Public Class VideoReDo
             Return mAktSavingProfile
         End Get
         Set(ByVal value As String)
-            If value <> "Nothing" Then mAktSavingProfile = value.ToLower
+            If value <> "Nothing" Then mAktSavingProfile = value '.ToLower
         End Set
     End Property
 
@@ -343,13 +343,13 @@ Public Class VideoReDo
         
         Dim sobj As New SeekingObject(Millisekunden, BarPosition)
 
-        MyLog.DebugM("Starte SeekingInBackground Thread...")
+        MyLog.DebugM("Starting SeekingInBackground Thread...")
         Dim SeekThread As New Threading.Thread(AddressOf SeekInBackground)
         'SeekThread.IsBackground = True
         SeekThread.Name = "SeekThread"
         SeekThread.Priority = Threading.ThreadPriority.Lowest
         SeekThread.Start(sobj)
-        MyLog.DebugM("SeekingInBackground Thread gestartet...")
+        MyLog.DebugM("SeekingInBackground Thread was started...")
 
 
         'MyLog.DebugM("TemporarySeekTime: {0}", Millisekunden)
@@ -379,7 +379,7 @@ Public Class VideoReDo
                 Try
                     If VRD.CaptureFrame(0, "", Quali) = True Then
                         'Threading.Thread.Sleep(100)
-                        MyLog.DebugM("Thumbnail von Millisekunde {0} erfolgreich erstellt.VRD-Position: {1}", MSek.ToString, Me.GetCursorTime)
+                        MyLog.DebugM("Thumbnail of millisecond {0} successfully created. VRD-Position: {1}", MSek.ToString, Me.GetCursorTime)
                         Return Clipboard.GetImage()
                     End If
                 Catch excom As Exception
@@ -461,7 +461,7 @@ Public Class VideoReDo
 
             RaiseEvent AdScanFinished(Me, e)
         Else
-            Throw New Exception("Fehler beim durchlaufen des AdDetective")
+            Throw New Exception("Error on running 'AdDetective'")
         End If
 
     End Sub
@@ -494,7 +494,7 @@ Public Class VideoReDo
             'If AbortSaving Then VRD.AbortOutput()
             AbortSaving = False
         Else
-            Throw New Exception("Video konnte nicht gespeichert werden.")
+            Throw New Exception("Video could not be saved.")
         End If
     End Sub
     Private AbortSaving As Boolean = False
@@ -820,7 +820,7 @@ Public Class SaveVideoEvenArgs
     Inherits EventArgs
 
     Dim SaveStarTime As New Stopwatch
-    Dim CalcRestTime As String = Translation.CalculateResttime
+    Dim CalcRestTime As String = Translation.CalculateTimeLeft
 
 
     Public Sub New()

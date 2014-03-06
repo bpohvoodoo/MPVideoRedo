@@ -8,8 +8,6 @@ Imports System.IO
 
 Namespace MyVideoRedo
 
-
-
     Public Class GUISaveVideo
         Inherits GUIWindow
 
@@ -38,12 +36,6 @@ Namespace MyVideoRedo
 Protected ctlCancelButton As GUIButtonControl = Nothing
 #End Region
 
-
-        Public Sub New()
-
-        End Sub
-
-
         Public Overloads Overrides Property GetID() As Integer
             Get
                 Return 1211
@@ -58,16 +50,14 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
         End Function
 
         Public Overrides Function GetModuleName() As String
-            Return Translation.ModuleSaveVideo
+            Return HelpConfig.GetConfigString(ConfigKey.ModuleName) & " - " & Translation.ModuleSaveVideo
         End Function
 
         Protected Overrides Sub OnPageLoad()
             MyBase.OnPageLoad()
             GUIWindowManager.NeedRefresh()
-
             FillDirectoryListControl(HelpConfig.GetConfigString(ConfigKey.VideoSavePath))
             Translator.SetProperty("#Saving.Path", HelpConfig.GetConfigString(ConfigKey.VideoSavePath))
-            Translator.SetProperty("#Saving.Name", AktRecToCut.SavingFilename)
             Translator.SetProperty("#Saving.Profile", VRD.AktSavingProfile)
             AddHandler VRD.SaveVideoStart, AddressOf SaveVideoProgressStart
             AddHandler VRD.SaveVideoProgressCanged, AddressOf SaveVideoProgressChanged
@@ -77,10 +67,7 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
             Else
                 ctlStatusLabel.Visible = False
             End If
-
-
             If VRD.IsInQuickStreamMode Then CutTheVideo()
-
         End Sub
 
         Protected Overrides Sub OnPageDestroy(ByVal new_windowId As Integer)
@@ -95,27 +82,32 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
         Public Overrides Sub OnAction(ByVal action As MediaPortal.GUI.Library.Action)
             MyLog.DebugM("OnAction: {0} ::: {1} ::: {2}", action, action.wID.ToString, action.m_key)
             If action.m_key IsNot Nothing Then
-               
-
                 If action.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_SELECT_ITEM Then
                     If ctlDirectoryList.IsFocused Then
                         Translator.SetProperty("#Saving.Path", ctlDirectoryList.SelectedListItem.Path)
                     End If
                 End If
-
             End If
             MyBase.OnAction(action)
         End Sub
 
         Protected Overrides Sub OnClicked(ByVal controlId As Integer, ByVal control As MediaPortal.GUI.Library.GUIControl, ByVal actionType As MediaPortal.GUI.Library.Action.ActionType)
             If control Is ctlChangeFilename Then
-                Dim NewFilename As String = ShowKeyboard(AktRecToCut.SavingFilename)
-                If NewFilename IsNot Nothing Then AktRecToCut.SavingFilename = NewFilename
-                Translator.SetProperty("#Saving.Name", AktRecToCut.SavingFilename)
+                Dim SavingFilename As String
+                If Left(VRD.ReDoVersion, 1) = 4 Then
+                    SavingFilename = Replace(AktRecToCut.SavingFilename, "%ext%", VRD.GetProfileInfo(VRD.AktSavingProfile).DateiType.ToLower)
+                Else
+                    SavingFilename = Replace(AktRecToCut.SavingFilename, "%ext%", "mpeg")
+                End If
+                Dim NewFilename As String = ShowKeyboard(SavingFilename, GetID)
+                If NewFilename IsNot Nothing Then
+                    AktRecToCut.SavingFilename = NewFilename
+                    Translator.SetProperty("#Saving.Name", AktRecToCut.SavingFilename)
+                End If
             End If
 
             If control Is ctlChangeProfile Then
-                ShowProfileDialog() : Translator.SetProperty("#Saving.Profile", VRD.AktSavingProfile)
+                ShowProfileDialog()
             End If
 
             If control Is
@@ -125,8 +117,10 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
             End If
             If control Is ctlButtonSave Then
                 ctlSavingProgress.Percentage = 0
+                'ShowSavingDialog()
+
                 Translator.SetProperty("#Saving.Progress.Label1", Translation.Complete & " " & 0 & "%")
-                Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedResttime & "...")
+                Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedTimeLeft & "...")
 
                 ctlStatusLabel.Visible = True
                 CutTheVideo()
@@ -154,9 +148,11 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
             MyLog.DebugM("Clear DirectoryListControlItems")
             ctlDirectoryList.ListItems.Clear()
             Dim rootInfo As IO.DirectoryInfo
+            Dim itemcount As Integer
+            itemcount = 0
             If path = "Drives" Then
                 For Each Drive In IO.DriveInfo.GetDrives()
-                    MyLog.DebugM("Setze Menüitem für Ordner '{0}'", Drive)
+                    MyLog.DebugM("Set Menüitem für Ordner '{0}'", Drive)
                     Dim dInfo As New DriveInfo(Drive.Name)
                     If dInfo.IsReady Then
                         Dim nItem As New GUIListItem
@@ -175,13 +171,14 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
                         End If
                         nItem.ThumbnailImage = nItem.IconImage
                         ctlDirectoryList.Add(nItem)
+                        itemcount = itemcount + 1
                     Else
                         MyLog.DebugM("Das Laufwerk {0} ist nicht bereit und wird der Liste nicht hinzugefügt...", Drive.Name)
                     End If
                 Next Drive
 
                 GUIWindowManager.Process()
-                GUIPropertyManager.SetProperty("#itemcount", ctlDirectoryList.Count)
+                GUIPropertyManager.SetProperty("#itemcount", itemcount)
                 Return ctlDirectoryList.SelectedListItem.Path
             Else
                 rootInfo = New IO.DirectoryInfo(path)
@@ -204,7 +201,7 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
 
                 For Each item As IO.DirectoryInfo In rootInfo.GetDirectories
                     Try
-                        MyLog.DebugM("Setze Menüitem für Ordner '{0}'", item.Name)
+                        MyLog.DebugM("Set Menüitem für Ordner '{0}'", item.Name)
                         Dim nItem1 As New GUIListItem
                         nItem1.FileInfo = New MediaPortal.Util.FileInformation(path, True)
                         nItem1.IsFolder = True
@@ -213,28 +210,24 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
                         nItem1.IconImage = "defaultFolder.png"
                         nItem1.ThumbnailImage = nItem1.IconImage
                         ctlDirectoryList.Add(nItem1)
+                        itemcount = itemcount + 1
                     Catch ex As System.UnauthorizedAccessException
                         MyLog.Info("Der zugriff auf wurde verweigert Text: {0}", ex.ToString)
-                        'Return Nothing
+                        Return Nothing
                     End Try
                 Next
                 ctlDirectoryList.SelectedListItemIndex = 0
-                Return Nothing
+                'Return Nothing
             End If
-            GUIPropertyManager.SetProperty("#itemcount", ctlDirectoryList.Count)
+            GUIPropertyManager.SetProperty("#itemcount", itemcount)
             Return Nothing
         End Function
 
-
-
         Private Sub CutTheVideo()
-
-
             tr = New Threading.Thread(AddressOf StartVideoSave)
             tr.IsBackground = True
             tr.Priority = Threading.ThreadPriority.Lowest
-            tr.Start()
-           
+            tr.Start()       
         End Sub
 
 
@@ -243,31 +236,22 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
         ''' </summary>
         ''' <remarks></remarks>
         Private Sub StartVideoSave()
-
-
             Dim savepath As String = GUIPropertyManager.GetProperty("#Saving.Path") & "\" & AktRecToCut.SavingFilename
             If VRD.IsInQuickStreamMode Then
                 savepath = Replace(AktRecToCut.Filename, ".%ext%", "fixed.%ext%")
             End If
-
-
             If IO.Directory.Exists(GUIPropertyManager.GetProperty("#Saving.Path")) = False Then
                 ShowNothingFoundDialog(GetID, "Speicherpfad war nicht korrekt")
                 Exit Sub
             End If
-
             If Left(VRD.ReDoVersion, 1) = 4 Then
-                AktRecToCut.SavingFilename = Replace(savepath, "%ext%", VRD.GetProfileInfo(VRD.AktSavingProfile).DateiType)
-                'AktRecToCut.SavingFilename = Replace(AktRecToCut.SavingFilename, ".%ext%", "")
+                AktRecToCut.SavingFilename = Replace(savepath, "%ext%", VRD.GetProfileInfo(VRD.AktSavingProfile).DateiType.ToLower)
             Else
                 AktRecToCut.SavingFilename = Replace(savepath, "%ext%", "mpeg")
             End If
-
-       
             If IO.Directory.Exists(Mid(savepath, 1, InStrRev(savepath, "\") - 1)) = False Then
                 IO.Directory.CreateDirectory(Mid(savepath, 1, InStrRev(savepath, "\") - 1))
             End If
-
             MyLog.DebugM("Prüfe ob Datei bereits vorhanden...")
             If IO.File.Exists(AktRecToCut.SavingFilename) Then
                 MyLog.Info("Der Dateiname {0} existiert bereits, es wird eine Zahl angehängt...", savepath)
@@ -283,8 +267,8 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
             Else
                 MyLog.Info("Der Dateiname ist noch nicht vorhanden und kann verwendet werden.")
             End If
-
             MyLog.Info("Das neue Video wird unter {0} gespeichert!!", AktRecToCut.SavingFilename)
+            MsgBox(AktRecToCut.SavingFilename)
             Try
                 VRD.StartVideoSave(AktRecToCut.SavingFilename)
                 ctlStatusLabel.Visible = True
@@ -298,15 +282,12 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
 #Region "SaveVideoSubs"
         Private Sub SaveVideoProgressChanged(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
             MyLog.DebugM("Speichern des Videos zu {0}% abgeschlossen.", e.PercentageComplete)
-            isVideoSaving = True
-         
+            isVideoSaving = True        
             If ctlSavingProgress IsNot Nothing Then
                 ctlSavingProgress.Percentage = e.PercentageComplete
                 Translator.SetProperty("#Saving.Progress.Label1", Translation.Complete & " " & Convert.ToInt16(e.PercentageComplete) & "%")
-                Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedResttime & e.RestZeit)
-
+                Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedTimeLeft & e.RestZeit)
             End If
-
         End Sub
         Private Sub SaveVideoProgressFinish(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
             ctlStatusLabel.Visible = False
@@ -314,46 +295,32 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
             If ctlSavingProgress IsNot Nothing Then
                 ctlSavingProgress.Percentage = 100
                 Translator.SetProperty("#Saving.Progress.Label1", Translation.Complete & " " & Convert.ToInt16(e.PercentageComplete))
-                Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedResttime & e.RestZeit)
-
+                Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedTimeLeft & e.RestZeit)
             End If
-
-
             isVideoSaving = False
-
             ShowNotifyDialog(GetID, "MyVideoRedo", Translation.Done)
-
-            Dim hWnd As Long
-            hWnd = FindWindow(vbNullString, "MediaPortal - MyVideoReDo - SaveVideo")
-            SetForegroundWindow(hWnd)
-
-            'Dialog ob man wirklich löschen will
-            Dim dlgDelRec As GUIDialogYesNo = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_YES_NO, Integer)), GUIDialogYesNo)
-            dlgDelRec.SetHeading(Translation.DeleteOriginalFileTitle)
-            dlgDelRec.SetLine(1, Translation.DeleteOriginalFile)
-            dlgDelRec.DoModal(GetID)
-            MyLog.DebugM("zeige Dialog ob das Originalfile gelöscht werden soll.")
-            If dlgDelRec.IsConfirmed Then
-                Try
-                    'Dialog bestätigt
-                    MyLog.DebugM("Dialog wurde vom User bestätigt.")
-                    VRD.Close()
-                   
-                    'Threading.Thread.CurrentThread.Sleep(1000)
-                    MyLog.DebugM("Lösche Original-Videofile '{0}' ...", Replace(AktRecToCut.Filename, ".xml", ".ts"))
-                    IO.File.Delete(Replace(AktRecToCut.Filename, ".xml", ".ts"))
-                    MyLog.DebugM("Original-Videofile erfolgreich gelöscht")
-                    MyLog.DebugM("Lösche XML-File der Aufnahme '{0}' ...", AktRecToCut.Filename)
-                    IO.File.Delete(AktRecToCut.Filename)
-                    MyLog.DebugM("XML-File erfolgreich gelöscht")
-                Catch ex As Exception
-                    MyLog.Error("Kann Datei nicht löschen. {0}", ex.ToString)
-                End Try
-            Else
-                MyLog.DebugM("User hat den Dialog nicht bestätigt, das Originalfile wird beibehalten.")
+            SetMPtoForeground(HelpConfig.GetConfigString(ConfigKey.ModuleName) & " - " & Translation.ModuleSaveVideo)
+            If HelpConfig.GetConfigString(ConfigKey.AlwaysKeepOriginalFile) = False Then
+                MyLog.DebugM("zeige Dialog ob das Originalfile gelöscht werden soll.")
+                If ShowYesNoDialog(GetID, Translation.DeleteOriginalFileTitle, Translation.DeleteOriginalFile) = True Then
+                    Try
+                        'Dialog bestätigt
+                        MyLog.DebugM("Dialog wurde vom User bestätigt.")
+                        VRD.Close()
+                        'Threading.Thread.CurrentThread.Sleep(1000)
+                        MyLog.DebugM("Lösche Original-Videofile '{0}' ...", AktRecToCut.VideoFilename)
+                        IO.File.Delete(AktRecToCut.VideoFilename)
+                        MyLog.DebugM("Original-Videofile erfolgreich gelöscht")
+                        MyLog.DebugM("Lösche XML-File der Aufnahme '{0}' ...", AktRecToCut.Filename)
+                        IO.File.Delete(AktRecToCut.Filename)
+                        MyLog.DebugM("XML-File erfolgreich gelöscht")
+                    Catch ex As Exception
+                        MyLog.Error("Kann Datei nicht löschen. {0}", ex.ToString)
+                    End Try
+                Else
+                    MyLog.DebugM("User hat den Dialog nicht bestätigt, das Originalfile wird beibehalten.")
+                End If
             End If
-            dlgDelRec.Reset()
-            dlgDelRec = Nothing
             ' MyLog.DebugM("Lade voriges Fenster...")
             GUIWindowManager.ActivateWindow(GetGUIWindow(enumWindows.GUIstart), True)
 
@@ -361,12 +328,9 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
         Private Sub SaveVideoProgressStart(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
             'ctlStatusLabel.Visible = True
             isVideoSaving = True
-
-
-
             ctlSavingProgress.Percentage = 0
             Translator.SetProperty("#Saving.Progress.Label1", Translation.Complete & " " & 0 & "%")
-            Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedResttime & e.RestZeit)
+            Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedTimeLeft & e.RestZeit)
 
         End Sub
 
@@ -387,7 +351,6 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
                         dlgProfileDetail.Reset()
                         dlgProfileDetail.SetHeading(dlgProfiles.SelectedLabelText)
                         dlgProfileDetail.DoModal(GetID)
-                        'MsgBox(dlgProfileDetail.SelectedLabelText)
                         newprofilename = dlgProfileDetail.SelectedLabelText
                         dlgProfileDetail = Nothing
                     Else
@@ -397,35 +360,10 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
                 VRD.AktSavingProfile = newprofilename
             Else
                 VRD.AktSavingProfile = dlgProfiles.SelectedLabelText
-                Translator.SetProperty("#Profile.EncodingType", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).Encodingtype)
-                Translator.SetProperty("#Profile.Filetype", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).DateiType)
-                Translator.SetProperty("#Profile.Resolution", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).Resolution)
-                Translator.SetProperty("#Profile.Ratio", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).Ratio)
-                Translator.SetProperty("#Profile.Deinterlacemode", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).DeintarlaceModus)
-                Translator.SetProperty("#Profile.Framerate", VRD.GetProfileInfo(dlgProfiles.SelectedLabelText).FrameRate)
+                GetProfileDetail(dlgProfiles.SelectedLabelText)
             End If
         End Sub
 #End Region
 
-        Private Function ShowKeyboard(ByVal Text As String) As String
-            Dim keyboard As VirtualKeyboard = DirectCast(GUIWindowManager.GetWindow(CInt(GUIWindow.Window.WINDOW_VIRTUAL_KEYBOARD)), VirtualKeyboard)
-            If keyboard Is Nothing Then
-                Return Nothing
-            End If
-            keyboard.Reset()
-            'keyboard.Label = Text
-
-            keyboard.SetLabelAsInitialText(True)
-            keyboard.DoModal(GetID)
-            ' Do something here. The typed value is stored in "keyboard.Text" 
-            If keyboard.IsConfirmed Then
-                If keyboard.Text.Length < 3 Then Return Text
-                Return keyboard.Text
-            Else
-                Return Nothing
-            End If
-        End Function
-
     End Class
-
 End Namespace

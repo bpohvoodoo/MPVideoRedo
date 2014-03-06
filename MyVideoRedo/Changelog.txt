@@ -1,4 +1,27 @@
-﻿----- Version 9.0.3 -----
+﻿----- Version 9.1.0 -----
+05.03.2014
+* Umgestellt auf die Benutzung von Thumbs des TVServers, falls vorhanden. Fallback bleibt weiterhin der interne ThumbnailCreator
+* Schnitte Löschen Dialog beim Verlassen über Settings abschaltbar
+* Originaldatei Löschen Dialog nach dem Schneiden über Settings abschaltbar
+* Modul Name für die Menüs kann nun über Settings gesetzt werden (fall einem MyVideoRedo nicht gefällt)
+* Möglichkeit der Speicherung in Unterordner auch für Serien in den Setting hinzugefügt
+* Entsprechende Übersetzungen hinzugefügt
+* Angefangen die Debugmeldung und anderes im Code auf Englisch zu Übersetzen, damit das Projekt ggf. internationaler wird.
+* Code Cleanup 
+* 
+* Bug beseitigt: Textfeld in der virtuellen Tastatur wurde beim Ändern des Speichernamens nicht gefüllt
+*
+* Bekannte Probleme:
+* interner ThumbnailsCreator.vb arbeitet nicht korrekt bei SD Material.
+* Textlänge in der Virtuellen Tastatur ist zu begrenzt.
+* 
+* ToDo:
+* Speichen mit Originalname (Speichen mit temporärem Namen und dann Löschen der Orginaldatei und Umbenennen der temporären Datei)
+* internen Thumbnailer möglicher Weise gegen ffmpeg tauschen (s.o, mal sehen)
+* laden von Cutlists (ComSkip) (mal sehen)
+* Speichern in Cutlists (mal sehen)
+
+----- Version 9.0.3 -----
 19.02.2014
 * Umstellung auf .NET 4.0
 * dlls von MP Aktualisiert auf 1.6.0.0
