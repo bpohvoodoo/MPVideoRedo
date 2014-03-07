@@ -341,12 +341,12 @@ Click Next to continue or Cancel to exit Setup.</Value>
               <Description />
             </SectionParam>
             <SectionParam Name="Left part image">
-              <Value>..\MyVideoRedo\Resources\myVideoReDo.png</Value>
+              <Value>myVideoReDo.png</Value>
               <ValueType>File</ValueType>
               <Description />
             </SectionParam>
             <SectionParam Name="Header image">
-              <Value>..\MyVideoRedo\Resources\myVideoReDo.png</Value>
+              <Value>myVideoReDo.png</Value>
               <ValueType>File</ValueType>
               <Description>Image in upper right part</Description>
             </SectionParam>
@@ -520,15 +520,15 @@ Please make sure you have "VideoRedo" installed and you have run it once at Admi
     <Author>BPoH_Voodoo, Sascha Patschka</Author>
     <HomePage>https://github.com/bpohvoodoo/MPVideoRedo</HomePage>
     <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/new-plugin-myvideoredo-cut-your-recordings-frame-accurate-90053/</ForumPage>
-    <UpdateUrl>https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MPEIUpdateXML.xml</UpdateUrl>
+    <UpdateUrl>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MPEIUpdateXML.xml</UpdateUrl>
     <Version>
       <Major>0</Major>
       <Minor>9</Minor>
       <Build>1</Build>
       <Revision>0</Revision>
     </Version>
-    <ExtensionDescription>With this plugin youare able to cut your recordings with the software VideoRedo within MediaPortal.
-It can cut the video frameaccurate and rename the videos.</ExtensionDescription>
+    <ExtensionDescription>With this plugin you are able to cut your recordings with the application VideoRedo from within MediaPortal.
+It is able to cut your recordings  frameaccurate and is able to rename the videos.</ExtensionDescription>
     <VersionDescription>- MediaPortal 1.6.0 compatible
 ----- Version 9.1.0 -----
 05.03.2014
@@ -554,23 +554,23 @@ It can cut the video frameaccurate and rename the videos.</ExtensionDescription>
 * laden von Cutlists (ComSkip) (mal sehen)
 * Speichern in Cutlists (mal sehen)</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>https://github.com/bpohvoodoo/MPVideoRedo/tree/master/MPEI/MyVideoRedo_0.9.0.3_Beta.mpe1 </OnlineLocation>
+    <OnlineLocation>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_0.9.0.3_Beta.mpe1 </OnlineLocation>
     <ReleaseDate>2014-03-03T08:25:57</ReleaseDate>
     <Tags>filme,videos,
 cut,
 schneiden,
 recording,
-aufnahme,videoredo,nofear23m</Tags>
+aufnahme,videoredo,nofear23m,bpohvoodoo</Tags>
     <Location>D:\GitHub\MPVideoRedo\MPEI\[Name]_[Version]_[DevelopmentStatus].mpe1</Location>
     <Params>
       <Items>
         <SectionParam Name="Icon">
-          <Value>..\MyVideoRedo\Resources\myVideoRedo.ico</Value>
+          <Value>myVideoReDo.png</Value>
           <ValueType>File</ValueType>
           <Description>The icon file of the package (jpg,png,bmp)</Description>
         </SectionParam>
         <SectionParam Name="Online Icon">
-          <Value>https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MyVideoRedo/Resources/myVideoReDo.png</Value>
+          <Value>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/myVideoReDo.png</Value>
           <ValueType>String</ValueType>
           <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
         </SectionParam>
@@ -582,7 +582,7 @@ aufnahme,videoredo,nofear23m</Tags>
  If have .dll extension used like MP plugin configuration</Description>
         </SectionParam>
         <SectionParam Name="Online Screenshots">
-          <Value>https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MyVideoRedo_Config1_EN.png;https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MyVideoRedo_Config2_EN.png;https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MyVideoRedo_Config3_EN.png;https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MyVideoRedo_Config4_EN.png;https://github.com/bpohvoodoo/MPVideoRedo/blob/master/MPEI/MyVideoRedo_Config5_EN.png;</Value>
+          <Value>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config1_EN.png;https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config2_EN.pnghttps://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config3_EN.pnghttps://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config4_EN.pnghttps://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config5_EN.png;</Value>
           <ValueType>String</ValueType>
           <Description>Online stored screenshot urls separated by ; </Description>
         </SectionParam>
@@ -879,15 +879,15 @@ aufnahme,videoredo,nofear23m</Tags>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\Resources\myVideoReDo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{f01e1491-fa38-4efe-b9e6-e0d56761e17e}-myVideoReDo.png</ZipFileName>
+        <LocalFileName>myVideoReDo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{38320677-31a0-4a16-be94-48ffe623e9aa}-myVideoReDo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
       <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\Resources\myVideoRedo.ico</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{6f1d06f1-f512-4606-86b5-878b16525071}-myVideoRedo.ico</ZipFileName>
+        <LocalFileName>..\MyVideoRedo\Resources\myVideoReDo.png</LocalFileName>
+        <ZipFileName>Installer{CopyFile}\{516f529b-005c-4bde-b02a-01e9ae8c2e72}-myVideoReDo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>

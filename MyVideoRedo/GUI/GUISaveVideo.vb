@@ -268,7 +268,6 @@ Protected ctlCancelButton As GUIButtonControl = Nothing
                 MyLog.Info("Der Dateiname ist noch nicht vorhanden und kann verwendet werden.")
             End If
             MyLog.Info("Das neue Video wird unter {0} gespeichert!!", AktRecToCut.SavingFilename)
-            MsgBox(AktRecToCut.SavingFilename)
             Try
                 VRD.StartVideoSave(AktRecToCut.SavingFilename)
                 ctlStatusLabel.Visible = True

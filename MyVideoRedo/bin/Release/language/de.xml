@@ -79,7 +79,9 @@
   <string Field="GroupOnPlayCaption">Während der Wiedergabe</string>
   <string Field="GroupRecordingSettingCaption">Pfadeinstellungen</string>
   <string Field="GroupStringSettingCaption">Dateibenennungseinstellungen</string>
- 
+  <string Field="GroupTVSuiteProfile As">Standard Profil</string>
+  <string Field="GroupTVSuiteProfileH264">Standard Profil H.264</string>
+
   <!--H-->
   <string Field="HelpSetEndmarker">Wenn diese Option aktiviert ist wird beim laden des Videos ein StartCut erstellt. Sollte aktiviert sein wenn eine Vorlaufzeit für Aufnahmen eingestellt ist.</string>
   <string Field="HelpSetStartmarker">Wenn diese Option aktiviert ist wird beim speichern des Videos ein EndCut automatisch erstellt sofern nicht vorhanden. Sollte aktiviert sein wenn eine Nachlaufzeit für Aufnahmen eingestellt ist.</string>

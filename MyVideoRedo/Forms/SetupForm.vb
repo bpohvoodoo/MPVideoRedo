@@ -322,13 +322,13 @@ Public Class SetupForm
                     End If
                 Next
             Else
-                MsgBox("On your system is TVsuite 4 not active")
+                MsgBox("TVsuite 4 is not active on your system")
                 Me.btnCheckTVsuite.Enabled = False
             End If
 
         Catch ex As SystemException
             If ex.Message.Contains("ActiveX") Then
-                MsgBox("There is no VideoRedo registered. If you have VideoRedo installed, please start VideoRedo one time as admin and try it again.")
+                MsgBox("VideoRedo is not registered. If you have VideoRedo installed, please start VideoRedo once as administrator and try it again.")
             End If
         Catch ex As Exception
             MsgBox("Error: " & ex.ToString)

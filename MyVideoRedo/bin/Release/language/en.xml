@@ -79,6 +79,8 @@
   <string Field="GroupOnPlayCaption">During Play</string>
   <string Field="GroupRecordingSettingCaption">Group Recording Settings</string>
   <string Field="GroupStringSettingCaption">Movie Folder Settings</string>
+  <string Field="GroupTVSuiteProfile As">Standard Profile</string>
+  <string Field="GroupTVSuiteProfileH264">Standard Profile H.264</string>
   
   <!--H-->
   <string Field="HelpSetEndmarker">If this option is on, the plugin will set automatic set a StartCut.</string>
