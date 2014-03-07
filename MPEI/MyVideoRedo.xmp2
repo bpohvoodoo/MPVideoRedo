@@ -373,7 +373,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
               <Description>Description of section, shown in under section title</Description>
             </SectionParam>
             <SectionParam Name="Header image">
-              <Value>..\MyVideoRedo\Resources\myVideoReDo.png</Value>
+              <Value>myVideoReDo.png</Value>
               <ValueType>File</ValueType>
               <Description>Image in upper right part</Description>
             </SectionParam>
@@ -409,7 +409,7 @@ Click Next to continue or Cancel to exit Setup.</Value>
               <Description>Description of section, shown in under section title</Description>
             </SectionParam>
             <SectionParam Name="Header image">
-              <Value>..\MyVideoRedo\Resources\myVideoReDo.png</Value>
+              <Value>myVideoReDo.png</Value>
               <ValueType>File</ValueType>
               <Description>Image in upper right part</Description>
             </SectionParam>
@@ -446,7 +446,7 @@ Please make sure you have "VideoRedo" installed and you have run it once at Admi
               <Description />
             </SectionParam>
             <SectionParam Name="Left part image">
-              <Value>..\MyVideoRedo\Resources\myVideoReDo.png</Value>
+              <Value>myVideoReDo.png</Value>
               <ValueType>File</ValueType>
               <Description />
             </SectionParam>
@@ -456,7 +456,7 @@ Please make sure you have "VideoRedo" installed and you have run it once at Admi
               <Description>Use radiobutton in place of combobox</Description>
             </SectionParam>
             <SectionParam Name="Header image">
-              <Value>..\MyVideoRedo\Resources\myVideoReDo.png</Value>
+              <Value>myVideoReDo.png</Value>
               <ValueType>File</ValueType>
               <Description>Image in upper right part</Description>
             </SectionParam>
@@ -495,24 +495,7 @@ Please make sure you have "VideoRedo" installed and you have run it once at Admi
     </Items>
   </Dependencies>
   <PluginDependencies>
-    <Items>
-      <PluginDependencyItem AssemblyName="MyVideoRedo.dll">
-        <CompatibleVersion>
-          <Items>
-            <CompatibleVersionItem>
-              <MinRequiredVersion>1.2.0.0</MinRequiredVersion>
-              <DesignedForVersion>1.4.0.0</DesignedForVersion>
-            </CompatibleVersionItem>
-          </Items>
-        </CompatibleVersion>
-        <SubSystemsUsed>
-          <Items>
-            <SubSystemItem Name="MP.Config" />
-            <SubSystemItem Name="MP.SkinEngine" />
-          </Items>
-        </SubSystemsUsed>
-      </PluginDependencyItem>
-    </Items>
+    <Items />
   </PluginDependencies>
   <GeneralInfo>
     <Name>MyVideoRedo</Name>
@@ -582,12 +565,16 @@ aufnahme,videoredo,nofear23m,bpohvoodoo</Tags>
  If have .dll extension used like MP plugin configuration</Description>
         </SectionParam>
         <SectionParam Name="Online Screenshots">
-          <Value>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config1_EN.png;https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config2_EN.pnghttps://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config3_EN.pnghttps://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config4_EN.pnghttps://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config5_EN.png;</Value>
+          <Value>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config1_EN.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config2_EN.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config3_EN.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config4_EN.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config5_EN.png</Value>
           <ValueType>String</ValueType>
           <Description>Online stored screenshot urls separated by ; </Description>
         </SectionParam>
         <SectionParam Name="Force to uninstall on update">
-          <Value>NO</Value>
+          <Value>YES</Value>
           <ValueType>Bool</ValueType>
           <Description>Show dialog and force to uninstall previous version when updating an extension. Should only be disabled if you are using an NSIS/MSI installer.</Description>
         </SectionParam>
@@ -883,13 +870,6 @@ aufnahme,videoredo,nofear23m,bpohvoodoo</Tags>
         <ZipFileName>Installer{CopyFile}\{38320677-31a0-4a16-be94-48ffe623e9aa}-myVideoReDo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
-      <FileItem InstallType="CopyFile" SystemFile="true" Modified="true">
-        <Param1 />
-        <UpdateOption>OverwriteIfOlder</UpdateOption>
-        <LocalFileName>..\MyVideoRedo\Resources\myVideoReDo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{516f529b-005c-4bde-b02a-01e9ae8c2e72}-myVideoReDo.png</ZipFileName>
-        <DestinationFilename />
-      </FileItem>
     </Items>
   </UniqueFileList>
   <ProjectSettings>
@@ -916,7 +896,7 @@ aufnahme,videoredo,nofear23m,bpohvoodoo</Tags>
       </FolderGroup>
     </FolderGroups>
     <ProjectFilename>MyVideoRedo.xmp2</ProjectFilename>
-    <UpdatePath1>D:\GitHub\MPVideoRedo\mpvideoredo\MPEI\MPEIUpdateXML.xml</UpdatePath1>
+    <UpdatePath1>D:\GitHub\MPVideoRedo\MPEI\MPEIUpdateXML.xml</UpdatePath1>
     <UpdatePath2 />
     <UpdatePath3 />
   </ProjectSettings>
