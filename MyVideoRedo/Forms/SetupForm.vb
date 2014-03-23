@@ -42,6 +42,8 @@ Public Class SetupForm
         HelpConfig.SetConfigString(ConfigKey.ProfileDetails, Me.chkDisableProfileDetails.Checked)
         HelpConfig.SetConfigString(ConfigKey.AlwaysKeepOriginalFile, Me.chkAlwaysKeepOriginalFile.Checked)
         HelpConfig.SetConfigString(ConfigKey.AlwaysKeepCuts, Me.chkAlwaysKeepCuts.Checked)
+        HelpConfig.SetConfigString(ConfigKey.AlwaysRefreshMoviestripThumbs, Me.chkAlwaysRefreshMoviestripThumbs.Checked)
+        HelpConfig.SetConfigString(ConfigKey.AlwaysRefreshMoviestripThumbsDelay, Me.numAlwaysRefreshMoviestripThumbsDelay.Value)
     End Sub
 
     Private Sub SetupForm_Load(ByVal sender As Object, ByVal e As System.EventArgs) Handles Me.Load
@@ -73,6 +75,8 @@ Public Class SetupForm
         Me.chkDisableProfileDetails.Checked = HelpConfig.GetConfigString(ConfigKey.ProfileDetails)
         Me.chkAlwaysKeepCuts.Checked = HelpConfig.GetConfigString(ConfigKey.AlwaysKeepCuts)
         Me.chkAlwaysKeepOriginalFile.Checked = HelpConfig.GetConfigString(ConfigKey.AlwaysKeepOriginalFile)
+        Me.chkAlwaysRefreshMoviestripThumbs.Checked = HelpConfig.GetConfigString(ConfigKey.AlwaysRefreshMoviestripThumbs)
+        Me.numAlwaysRefreshMoviestripThumbsDelay.Value = HelpConfig.GetConfigString(ConfigKey.AlwaysRefreshMoviestripThumbsDelay)
         Replacer = Replacer.Load()
         'For Each item In Replacer.ReplacerList
         '    MsgBox(item.OriginalString & " - " & item.ReplaceString)
@@ -87,84 +91,92 @@ Public Class SetupForm
     Private Sub TranslateSetupForm()
         Translator.TranslateSkin()
         Me.Text = My.Application.Info.Title
-
         Me.tabCommon1.Text = Translation.GeneralOptions1
-        Me.tabCommon2.Text = Translation.GeneralOptions2
-        Me.tabSeekSteps.Text = Translation.ConfigureSeekSteps
-        Me.tabTVSuite.Text = Translation.TVSuite
-        Me.lblModulName.Text = Translation.ModuleName
-        Me.tabReplacementStrings.Text = Translation.EditReplacementString
-        Me.GroupBoxRecordings.Text = Translation.GroupRecordingSettingCaption
         Me.GroupBoxModuleName.Text = Translation.GroupModuleName
+        Me.lblModulName.Text = Translation.ModuleName
+        Me.GroupBoxRecordings.Text = Translation.GroupRecordingSettingCaption
         Me.lblRecPath.Text = Translation.LabelRecordingsPath
-        Me.lblSavePath.Text = Translation.LabelSavePath
         Me.btnRecDialog.Text = Translation.SearchFolder
+        Me.lblSavePath.Text = Translation.LabelSavePath
         Me.bntSaveDialog.Text = Translation.SearchFolder
+        Me.RecDialog.Description = Translation.RecordingDialogDescription
+        Me.SaveDialog.Description = Translation.SaveDialogDescription
+        Me.GroupBoxSaveSettings.Text = Translation.GroupStringSettingCaption
+
+        Me.chkCreateMovieFolder.Text = Translation.CreateMovieSubfolder
+        Me.lblParseMoviefile.Text = Translation.ParseMovieFileLabel
+        Me.chkCreateSeriesFolder.Text = Translation.CreateSeriesSubfolder
+        Me.lblParseSeriesFile.Text = Translation.ParseSeriesFileLabel
+        Me.btnShowParseStrings.Text = Translation.ShowFileParserStrings
+
+        Me.tabCommon2.Text = Translation.GeneralOptions2
         Me.GroupBoxCutSettings.Text = Translation.GroupCutSettingCaption
         Me.chkAutoStartmarker.Text = Translation.StartCutAtStart
         Me.chkAutoEndmarker.Text = Translation.AutoEndCutLabel
-        Me.GroupBoxSaveSettings.Text = Translation.GroupStringSettingCaption
-        Me.btnShowParseStrings.Text = Translation.ShowFileParserStrings
-        Me.lblParseMoviefile.Text = Translation.ParseMovieFileLabel
-        Me.lblParseSeriesFile.Text = Translation.ParseSeriesFileLabel
-        Me.GroupBoxEditReplacementString.Text = Translation.EditReplacementString
-        Me.btnAddReplaceString.Text = Translation.AddReplaceString
-        Me.btnDelReplaceString.Text = Translation.DelReplaceString
-        Me.GroupBoxOnPlay.Text = Translation.GroupOnPlayCaption
-        Me.GroupBoxOnPause.Text = Translation.GroupOnPauseCaption
-        Me.lblconfigureSeekSteps.Text = Translation.ConfigureSeekSteps
-        Me.lblBackPause.Text = Translation.RewindStep
-        Me.lblFFWPause.Text = Translation.ForwardStep
-        Me.lblSkipBackPlay.Text = Translation.Rewind
-        Me.lblSkipFFWPlay.Text = Translation.Forward
-        Me.lblSkipPart1Pause.Text = String.Format(Translation.Step, "1")
-        Me.lblSkipPart2Pause.Text = String.Format(Translation.Step, "2")
-        Me.lblSkipPart3Pause.Text = String.Format(Translation.Step, "3")
-        Me.lblSkipPart1Play.Text = String.Format(Translation.Step, "1")
-        Me.lblSkipPart2Play.Text = String.Format(Translation.Step, "2")
-        Me.lblSkipPart3Play.Text = String.Format(Translation.Step, "3")
-        Me.lblOriginalString.Text = Translation.OriginalString
-        Me.lblReplacementString.Text = Translation.ReplacementString
-        Me.txtFrames1.Text = Translation.Frames
-        Me.txtFrames2.Text = Translation.Frames
-        Me.txtFrames3.Text = Translation.Frames
-        Me.txtFrames4.Text = Translation.Frames
-        Me.txtFrames5.Text = Translation.Frames
-        Me.txtFrames6.Text = Translation.Frames
-        Me.txtSeconds1.Text = Translation.Seconds
-        Me.txtSeconds2.Text = Translation.Seconds
-        Me.txtSeconds3.Text = Translation.Seconds
-        Me.txtSeconds4.Text = Translation.Seconds
-        Me.txtSeconds5.Text = Translation.Seconds
-        Me.txtSeconds6.Text = Translation.Seconds
-        Me.RecDialog.Description = Translation.RecordingDialogDescription
-        Me.SaveDialog.Description = Translation.SaveDialogDescription
-        Me.chkCreateMovieFolder.Text = Translation.CreateMovieSubfolder
-        Me.chkCreateSeriesFolder.Text = Translation.CreateSeriesSubfolder
-        Me.lblDescriptionTVsuite.Text = Translation.DescriptionTVsuiteProfiles
-        Me.btnCheckTVsuite.Text = Translation.ButtonCheckTVsuite4
-        Me.chkDebugMode.Text = Translation.DebugMode
+        Me.GroupBoxDialogs.Text = Translation.GroupDialogs
         Me.chkDisableProfileDetails.Text = Translation.DisableProfileDetails
         Me.chkAlwaysKeepCuts.Text = Translation.AlwaysKeepCuts
         Me.chkAlwaysKeepOriginalFile.Text = Translation.AlwaysKeepOriginalFile
-        Me.GroupBoxDialogs.Text = Translation.GroupDialogs
+        Me.GroupAlwaysRefreshMoviestripThumbs.Text = Translation.GroupAlwaysRefreshMoviestripThumbs
+        Me.chkAlwaysRefreshMoviestripThumbs.Text = Translation.AlwaysRefreshMoviestripThumbs
+        Me.lblAlwaysRefreshMoviestripThumbsDelay.Text = Translation.AlwaysRefreshMoviestripThumbsDelay
+        Me.lblSeconds.Text = Translation.Seconds
+
+        Me.tabSeekSteps.Text = Translation.ConfigureSeekSteps
+        Me.lblconfigureSeekSteps.Text = Translation.ConfigureSeekSteps
+        Me.GroupBoxOnPlay.Text = Translation.GroupOnPlayCaption
+        Me.lblSkipBackPlay.Text = Translation.Rewind
+        Me.lblSkipFFWPlay.Text = Translation.Forward
+        Me.lblSkipPart1Play.Text = String.Format(Translation.Step, "1")
+        Me.lblSkipPart2Play.Text = String.Format(Translation.Step, "2")
+        Me.lblSkipPart3Play.Text = String.Format(Translation.Step, "3")
+        Me.lblSeconds1.Text = Translation.Seconds
+        Me.lblSeconds2.Text = Translation.Seconds
+        Me.lblSeconds3.Text = Translation.Seconds
+        Me.lblSeconds4.Text = Translation.Seconds
+        Me.lblSeconds5.Text = Translation.Seconds
+        Me.lblSeconds6.Text = Translation.Seconds
+        Me.GroupBoxOnPause.Text = Translation.GroupOnPauseCaption
+        Me.lblBackPause.Text = Translation.RewindStep
+        Me.lblFFWPause.Text = Translation.ForwardStep
+        Me.lblSkipPart1Pause.Text = String.Format(Translation.Step, "1")
+        Me.lblSkipPart2Pause.Text = String.Format(Translation.Step, "2")
+        Me.lblSkipPart3Pause.Text = String.Format(Translation.Step, "3")
+        Me.lblFrames1.Text = Translation.Frames
+        Me.lblFrames2.Text = Translation.Frames
+        Me.lblFrames3.Text = Translation.Frames
+        Me.lblFrames4.Text = Translation.Frames
+        Me.lblFrames5.Text = Translation.Frames
+        Me.lblFrames6.Text = Translation.Frames
+
+        Me.tabReplacementStrings.Text = Translation.EditReplacementString
+        Me.GroupBoxEditReplacementString.Text = Translation.EditReplacementString
+        Me.lblOriginalString.Text = Translation.OriginalString
+        Me.lblReplacementString.Text = Translation.ReplacementString
+        Me.btnAddReplaceString.Text = Translation.AddReplaceString
+        Me.btnDelReplaceString.Text = Translation.DelReplaceString
+
+        Me.tabTVSuite.Text = Translation.TVSuite
+        Me.lblDescriptionTVsuite.Text = Translation.DescriptionTVsuiteProfiles
+        Me.btnCheckTVsuite.Text = Translation.ButtonCheckTVsuite4
+        Me.chkDebugMode.Text = Translation.DebugMode
         Me.GroupBoxTVsuiteProfile.Text = Translation.GroupTVSuiteProfile
-        Me.GroupBoxTVsuiteProfileH264.Text = Translation.GroupTVSuiteProfileH264
         Me.txtEncodingtype.Text = Translation.Encodingtype
-        Me.txtEncodingtypeH264.Text = Translation.Encodingtype
         Me.txtFiletype.Text = Translation.Filetype
-        Me.txtFiletypeH264.Text = Translation.Filetype
         Me.txtResolution.Text = Translation.Resolution
-        Me.txtResolutionH264.Text = Translation.Resolution
         Me.txtRatio.Text = Translation.Ratio
-        Me.txtRatioH264.Text = Translation.Ratio
         Me.txtDeinterlacemode.Text = Translation.Deinterlacemode
-        Me.txtDeinterlacemodeH264.Text = Translation.Deinterlacemode
         Me.txtFramerate.Text = Translation.Framerate
+        Me.GroupBoxTVsuiteProfileH264.Text = Translation.GroupTVSuiteProfileH264
+        Me.txtEncodingtypeH264.Text = Translation.Encodingtype
+        Me.txtFiletypeH264.Text = Translation.Filetype
+        Me.txtResolutionH264.Text = Translation.Resolution
+        Me.txtRatioH264.Text = Translation.Ratio
+        Me.txtDeinterlacemodeH264.Text = Translation.Deinterlacemode
         Me.txtFramerateH264.Text = Translation.Framerate
     End Sub
 
-    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddReplaceString.Click
+    Private Sub btnAddReplaceString_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnAddReplaceString.Click
 
         Dim ri As New ReplacesStrings
         ri.OriginalString = Me.TextBox4.Text
@@ -182,7 +194,7 @@ Public Class SetupForm
 
     End Sub
 
-    Private Sub Button5_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelReplaceString.Click
+    Private Sub btnDelReplaceString_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnDelReplaceString.Click
         Replacer.ReplacerList.RemoveAt(Me.DataGridView1.SelectedRows(0).Index)
         Replacer.Save()
         Replacer = Replacer.Load()
@@ -194,7 +206,7 @@ Public Class SetupForm
         info.Show()
     End Sub
 
-    Private Sub LinkLabel1_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles lblDonate.LinkClicked
+    Private Sub lblDonate_LinkClicked(ByVal sender As System.Object, ByVal e As System.Windows.Forms.LinkLabelLinkClickedEventArgs) Handles lblDonate.LinkClicked
         Dim p As Process = Process.Start("")
     End Sub
 
@@ -304,20 +316,20 @@ Public Class SetupForm
                 Me.btnCheckTVsuite.Enabled = False
                 Dim ProfileList As List(Of String) = myVRD.GetProfileList
                 For Each item In ProfileList
-                    Me.ComboBox1.Items.Add(item)
-                    Me.ComboBoxH264.Items.Add(item)
+                    Me.cbxSavingProfile.Items.Add(item)
+                    Me.cbxSavingProfileH264.Items.Add(item)
                 Next
                 Me.GroupBoxTVsuiteProfile.Visible = True
                 Me.GroupBoxTVsuiteProfileH264.Visible = True
-                For Each item In ComboBox1.Items
+                For Each item In cbxSavingProfile.Items
                     If item = HelpConfig.GetConfigString(ConfigKey.TVsuiteProfile) Then
-                        ComboBox1.SelectedItem = item
+                        cbxSavingProfile.SelectedItem = item
                         Exit For
                     End If
                 Next
-                For Each item In ComboBoxH264.Items
+                For Each item In cbxSavingProfileH264.Items
                     If item = HelpConfig.GetConfigString(ConfigKey.TVsuiteProfileH264) Then
-                        ComboBoxH264.SelectedItem = item
+                        cbxSavingProfileH264.SelectedItem = item
                         Exit For
                     End If
                 Next
@@ -339,15 +351,15 @@ Public Class SetupForm
         End Try
     End Sub
 
-    Private Sub ComboBox1_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboBox1.SelectedIndexChanged
+    Private Sub cbxSavingProfile_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles cbxSavingProfile.SelectedIndexChanged
         Me.Cursor = Windows.Forms.Cursors.WaitCursor
-        HelpConfig.SetConfigString(ConfigKey.TVsuiteProfile, Me.ComboBox1.Text)
+        HelpConfig.SetConfigString(ConfigKey.TVsuiteProfile, Me.cbxSavingProfile.Text)
         Dim AktProfile As VideoReDo.VRDProfileInfo
-        AktProfile = myVRD.GetProfileInfo(Me.ComboBox1.Text)
+        AktProfile = myVRD.GetProfileInfo(Me.cbxSavingProfile.Text)
         'myVRD.AktSavingProfile = Me.ComboBox1.Text
 
         Me.lblEncodingtype.Text = AktProfile.Encodingtype
-        Me.lblFileType.Text = AktProfile.DateiType
+        Me.lblFileType.Text = AktProfile.Filetype
         Me.lblRatio.Text = AktProfile.Ratio
         Me.lblDeinterlacemode.Text = AktProfile.DeintarlaceModus
         Me.lblFramerate.Text = AktProfile.FrameRate
@@ -355,15 +367,15 @@ Public Class SetupForm
         Me.Cursor = Windows.Forms.Cursors.Default
     End Sub
 
-    Private Sub ComboBoxH264_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboBoxH264.SelectedIndexChanged
+    Private Sub cbxSavingProfileH264_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxSavingProfileH264.SelectedIndexChanged
         Me.Cursor = Windows.Forms.Cursors.WaitCursor
-        HelpConfig.SetConfigString(ConfigKey.TVsuiteProfileH264, Me.ComboBoxH264.Text)
+        HelpConfig.SetConfigString(ConfigKey.TVsuiteProfileH264, Me.cbxSavingProfileH264.Text)
         Dim AktProfile As VideoReDo.VRDProfileInfo
-        AktProfile = myVRD.GetProfileInfo(Me.ComboBoxH264.Text)
+        AktProfile = myVRD.GetProfileInfo(Me.cbxSavingProfileH264.Text)
         'myVRD.AktSavingProfile = Me.ComboBoxH264.Text
 
         Me.lblEncodingtypeH264.Text = AktProfile.Encodingtype
-        Me.lblFileTypeH264.Text = AktProfile.DateiType
+        Me.lblFileTypeH264.Text = AktProfile.Filetype
         Me.lblRatioH264.Text = AktProfile.Ratio
         Me.lblDeinterlacemodeH264.Text = AktProfile.DeintarlaceModus
         Me.lblFramerateH264.Text = AktProfile.FrameRate

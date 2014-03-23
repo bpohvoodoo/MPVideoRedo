@@ -19,6 +19,7 @@ Public Class VideoReDo
     Public Event SaveVideoStart(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
     Public Event SaveVideoProgressCanged(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
     Public Event SaveVideoFinished(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
+    Public Event SaveVideoAborted(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
     Public Event QuickStreamFixNeeded(sender As Object, e As EventArgs)
 
 
@@ -82,15 +83,10 @@ Public Class VideoReDo
         End Set
     End Property
 
-    Private mOutputInProgress As Boolean = False
-    Public Property OutputInProgress() As Boolean
+    Public ReadOnly Property OutputInProgress() As Boolean
         Get
-            Return mOutputInProgress
+            Return VRD.IsOutputInProgress
         End Get
-        Set(ByVal value As Boolean)
-            mOutputInProgress = value
-
-        End Set
     End Property
 
     Private mMediaToCut As String
@@ -109,15 +105,28 @@ Public Class VideoReDo
     Private mCutMarker As New List(Of Long)
     Public Property CutMarkerList() As List(Of Long)
         Get
-            'mCutMarker.Clear()
-            'For i As Integer = 1 To VRD.GetCutSceneListCount
-            '    mCutMarker.Add(GetCutFromList(VRD.GetCutSceneListCount - 1, CutterFlag.StartFlag))
-            '    mCutMarker.Add(GetCutFromList(VRD.GetCutSceneListCount - 1, CutterFlag.EndFlag))
-            'Next
             Return mCutMarker
         End Get
         Set(ByVal value As List(Of Long))
             mCutMarker = value
+        End Set
+    End Property
+
+    Public Property LoadCutMarkerList() As List(Of Long)
+        Get
+
+            Dim CutMarker As New List(Of Long)
+            For i As Integer = 0 To VRD.GetCutSceneListCount - 1
+                CutMarker.Add(GetCutFromList(i, CutterFlag.StartFlag))
+                CutMarker.Add(GetCutFromList(i, CutterFlag.EndFlag))
+            Next
+            If mCutMarker.Count Mod 2 = 1 Then
+                CutMarker.Add(mCutMarker(mCutMarker.Count - 1))
+            End If
+            mCutMarker = CutMarker
+            Return mCutMarker
+        End Get
+        Set(ByVal value As List(Of Long))
         End Set
     End Property
 
@@ -137,7 +146,7 @@ Public Class VideoReDo
             Return mAktSavingProfile
         End Get
         Set(ByVal value As String)
-            If value <> "Nothing" Then mAktSavingProfile = value '.ToLower
+            If value <> "Nothing" Then mAktSavingProfile = value
         End Set
     End Property
 
@@ -172,17 +181,11 @@ Public Class VideoReDo
                 Exit For
             End If
         Next
-
         Dim ProfileString As String = VRD.GetProfileXML(ProfileIndex)
-
         Dim ProfileXML As New Xml.XmlDocument
         ProfileXML.LoadXml(ProfileString)
         Dim FileType As Xml.XmlNodeList = ProfileXML.GetElementsByTagName("FileType")
-
-
-
-
-        AktProfile.DateiType = FileType.Item(0).InnerText
+        AktProfile.Filetype = FileType.Item(0).InnerText
         Dim VideoAttributes As Xml.XmlNodeList = ProfileXML.GetElementsByTagName("VideoAttributes")
         For Each Attribute In VideoAttributes
             Dim InfoNodes As Xml.XmlNodeList
@@ -204,20 +207,20 @@ Public Class VideoReDo
             Next
         Next
         'I-Pod, IPhone, Sony PSP
-        If AktProfile.DateiType.Contains("MP4") Then
-            AktProfile.DateiType = "MP4"
+        If AktProfile.Filetype.Contains("MP4") Then
+            AktProfile.Filetype = "MP4"
         End If
         'Mpeg2 Elementary
-        If AktProfile.DateiType = "Elementary" And AktProfile.Encodingtype = "MPEG2" Then
-            AktProfile.DateiType = "M2V"
+        If AktProfile.Filetype = "Elementary" And AktProfile.Encodingtype = "MPEG2" Then
+            AktProfile.Filetype = "M2V"
         End If
         'H264 Elementary Stream
-        If AktProfile.DateiType = "Elementary" And AktProfile.Encodingtype = "H264" Then
-            AktProfile.DateiType = "H264"
+        If AktProfile.Filetype = "Elementary" And AktProfile.Encodingtype = "H264" Then
+            AktProfile.Filetype = "H264"
         End If
         'Audio Only
-        If AktProfile.Encodingtype = "None" And AktProfile.DateiType = "Elementary" Then
-            AktProfile.DateiType = "MPA"
+        If AktProfile.Encodingtype = "None" And AktProfile.Filetype = "Elementary" Then
+            AktProfile.Filetype = "MPA"
         End If
         Return AktProfile
 
@@ -235,8 +238,6 @@ Public Class VideoReDo
             End If
         End Set
     End Property
-
-
 
 
     Public Sub AddMarker(ByVal Pos As Long)
@@ -289,8 +290,7 @@ Public Class VideoReDo
         If IO.File.Exists(VideoFile) Then
             IsInQuickStreamMode = DoQuickStreamFix
             Dim mFile As New IO.FileInfo(VideoFile)
-            If mFile.Extension.ToLower = ".ts" Or mFile.Extension.ToLower = ".mpeg" Or _
-            mFile.Extension = ".mpg" Then
+            If mFile.Extension.ToLower = ".ts" Or mFile.Extension.ToLower = ".mpeg" Or mFile.Extension = ".mpg" Then
                 If mFile.Length > 10000000 Then
                     mMediaToCut = VideoFile
                     If DoQuickStreamFix Then
@@ -298,9 +298,9 @@ Public Class VideoReDo
                     Else
                         VRD.FileOpen(VideoFile)
                     End If
-                    LoadedVideoDuration = VRD.GetProgramDuration
+                    LoadedVideoDuration = VRD.GetProgramDuration * 1000
                     If VRD.setcutmode(1) = 1 Then
-                        MyLog.DebugM("Cutmodus von VideoRedo erfolgreich auf CutMode gestellt")
+                        MyLog.DebugM("Cutmode von VideoRedo erfolgreich auf CutMode gestellt")
                     Else
                         MyLog.Warn("Cutmode von VideoRedo konnte nicht umgestellt werden.")
                     End If
@@ -340,9 +340,7 @@ Public Class VideoReDo
     Dim SeekStopWatchThread As Threading.Thread
 
     Public Function SeekToTime(ByVal Millisekunden, Optional BarPosition = 0) As Boolean
-        
         Dim sobj As New SeekingObject(Millisekunden, BarPosition)
-
         MyLog.DebugM("Starting SeekingInBackground Thread...")
         Dim SeekThread As New Threading.Thread(AddressOf SeekInBackground)
         'SeekThread.IsBackground = True
@@ -363,7 +361,7 @@ Public Class VideoReDo
         Return True
     End Function
 
-    Public Function MakeScreenshotToClipboard(ByVal MSek As Long, Optional ByVal Quali As ScreenshotQuali = 5, Optional BarPosition As Integer = 0) As Image
+    Public Function MakeScreenshotToClipboard(ByVal MSek As Long, Optional ByVal Quali As ScreenshotQuality = ScreenshotQuality.poor, Optional BarPosition As Integer = 0) As Image
 
         If VRD.IsScanInProgress Then
             If VRD.CaptureFrame(0, "", Quali) = True Then
@@ -395,7 +393,7 @@ Public Class VideoReDo
         Dim bmp2 As New Bitmap(20, 20)
         Return bmp2
     End Function
-    Public Function MakeScreenshot(ByVal MSek As Integer, ByVal FileName As String, Optional ByVal Quali As ScreenshotQuali = 5) As Boolean
+    Public Function MakeScreenshot(ByVal MSek As Integer, ByVal FileName As String, Optional ByVal Quali As ScreenshotQuality = ScreenshotQuality.poor) As Boolean
         If VRD.SeekToTimeMsec(MSek) = True Then
             If VRD.CaptureFrame(1, FileName, Quali) = True Then Return True Else Return False
         Else
@@ -403,7 +401,7 @@ Public Class VideoReDo
         End If
 
     End Function
-    Public Function MakeScreenshotImage(ByVal MSek As Integer, ByVal FileName As String, Optional ByVal Quali As ScreenshotQuali = 5) As Image
+    Public Function MakeScreenshotImage(ByVal MSek As Integer, ByVal FileName As String, Optional ByVal Quali As ScreenshotQuality = ScreenshotQuality.poor) As Image
         If VRD.SeekToTimeMsec(MSek) = True Then
             If VRD.CaptureFrame(1, FileName, Quali) = True Then
                 Return Image.FromFile(FileName)
@@ -423,17 +421,19 @@ Public Class VideoReDo
         Return VRD.GetCutSceneListData(Index + 1, CutArt)
     End Function
 
-    Private SetAdScanAbort As Boolean = False
+    Private AbortAdScan As Boolean = False
+    Public Sub AbortScan()
+        AbortAdScan = True
+        VRD.Pause()
+        VRD.AbortOutput()
+    End Sub
+
     Public Sub StartAdScan(ByVal FastSearch As Boolean, ByVal AutoCut As Boolean, Optional ByVal DisableDisplay As Boolean = True)
         Dim e As New AdDetectiveEventArgs
         Me.SeekToTime(0)
         If VRD.StartAdScan(IIf(FastSearch, 1, 0), IIf(AutoCut, 1, 0), IIf(DisableDisplay, 1, 0)) = True Then
-
             RaiseEvent AdScanStarted(Me, e)
             Dim LastCutterCount As Integer = 0
-
-
-            'Threading.Thread.Sleep(200)
             Do While VRD.IsScanInProgress
                 If VRD.GetCutSceneListCount > LastCutterCount Then
                     Threading.Thread.Sleep(200)
@@ -444,21 +444,14 @@ Public Class VideoReDo
                     mCutMarker.Add(GetCutFromList(VRD.GetCutSceneListCount - 1, CutterFlag.EndFlag))
                     LastCutterCount = VRD.GetCutSceneListCount
                     RaiseEvent AdScanCutAdded(Me, e1)
-
-
                 End If
                 ' Threading.Thread.Sleep(200)
-                If SetAdScanAbort Then
-                    VRD.Pause()
-                    VRD.AbortOutput()
-
+                If AbortAdScan Then
                     RaiseEvent AdScanAborted(Me, New AdDetectiveEventArgs)
-                    SetAdScanAbort = False
-
+                    AbortAdScan = False
                     Exit Sub
                 End If
             Loop
-
             RaiseEvent AdScanFinished(Me, e)
         Else
             Throw New Exception("Error on running 'AdDetective'")
@@ -466,45 +459,40 @@ Public Class VideoReDo
 
     End Sub
 
-    ''' <summary>
-    ''' Bricht den Scan ab und feuert den Event direkt danach
-    ''' </summary>
-    Public Sub AbortScan()
-        SetAdScanAbort = True
+    Private AbortSaving As Boolean = False
+    Public Sub AbortVideoSaving()
+        AbortSaving = True
+        VRD.Pause()
+        VRD.AbortOutput()
     End Sub
 
     Public Sub StartVideoSave(ByVal Filename As String)
-        OutputInProgress = True
-        Dim LastPercent As Double = 0
         If SaveFileAsEx(Filename, VideoSaveFormat.MPEGtivo) Then
             Dim e As New SaveVideoEvenArgs
-            'Threading.Thread.Sleep(2000)
             RaiseEvent SaveVideoStart(Me, e)
-            Do While VRD.IsOutputInProgress And AbortSaving = False
-                If LastPercent <= VRD.OutputPercentComplete Then
-                    e.PercentageComplete = VRD.OutputPercentComplete
-                    LastPercent = e.PercentageComplete
-                    RaiseEvent SaveVideoProgressCanged(Me, e)
-                    Threading.Thread.Sleep(500)
+            Threading.Thread.Sleep(2000)
+            Do While VRD.IsOutputInProgress
+                e.PercentageComplete = VRD.OutputPercentComplete
+                RaiseEvent SaveVideoProgressCanged(Me, e)
+                Threading.Thread.Sleep(500)
+                If AbortSaving = True Then
+                    RaiseEvent SaveVideoAborted(Me, New SaveVideoEvenArgs)
+                    AbortSaving = False
+                    e.PercentageComplete = 0
+                    Exit Sub
                 End If
             Loop
             e.PercentageComplete = 100
-            OutputInProgress = False
             RaiseEvent SaveVideoFinished(Me, e)
-            'If AbortSaving Then VRD.AbortOutput()
-            AbortSaving = False
         Else
             Throw New Exception("Video could not be saved.")
         End If
     End Sub
-    Private AbortSaving As Boolean = False
-    Public Sub AbortVideoSaving()
-        AbortSaving = True
-        VRD.AbortOutput()
-    End Sub
 
     Public Sub ClearAllSelections()
-        If VRD.ClearAllSelections() Then  Else Throw New Exception("Fehler beim löschen der Cutter und Scenenmarkierungen")
+        If Not VRD.ClearAllSelections() Then
+            Throw New Exception("Error on deleting the cutmarkers!")
+        End If
     End Sub
 
     Public Function SaveFileAsEx(ByVal Filename As String, Optional ByVal OutputType As VideoSaveFormat = 1) As Boolean
@@ -530,13 +518,13 @@ Public Class VideoReDo
         MPEGtivo = 7
     End Enum
 
-    Public Enum ScreenshotQuali As Integer
-        Original = 1
-        SehrGut = 2
-        Gut = 3
-        Mittel = 4
-        Schlecht = 5
-        SehrSchlacht = 6
+    Public Enum ScreenshotQuality As Integer
+        original = 1
+        verygood = 2
+        good = 3
+        middle = 4
+        poor = 5
+        verypoor = 6
         Thumbnail = 7
         MiniThumbnail = 8
     End Enum
@@ -550,11 +538,9 @@ Public Class VideoReDo
                 ' TODO: Anderen Zustand freigeben (verwaltete Objekte).
 
             End If
-
             System.Runtime.InteropServices.Marshal. _
             ReleaseComObject(VRD)
             VRD = Nothing
-
             ' TODO: Eigenen Zustand freigeben (nicht verwaltete Objekte).
             ' TODO: Große Felder auf NULL festlegen.
         End If
@@ -564,7 +550,7 @@ Public Class VideoReDo
     Public Structure VRDProfileInfo
         Dim Profilename As String
         Dim Encodingtype As String
-        Dim DateiType As String
+        Dim Filetype As String
         Dim Resolution As String
         Dim Ratio As String
         Dim DeintarlaceModus As String
@@ -597,7 +583,7 @@ Public Class VideoReDo
     Private Sub SeekInBackground(SeekObject As Object)
         Try
             Dim sObj As SeekingObject = DirectCast(SeekObject, SeekingObject)
-            MyLog.DebugM("Versuche zu Seeken auf Position: {0}", sObj.SeekTime.ToString)
+            MyLog.DebugM("Trying to seek position: {0}", sObj.SeekTime.ToString)
 
             Dim thSt As New Threading.ParameterizedThreadStart(Sub() CheckSeekingInBackground(SeekObject))
             Dim seekTr As New Threading.Thread(thSt)
@@ -614,7 +600,7 @@ Public Class VideoReDo
             Try
                 seekTr.Abort()
             Catch ex As Threading.ThreadAbortException
-                MyLog.DebugM("Der CheckSeekingThread wurde abgebrochen!!")
+                MyLog.DebugM("The CheckSeeking thread was aborted!")
             End Try
             'Try
             '    Threading.Thread.CurrentThread.Abort()
@@ -625,7 +611,7 @@ Public Class VideoReDo
             'Es kann vorkommen das der Thread noch nicht beendet ist wenn der Process gekillt wurde.
             'hier brauche ich nichts ausgeben ausser vieleicht eine Logausgabe
         Catch ex As Threading.ThreadAbortException
-            MyLog.DebugM("Der SeekingThread wurde abgebrochen!!")
+            MyLog.DebugM("The Seeking thread was aborted!")
         Catch ex As Exception
             MyLog.Info(ex.ToString)
         End Try
@@ -637,9 +623,6 @@ End Class
 
 Public Class SeekingObject
 
-    Public Sub New()
-
-    End Sub
 
     Public Sub New(ToTime As Long, OnBarPosition As Integer)
         Me.SeekTime = ToTime : Me.BarPosition = OnBarPosition
@@ -675,20 +658,11 @@ Public Class SeekingObject
             _BarPosition = value
         End Set
     End Property
-
-
-
-
 End Class
 
 
 Public Class SeekingEventArgs
     Inherits EventArgs
-
-    Public Sub New()
-
-    End Sub
-
     Public Sub New(Stat As enumStatus, ToTime As Long, ToBarPos As Integer)
         Me.Status = Stat : Me.Msek = ToTime : Me.FilmstripbarPosition = ToBarPos
     End Sub
@@ -723,43 +697,12 @@ Public Class SeekingEventArgs
         End Set
     End Property
 
-
-
-
     Public Enum enumStatus
         Erfolgreich
         Zeitüberlauf
-
     End Enum
 
 End Class
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Public Class AdDetectiveEventArgs
     Inherits EventArgs
@@ -816,22 +759,23 @@ Public Class AdDetectiveEventArgs
     End Function
 
 End Class
+
 Public Class SaveVideoEvenArgs
     Inherits EventArgs
 
-    Dim SaveStarTime As New Stopwatch
-    Dim CalcRestTime As String = Translation.CalculateTimeLeft
+    Dim SaveStartTime As New Stopwatch
+    Dim CalcTimeLeft As String = Translation.CalculateTimeLeft
 
 
     Public Sub New()
         Me.PercentageComplete = 0
-        SaveStarTime.Start()
+        SaveStartTime.Start()
 
     End Sub
 
-    Public ReadOnly Property RestZeit() As String
+    Public ReadOnly Property TimeLeft() As String
         Get
-            Return CalcRestTime
+            Return CalcTimeLeft
         End Get
     End Property
 
@@ -842,11 +786,14 @@ Public Class SaveVideoEvenArgs
         End Get
         Set(ByVal value As Double)
             mPercentageComplete = value
-            If value = 100 Then CalcRestTime = Translation.Complete
-            If value > 10 Then
-                Dim ZeitVerstrichen As Integer = SaveStarTime.ElapsedMilliseconds
-                Dim Gesamtzeit As Integer = (ZeitVerstrichen / value) * 100
-                CalcRestTime = FormatTime(Gesamtzeit - ZeitVerstrichen)
+            If value <= 10 Then
+                CalcTimeLeft = Translation.CalculateTimeLeft
+            ElseIf value = 100 Then
+                CalcTimeLeft = Translation.Complete
+            Else
+                Dim TimeRunning As Integer = SaveStartTime.ElapsedMilliseconds
+                Dim TotalTime As Integer = (TimeRunning / value) * 100
+                CalcTimeLeft = FormatTime(TotalTime - TimeRunning)
             End If
         End Set
     End Property

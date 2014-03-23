@@ -6,7 +6,7 @@ Imports System.Drawing
 Module CutBarhelper
 
     Friend MyCutbar As New CutBars.FilmStripBar
-    Friend myFilmstripBar As New CutBars.StandartCutBar
+    Friend myFilmstripBar As New CutBars.StandardCutBar
 
     Friend Sub LoadCutbar(ByVal BarProperties As PropertyCollection, ByVal VideoWindow As GUIVideoControl)
         MyLog.DebugM("Loading the Filmstripbar with properties of: ")

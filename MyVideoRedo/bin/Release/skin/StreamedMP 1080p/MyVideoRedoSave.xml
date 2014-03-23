@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--version="1.0" encoding="utf-8" standalone="yes"-->
 <window>
-  <id>1210</id>
+  <id>1211</id>
   <defaultcontrol>11</defaultcontrol>
   <allowoverlay>no</allowoverlay>
   <define>#header.label:VideoRedo</define>
@@ -12,8 +12,7 @@
     <!-- Background & StreamedMP Layout -->
     <import>common.time.xml</import>
 	<import>common.overlays.xml</import>
-	<import>myvideoredo.window.xml</import>
-	<import>myvideoredosave.info.xml</import>
+	<import>MyVideoRedo.window.xml</import>
 	<control>
       <type>image</type>
       <id>0</id>
@@ -230,11 +229,11 @@
       <onup>11</onup>
       <ondown>11</ondown>
       <posX>1504</posX>
-	  <width>390</width>
+	    <width>390</width>
       <posY>960</posY>
       <label>#MyVideoRedo.Translation.SaveVideo</label>
       <textalign>CENTER</textalign>
-	  <textYOff>1</textYOff>
+	    <textYOff>1</textYOff>
       <scrollStartDelaySec>1</scrollStartDelaySec>
       <scrollWrapString> | </scrollWrapString>
     </control>

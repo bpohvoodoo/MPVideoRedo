@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <window>
-    <id>1210</id>
+    <id>1211</id>
     <defaultcontrol>11</defaultcontrol>
     <allowoverlay>no</allowoverlay>
     <define>#header.label:#currentmodule</define>
@@ -149,7 +149,7 @@
           <id>0</id>
           <type>label</type>
           <posX>825</posX>
-          <posY>430</posY>
+          <posY>480</posY>
 		      <width>620</width>
           <label>#MyVideoRedo.Translation.SavingProfile:</label>
 		      <font>font10</font>
@@ -161,7 +161,7 @@
           <id>0</id>
           <type>label</type>
           <posX>1100</posX>
-          <posY>430</posY>
+          <posY>480</posY>
 		      <width>620</width>
           <label>#Saving.Profile</label>
           <font>font10</font>
@@ -172,7 +172,7 @@
       <id>0</id>
       <type>label</type>
       <posX>825</posX>
-      <posY>460</posY>
+      <posY>510</posY>
       <width>380</width>
       <label>#MyVideoRedo.Translation.Encodingtype</label>
       <font>font10</font>
@@ -184,7 +184,7 @@
       <id>0</id>
       <type>label</type>
       <posX>1100</posX>
-      <posY>460</posY>
+      <posY>510</posY>
       <width>380</width>
       <label>#Profile.Encodingtype</label>
       <font>font10</font>
@@ -195,7 +195,7 @@
       <id>0</id>
       <type>label</type>
       <posX>825</posX>
-      <posY>490</posY>
+      <posY>540</posY>
       <width>380</width>
       <label>#MyVideoRedo.Translation.Filetype</label>
       <font>font10</font>
@@ -207,7 +207,7 @@
       <id>0</id>
       <type>label</type>
       <posX>1100</posX>
-      <posY>490</posY>
+      <posY>540</posY>
       <width>380</width>
       <label>#Profile.Filetype</label>
       <font>font10</font>
@@ -218,7 +218,7 @@
       <id>0</id>
       <type>label</type>
       <posX>825</posX>
-      <posY>520</posY>
+      <posY>570</posY>
       <width>380</width>
       <label>#MyVideoRedo.Translation.Resolution</label>
       <font>font10</font>
@@ -230,7 +230,7 @@
       <id>0</id>
       <type>label</type>
       <posX>1100</posX>
-      <posY>520</posY>
+      <posY>570</posY>
       <width>380</width>
       <label>#Profile.Resolution</label>
       <font>font10</font>
@@ -241,7 +241,7 @@
       <id>0</id>
       <type>label</type>
       <posX>825</posX>
-      <posY>550</posY>
+      <posY>600</posY>
       <width>380</width>
       <label>#MyVideoRedo.Translation.Ratio</label>
       <font>font10</font>
@@ -253,7 +253,7 @@
       <id>0</id>
       <type>label</type>
       <posX>1100</posX>
-      <posY>550</posY>
+      <posY>600</posY>
       <width>380</width>
       <label>#Profile.Ratio</label>
       <font>font10</font>
@@ -264,7 +264,7 @@
       <id>0</id>
       <type>label</type>
       <posX>825</posX>
-      <posY>580</posY>
+      <posY>630</posY>
       <width>380</width>
       <label>#MyVideoRedo.Translation.Deinterlacemode</label>
       <font>font10</font>
@@ -276,7 +276,7 @@
       <id>0</id>
       <type>label</type>
       <posX>1100</posX>
-      <posY>580</posY>
+      <posY>630</posY>
       <width>380</width>
       <label>#Profile.Deinterlacemode</label>
       <font>font10</font>
@@ -287,7 +287,7 @@
       <id>0</id>
       <type>label</type>
       <posX>825</posX>
-      <posY>610</posY>
+      <posY>660</posY>
       <width>380</width>
       <label>#MyVideoRedo.Translation.Framerate</label>
       <font>font10</font>
@@ -299,7 +299,7 @@
       <id>0</id>
       <type>label</type>
       <posX>1100</posX>
-      <posY>610</posY>
+      <posY>660</posY>
       <width>380</width>
       <label>#Profile.Framerate</label>
       <font>font10</font>
@@ -316,7 +316,7 @@
           <onright>22</onright>
           <onup>15</onup>
           <ondown>16</ondown>
-          <posX>1700</posX>
+          <posX>825</posX>
           <posY>430</posY>
           <label>6029</label>
           <width>200</width>
@@ -327,89 +327,12 @@
     
     
     
-    
-        <!--Die Savingcontrols 3 x Label + Progressbar und Cancelbutton-->
-		   <control>
-          <id>12</id>
-          <description>SavingStatus Label</description>
-          <type>label</type>
-          <posX>825</posX>
-          <posY>700</posY>
-          <label>#MyVideoRedo.Translation.SaveCuttedVideo</label>
-		      <font>font10</font>
-          <align>left</align>
-          <textcolor>ff6FAFE1</textcolor>
-          <visible>False</visible>
-        </control>
-		
-    
-        <control>
-          <description>SavingProgress1</description>
-		      <id>0</id>
-          <type>label</type>
-          <posX>825</posX>
-          <posY>740</posY>
-          <label>#Saving.Progress.Label1</label>
-		      <visible>control.isvisible(12)</visible>
-        </control>
- 
-        <control>
-          <description>SavingProgress2</description>
-		      <id>0</id>
-          <type>label</type>
-          <posX>825</posX>
-          <posY>790</posY>
-          <label>#Saving.Progress.Label2</label>
-		      <visible>control.isvisible(12)</visible>
-        </control>
-	
-        <control>
-          <id>13</id>
-          <description>SavingProgressbar</description>
-          <type>progress</type>
-          <posX>825</posX>
-          <posY>850</posY>
-          <width>655</width>
-          <height>53</height>
-		      <visible>control.isvisible(12)</visible>
-        </control>
-	
-    
-        <control>
-		      <description>Cancel Button</description>
-          <id>22</id>
-          <type>button</type>
-  	      <onleft>22</onleft>
-		      <onright>22</onright>
-          <onup>22</onup>
-		      <ondown>22</ondown>
-          <posX>825</posX>
-          <posY>900</posY>
-          <label>510</label>
-          <width>300</width>
-          <textvalign>middle</textvalign>
-          <height>50</height>
-          <textalign>CENTER</textalign>
-		      <visible>control.isvisible(12)</visible>
-        </control>
-		
-        <control>
-          <id>52</id>
-          <type>animation</type>
-          <posX>1065</posX>
-          <posY>425</posY>
-          <width>96</width>
-          <height>96</height>
-          <textures>common.waiting.1.png;common.waiting.2.png;common.waiting.3.png;common.waiting.4.png;common.waiting.5.png;common.waiting.6.png;common.waiting.8.png</textures>
-          <Duration>0:0:01.5</Duration>
-		      <visible>control.isvisible(12)</visible>
-        </control>
+  
     
     
     
     
-    
-        <!--Savebutton - Nur sichtbar wenn nicht gespeichert wird-->
+        <!--Savebutton-->
         <control>
 		      <description>SaveButton</description>
           <id>16</id>
@@ -425,7 +348,6 @@
           <textvalign>middle</textvalign>
           <height>50</height>
           <textalign>CENTER</textalign>
-		      <visible>!control.isvisible(12)</visible>
         </control>
     
     

@@ -31,7 +31,7 @@ Public Class FilmStripBar
         End Get
         Set(ByVal value As List(Of Bitmap))
             Me.m_Filmbitmaps = value
-            Invalidate()
+            'Invalidate()
         End Set
     End Property
 

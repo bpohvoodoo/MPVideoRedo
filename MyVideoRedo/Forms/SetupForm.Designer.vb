@@ -65,6 +65,12 @@ Partial Class SetupForm
         Me.lblModulName = New System.Windows.Forms.Label()
         Me.txtModulName = New System.Windows.Forms.TextBox()
         Me.tabCommon2 = New System.Windows.Forms.TabPage()
+        Me.GroupAlwaysRefreshMoviestripThumbs = New System.Windows.Forms.GroupBox()
+        Me.lblSeconds = New System.Windows.Forms.Label()
+        Me.numAlwaysRefreshMoviestripThumbsDelay = New System.Windows.Forms.NumericUpDown()
+        Me.lblAlwaysRefreshMoviestripThumbsDelay = New System.Windows.Forms.Label()
+        Me.PictureBox4 = New System.Windows.Forms.PictureBox()
+        Me.chkAlwaysRefreshMoviestripThumbs = New System.Windows.Forms.CheckBox()
         Me.GroupBoxDialogs = New System.Windows.Forms.GroupBox()
         Me.chkAlwaysKeepOriginalFile = New System.Windows.Forms.CheckBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
@@ -79,35 +85,35 @@ Partial Class SetupForm
         Me.chkAutoStartmarker = New System.Windows.Forms.CheckBox()
         Me.tabSeekSteps = New System.Windows.Forms.TabPage()
         Me.GroupBoxOnPause = New System.Windows.Forms.GroupBox()
-        Me.txtFrames6 = New System.Windows.Forms.Label()
+        Me.lblFrames6 = New System.Windows.Forms.Label()
         Me.numBackPause3 = New System.Windows.Forms.NumericUpDown()
         Me.numFFWPause3 = New System.Windows.Forms.NumericUpDown()
         Me.lblSkipPart1Pause = New System.Windows.Forms.Label()
-        Me.txtFrames3 = New System.Windows.Forms.Label()
+        Me.lblFrames3 = New System.Windows.Forms.Label()
         Me.lblSkipPart2Pause = New System.Windows.Forms.Label()
         Me.lblSkipPart3Pause = New System.Windows.Forms.Label()
-        Me.txtFrames5 = New System.Windows.Forms.Label()
+        Me.lblFrames5 = New System.Windows.Forms.Label()
         Me.lblBackPause = New System.Windows.Forms.Label()
         Me.numFFWPause2 = New System.Windows.Forms.NumericUpDown()
         Me.lblFFWPause = New System.Windows.Forms.Label()
-        Me.txtFrames2 = New System.Windows.Forms.Label()
+        Me.lblFrames2 = New System.Windows.Forms.Label()
         Me.numBackPause1 = New System.Windows.Forms.NumericUpDown()
         Me.numBackPause2 = New System.Windows.Forms.NumericUpDown()
-        Me.txtFrames1 = New System.Windows.Forms.Label()
-        Me.txtFrames4 = New System.Windows.Forms.Label()
+        Me.lblFrames1 = New System.Windows.Forms.Label()
+        Me.lblFrames4 = New System.Windows.Forms.Label()
         Me.numFFWPause1 = New System.Windows.Forms.NumericUpDown()
         Me.GroupBoxOnPlay = New System.Windows.Forms.GroupBox()
-        Me.txtSeconds6 = New System.Windows.Forms.Label()
+        Me.lblSeconds6 = New System.Windows.Forms.Label()
         Me.numFFWPlay3 = New System.Windows.Forms.NumericUpDown()
-        Me.txtSeconds3 = New System.Windows.Forms.Label()
+        Me.lblSeconds3 = New System.Windows.Forms.Label()
         Me.numBackPlay3 = New System.Windows.Forms.NumericUpDown()
-        Me.txtSeconds5 = New System.Windows.Forms.Label()
+        Me.lblSeconds5 = New System.Windows.Forms.Label()
         Me.numFFWPlay2 = New System.Windows.Forms.NumericUpDown()
-        Me.txtSeconds2 = New System.Windows.Forms.Label()
+        Me.lblSeconds2 = New System.Windows.Forms.Label()
         Me.numBackPlay2 = New System.Windows.Forms.NumericUpDown()
-        Me.txtSeconds4 = New System.Windows.Forms.Label()
+        Me.lblSeconds4 = New System.Windows.Forms.Label()
         Me.numFFWPlay1 = New System.Windows.Forms.NumericUpDown()
-        Me.txtSeconds1 = New System.Windows.Forms.Label()
+        Me.lblSeconds1 = New System.Windows.Forms.Label()
         Me.numBackPlay1 = New System.Windows.Forms.NumericUpDown()
         Me.lblSkipFFWPlay = New System.Windows.Forms.Label()
         Me.lblSkipBackPlay = New System.Windows.Forms.Label()
@@ -138,7 +144,7 @@ Partial Class SetupForm
         Me.txtResolutionH264 = New System.Windows.Forms.Label()
         Me.txtFiletypeH264 = New System.Windows.Forms.Label()
         Me.txtEncodingtypeH264 = New System.Windows.Forms.Label()
-        Me.ComboBoxH264 = New System.Windows.Forms.ComboBox()
+        Me.cbxSavingProfileH264 = New System.Windows.Forms.ComboBox()
         Me.chkDebugMode = New System.Windows.Forms.CheckBox()
         Me.GroupBoxTVsuiteProfile = New System.Windows.Forms.GroupBox()
         Me.lblFramerate = New System.Windows.Forms.Label()
@@ -153,7 +159,7 @@ Partial Class SetupForm
         Me.txtResolution = New System.Windows.Forms.Label()
         Me.txtFiletype = New System.Windows.Forms.Label()
         Me.txtEncodingtype = New System.Windows.Forms.Label()
-        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.cbxSavingProfile = New System.Windows.Forms.ComboBox()
         Me.btnCheckTVsuite = New System.Windows.Forms.Button()
         Me.lblDescriptionTVsuite = New System.Windows.Forms.Label()
         Me.lblDonate = New System.Windows.Forms.LinkLabel()
@@ -194,6 +200,9 @@ Partial Class SetupForm
         Me.SplitContainer5.SuspendLayout()
         Me.GroupBoxModuleName.SuspendLayout()
         Me.tabCommon2.SuspendLayout()
+        Me.GroupAlwaysRefreshMoviestripThumbs.SuspendLayout()
+        CType(Me.numAlwaysRefreshMoviestripThumbsDelay, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBoxDialogs.SuspendLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -691,6 +700,7 @@ Partial Class SetupForm
         '
         'tabCommon2
         '
+        Me.tabCommon2.Controls.Add(Me.GroupAlwaysRefreshMoviestripThumbs)
         Me.tabCommon2.Controls.Add(Me.GroupBoxDialogs)
         Me.tabCommon2.Controls.Add(Me.GroupBoxCutSettings)
         Me.tabCommon2.Location = New System.Drawing.Point(4, 22)
@@ -699,6 +709,69 @@ Partial Class SetupForm
         Me.tabCommon2.TabIndex = 5
         Me.tabCommon2.Text = "tabCommon2"
         Me.tabCommon2.UseVisualStyleBackColor = True
+        '
+        'GroupAlwaysRefreshMoviestripThumbs
+        '
+        Me.GroupAlwaysRefreshMoviestripThumbs.Controls.Add(Me.lblSeconds)
+        Me.GroupAlwaysRefreshMoviestripThumbs.Controls.Add(Me.numAlwaysRefreshMoviestripThumbsDelay)
+        Me.GroupAlwaysRefreshMoviestripThumbs.Controls.Add(Me.lblAlwaysRefreshMoviestripThumbsDelay)
+        Me.GroupAlwaysRefreshMoviestripThumbs.Controls.Add(Me.PictureBox4)
+        Me.GroupAlwaysRefreshMoviestripThumbs.Controls.Add(Me.chkAlwaysRefreshMoviestripThumbs)
+        Me.GroupAlwaysRefreshMoviestripThumbs.Dock = System.Windows.Forms.DockStyle.Top
+        Me.GroupAlwaysRefreshMoviestripThumbs.Location = New System.Drawing.Point(0, 156)
+        Me.GroupAlwaysRefreshMoviestripThumbs.Name = "GroupAlwaysRefreshMoviestripThumbs"
+        Me.GroupAlwaysRefreshMoviestripThumbs.Size = New System.Drawing.Size(602, 52)
+        Me.GroupAlwaysRefreshMoviestripThumbs.TabIndex = 23
+        Me.GroupAlwaysRefreshMoviestripThumbs.TabStop = False
+        Me.GroupAlwaysRefreshMoviestripThumbs.Text = "GroupAlwaysRefreshMoviestripThumbs"
+        '
+        'lblSeconds
+        '
+        Me.lblSeconds.AutoSize = True
+        Me.lblSeconds.Location = New System.Drawing.Point(530, 28)
+        Me.lblSeconds.Name = "lblSeconds"
+        Me.lblSeconds.Size = New System.Drawing.Size(59, 13)
+        Me.lblSeconds.TabIndex = 10
+        Me.lblSeconds.Text = "lblSeconds"
+        '
+        'numAlwaysRefreshMoviestripThumbsDelay
+        '
+        Me.numAlwaysRefreshMoviestripThumbsDelay.Location = New System.Drawing.Point(482, 24)
+        Me.numAlwaysRefreshMoviestripThumbsDelay.Maximum = New Decimal(New Integer() {60, 0, 0, 0})
+        Me.numAlwaysRefreshMoviestripThumbsDelay.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        Me.numAlwaysRefreshMoviestripThumbsDelay.Name = "numAlwaysRefreshMoviestripThumbsDelay"
+        Me.numAlwaysRefreshMoviestripThumbsDelay.Size = New System.Drawing.Size(42, 20)
+        Me.numAlwaysRefreshMoviestripThumbsDelay.TabIndex = 9
+        Me.numAlwaysRefreshMoviestripThumbsDelay.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        '
+        'lblAlwaysRefreshMoviestripThumbsDelay
+        '
+        Me.lblAlwaysRefreshMoviestripThumbsDelay.AutoSize = True
+        Me.lblAlwaysRefreshMoviestripThumbsDelay.Location = New System.Drawing.Point(316, 27)
+        Me.lblAlwaysRefreshMoviestripThumbsDelay.Name = "lblAlwaysRefreshMoviestripThumbsDelay"
+        Me.lblAlwaysRefreshMoviestripThumbsDelay.Size = New System.Drawing.Size(200, 13)
+        Me.lblAlwaysRefreshMoviestripThumbsDelay.TabIndex = 8
+        Me.lblAlwaysRefreshMoviestripThumbsDelay.Text = "lblAlwaysRefreshMoviestripThumbsDelay"
+        '
+        'PictureBox4
+        '
+        Me.PictureBox4.Image = Global.MyVideoRedo.My.Resources.Resources.help
+        Me.PictureBox4.Location = New System.Drawing.Point(6, 24)
+        Me.PictureBox4.Name = "PictureBox4"
+        Me.PictureBox4.Size = New System.Drawing.Size(19, 17)
+        Me.PictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox4.TabIndex = 6
+        Me.PictureBox4.TabStop = False
+        '
+        'chkAlwaysRefreshMoviestripThumbs
+        '
+        Me.chkAlwaysRefreshMoviestripThumbs.AutoSize = True
+        Me.chkAlwaysRefreshMoviestripThumbs.Location = New System.Drawing.Point(31, 26)
+        Me.chkAlwaysRefreshMoviestripThumbs.Name = "chkAlwaysRefreshMoviestripThumbs"
+        Me.chkAlwaysRefreshMoviestripThumbs.Size = New System.Drawing.Size(200, 17)
+        Me.chkAlwaysRefreshMoviestripThumbs.TabIndex = 2
+        Me.chkAlwaysRefreshMoviestripThumbs.Text = "chkAlwaysRefreshMoviestripThumbs"
+        Me.chkAlwaysRefreshMoviestripThumbs.UseVisualStyleBackColor = True
         '
         'GroupBoxDialogs
         '
@@ -849,22 +922,22 @@ Partial Class SetupForm
         '
         'GroupBoxOnPause
         '
-        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames6)
+        Me.GroupBoxOnPause.Controls.Add(Me.lblFrames6)
         Me.GroupBoxOnPause.Controls.Add(Me.numBackPause3)
         Me.GroupBoxOnPause.Controls.Add(Me.numFFWPause3)
         Me.GroupBoxOnPause.Controls.Add(Me.lblSkipPart1Pause)
-        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames3)
+        Me.GroupBoxOnPause.Controls.Add(Me.lblFrames3)
         Me.GroupBoxOnPause.Controls.Add(Me.lblSkipPart2Pause)
         Me.GroupBoxOnPause.Controls.Add(Me.lblSkipPart3Pause)
-        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames5)
+        Me.GroupBoxOnPause.Controls.Add(Me.lblFrames5)
         Me.GroupBoxOnPause.Controls.Add(Me.lblBackPause)
         Me.GroupBoxOnPause.Controls.Add(Me.numFFWPause2)
         Me.GroupBoxOnPause.Controls.Add(Me.lblFFWPause)
-        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames2)
+        Me.GroupBoxOnPause.Controls.Add(Me.lblFrames2)
         Me.GroupBoxOnPause.Controls.Add(Me.numBackPause1)
         Me.GroupBoxOnPause.Controls.Add(Me.numBackPause2)
-        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames1)
-        Me.GroupBoxOnPause.Controls.Add(Me.txtFrames4)
+        Me.GroupBoxOnPause.Controls.Add(Me.lblFrames1)
+        Me.GroupBoxOnPause.Controls.Add(Me.lblFrames4)
         Me.GroupBoxOnPause.Controls.Add(Me.numFFWPause1)
         Me.GroupBoxOnPause.Location = New System.Drawing.Point(310, 40)
         Me.GroupBoxOnPause.Name = "GroupBoxOnPause"
@@ -873,14 +946,14 @@ Partial Class SetupForm
         Me.GroupBoxOnPause.TabStop = False
         Me.GroupBoxOnPause.Text = "GroupBoxOnPause"
         '
-        'txtFrames6
+        'lblFrames6
         '
-        Me.txtFrames6.AutoSize = True
-        Me.txtFrames6.Location = New System.Drawing.Point(234, 148)
-        Me.txtFrames6.Name = "txtFrames6"
-        Me.txtFrames6.Size = New System.Drawing.Size(58, 13)
-        Me.txtFrames6.TabIndex = 33
-        Me.txtFrames6.Text = "txtFrames6"
+        Me.lblFrames6.AutoSize = True
+        Me.lblFrames6.Location = New System.Drawing.Point(234, 148)
+        Me.lblFrames6.Name = "lblFrames6"
+        Me.lblFrames6.Size = New System.Drawing.Size(57, 13)
+        Me.lblFrames6.TabIndex = 33
+        Me.lblFrames6.Text = "lblFrames6"
         '
         'numBackPause3
         '
@@ -907,45 +980,45 @@ Partial Class SetupForm
         Me.lblSkipPart1Pause.AutoSize = True
         Me.lblSkipPart1Pause.Location = New System.Drawing.Point(9, 67)
         Me.lblSkipPart1Pause.Name = "lblSkipPart1Pause"
-        Me.lblSkipPart1Pause.Size = New System.Drawing.Size(45, 13)
+        Me.lblSkipPart1Pause.Size = New System.Drawing.Size(93, 13)
         Me.lblSkipPart1Pause.TabIndex = 17
-        Me.lblSkipPart1Pause.Text = "Label25"
+        Me.lblSkipPart1Pause.Text = "lblSkipPart1Pause"
         '
-        'txtFrames3
+        'lblFrames3
         '
-        Me.txtFrames3.AutoSize = True
-        Me.txtFrames3.Location = New System.Drawing.Point(132, 148)
-        Me.txtFrames3.Name = "txtFrames3"
-        Me.txtFrames3.Size = New System.Drawing.Size(58, 13)
-        Me.txtFrames3.TabIndex = 31
-        Me.txtFrames3.Text = "txtFrames3"
+        Me.lblFrames3.AutoSize = True
+        Me.lblFrames3.Location = New System.Drawing.Point(132, 148)
+        Me.lblFrames3.Name = "lblFrames3"
+        Me.lblFrames3.Size = New System.Drawing.Size(57, 13)
+        Me.lblFrames3.TabIndex = 31
+        Me.lblFrames3.Text = "lblFrames3"
         '
         'lblSkipPart2Pause
         '
         Me.lblSkipPart2Pause.AutoSize = True
         Me.lblSkipPart2Pause.Location = New System.Drawing.Point(9, 108)
         Me.lblSkipPart2Pause.Name = "lblSkipPart2Pause"
-        Me.lblSkipPart2Pause.Size = New System.Drawing.Size(45, 13)
+        Me.lblSkipPart2Pause.Size = New System.Drawing.Size(93, 13)
         Me.lblSkipPart2Pause.TabIndex = 18
-        Me.lblSkipPart2Pause.Text = "Label24"
+        Me.lblSkipPart2Pause.Text = "lblSkipPart2Pause"
         '
         'lblSkipPart3Pause
         '
         Me.lblSkipPart3Pause.AutoSize = True
         Me.lblSkipPart3Pause.Location = New System.Drawing.Point(9, 147)
         Me.lblSkipPart3Pause.Name = "lblSkipPart3Pause"
-        Me.lblSkipPart3Pause.Size = New System.Drawing.Size(45, 13)
+        Me.lblSkipPart3Pause.Size = New System.Drawing.Size(93, 13)
         Me.lblSkipPart3Pause.TabIndex = 19
-        Me.lblSkipPart3Pause.Text = "Label23"
+        Me.lblSkipPart3Pause.Text = "lblSkipPart3Pause"
         '
-        'txtFrames5
+        'lblFrames5
         '
-        Me.txtFrames5.AutoSize = True
-        Me.txtFrames5.Location = New System.Drawing.Point(234, 109)
-        Me.txtFrames5.Name = "txtFrames5"
-        Me.txtFrames5.Size = New System.Drawing.Size(58, 13)
-        Me.txtFrames5.TabIndex = 29
-        Me.txtFrames5.Text = "txtFrames5"
+        Me.lblFrames5.AutoSize = True
+        Me.lblFrames5.Location = New System.Drawing.Point(234, 109)
+        Me.lblFrames5.Name = "lblFrames5"
+        Me.lblFrames5.Size = New System.Drawing.Size(57, 13)
+        Me.lblFrames5.TabIndex = 29
+        Me.lblFrames5.Text = "lblFrames5"
         '
         'lblBackPause
         '
@@ -975,14 +1048,14 @@ Partial Class SetupForm
         Me.lblFFWPause.Text = "lblFFWPause"
         Me.lblFFWPause.TextAlign = System.Drawing.ContentAlignment.TopCenter
         '
-        'txtFrames2
+        'lblFrames2
         '
-        Me.txtFrames2.AutoSize = True
-        Me.txtFrames2.Location = New System.Drawing.Point(132, 109)
-        Me.txtFrames2.Name = "txtFrames2"
-        Me.txtFrames2.Size = New System.Drawing.Size(58, 13)
-        Me.txtFrames2.TabIndex = 27
-        Me.txtFrames2.Text = "txtFrames2"
+        Me.lblFrames2.AutoSize = True
+        Me.lblFrames2.Location = New System.Drawing.Point(132, 109)
+        Me.lblFrames2.Name = "lblFrames2"
+        Me.lblFrames2.Size = New System.Drawing.Size(57, 13)
+        Me.lblFrames2.TabIndex = 27
+        Me.lblFrames2.Text = "lblFrames2"
         '
         'numBackPause1
         '
@@ -1004,23 +1077,23 @@ Partial Class SetupForm
         Me.numBackPause2.TabIndex = 26
         Me.numBackPause2.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'txtFrames1
+        'lblFrames1
         '
-        Me.txtFrames1.AutoSize = True
-        Me.txtFrames1.Location = New System.Drawing.Point(132, 68)
-        Me.txtFrames1.Name = "txtFrames1"
-        Me.txtFrames1.Size = New System.Drawing.Size(58, 13)
-        Me.txtFrames1.TabIndex = 23
-        Me.txtFrames1.Text = "txtFrames1"
+        Me.lblFrames1.AutoSize = True
+        Me.lblFrames1.Location = New System.Drawing.Point(132, 68)
+        Me.lblFrames1.Name = "lblFrames1"
+        Me.lblFrames1.Size = New System.Drawing.Size(57, 13)
+        Me.lblFrames1.TabIndex = 23
+        Me.lblFrames1.Text = "lblFrames1"
         '
-        'txtFrames4
+        'lblFrames4
         '
-        Me.txtFrames4.AutoSize = True
-        Me.txtFrames4.Location = New System.Drawing.Point(234, 68)
-        Me.txtFrames4.Name = "txtFrames4"
-        Me.txtFrames4.Size = New System.Drawing.Size(58, 13)
-        Me.txtFrames4.TabIndex = 25
-        Me.txtFrames4.Text = "txtFrames4"
+        Me.lblFrames4.AutoSize = True
+        Me.lblFrames4.Location = New System.Drawing.Point(234, 68)
+        Me.lblFrames4.Name = "lblFrames4"
+        Me.lblFrames4.Size = New System.Drawing.Size(57, 13)
+        Me.lblFrames4.TabIndex = 25
+        Me.lblFrames4.Text = "lblFrames4"
         '
         'numFFWPause1
         '
@@ -1034,17 +1107,17 @@ Partial Class SetupForm
         '
         'GroupBoxOnPlay
         '
-        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds6)
+        Me.GroupBoxOnPlay.Controls.Add(Me.lblSeconds6)
         Me.GroupBoxOnPlay.Controls.Add(Me.numFFWPlay3)
-        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds3)
+        Me.GroupBoxOnPlay.Controls.Add(Me.lblSeconds3)
         Me.GroupBoxOnPlay.Controls.Add(Me.numBackPlay3)
-        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds5)
+        Me.GroupBoxOnPlay.Controls.Add(Me.lblSeconds5)
         Me.GroupBoxOnPlay.Controls.Add(Me.numFFWPlay2)
-        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds2)
+        Me.GroupBoxOnPlay.Controls.Add(Me.lblSeconds2)
         Me.GroupBoxOnPlay.Controls.Add(Me.numBackPlay2)
-        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds4)
+        Me.GroupBoxOnPlay.Controls.Add(Me.lblSeconds4)
         Me.GroupBoxOnPlay.Controls.Add(Me.numFFWPlay1)
-        Me.GroupBoxOnPlay.Controls.Add(Me.txtSeconds1)
+        Me.GroupBoxOnPlay.Controls.Add(Me.lblSeconds1)
         Me.GroupBoxOnPlay.Controls.Add(Me.numBackPlay1)
         Me.GroupBoxOnPlay.Controls.Add(Me.lblSkipFFWPlay)
         Me.GroupBoxOnPlay.Controls.Add(Me.lblSkipBackPlay)
@@ -1058,14 +1131,14 @@ Partial Class SetupForm
         Me.GroupBoxOnPlay.TabStop = False
         Me.GroupBoxOnPlay.Text = "GroupBoxOnPlay"
         '
-        'txtSeconds6
+        'lblSeconds6
         '
-        Me.txtSeconds6.AutoSize = True
-        Me.txtSeconds6.Location = New System.Drawing.Point(231, 153)
-        Me.txtSeconds6.Name = "txtSeconds6"
-        Me.txtSeconds6.Size = New System.Drawing.Size(66, 13)
-        Me.txtSeconds6.TabIndex = 16
-        Me.txtSeconds6.Text = "txtSeconds6"
+        Me.lblSeconds6.AutoSize = True
+        Me.lblSeconds6.Location = New System.Drawing.Point(231, 153)
+        Me.lblSeconds6.Name = "lblSeconds6"
+        Me.lblSeconds6.Size = New System.Drawing.Size(65, 13)
+        Me.lblSeconds6.TabIndex = 16
+        Me.lblSeconds6.Text = "lblSeconds6"
         '
         'numFFWPlay3
         '
@@ -1077,14 +1150,14 @@ Partial Class SetupForm
         Me.numFFWPlay3.TabIndex = 15
         Me.numFFWPlay3.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'txtSeconds3
+        'lblSeconds3
         '
-        Me.txtSeconds3.AutoSize = True
-        Me.txtSeconds3.Location = New System.Drawing.Point(129, 153)
-        Me.txtSeconds3.Name = "txtSeconds3"
-        Me.txtSeconds3.Size = New System.Drawing.Size(66, 13)
-        Me.txtSeconds3.TabIndex = 14
-        Me.txtSeconds3.Text = "txtSeconds3"
+        Me.lblSeconds3.AutoSize = True
+        Me.lblSeconds3.Location = New System.Drawing.Point(129, 153)
+        Me.lblSeconds3.Name = "lblSeconds3"
+        Me.lblSeconds3.Size = New System.Drawing.Size(65, 13)
+        Me.lblSeconds3.TabIndex = 14
+        Me.lblSeconds3.Text = "lblSeconds3"
         '
         'numBackPlay3
         '
@@ -1096,14 +1169,14 @@ Partial Class SetupForm
         Me.numBackPlay3.TabIndex = 13
         Me.numBackPlay3.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'txtSeconds5
+        'lblSeconds5
         '
-        Me.txtSeconds5.AutoSize = True
-        Me.txtSeconds5.Location = New System.Drawing.Point(231, 114)
-        Me.txtSeconds5.Name = "txtSeconds5"
-        Me.txtSeconds5.Size = New System.Drawing.Size(66, 13)
-        Me.txtSeconds5.TabIndex = 12
-        Me.txtSeconds5.Text = "txtSeconds5"
+        Me.lblSeconds5.AutoSize = True
+        Me.lblSeconds5.Location = New System.Drawing.Point(231, 114)
+        Me.lblSeconds5.Name = "lblSeconds5"
+        Me.lblSeconds5.Size = New System.Drawing.Size(65, 13)
+        Me.lblSeconds5.TabIndex = 12
+        Me.lblSeconds5.Text = "lblSeconds5"
         '
         'numFFWPlay2
         '
@@ -1115,14 +1188,14 @@ Partial Class SetupForm
         Me.numFFWPlay2.TabIndex = 11
         Me.numFFWPlay2.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'txtSeconds2
+        'lblSeconds2
         '
-        Me.txtSeconds2.AutoSize = True
-        Me.txtSeconds2.Location = New System.Drawing.Point(129, 114)
-        Me.txtSeconds2.Name = "txtSeconds2"
-        Me.txtSeconds2.Size = New System.Drawing.Size(66, 13)
-        Me.txtSeconds2.TabIndex = 10
-        Me.txtSeconds2.Text = "txtSeconds2"
+        Me.lblSeconds2.AutoSize = True
+        Me.lblSeconds2.Location = New System.Drawing.Point(129, 114)
+        Me.lblSeconds2.Name = "lblSeconds2"
+        Me.lblSeconds2.Size = New System.Drawing.Size(65, 13)
+        Me.lblSeconds2.TabIndex = 10
+        Me.lblSeconds2.Text = "lblSeconds2"
         '
         'numBackPlay2
         '
@@ -1134,14 +1207,14 @@ Partial Class SetupForm
         Me.numBackPlay2.TabIndex = 9
         Me.numBackPlay2.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'txtSeconds4
+        'lblSeconds4
         '
-        Me.txtSeconds4.AutoSize = True
-        Me.txtSeconds4.Location = New System.Drawing.Point(231, 73)
-        Me.txtSeconds4.Name = "txtSeconds4"
-        Me.txtSeconds4.Size = New System.Drawing.Size(66, 13)
-        Me.txtSeconds4.TabIndex = 8
-        Me.txtSeconds4.Text = "txtSeconds4"
+        Me.lblSeconds4.AutoSize = True
+        Me.lblSeconds4.Location = New System.Drawing.Point(231, 73)
+        Me.lblSeconds4.Name = "lblSeconds4"
+        Me.lblSeconds4.Size = New System.Drawing.Size(65, 13)
+        Me.lblSeconds4.TabIndex = 8
+        Me.lblSeconds4.Text = "lblSeconds4"
         '
         'numFFWPlay1
         '
@@ -1153,14 +1226,14 @@ Partial Class SetupForm
         Me.numFFWPlay1.TabIndex = 7
         Me.numFFWPlay1.Value = New Decimal(New Integer() {1, 0, 0, 0})
         '
-        'txtSeconds1
+        'lblSeconds1
         '
-        Me.txtSeconds1.AutoSize = True
-        Me.txtSeconds1.Location = New System.Drawing.Point(129, 73)
-        Me.txtSeconds1.Name = "txtSeconds1"
-        Me.txtSeconds1.Size = New System.Drawing.Size(66, 13)
-        Me.txtSeconds1.TabIndex = 6
-        Me.txtSeconds1.Text = "txtSeconds1"
+        Me.lblSeconds1.AutoSize = True
+        Me.lblSeconds1.Location = New System.Drawing.Point(129, 73)
+        Me.lblSeconds1.Name = "lblSeconds1"
+        Me.lblSeconds1.Size = New System.Drawing.Size(65, 13)
+        Me.lblSeconds1.TabIndex = 6
+        Me.lblSeconds1.Text = "lblSeconds1"
         '
         'numBackPlay1
         '
@@ -1195,27 +1268,27 @@ Partial Class SetupForm
         Me.lblSkipPart3Play.AutoSize = True
         Me.lblSkipPart3Play.Location = New System.Drawing.Point(6, 152)
         Me.lblSkipPart3Play.Name = "lblSkipPart3Play"
-        Me.lblSkipPart3Play.Size = New System.Drawing.Size(39, 13)
+        Me.lblSkipPart3Play.Size = New System.Drawing.Size(83, 13)
         Me.lblSkipPart3Play.TabIndex = 2
-        Me.lblSkipPart3Play.Text = "Label4"
+        Me.lblSkipPart3Play.Text = "lblSkipPart3Play"
         '
         'lblSkipPart2Play
         '
         Me.lblSkipPart2Play.AutoSize = True
         Me.lblSkipPart2Play.Location = New System.Drawing.Point(6, 113)
         Me.lblSkipPart2Play.Name = "lblSkipPart2Play"
-        Me.lblSkipPart2Play.Size = New System.Drawing.Size(39, 13)
+        Me.lblSkipPart2Play.Size = New System.Drawing.Size(83, 13)
         Me.lblSkipPart2Play.TabIndex = 1
-        Me.lblSkipPart2Play.Text = "Label3"
+        Me.lblSkipPart2Play.Text = "lblSkipPart2Play"
         '
         'lblSkipPart1Play
         '
         Me.lblSkipPart1Play.AutoSize = True
         Me.lblSkipPart1Play.Location = New System.Drawing.Point(6, 72)
         Me.lblSkipPart1Play.Name = "lblSkipPart1Play"
-        Me.lblSkipPart1Play.Size = New System.Drawing.Size(39, 13)
+        Me.lblSkipPart1Play.Size = New System.Drawing.Size(83, 13)
         Me.lblSkipPart1Play.TabIndex = 0
-        Me.lblSkipPart1Play.Text = "Label2"
+        Me.lblSkipPart1Play.Text = "lblSkipPart1Play"
         '
         'lblconfigureSeekSteps
         '
@@ -1345,7 +1418,7 @@ Partial Class SetupForm
         Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.txtResolutionH264)
         Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.txtFiletypeH264)
         Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.txtEncodingtypeH264)
-        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.ComboBoxH264)
+        Me.GroupBoxTVsuiteProfileH264.Controls.Add(Me.cbxSavingProfileH264)
         Me.GroupBoxTVsuiteProfileH264.Location = New System.Drawing.Point(303, 89)
         Me.GroupBoxTVsuiteProfileH264.Name = "GroupBoxTVsuiteProfileH264"
         Me.GroupBoxTVsuiteProfileH264.Size = New System.Drawing.Size(293, 212)
@@ -1462,13 +1535,13 @@ Partial Class SetupForm
         Me.txtEncodingtypeH264.TabIndex = 3
         Me.txtEncodingtypeH264.Text = "txtEncodingtypeH264"
         '
-        'ComboBoxH264
+        'cbxSavingProfileH264
         '
-        Me.ComboBoxH264.FormattingEnabled = True
-        Me.ComboBoxH264.Location = New System.Drawing.Point(107, 19)
-        Me.ComboBoxH264.Name = "ComboBoxH264"
-        Me.ComboBoxH264.Size = New System.Drawing.Size(174, 21)
-        Me.ComboBoxH264.TabIndex = 2
+        Me.cbxSavingProfileH264.FormattingEnabled = True
+        Me.cbxSavingProfileH264.Location = New System.Drawing.Point(107, 19)
+        Me.cbxSavingProfileH264.Name = "cbxSavingProfileH264"
+        Me.cbxSavingProfileH264.Size = New System.Drawing.Size(174, 21)
+        Me.cbxSavingProfileH264.TabIndex = 2
         '
         'chkDebugMode
         '
@@ -1495,7 +1568,7 @@ Partial Class SetupForm
         Me.GroupBoxTVsuiteProfile.Controls.Add(Me.txtResolution)
         Me.GroupBoxTVsuiteProfile.Controls.Add(Me.txtFiletype)
         Me.GroupBoxTVsuiteProfile.Controls.Add(Me.txtEncodingtype)
-        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.ComboBox1)
+        Me.GroupBoxTVsuiteProfile.Controls.Add(Me.cbxSavingProfile)
         Me.GroupBoxTVsuiteProfile.Location = New System.Drawing.Point(3, 89)
         Me.GroupBoxTVsuiteProfile.Name = "GroupBoxTVsuiteProfile"
         Me.GroupBoxTVsuiteProfile.Size = New System.Drawing.Size(294, 212)
@@ -1612,13 +1685,13 @@ Partial Class SetupForm
         Me.txtEncodingtype.TabIndex = 3
         Me.txtEncodingtype.Text = "txtEncodingtype"
         '
-        'ComboBox1
+        'cbxSavingProfile
         '
-        Me.ComboBox1.FormattingEnabled = True
-        Me.ComboBox1.Location = New System.Drawing.Point(107, 19)
-        Me.ComboBox1.Name = "ComboBox1"
-        Me.ComboBox1.Size = New System.Drawing.Size(174, 21)
-        Me.ComboBox1.TabIndex = 2
+        Me.cbxSavingProfile.FormattingEnabled = True
+        Me.cbxSavingProfile.Location = New System.Drawing.Point(107, 19)
+        Me.cbxSavingProfile.Name = "cbxSavingProfile"
+        Me.cbxSavingProfile.Size = New System.Drawing.Size(174, 21)
+        Me.cbxSavingProfile.TabIndex = 2
         '
         'btnCheckTVsuite
         '
@@ -1700,6 +1773,10 @@ Partial Class SetupForm
         Me.GroupBoxModuleName.ResumeLayout(False)
         Me.GroupBoxModuleName.PerformLayout()
         Me.tabCommon2.ResumeLayout(False)
+        Me.GroupAlwaysRefreshMoviestripThumbs.ResumeLayout(False)
+        Me.GroupAlwaysRefreshMoviestripThumbs.PerformLayout()
+        CType(Me.numAlwaysRefreshMoviestripThumbsDelay, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBoxDialogs.ResumeLayout(False)
         Me.GroupBoxDialogs.PerformLayout()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1765,39 +1842,39 @@ Partial Class SetupForm
     Friend WithEvents lblSkipPart2Play As System.Windows.Forms.Label
     Friend WithEvents lblSkipPart1Play As System.Windows.Forms.Label
     Friend WithEvents lblconfigureSeekSteps As System.Windows.Forms.Label
-    Friend WithEvents txtFrames6 As System.Windows.Forms.Label
+    Friend WithEvents lblFrames6 As System.Windows.Forms.Label
     Friend WithEvents numBackPause3 As System.Windows.Forms.NumericUpDown
     Friend WithEvents numFFWPause3 As System.Windows.Forms.NumericUpDown
     Friend WithEvents lblSkipPart1Pause As System.Windows.Forms.Label
-    Friend WithEvents txtFrames3 As System.Windows.Forms.Label
+    Friend WithEvents lblFrames3 As System.Windows.Forms.Label
     Friend WithEvents lblSkipPart2Pause As System.Windows.Forms.Label
     Friend WithEvents lblSkipPart3Pause As System.Windows.Forms.Label
-    Friend WithEvents txtFrames5 As System.Windows.Forms.Label
+    Friend WithEvents lblFrames5 As System.Windows.Forms.Label
     Friend WithEvents lblBackPause As System.Windows.Forms.Label
     Friend WithEvents numFFWPause2 As System.Windows.Forms.NumericUpDown
     Friend WithEvents lblFFWPause As System.Windows.Forms.Label
-    Friend WithEvents txtFrames2 As System.Windows.Forms.Label
+    Friend WithEvents lblFrames2 As System.Windows.Forms.Label
     Friend WithEvents numBackPause1 As System.Windows.Forms.NumericUpDown
     Friend WithEvents numBackPause2 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents txtFrames1 As System.Windows.Forms.Label
-    Friend WithEvents txtFrames4 As System.Windows.Forms.Label
+    Friend WithEvents lblFrames1 As System.Windows.Forms.Label
+    Friend WithEvents lblFrames4 As System.Windows.Forms.Label
     Friend WithEvents numFFWPause1 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents txtSeconds6 As System.Windows.Forms.Label
+    Friend WithEvents lblSeconds6 As System.Windows.Forms.Label
     Friend WithEvents numFFWPlay3 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents txtSeconds3 As System.Windows.Forms.Label
+    Friend WithEvents lblSeconds3 As System.Windows.Forms.Label
     Friend WithEvents numBackPlay3 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents txtSeconds5 As System.Windows.Forms.Label
+    Friend WithEvents lblSeconds5 As System.Windows.Forms.Label
     Friend WithEvents numFFWPlay2 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents txtSeconds2 As System.Windows.Forms.Label
+    Friend WithEvents lblSeconds2 As System.Windows.Forms.Label
     Friend WithEvents numBackPlay2 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents txtSeconds4 As System.Windows.Forms.Label
+    Friend WithEvents lblSeconds4 As System.Windows.Forms.Label
     Friend WithEvents numFFWPlay1 As System.Windows.Forms.NumericUpDown
-    Friend WithEvents txtSeconds1 As System.Windows.Forms.Label
+    Friend WithEvents lblSeconds1 As System.Windows.Forms.Label
     Friend WithEvents numBackPlay1 As System.Windows.Forms.NumericUpDown
     Friend WithEvents tabTVSuite As System.Windows.Forms.TabPage
     Friend WithEvents btnCheckTVsuite As System.Windows.Forms.Button
     Friend WithEvents lblDescriptionTVsuite As System.Windows.Forms.Label
-    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents cbxSavingProfile As System.Windows.Forms.ComboBox
     Friend WithEvents GroupBoxTVsuiteProfile As System.Windows.Forms.GroupBox
     Friend WithEvents txtRatio As System.Windows.Forms.Label
     Friend WithEvents txtResolution As System.Windows.Forms.Label
@@ -1825,7 +1902,7 @@ Partial Class SetupForm
     Friend WithEvents txtResolutionH264 As System.Windows.Forms.Label
     Friend WithEvents txtFiletypeH264 As System.Windows.Forms.Label
     Friend WithEvents txtEncodingtypeH264 As System.Windows.Forms.Label
-    Friend WithEvents ComboBoxH264 As System.Windows.Forms.ComboBox
+    Friend WithEvents cbxSavingProfileH264 As System.Windows.Forms.ComboBox
     Friend WithEvents tabCommon2 As System.Windows.Forms.TabPage
     Friend WithEvents GroupBoxDialogs As System.Windows.Forms.GroupBox
     Friend WithEvents chkAlwaysKeepOriginalFile As System.Windows.Forms.CheckBox
@@ -1874,4 +1951,10 @@ Partial Class SetupForm
     Friend WithEvents GroupBoxModuleName As System.Windows.Forms.GroupBox
     Friend WithEvents lblModulName As System.Windows.Forms.Label
     Friend WithEvents txtModulName As System.Windows.Forms.TextBox
+    Friend WithEvents GroupAlwaysRefreshMoviestripThumbs As System.Windows.Forms.GroupBox
+    Friend WithEvents PictureBox4 As System.Windows.Forms.PictureBox
+    Friend WithEvents chkAlwaysRefreshMoviestripThumbs As System.Windows.Forms.CheckBox
+    Friend WithEvents lblAlwaysRefreshMoviestripThumbsDelay As System.Windows.Forms.Label
+    Friend WithEvents lblSeconds As System.Windows.Forms.Label
+    Friend WithEvents numAlwaysRefreshMoviestripThumbsDelay As System.Windows.Forms.NumericUpDown
 End Class

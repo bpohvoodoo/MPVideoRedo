@@ -52,7 +52,7 @@
       <colordiffuse>ffffffff</colordiffuse>
       <onleft>2</onleft>
       <onright>2</onright>
-      <visible>True</visible>
+      <visible>!control.hasfocus(999)+!player.paused</visible>
     </control>
 
     <control>
@@ -122,7 +122,7 @@
       <textXOff>20</textXOff>
       <textXOff2>374</textXOff2>
       <keepaspectratio>no</keepaspectratio>
-      <spinCanFocus>no</spinCanFocus>
+      <spinCanFocus>yes</spinCanFocus>
       <spinPosX>350</spinPosX>
       <spinPosY>930</spinPosY>
     </control>
@@ -137,31 +137,28 @@
       <label>#MyVideoRedo.Translation.Duration</label>
       <font>font10</font>
 	    <align>left</align>
-	    <visible>True</visible>
     </control>
     
     <control>
       <type>label</type>
       <description>Videoposition</description>
-      <posX>200</posX>
-      <posY>870</posY>
-      <width>1920</width>
+      <posX>860</posX>
+      <posY>850</posY>
+      <width>400</width>
       <label>#MyVideoRedo.Translation.Position</label>
       <font>font10</font>
-	    <align>center</align>
-	    <visible>True</visible>
+	    <align>left</align>
     </control>
     
     <control>
       <type>label</type>
       <description>VideoTimeLeft</description>
-      <posX>1860</posX>
+      <posX>1260</posX>
       <posY>850</posY>
       <width>400</width>
       <label>#MyVideoRedo.Translation.TimeLeft</label>
       <font>font10</font>
-	    <align>right</align>
-	    <visible>True</visible>
+      <align>left</align>
     </control>
     
 	  <control>
@@ -218,12 +215,28 @@
       <id>27</id>
       <description>Image Help</description>
       <type>image</type>
-      <posX>418</posX>
-      <posY>175</posY>
-      <width>450</width>
-      <height>300</height>
+      <posX>920</posX>
+      <posY>172</posY>
+      <width>430</width>
+      <height>258</height>
+      <align>center</align>
+      <valign>middle</valign>
+      <keepaspectratio>yes</keepaspectratio>
       <texture>redoRemote.png</texture>
-      <visible>False</visible>
+      <visible>control.hasfocus(999)</visible>
+    </control>
+    <control>
+      <id>29</id>
+      <description>StillImage</description>
+      <type>image</type>
+      <posX>920</posX>
+      <posY>172</posY>
+      <width>430</width>
+      <height>258</height>
+      <align>center</align>
+      <valign>middle</valign>
+      <keepaspectratio>yes</keepaspectratio>
+      <visible>!control.hasfocus(999)+player.paused</visible>
     </control>
   	
 	  <control>

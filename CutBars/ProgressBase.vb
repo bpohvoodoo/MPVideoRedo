@@ -5,8 +5,7 @@ Imports System.Drawing.Drawing2D
 Imports System.Windows.Forms
 Imports System.ComponentModel
 Imports System.Drawing.Design
-<Serializable()> _
-Public MustInherit Class ProgressBase
+<Serializable()> Public MustInherit Class ProgressBase
     Inherits Control
 
 #Region "SpecialProgressBarStyle enumeration"
@@ -102,7 +101,7 @@ Public MustInherit Class ProgressBase
     ''' </summary>
     Public Event DarkBackColorChanged As EventHandler
 
-   
+
 
     ''' <summary>
     ''' Fired, when starting value changed
@@ -208,7 +207,7 @@ Public MustInherit Class ProgressBase
         End Set
     End Property
 
-   
+
 
     ''' <summary>
     ''' Specifyes starting values
@@ -234,7 +233,7 @@ Public MustInherit Class ProgressBase
     ''' Specifyes ending values
     ''' </summary>
     <Category("Werteeinstellung")> <Description("Verlangt ein List(of Single) um die EndCuts oder Terminenden zu Kennzeichnen oder gibt diese zurück. Die List.Count sollte gleich sein mit der Liste des StartCutValues.Count")> _
-   Public Overridable Property EndCutValues() As List(Of Single)
+    Public Overridable Property EndCutValues() As List(Of Single)
         Get
             Return Me.m_endValue
         End Get
@@ -253,7 +252,7 @@ Public MustInherit Class ProgressBase
     ''' Postion of the LineMarker
     ''' </summary>
     <Category("Werteeinstellung")> <Description("Gibt an wo sich der Marker befinden soll oder gibt den Wert der aktuellen Positione zurück")> _
-   Public Overridable Property LineMarkerPosition() As Single
+    Public Overridable Property LineMarkerPosition() As Single
         Get
             Return LineMarker
         End Get
@@ -421,7 +420,7 @@ Public MustInherit Class ProgressBase
 #End Region
 
 #Region "protected members"
-  
+
 
     ''' <summary>
     ''' Fired, when light fill color changed
@@ -451,7 +450,7 @@ Public MustInherit Class ProgressBase
         RaiseEvent DarkBackColorChanged(Me, e)
     End Sub
 
-   
+
 
     ''' <summary>
     ''' Fired, when starting value changed
@@ -550,7 +549,7 @@ Public MustInherit Class ProgressBase
             End If
 
         Next
-       
+
         ' draw light
         Using brush As New SolidBrush(Color.FromArgb(48, Color.White))
             g.SetClip(path)
@@ -641,6 +640,6 @@ Public MustInherit Class ProgressBase
 
     End Function
 
-   
+
 End Class
 

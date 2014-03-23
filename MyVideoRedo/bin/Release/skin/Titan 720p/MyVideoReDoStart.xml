@@ -202,15 +202,11 @@
             <id>4</id>
             <type>checkbutton</type>
 	        <description>Is the file a movie or a series</description>
-            <onleft>4</onleft>
+            <onleft>40</onleft>
             <onright>21</onright>
-            <onup>40</onup>
-            <ondown>4</ondown>
             <posX>100</posX>
-            <posY>905</posY>
-            <width>301</width>
-			<MarkWidth>82</MarkWidth>
-			<MarkHeight>55</MarkHeight>
+            <posY>895</posY>
+            <width>450</width>
             <disabledcolor>ffffffff</disabledcolor>
             <align>LEFT</align>
 	        <label>#MyVideoRedo.Translation.UseVideoAsSeries</label>
@@ -224,9 +220,7 @@
             <type>button</type>
             <onleft>4</onleft>
 	        <description>Button CUT NOW</description>
-            <onright>10</onright>
-            <onup>40</onup>
-            <ondown>21</ondown>
+            <onright>40</onright>
             <posX>620</posX>
             <posY>895</posY>
             <width>265</width>
@@ -249,8 +243,8 @@
             <posY>590</posY> 
             <width>800</width>
             <height>325</height>
-            <onleft>4</onleft>
-            <onright>21</onright>
+            <onleft>21</onleft>
+            <onright>4</onright>
             <visible>!control.isvisible(50)+control.isvisible(60)</visible>
 	        <dimColor>ffffffff</dimColor>
             <itemWidth>35</itemWidth>
@@ -313,8 +307,8 @@
             <id>51</id>
             <type>animation</type>
             <visible>False</visible>
-            <posX>630</posX>
-            <posY>275</posY>
+            <posX>912</posX>
+            <posY>492</posY>
             <width>96</width>
             <height>96</height>
             <textures>common.waiting.1.png;common.waiting.2.png;common.waiting.3.png;common.waiting.4.png;common.waiting.5.png;common.waiting.6.png;common.waiting.8.png</textures>
@@ -325,8 +319,8 @@
             <id>52</id>
             <type>animation</type>
             <visible>False</visible>
-            <posX>630</posX>
-            <posY>275</posY>
+            <posX>912</posX>
+            <posY>492</posY>
             <width>96</width>
             <height>96</height>
             <textures>common.waiting.1.png;common.waiting.2.png;common.waiting.3.png;common.waiting.4.png;common.waiting.5.png;common.waiting.6.png;common.waiting.8.png</textures>

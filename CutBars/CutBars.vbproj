@@ -115,7 +115,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <Compile Include="StandartCutBar.vb">
+    <Compile Include="StandardCutBar.vb">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>

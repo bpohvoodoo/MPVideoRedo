@@ -582,5 +582,197 @@ https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config5_EN
       </ProjectSettings>
       <IsSkin>false</IsSkin>
     </PackageClass>
+    <PackageClass>
+      <Version>2.0</Version>
+      <Groups>
+        <Items>
+          <GroupItem Name="General">
+            <DisplayName>General</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>General</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+          <GroupItem Name="Skins">
+            <DisplayName>Skins</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>Skins</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+          <GroupItem Name="Titan">
+            <DisplayName>Titan</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>Titan</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+          <GroupItem Name="StreamedMP">
+            <DisplayName>StreamedMP</DisplayName>
+            <DefaulChecked>true</DefaulChecked>
+            <Description>StreamedMP</Description>
+            <Files>
+              <Items />
+            </Files>
+          </GroupItem>
+        </Items>
+      </Groups>
+      <Sections>
+        <Items />
+      </Sections>
+      <Dependencies>
+        <Items>
+          <DependencyItem>
+            <Type>MediaPortal</Type>
+            <Id />
+            <MinVersion>
+              <Major>1</Major>
+              <Minor>1</Minor>
+              <Build>6</Build>
+              <Revision>27644</Revision>
+            </MinVersion>
+            <MaxVersion>
+              <Major>1</Major>
+              <Minor>1</Minor>
+              <Build>6</Build>
+              <Revision>27644</Revision>
+            </MaxVersion>
+            <WarnOnly>false</WarnOnly>
+            <Message>requires MediaPortal version 1.1.6.27644 to 1.1.6.27644.</Message>
+            <Name>MediaPortal</Name>
+          </DependencyItem>
+        </Items>
+      </Dependencies>
+      <PluginDependencies>
+        <Items>
+          <PluginDependencyItem AssemblyName="MyVideoRedo.dll">
+            <CompatibleVersion>
+              <Items>
+                <CompatibleVersionItem>
+                  <MinRequiredVersion>1.2.0.0</MinRequiredVersion>
+                  <DesignedForVersion>1.4.0.0</DesignedForVersion>
+                </CompatibleVersionItem>
+              </Items>
+            </CompatibleVersion>
+            <SubSystemsUsed>
+              <Items>
+                <SubSystemItem Name="MP.Config" />
+                <SubSystemItem Name="MP.SkinEngine" />
+              </Items>
+            </SubSystemsUsed>
+          </PluginDependencyItem>
+        </Items>
+      </PluginDependencies>
+      <GeneralInfo>
+        <Name>MyVideoRedo</Name>
+        <Id>b02550cc-c5f1-4a1c-9c07-abc875e2e82f</Id>
+        <Author>BPoH_Voodoo, Sascha Patschka</Author>
+        <HomePage>https://github.com/bpohvoodoo/MPVideoRedo</HomePage>
+        <ForumPage>http://forum.team-mediaportal.com/mediaportal-plugins-47/new-plugin-myvideoredo-cut-your-recordings-frame-accurate-90053/</ForumPage>
+        <UpdateUrl>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MPEIUpdateXML.xml</UpdateUrl>
+        <Version>
+          <Major>0</Major>
+          <Minor>9</Minor>
+          <Build>1</Build>
+          <Revision>1</Revision>
+        </Version>
+        <ExtensionDescription>With this plugin you are able to cut your recordings with the application VideoRedo from within MediaPortal.
+It is able to cut  frameaccurate.</ExtensionDescription>
+        <VersionDescription>----- Version 9.1.1 -----
+22.03.2014
+* Speicherfortschritt umgestellt auf DialogMenu
+* Schnitte werden nun auch wärend des laufenden AdScans aktualisiert
+* Unter Einstellungen kann jetzt die Aktualisierung für den Fimstreifen (auch wenn nicht im Pause Modus) aktiviert werden, die erforder mehr Leistung!
+* mit der Taste 8 kann nun die letze Szene vor/unter der aktuellen Position gelöscht werden
+* mit der Taste * kann nun die vorige Sprungmarke angewählt werden
+* mit der Taste # kann nun die nächste Sprungmarke angewählt werden
+* Anzeige TV Suite konform auf von Millisekunden auf Frames umgestellt
+* #CurrentFrame (Standbilder) Funktionalität gefixed und in die Skins eingefügt
+*
+* Bug beseitigt:
+* g_player wurde am Ende des Videos beeendet. Nun geht er 1 Sekunde vor Ende in Pause.
+* wenn der Abstand zum Anfang/Ende kleiner als die Sprungmarke, dann sprang das Plugin in die andere Richtung
+* Fehler in der Frame/Milisekunden Umrechnung behoben.
+* Anzeige ist nun 100% konform zur TV Suite (Frame links vom Schnittmarker im Filmstreifen ist der #Currentframe)
+* Schnitte wurden bei Auswahl des Menüpunktes aus dem Contextmenü nicht sauber gelöscht.
+* Schnitte wurden nach dem AdScan Lauf nicht in die Listcontrol geladen.
+* Diverse weiter kleinere Bugfixes.
+*
+* Bekannte Probleme:
+* interner ThumbnailsCreator.vb arbeitet nicht korrekt bei SD Material.
+* Textlänge in der Virtuellen Tastatur ist zu begrenzt.
+* 
+*
+* ToDo:
+* Automatische Erkennung einer Aufnahme als Serienfolge, wenn Episodeninformationen verfügbar.
+* TVServer wachhalten (wichtig für Clientbetrieb)
+* Exception abfangen, falls TV Server nicht verfügbar
+* Ändern/Löschen einzelner Cuts (auch im Menü)
+* Speichen mit Originalname (Speichen mit temporärem Namen und dann Löschen der Orginaldatei und Umbenennen der temporären Datei)
+* internen Thumbnailer möglicher Weise gegen ffmpeg tauschen (s.o, mal sehen)
+* laden von Cutlists (ComSkip) (mal sehen)
+* Speichern in Cutlists (mal sehen)</VersionDescription>
+        <DevelopmentStatus>Beta</DevelopmentStatus>
+        <OnlineLocation>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_0.9.1.1_Beta.mpe1 </OnlineLocation>
+        <ReleaseDate>2014-03-03T08:25:57</ReleaseDate>
+        <Tags>filme,videos,
+cut,
+schneiden,
+recording,
+aufnahme,videoredo,nofear23m,bpohvoodoo</Tags>
+        <Location>D:\GitHub\MPVideoRedo\MPEI\[Name]_[Version]_[DevelopmentStatus].mpe1</Location>
+        <Params>
+          <Items>
+            <SectionParam Name="Online Icon">
+              <Value>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/myVideoReDo.png</Value>
+              <ValueType>String</ValueType>
+              <Description>The icon file of the package stored online (jpg,png,bmp)</Description>
+            </SectionParam>
+            <SectionParam Name="Configuration file">
+              <Value>%Config%\MediaPortal.xml</Value>
+              <ValueType>Template</ValueType>
+              <Description>The file used to configure the extension.
+ If have .exe extension the will be executed
+ If have .dll extension used like MP plugin configuration</Description>
+            </SectionParam>
+            <SectionParam Name="Online Screenshots">
+              <Value>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config1_EN.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config2_EN.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config3_EN.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config4_EN.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_Config5_EN.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI001.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI002.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI003.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI004.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI005.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI006.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI007.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI008.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI009.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI010.png;
+https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI011.png</Value>
+              <ValueType>String</ValueType>
+              <Description>Online stored screenshot urls separated by ; </Description>
+            </SectionParam>
+            <SectionParam Name="Force to uninstall on update">
+              <Value>YES</Value>
+              <ValueType>Bool</ValueType>
+              <Description>Show dialog and force to uninstall previous version when updating an extension. Should only be disabled if you are using an NSIS/MSI installer.</Description>
+            </SectionParam>
+          </Items>
+        </Params>
+      </GeneralInfo>
+      <UniqueFileList>
+        <Items />
+      </UniqueFileList>
+      <ProjectSettings>
+        <FolderGroups />
+      </ProjectSettings>
+      <IsSkin>false</IsSkin>
+    </PackageClass>
   </Items>
 </ExtensionCollection>

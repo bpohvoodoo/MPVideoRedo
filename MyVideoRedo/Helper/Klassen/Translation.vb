@@ -16,12 +16,15 @@ Public NotInheritable Class Translation
     Public Shared AdDetectiveRunning As String = "AdDetective Scan läuft"
     Public Shared AlwaysKeepCuts As String = "Beim Beenden Schnitte immer behalten"
     Public Shared AlwaysKeepOriginalFile As String = "Beim Speichern immer die Originaldatei behalten"
+    Public Shared AlwaysRefreshMoviestripThumbs As String = "Die Filmstreifen Vorschaubilder immer aktualisieren"
+    Public Shared AlwaysRefreshMoviestripThumbsDelay As String = "Wiederholungsintervall"
     Public Shared AudioSyncLabel As String = "Nachsyncronisierung der Audiospur:"
     Public Shared AudioSyncLabelContext As String = "Audiospur syncronisieren"
     Public Shared AutoEndCutLabel As String = "Endmarker automatisch setzen wenn nötig"
 
     ' B
     Public Shared ButtonCheckTVsuite4 As String = "Auf TVsuite 4 prüfen..."
+    Public Shared BackgroundSave As String = "Es wird im Hintergrund weiter gespeichert!"
 
     ' C
     Public Shared CalculateTimeLeft As String = "Berechne die Restzeit"
@@ -40,10 +43,13 @@ Public NotInheritable Class Translation
     Public Shared ContinueScan1 As String = "Continue the scan in the background?"
     Public Shared CreateMovieSubfolder As String = "Erstelle Unterordner für Filme"
     Public Shared CreateSeriesSubfolder As String = "Erstelle Unterordner für Serien"
+    Public Shared CutContextMenu As String = "Schnittmenü"
+    Public Shared CutContextChange As String = "Gewählten Schnitt ändern"
+    Public Shared CutContextDelete As String = "Gewählte Szene löschen"
+    Public Shared CutContextJumpTo As String = "Springe zum gewählten Marker"
 
     ' D
     Public Shared DebugMode As String = "Debug Modus"
-    Public Shared DeleteCutDialog As String = "Gewählte Scene ausschneiden"
     Public Shared DeleteOriginalFile As String = "Möchtest du das Originalfile löschen?"
     Public Shared DeleteOriginalFileTitle As String = "Original löschen?"
     Public Shared DelReplaceString As String = "Ausgewählten String entfernen"
@@ -78,13 +84,14 @@ Public NotInheritable Class Translation
     Public Shared GeneralOptions2 As String = "Grundeinstellungen 2"
     Public Shared Genre As String = "Genre"
     Public Shared GetNewFilename As String = "Bestimme neuen Dateinamen"
-    Public Shared GroupCutSettingCaption As String = "Schneideeinstellungen"
+    Public Shared GroupAlwaysRefreshMoviestripThumbs = "Vorschaubilder"
+    Public Shared GroupCutSettingCaption As String = "Schnitt-Einstellungen"
     Public Shared GroupDialogs As String = "Dialog Einstellungen"
     Public Shared GroupModuleName As String = "Modul Name"
     Public Shared GroupOnPauseCaption As String = "Während der Pause"
     Public Shared GroupOnPlayCaption As String = "Während der Wiedergabe"
     Public Shared GroupRecordingSettingCaption As String = "Pfadeinstellungen"
-    Public Shared GroupStringSettingCaption As String = "Dateibenennungseinstellungen"
+    Public Shared GroupStringSettingCaption As String = "Datei/Ordner Benennungseinstellungen"
     Public Shared GroupTVSuiteProfile As String = "Standard Profil"
     Public Shared GroupTVSuiteProfileH264 As String = "Standard Profil H.264"
 
@@ -110,6 +117,7 @@ Public NotInheritable Class Translation
 
     ' M
     Public Shared MakeCut As String = "Schneide hier"
+    Public Shared ModuleFunction As String = "Plugin zum Schneiden von Videos mit Hilfe von VideoRedo"
     Public Shared ModuleName As String = "Modul Name"
     Public Shared ModuleMain = "Film schneiden"
     Public Shared ModuleStart = "Film Auswahl"
@@ -133,6 +141,8 @@ Public NotInheritable Class Translation
     Public Shared ParseMovieFileLabel As String = "Filmdateimuster:"
     Public Shared ParseSeriesFileLabel As String = "Episodendateimuster:"
 
+    ' Q
+
     ' R
     Public Shared Ratio As String = "Verhältnis:"
     Public Shared RecordingDialogDescription As String = "Ordner der gespeicherten Aufnahmen"
@@ -143,23 +153,20 @@ Public NotInheritable Class Translation
     Public Shared RewindStep As String = "Zurück"
 
     ' S
-    Public Shared StartCutAtStart As String = "Startmarker beim Abspielen setzten"
-    Public Shared SearchFolder As String = "Ordner suchen"
     Public Shared SaveCuttedVideo As String = "Speichere Video mit Schnitten..."
+    Public Shared SaveDialogDescription As String = "Ordner wo die Filme gespeichert werden sollen"
     Public Shared SaveHere As String = "Hier speichern"
+    Public Shared SavingProfile As String = "Speicherprofil"
     Public Shared SaveProgressLabel As String = "Speichern zu {0}% abgeschlossen"
     Public Shared SaveVideo As String = "Video speichern"
-    Public Shared SeriesEpisode As String = "Serienfolge"
-    Public Shared SeekToCutDialog As String = "Springe zum gewählten Marker"
+    Public Shared SearchFolder As String = "Ordner suchen"
     Public Shared SearchWithAnotherString As String = "Suche mit anderer Zeichenfolge"
-    Public Shared StartAdDetectiveScan As String = "Starte AdDetective-Scan"
-    Public Shared SavingProfile As String = "Speicherprofil"
     Public Shared Seconds As String = "Sek."
     Public Shared SelRecording As String = "Wähle Sie eine Aufnahme"
-    'Public Shared SeriesEpisodeNumber As String = "Episodennummer"
     Public Shared ShowFileParserStrings As String = "Zeige Strings"
+    Public Shared StartAdDetectiveScan As String = "Starte AdDetective-Scan"
+    Public Shared StartCutAtStart As String = "Startmarker beim Abspielen setzten"
     Public Shared [Step] As String = "Sprung {0}"
-    Public Shared SaveDialogDescription As String = "Ordner wo die Filme gespeichert werden sollen"
 
     ' T
     Public Shared TimeLeft As String = "Restdauer:{0}"
@@ -169,7 +176,7 @@ Public NotInheritable Class Translation
     ' U
     Public Shared Unknown As String = "Unbekannt"
     Public Shared UserAbortDialog As String = "Benutzerabbruch - Es wird normal gespeichert..."
-    Public Shared UseVideoAsSeries As String = "Aufnahme ist eine Serienfolge!"
+    Public Shared UseVideoAsSeries As String = "Ist eine Serienfolge"
 
     ' V
     Public Shared VideoRedoCanNotHD As String = "Diese Version von VideoRedo kann kein HD Material verarbeiten, es wird abgebrochen."

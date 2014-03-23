@@ -10,12 +10,15 @@
   <string Field="AddReplaceString">Add Replace String</string>
   <string Field="AlwaysKeepCuts">Keep Cutmarkers on exit</string>
   <string Field="AlwaysKeepOriginalFile">Keep original file on exit</string>
+  <string Field="AlwaysRefreshMoviestripThumbs">Always refresh moviestrip thumbs</string>
+  <string Field="AlwaysRefreshMoviestripThumbsDelay">Recurrence delay</string>
   <string Field="AudioSyncLabel">Resync audioline:</string>
   <string Field="AudioSyncLabelContext">Adjust audiosync</string>
   <string Field="AutoEndCutLabel">Automatically Set End-Cut</string>
 
   <!--B-->
   <string Field="ButtonCheckTVsuite4">Check for TVsuite 4...</string>
+  <string Field="BackgroundSave">Saving in background!</string>
 
   <!--C-->
   <string Field="CalculateTimeLeft">Calculating ...</string>
@@ -34,11 +37,14 @@
   <string Field="ContinueScan1">Continue the scan in the background?</string>
   <string Field="CreateMovieSubfolder">Create subfolder for movies</string>
   <string Field="CreateSeriesSubfolder">Create subfolder for series</string>
+  <string Field="CutContextMenu">Cut Menu</string>
+  <string Field="CutContextChange">Change selected cutmarker</string>
+  <string Field="CutContextDelete">Delete selected scene</string>
+  <string Field="CutContextJumpTo">Jump to selected marker</string>
 
   <!--D-->
   <string Field="DebugMode">Debug Mode</string>
   <string Field="Deinterlacemode">Deinterlacemode:</string>
-  <string Field="DeleteCutDialog">Clear selected cut</string>
   <string Field="DeleteOriginalFile">Would you like delete the original videofile?</string>
   <string Field="DeleteOriginalFileTitle">Delete original?</string>
   <string Field="DelReplaceString">Delete Selected</string>
@@ -72,13 +78,14 @@
   <string Field="GeneralOptions2">General Options 2</string>
   <string Field="Genre">Genre</string>
   <string Field="GetNewFilename">Set new filename</string>
+  <string Field="GroupAlwaysRefreshMoviestripThumbs">Moviestrip Thumbs</string>
   <string Field="GroupCutSettingCaption">Cutter Options</string>
   <string Field="GroupDialogs">Dialog Setting</string>
   <string Field="GroupModuleName">Plugin-Name</string>
   <string Field="GroupOnPauseCaption">When Paused</string>
   <string Field="GroupOnPlayCaption">During Play</string>
-  <string Field="GroupRecordingSettingCaption">Group Recording Settings</string>
-  <string Field="GroupStringSettingCaption">Movie Folder Settings</string>
+  <string Field="GroupRecordingSettingCaption">Path Settings</string>
+  <string Field="GroupStringSettingCaption">Filename/Foldername Settings</string>
   <string Field="GroupTVSuiteProfile As">Standard Profile</string>
   <string Field="GroupTVSuiteProfileH264">Standard Profile H.264</string>
 
@@ -104,6 +111,7 @@
 
   <!--M-->
   <string Field="MakeCut">Cut Here</string>
+  <string Field="ModuleFunction">Plugin to cut recording with the application VideoRedo</string>
   <string Field="ModuleName">Plugin Name</string>
   <string Field="ModuleStart">Select Movie</string>
   <string Field="ModuleMain">Cut Movie</string>
@@ -112,8 +120,8 @@
 
   <!--N-->
   <string Field="NewFilename">Filename</string>
-  <string Field="NoEpisodesFoundDialog">User aborted - Save video as movie</string>
   <string Field="NoEndmarker">No endmarker</string>
+  <string Field="NoEpisodesFoundDialog">User aborted - Save video as movie</string>
   <string Field="NoRecordingsAviable">No Recordings Available. Abort</string>
   <string Field="NoSeriesFoundDialog">Nothing found for this series - Save as movie</string>
   <string Field="NothingFound">Nothing Found</string>
@@ -148,9 +156,7 @@
   <string Field="SearchFolder">Search Folder</string>
   <string Field="SearchWithAnotherString">Search with another string</string>
   <string Field="Seconds">Sec.</string>
-  <string Field="SeekToCutDialog">Jump to select marker</string>
   <string Field="SelRecording">Select a Recording</string>
-  <string Field="SeriesEpisode">Recording Is An Episode From a Series</string>
   <string Field="ShowFileParserStrings">Show Strings</string>
   <string Field="StartAdDetectiveScan">Start AdDetective-Scan</string>
   <string Field="StartCutAtStart">Automatically Set Start-Cut</string>
@@ -168,7 +174,7 @@
 
   <!--V-->
   <string Field="VideoRedoCanNotHD">Your version of VideoRedo cannot open HD content, aborting...</string>
-  
+
   <!--W-->
 
   <!--X-->

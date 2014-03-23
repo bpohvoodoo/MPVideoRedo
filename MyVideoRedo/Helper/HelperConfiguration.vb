@@ -67,7 +67,8 @@ Module HelpConfig
         CreateSeriesfolder = 32
         SeriesFolder = 33
         ModuleName = 34
-
+        AlwaysRefreshMoviestripThumbs = 35
+        AlwaysRefreshMoviestripThumbsDelay = 36
     End Enum
 
     Private Function GetDefaultConfigValue(ByVal Key As ConfigKey) As String
@@ -136,6 +137,10 @@ Module HelpConfig
                 Return "False"
             Case ConfigKey.AlwaysKeepOriginalFile
                 Return "False"
+            Case ConfigKey.AlwaysRefreshMoviestripThumbs
+                Return "False"
+            Case ConfigKey.AlwaysRefreshMoviestripThumbsDelay
+                Return "5"
             Case ConfigKey.ProfileDetails
                 Return "False"
             Case ConfigKey.TVsuiteProfile

@@ -65,13 +65,13 @@
 			<keepaspectratio>no</keepaspectratio>
 			<spinCanFocus>no</spinCanFocus>
 			<spinPosX>1845</spinPosX>
-            <spinPosY>998</spinPosY>
+      <spinPosY>998</spinPosY>
 			<spinAlign>right</spinAlign>
 		</control>
 
     
         <!--Video speicherpfad Label und Textfeld-->
-        <control>
+     <control>
 			<id>0</id>
 			<type>label</type>
 			<posX>90</posX>
@@ -82,9 +82,9 @@
 			<textcolor>ff6FAFE1</textcolor>
 			<animation effect="Fade" time="250">WindowOpen</animation>
 			<animation effect="Fade" time="250">WindowClose</animation>
-        </control>
+     </control>
 
-        <control>
+     <control>
 			<id>21</id>
 			<description>SavingPathLabel</description>
 			<type>fadelabel</type>
@@ -95,27 +95,27 @@
 			<font>font14</font>
 			<animation effect="Fade" time="250">WindowOpen</animation>
 			<animation effect="Fade" time="250">WindowClose</animation>
-        </control>
+     </control>
     
 
-        <!--Neuer Dateiname - LAbel und Textfeld + Button-->
-        <control>
-		    <description>SavingName Label</description>
-		    <id>0</id>
+     <!--Neuer Dateiname - Label und Textfeld + Button-->
+     <control>
+		  <description>SavingName Label</description>
+		  <id>0</id>
 			<type>label</type>
 			<posX>90</posX>
 			<posY>315</posY>
-		    <width>790</width>
+		  <width>790</width>
 			<label>#MyVideoRedo.Translation.NewFilename:</label>
-		    <font>font10</font>
+		  <font>font10</font>
 			<align>left</align>
 			<textcolor>ff6FAFE1</textcolor>
 			<animation effect="Fade" time="250">WindowOpen</animation>
 			<animation effect="Fade" time="250">WindowClose</animation>
-        </control>
+    </control>
     
-        <control>
-		    <description>SavingName Value</description>
+    <control>
+		  <description>SavingName Value</description>
 			<id>20</id>
 			<type>fadelabel</type>
 			<posX>90</posX>
@@ -124,7 +124,7 @@
 			<label>#Saving.Name</label>
 			<animation effect="Fade" time="250">WindowOpen</animation>
 			<animation effect="Fade" time="250">WindowClose</animation>
-        </control>
+    </control>
     
 		<control>
 			<description>ButtonChangeSaveName</description>
@@ -132,7 +132,7 @@
 			<type>button</type>
 			<onleft>16</onleft>
 			<onright>11</onright>
-		    <onup>16</onup>
+		  <onup>16</onup>
 			<ondown>14</ondown>
 			<width>280</width>
 			<posX>90</posX>
@@ -142,10 +142,10 @@
 			<textvalign>middle</textvalign>
 			<animation effect="Fade" time="250">WindowOpen</animation>
 			<animation effect="Fade" time="250">WindowClose</animation>
-        </control>
+    </control>
     
     
-        <!--Speicherprofil LAbel und Textfeld + Button-->
+    <!--Speicherprofil Label und Textfeld + Button-->
     <control>
       <description>SavingProfile Label</description>
       <id>0</id>
@@ -308,13 +308,10 @@
       <label>#Profile.Framerate</label>
       <font>font10</font>
       <align>left</align>
-    </control>
+    </control>    
     
-    
-    
-    
-        <control>
-		    <description>ButtonChangeProfile</description>
+    <control>
+		  <description>ButtonChangeProfile</description>
 			<id>14</id>
 			<type>button</type>
 			<onleft>16</onleft>
@@ -322,116 +319,32 @@
 			<onup>15</onup>
 			<ondown>16</ondown>
 			<posX>90</posX>
-			<posY>560</posY>
+			<posY>715</posY>
 			<label>6029</label>
 			<width>280</width>
 			<textvalign>middle</textvalign>
 			<textalign>CENTER</textalign>
 			<animation effect="Fade" time="250">WindowOpen</animation>
 			<animation effect="Fade" time="250">WindowClose</animation>
-        </control>
-    
-    
-        <!--Die Savingcontrols 3 x Label + Progressbar und Cancelbutton-->
-		<control>
-			<id>12</id>
-			<description>SavingStatus Label</description>
-			<type>label</type>
-			<posX>90</posX>
-			<posY>670</posY>
-			<width>790</width>
-			<label>#MyVideoRedo.Translation.SaveCuttedVideo</label>
-		    <font>font10</font>
-			<align>left</align>
-			<textcolor>ff6FAFE1</textcolor>
-			<visible>False</visible>
-			<animation effect="Fade" time="250">WindowOpen</animation>
-			<animation effect="Fade" time="250">WindowClose</animation>
-        </control>
-		
-        <control>
-			<description>SavingProgress1</description>
-		    <id>0</id>
-			<type>label</type>
-			<posX>90</posX>
-			<posY>720</posY>
-			<label>#Saving.Progress.Label1</label>
-		    <visible>control.isvisible(12)</visible>
-        </control>
- 
-        <control>
-			<description>SavingProgress2</description>
-		    <id>0</id>
-			<type>label</type>
-			<posX>90</posX>
-			<posY>765</posY>
-			<label>#Saving.Progress.Label2</label>
-		    <visible>control.isvisible(12)</visible>
-        </control>
-	
-        <control>
-			<id>13</id>
-			<description>SavingProgressbar</description>
-			<type>progress</type>
-			<posX>80</posX>
-			<posY>805</posY>
-			<width>810</width>
-			<height>53</height>
-		    <visible>control.isvisible(12)</visible>
-        </control>
-	
-    
-		<!--Savebutton - Nur sichtbar wenn nicht gespeichert wird-->
-        <control>
-		    <description>SaveButton</description>
+    </control>
+  
+		<!--Savebutton -->
+    <control>
+		  <description>SaveButton</description>
 			<id>16</id>
 			<type>button</type>
 			<onleft>22</onleft>
-		    <onright>22</onright>
+		  <onright>22</onright>
 			<onup>14</onup>
-	        <ondown>22</ondown>
+	    <ondown>22</ondown>
 			<posX>90</posX>
 			<posY>895</posY>
 			<label>#MyVideoRedo.Translation.SaveVideo</label>
 			<width>280</width>
 			<textvalign>middle</textvalign>
-			<textalign>CENTER</textalign>
-		    <visible>!control.isvisible(12)</visible>
+      <textalign>CENTER</textalign>
 			<animation effect="Fade" time="250">WindowOpen</animation>
 			<animation effect="Fade" time="250">WindowClose</animation>
-        </control>
-		
-		
-        <control>
-		    <description>Cancel Button</description>
-			<id>22</id>
-			<type>button</type>
-			<onleft>22</onleft>
-		    <onright>22</onright>
-			<onup>22</onup>
-		    <ondown>22</ondown>
-			<posX>90</posX>
-			<posY>895</posY>
-			<label>510</label>
-			<width>265</width>
-			<textvalign>middle</textvalign>
-			<textalign>CENTER</textalign>
-		    <visible>control.isvisible(12)</visible>
-        </control>
-		
-		
-        <!--control>
-			<id>52</id>
-			<type>animation</type>
-			<posX>912</posX>
-			<posY>492</posY>
-			<width>96</width>
-			<height>96</height>
-			<textures>common.waiting.1.png;common.waiting.2.png;common.waiting.3.png;common.waiting.4.png;common.waiting.5.png;common.waiting.6.png;common.waiting.8.png</textures>
-			<Duration>0:0:01.5</Duration>
-		    <visible>control.isvisible(12)</visible>
-        </control-->
-    
-    
+    </control> 
     </controls>
 </window>

@@ -4,200 +4,162 @@
     <defaultcontrol>13</defaultcontrol>
     <allowoverlay>no</allowoverlay>
     <define>#header.label:#currentmodule</define>
-    <controls>      
-      <control>
-          <id>1</id>
-          <type>label</type>
-          <posX>30</posX>
-          <posY>10</posY>
-          <font>font11</font>
-          <textcolor>ff6fafe1</textcolor>
-          <align>LEFT</align>
-          <label>MyVideoRedo - #MyVideoRedo.Translation.SavingProfile</label>
-      </control>
-       
-		  <control>
-          <id>0</id>
-          <type>image</type>
-          <posX>236</posX>
-          <posY>111</posY>
-          <width>840</width>
-          <height>466</height>
-          <texture>info_bg.png</texture>
-      </control>
-         
-      <control>
+    <controls>
+        <control>
             <id>0</id>
             <type>image</type>
-            <posX>256</posX>
-            <posY>131</posY>
-            <width>800</width>
-            <height>446</height>
+            <posX>441</posX>
+            <posY>296</posY>
+            <width>1040</width>
+            <height>679</height>
             <texture>context_background.png</texture>
-      </control>
-      
-      <control>
+        </control>
+        <control>
             <id>0</id>
             <description>GFX-Heading "menu" text label</description>
             <type>label</type>
-            <posX>355</posX>
-            <posY>203</posY>
-            <width>540</width>
-            <font>font14</font>
+            <posX>560</posX>
+            <posY>386</posY>
+            <width>800</width>
+            <font>font22</font>
+            <textcolor>ff393939</textcolor>
+            <label>#ProfileTmp.Name</label>
+        </control>
+        <control>
+            <type>label</type>
+            <posX>535</posX>
+            <posY>490</posY>
+            <font>TitanLight12</font>
+            <textcolor>ff393939</textcolor>
+            <label>#MyVideoRedo.Translation.Encodingtype</label>
+        </control>
+        <control>
+            <type>label</type>
+            <posX>535</posX>
+            <posY>540</posY>
+            <font>TitanLight12</font>
+            <textcolor>ff393939</textcolor>
+            <label>#MyVideoRedo.Translation.Filetype</label>
+        </control>
+        <control>
+            <type>label</type>
+            <posX>535</posX>
+            <posY>590</posY>
+            <font>TitanLight12</font>
+            <textcolor>ff393939</textcolor>
+            <label>#MyVideoRedo.Translation.Resolution</label>
+        </control>
+        <control>
+            <type>label</type>
+            <posX>535</posX>
+            <posY>640</posY>
+            <font>TitanLight12</font>
+            <textcolor>ff393939</textcolor>
+            <label>#MyVideoRedo.Translation.Ratio</label>
+        </control>
+        <control>
+            <type>label</type>
+            <posX>535</posX>
+            <posY>690</posY>
+            <font>TitanLight12</font>
+            <textcolor>ff393939</textcolor>
+            <label>#MyVideoRedo.Translation.Deinterlacemode</label>
+        </control>
+        <control>
+            <type>label</type>
+            <posX>535</posX>
+            <posY>740</posY>
+            <font>TitanLight12</font>
+            <textcolor>ff393939</textcolor>
+            <label>#MyVideoRedo.Translation.Framerate</label>
+        </control>
+        <control>
+            <type>fadelabel</type>
+            <posX>1385</posX>
+            <posY>490</posY>
+            <width>442</width>
+            <font>TitanLight12</font>
             <textcolor>ff6fafe1</textcolor>
-            <label>Profile: #ProfileTmp.Name   </label>
-      </control>
-      
-      <control>
-            <id>12</id>
-            <description>Exit button</description>
+            <align>RIGHT</align>
+            <label>#ProfileTmp.Encodingtype</label>
+        </control>
+        <control>
+            <type>fadelabel</type>
+            <posX>1385</posX>
+            <posY>540</posY>
+            <width>443</width>
+            <font>TitanLight12</font>
+            <textcolor>ff6fafe1</textcolor>
+            <align>RIGHT</align>
+            <label>#ProfileTmp.Filetype</label>
+        </control>
+        <control>
+            <type>fadelabel</type>
+            <posX>1385</posX>
+            <posY>590</posY>
+            <width>443</width>
+            <font>TitanLight12</font>
+            <textcolor>ff6fafe1</textcolor>
+            <align>RIGHT</align>
+            <label>#ProfileTmp.Resolution</label>
+        </control>
+        <control>
+            <type>fadelabel</type>
+            <posX>1387</posX>
+            <posY>640</posY>
+            <width>445</width>
+            <font>TitanLight12</font>
+            <textcolor>ff6fafe1</textcolor>
+            <align>RIGHT</align>
+            <label>#ProfileTmp.Ratio</label>
+        </control>
+        <control>
+            <type>fadelabel</type>
+            <posX>1385</posX>
+            <posY>690</posY>
+            <width>445</width>
+            <font>TitanLight12</font>
+            <textcolor>ff6fafe1</textcolor>
+            <align>RIGHT</align>
+            <label>#ProfileTmp.Deinterlacemode</label>
+        </control>
+        <control>
+            <type>fadelabel</type>
+            <posX>1385</posX>
+            <posY>740</posY>
+            <width>443</width>
+            <font>TitanLight12</font>
+            <textcolor>ff6fafe1</textcolor>
+            <align>RIGHT</align>
+            <label>#ProfileTmp.Framerate</label>
+        </control>
+        <control>
+            <id>13</id>
+            <type>button</type>
+            <onleft>14</onleft>
+            <onright>14</onright>
+            <posX>630</posX>
+            <posY>810</posY>
+            <width>250</width>
+            <textureFocus>settings_button_small_focus.png</textureFocus>
+            <textureNoFocus>settings_button_small_nofocus.png</textureNoFocus>
+            <label>506</label>
+            <textalign>CENTER</textalign>
+            <textvalign>middle</textvalign>
+        </control>
+        <control>
+            <id>14</id>
             <type>button</type>
             <onleft>13</onleft>
             <onright>13</onright>
-            <onup>13</onup>
-            <ondown>13</ondown>
-            <posX>915</posX>
-            <posY>200</posY>
-            <width>30</width>
-            <height>30</height>
-            <textureFocus>top_exit_enabled.png</textureFocus>
-            <textureNoFocus>top_exit_disabled.png</textureNoFocus>
-            <label>-</label>
-      </control>
-      
-      
-      <control>
-            <type>label</type>
-            <posX>355</posX>
-            <posY>257</posY>
-            <font>font10</font>
-            <textcolor>ff6fafe1</textcolor>
-            <label>#MyVideoRedo.Translation.Encodingtype</label>
-      </control>
-      
-      
-      <control>
-            <type>label</type>
-            <posX>355</posX>
-            <posY>297</posY>
-            <font>font10</font>
-            <textcolor>ff6fafe1</textcolor>
-            <label>#MyVideoRedo.Translation.Filetype</label>
-      </control>
-      
-      
-      <control>
-            <type>label</type>
-            <posX>355</posX>
-            <posY>337</posY>
-            <font>font10</font>
-            <textcolor>ff6fafe1</textcolor>
-            <label>#MyVideoRedo.Translation.Resolution</label>
-      </control>
-      
-      
-      <control>
-            <type>label</type>
-            <posX>355</posX>
-            <posY>377</posY>
-            <font>font10</font>
-            <textcolor>ff6fafe1</textcolor>
-            <label>#MyVideoRedo.Translation.Ratio</label>
-      </control>
-      
-      
-      <control>
-            <type>label</type>
-            <posX>355</posX>
-            <posY>417</posY>
-            <font>font10</font>
-            <textcolor>ff6fafe1</textcolor>
-            <label>#MyVideoRedo.Translation.Deinterlacemode</label>
-      </control>
-      
-      
-      <control>
-            <type>label</type>
-            <posX>355</posX>
-            <posY>457</posY>
-            <font>font10</font>
-            <textcolor>ff6fafe1</textcolor>
-            <label>#MyVideoRedo.Translation.Framerate</label>
-      </control>
-      
-      
-      <control>
-            <type>fadelabel</type>
-            <posX>945</posX>
-            <posY>255</posY>
-            <width>442</width>
-            <align>RIGHT</align>
-            <label>#ProfileTmp.Encodingtype</label>
-      </control>
-      
-      
-      <control>
-            <type>fadelabel</type>
-            <posX>945</posX>
-            <posY>295</posY>
-            <width>443</width>
-            <align>RIGHT</align>
-            <label>#ProfileTmp.Filetype</label>
-      </control>
-      
-      
-      <control>
-            <type>fadelabel</type>
-            <posX>945</posX>
-            <posY>335</posY>
-            <width>443</width>
-            <align>RIGHT</align>
-            <label>#ProfileTmp.Resolution</label>
-      </control>
-      
-      
-      <control>
-            <type>fadelabel</type>
-            <posX>945</posX>
-            <posY>375</posY>
-            <width>445</width>
-            <align>RIGHT</align>
-            <label>#ProfileTmp.Ratio</label>
-      </control>
-      
-      
-      <control>
-            <type>fadelabel</type>
-            <posX>945</posX>
-            <posY>415</posY>
-            <width>413</width>
-            <align>RIGHT</align>
-            <label>#ProfileTmp.Deinterlacemode</label>
-      </control>
-      
-      
-      <control>
-            <type>fadelabel</type>
-            <posX>945</posX>
-            <posY>455</posY>
-            <width>443</width>
-            <align>RIGHT</align>
-            <label>#ProfileTmp.Framerate</label>
-      </control>
-      
-      
-      <control>
-            <id>13</id>
-            <type>button</type>
-            <onleft>12</onleft>
-            <onright>12</onright>
-            <onup>12</onup>
-            <ondown>12</ondown>
-            <posX>525</posX>
-            <posY>485</posY>
+            <posX>1035</posX>
+            <posY>810</posY>
             <width>250</width>
-            <label>Use it!</label>
+            <textureFocus>settings_button_small_focus.png</textureFocus>
+            <textureNoFocus>settings_button_small_nofocus.png</textureNoFocus>
+            <label>510</label>
             <textalign>CENTER</textalign>
-      </control>
+            <textvalign>middle</textvalign>
+        </control>
     </controls>
 </window>

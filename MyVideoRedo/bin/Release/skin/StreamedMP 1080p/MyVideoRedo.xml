@@ -14,7 +14,7 @@
     <!--!!!!!! The Bar-Properties are Case-Sensitive !!!!!!-->
     <!--Start Filmstripbar-Properties
     Left=6;Top=80;Height=100;Width=974;LineMarkerForeground=False;LinemarkerColor=Red;LineMarkerThickness=10;
-    DarkBackColor=Green;LightFillColor=Gray;DarkFillColor=Black;LightBackColor=Green;ThumbnailsCount=10
+    DarkBackColor=Green;LightFillColor=Gray;DarkFillColor=Black;LightBackColor=Green;ThumbnailsCount=10 
     End Filmstripbar-Properties-->
     <!--Start Cutbar-Properties
     Left=6;Top=40;Height=25;Width=974;LineMarkerForeground=True;LinemarkerColor=Red;LineMarkerThickness=3;
@@ -124,7 +124,10 @@
       <posY>205</posY>
       <width>986</width>
       <height>555</height>
-	  <visible>!control.hasfocus(999)</visible>
+      <align>center</align>
+      <valign>middle</valign>
+      <keepaspectratio>yes</keepaspectratio>
+	    <visible>!control.hasfocus(999)+!player.paused</visible>
       <colordiffuse>ffffffff</colordiffuse>
       <onleft>2</onleft>
       <onright>2</onright>
@@ -189,10 +192,10 @@
     
     <control>
       <type>label</type>
-      <description>VIdeoTimeLeft</description>
+      <description>VideoTimeLeft</description>
       <posX>1000</posX>
       <posY>1033</posY>
-      <label>#MyVideoRedo.Translation.</label>
+      <label>#MyVideoRedo.Translation.TimeLeft</label>
       <font>mediastream10c</font>
 	  <visible>!window.isactive(1210)</visible>
 	  <animation effect="Fade" time="250">WindowOpen</animation>
@@ -297,9 +300,24 @@
       <posY>205</posY>
       <width>986</width>
       <height>555</height>
+    <align>center</align>
+    <valign>middle</valign>
 	  <keepaspectratio>yes</keepaspectratio>
       <texture>redoRemote.png</texture>
 	  <visible>control.hasfocus(999)</visible>
+    </control>
+    <control>
+      <id>29</id>
+      <description>StillImage</description>
+      <type>image</type>
+      <posX>50</posX>
+      <posY>205</posY>
+      <width>986</width>
+      <height>555</height>
+      <align>center</align>
+      <valign>middle</valign>
+      <keepaspectratio>yes</keepaspectratio>
+      <visible>!control.hasfocus(999)+player.paused</visible>
     </control>
     <control>
       <description>Working Animation</description>

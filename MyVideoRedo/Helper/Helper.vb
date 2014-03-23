@@ -1,14 +1,15 @@
-﻿Imports System.Windows.Forms
+﻿Imports MediaPortal.Configuration
 Imports MediaPortal.Dialogs
 Imports MediaPortal.GUI.Library
+Imports MediaPortal.Profile
+Imports MediaPortal.Util
+Imports MyVideoRedo.MyVideoRedo
 Imports TvdbLib
 Imports TvdbLib.Cache
 Imports TvdbLib.Data
-Imports MediaPortal.Profile
-Imports MediaPortal.Configuration
-Imports MediaPortal.Util
 Imports TvControl
 Imports System.IO
+Imports System.Windows.Forms
 
 Public Module Helper
     Friend VRD As VideoReDo
@@ -90,9 +91,9 @@ Public Module Helper
                 Dim thumbData As Byte() = RemoteControl.Instance.GetRecordingThumbnail(thumbnailFilename)
                 If (thumbData.Length > 0) Then
                     Dim fs As New FileStream(PreviewThumb, FileMode.Create)
-                        fs.Write(thumbData, 0, thumbData.Length)
-                        fs.Close()
-                        fs.Dispose()
+                    fs.Write(thumbData, 0, thumbData.Length)
+                    fs.Close()
+                    fs.Dispose()
                     Utils.DoInsertExistingFileIntoCache(PreviewThumb)
                 Else
                     MyLog.DebugM("Thumbnail {0} not found on TV server", PreviewThumb)
@@ -183,7 +184,6 @@ Public Module Helper
             GUIWindowManager.Process()
             dlg.Reset()
             dlg = Nothing
-            'Threading.Thread.CurrentThread.Sleep(2000)
         Catch ex As Exception
             Try
                 dlg.Reset()
@@ -243,10 +243,6 @@ Public Module Helper
     End Sub
 #End Region
 
-    Public Function GetNegativeInt(ByVal PositiveInt) As Integer
-        Return PositiveInt * (-1)
-    End Function
-
     Public Function HasPathSubDirectories(ByVal Path As String) As Boolean
         MyLog.DebugM("Checking for existance of subfolders in the folder ...")
         Dim aktDir As New IO.DirectoryInfo(Path)
@@ -283,7 +279,7 @@ Public Module Helper
         GUIMain = 1209
         GUIProfileDetails = 1210
         GUISave = 1211
-        'GUISaveDetails = 1212
+        GUISaveProgress = 1212
     End Enum
 
     Public Declare Function FindWindow Lib "user32.dll" Alias "FindWindowA" (ByVal lpClassName As String, ByVal lpWindowName As String) As Long
@@ -299,14 +295,14 @@ Public Module Helper
     Public Sub GetProfileDetail(profile As String)
         Dim SavingFilename As String
         If Left(VRD.ReDoVersion, 1) = 4 Then
-            SavingFilename = Replace(AktRecToCut.SavingFilename, "%ext%", VRD.GetProfileInfo(profile).DateiType.ToLower)
+            SavingFilename = Replace(AktRecToCut.SavingFilename, "%ext%", VRD.GetProfileInfo(profile).Filetype.ToLower)
         Else
             SavingFilename = Replace(AktRecToCut.SavingFilename, "%ext%", "mpeg")
         End If
         Translator.SetProperty("#Saving.Name", SavingFilename)
         Translator.SetProperty("#Saving.Profile", profile)
         Translator.SetProperty("#Profile.Encodingtype", VRD.GetProfileInfo(profile).Encodingtype)
-        Translator.SetProperty("#Profile.Filetype", VRD.GetProfileInfo(profile).DateiType)
+        Translator.SetProperty("#Profile.Filetype", VRD.GetProfileInfo(profile).Filetype)
         Translator.SetProperty("#Profile.Resolution", VRD.GetProfileInfo(profile).Resolution)
         Translator.SetProperty("#Profile.Ratio", VRD.GetProfileInfo(profile).Ratio)
         Translator.SetProperty("#Profile.Deinterlacemode", VRD.GetProfileInfo(profile).DeintarlaceModus)
@@ -362,4 +358,33 @@ Public Module Helper
             Return False
         End If
     End Function
+
+    Public Sub ShowProfileDialog(ByVal GetID As Integer)
+        Dim dlgProfiles As GUIDialogMenu = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_MENU, Integer)), GUIDialogMenu)
+        dlgProfiles.Reset()
+        For Each item In VRD.GetProfileList
+            dlgProfiles.Add(item)
+        Next
+        dlgProfiles.SetHeading(Translation.SavingProfile)
+        dlgProfiles.DoModal(GetID)
+        If HelpConfig.GetConfigString(ConfigKey.ProfileDetails) = False Then
+            Dim newprofilename As String = "Nothing"
+            Do
+                If dlgProfiles.SelectedLabel > -1 Then
+                    Dim dlgProfileDetail As GUIProfileDetail = CType(GUIWindowManager.GetWindow(enumWindows.GUIProfileDetails), GUIProfileDetail)
+                    dlgProfileDetail.Reset()
+                    dlgProfileDetail.SetHeading(dlgProfiles.SelectedLabelText)
+                    dlgProfileDetail.DoModal(GetID)
+                    newprofilename = dlgProfileDetail.SelectedLabelText
+                    dlgProfileDetail = Nothing
+                Else
+                    Exit Sub
+                End If
+            Loop While newprofilename = "Nothing"
+            VRD.AktSavingProfile = newprofilename
+        Else
+            VRD.AktSavingProfile = dlgProfiles.SelectedLabelText
+            GetProfileDetail(dlgProfiles.SelectedLabelText)
+        End If
+    End Sub
 End Module

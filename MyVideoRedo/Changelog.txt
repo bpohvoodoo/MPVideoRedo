@@ -1,4 +1,42 @@
-﻿----- Version 9.1.0 -----
+﻿
+----- Version 9.1.1 -----
+22.03.2014
+* Speicherfortschritt umgestellt auf DialogMenu
+* Schnitte werden nun auch wärend des laufenden AdScans aktualisiert
+* Unter Einstellungen kann jetzt die Aktualisierung für den Fimstreifen (auch wenn nicht im Pause Modus) aktiviert werden, die erforder mehr Leistung!
+* mit der Taste 8 kann nun die letze Szene vor/unter der aktuellen Position gelöscht werden
+* mit der Taste * kann nun die vorige Sprungmarke angewählt werden
+* mit der Taste # kann nun die nächste Sprungmarke angewählt werden
+* Anzeige TV Suite konform auf von Millisekunden auf Frames umgestellt
+* #CurrentFrame (Standbilder) Funktionalität gefixed und in die Skins eingefügt
+*
+* Bug beseitigt:
+* g_player wurde am Ende des Videos beeendet. Nun geht er 1 Sekunde vor Ende in Pause.
+* wenn der Abstand zum Anfang/Ende kleiner als die Sprungmarke, dann sprang das Plugin in die andere Richtung
+* Fehler in der Frame/Milisekunden Umrechnung behoben.
+* Anzeige ist nun 100% konform zur TV Suite (Frame links vom Schnittmarker im Filmstreifen ist der #Currentframe)
+* Schnitte wurden bei Auswahl des Menüpunktes aus dem Contextmenü nicht sauber gelöscht.
+* Schnitte wurden nach dem AdScan Lauf nicht in die Listcontrol geladen.
+* Diverse weiter kleinere Bugfixes.
+*
+* Bekannte Probleme:
+* interner ThumbnailsCreator.vb arbeitet nicht korrekt bei SD Material.
+* Textlänge in der Virtuellen Tastatur ist zu begrenzt.
+* 
+*
+* ToDo:
+* Automatische Erkennung einer Aufnahme als Serienfolge, wenn Episodeninformationen verfügbar.
+* TVServer wachhalten (wichtig für Clientbetrieb)
+* Exception abfangen, falls TV Server nicht verfügbar
+* Löschen der Aufnahmen auch aus der TV Server Datenbak
+* Ändern der Cutmarker einer Szene
+* Speichen mit Originalname (Speichen mit temporärem Namen und dann Löschen der Orginaldatei und Umbenennen der temporären Datei)
+* internen Thumbnailer möglicher Weise gegen ffmpeg tauschen (s.o, mal sehen)
+* laden von Cutlists (ComSkip) (mal sehen)
+* Speichern in Cutlists (mal sehen)
+
+
+----- Version 9.1.0 -----
 05.03.2014
 * Umgestellt auf die Benutzung von Thumbs des TVServers, falls vorhanden. Fallback bleibt weiterhin der interne ThumbnailCreator
 * Schnitte Löschen Dialog beim Verlassen über Settings abschaltbar

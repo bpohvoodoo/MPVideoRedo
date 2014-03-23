@@ -1,4 +1,4 @@
-﻿Public Class StandartCutBar
+﻿Public Class StandardCutBar
     Inherits ProgressBase
 
 

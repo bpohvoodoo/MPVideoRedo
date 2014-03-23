@@ -52,7 +52,7 @@ Namespace MyVideoRedo
         End Function
 
         Public Function Description() As String Implements MediaPortal.GUI.Library.ISetupForm.Description
-            Return "Plugin zum Schneiden von Videos mit Hilfe von VideoRedo"
+            Return Translation.ModuleFunction
         End Function
 
         Public Function GetHome(ByRef strButtonText As String, ByRef strButtonImage As String, ByRef strButtonImageFocus As String, ByRef strPictureImage As String) As Boolean Implements MediaPortal.GUI.Library.ISetupForm.GetHome
@@ -60,7 +60,7 @@ Namespace MyVideoRedo
         End Function
 
         Public Function GetWindowId() As Integer Implements MediaPortal.GUI.Library.ISetupForm.GetWindowId
-            Return 1208
+            Return enumWindows.GUIstart
         End Function
 
         Public Function HasSetup() As Boolean Implements MediaPortal.GUI.Library.ISetupForm.HasSetup
@@ -89,7 +89,7 @@ Namespace MyVideoRedo
 
         Public Overloads Overrides Property GetID() As Integer
             Get
-                Return 1208
+                Return enumWindows.GUIstart
             End Get
             Set(ByVal value As Integer)
             End Set
@@ -125,18 +125,24 @@ Namespace MyVideoRedo
                 Translator.SetProperty("#RecordingGenre", " ")
                 Translator.SetProperty("#RecordingEpisodename", " ")
 
-                'Wird gerade was geschnitten
+                'Wird gerade was geschnitten oder läugt der AdScan 
                 If VRD IsNot Nothing Then
+                    GUIButtonControl.DisableControl(GetID, Me.ctlbtnCutVideo.GetID)
                     If VRD.OutputInProgress = True Then
-                        If GUIWindowManager.GetPreviousActiveWindow <> 1209 Then 'Wenn geschnitten wird dann direkt in das ProgressWindow gehen
-                            GUIWindowManager.ActivateWindow(1211, True)
+                        If GUIWindowManager.GetPreviousActiveWindow <> enumWindows.GUISave Then 'Wenn geschnitten wird, dann direkt in das ProgressWindow gehen
+                            GUIWindowManager.ActivateWindow(enumWindows.GUISave, True)
                             Exit Sub
                         End If
-                        GUIButtonControl.DisableControl(GetID, Me.ctlbtnCutVideo.GetID)
+                    ElseIf VRD.AdScanInProgress = True Then
+                        If GUIWindowManager.GetPreviousActiveWindow <> enumWindows.GUIMain Then 'Wenn AdScan läuft, dann direkt in das MainWindow gehen
+                            GUIWindowManager.ActivateWindow(enumWindows.GUIMain, True)
+                            Exit Sub
+                        End If
                     Else
                         GUIButtonControl.EnableControl(GetID, Me.ctlbtnCutVideo.GetID)
                     End If
                 End If
+
 
                 If g_Player.Playing Then g_Player.StopAndKeepTimeShifting() 'Falls ein Stream läuft dann stoppen
                 Translator.TranslateSkin()
@@ -145,7 +151,7 @@ Namespace MyVideoRedo
                 RecRootPath = HelpConfig.GetConfigString(ConfigKey.RecordingsPath)
                 If RecRootPath = "" Or IO.Directory.Exists(RecRootPath) = False Then
                     ShowErrorDialog(Me.GetID, Translation.RecordingPathIncorrect)
-                    GUIWindowManager.ActivateWindow(1211, True)
+                    GUIWindowManager.ActivateWindow(enumWindows.GUISave, True)
                     Exit Sub
                 End If
                 FillRecListControl(RecRootPath)
@@ -182,9 +188,9 @@ Namespace MyVideoRedo
                 '#If DEBUG Then
                 '#Else
 
-                MyLog.DebugM("Bringe MediaPortal wieder in den Fordergrund...")
+                MyLog.DebugM("Trying to bring MediaPortal to the foreground...")
                 Helper.SetMPtoForeground(HelpConfig.GetConfigString(ConfigKey.ModuleName) & " - " & Translation.ModuleStart)
-                MyLog.DebugM("Mediaportal wieder im Fordergrund")
+                MyLog.DebugM("Mediaportal is now in foreground again.")
                 '#End If
 
             End If
@@ -252,8 +258,8 @@ Namespace MyVideoRedo
         Private Sub FillRecListControl(ByVal RecordingPath As String)
             ctlRecList.ListItems.Clear()
             RecList = New clsRecordings(RecordingPath)
-            MyLog.DebugM("Fülle Recordinglistcontrol mit Path {0}", RecordingPath)
-            MyLog.DebugM("Es gibt im aktuellen Pfad {0} Aufnahmen zu laden.", RecList.lRecordings.Count)
+            MyLog.DebugM("Filling RecordingListcontrol with path {0}", RecordingPath)
+            MyLog.DebugM("There are {0} recordings to load in this path.", RecList.lRecordings.Count)
             'Wenn es nicht der RecordingRoot ist dann .. einfügen
             Dim itemcount As Integer
             itemcount = 0
@@ -264,7 +270,7 @@ Namespace MyVideoRedo
                 lItem.IconImage = "defaultFolderBack.png"
                 lItem.IsFolder = True
                 lItem.Path = Directory.GetParent(RecordingPath).FullName
-                MyLog.DebugM("Fülle Recordinglistcontrol mit Ordnerlabel {0} und Pfad: {1}", lItem.Label, lItem.Path)
+                MyLog.DebugM("Filling RecordingListcontrol with pathlabel {0} and path: {1}", lItem.Label, lItem.Path)
                 'ctlRecList.ListView.ListItems.Add(lItem)
                 GUIControl.AddListItemControl(GetID, ctlRecList.GetID, lItem)
             End If
@@ -278,7 +284,7 @@ Namespace MyVideoRedo
                     lItem.ThumbnailImage = lItem.IconImage
                     lItem.IsFolder = True
                     lItem.Path = dire
-                    MyLog.DebugM("Fülle Recordinglistcontrol mit Ordnerlabel {0} und Pfad: {1}", lItem.Label, lItem.Path)
+                    MyLog.DebugM("Filling RecordingListcontrol with pathlabel {0} and path: {1}", lItem.Label, lItem.Path)
                     GUIControl.AddListItemControl(GetID, ctlRecList.GetID, lItem)
                     itemcount = itemcount + 1
                 Next
@@ -298,16 +304,16 @@ Namespace MyVideoRedo
                         lItem.IconImage = GetSaveThumbPath(item)
                         lItem.ThumbnailImage = GetSaveThumbPath(item)
                         lItem.IsFolder = False
-                        MyLog.DebugM("Fülle Recordinglistcontrol mit VideoFile {0} und Pfad: {1}", lItem.Label, lItem.Path)
+                        MyLog.DebugM("Filling RecordingListcontrol with file {0} and path: {1}", lItem.Label, lItem.Path)
                         GUIControl.AddListItemControl(GetID, ctlRecList.GetID, lItem)
                         itemcount = itemcount + 1
                     End If
                 Next
                 ctlRecList.SelectedListItemIndex = 0
                 GUIPropertyManager.SetProperty("#itemcount", itemcount)
-                MyLog.Info("Es wurden {0} Aufnahmen in der aktuellen Ansicht geladen.", RecList.lRecordings.Count)
+                MyLog.Info("{0} recordings were loaded to the list.", RecList.lRecordings.Count)
             Catch ex As IO.IOException
-                MyLog.Warn("Fehler in FillRecListControl():{0}", ex.ToString)
+                MyLog.Warn("Error in FillRecListControl():{0}", ex.ToString)
             End Try
         End Sub
 
@@ -319,7 +325,7 @@ Namespace MyVideoRedo
         Private Sub RecList_ItemSelected(ByVal Sel As Boolean)
             ctlCheckUseAsSeries.Selected = False
             ctlDummyAsSeries.Visible = False
-            MyLog.DebugM("RecordingListControl wurde geklickt")
+            MyLog.DebugM("RecordingListControl was clicked")
             'Ist es eine Datei oder ein Ordner
 
             If ctlRecList.SelectedListItem.IsFolder Then
@@ -729,22 +735,21 @@ Namespace MyVideoRedo
             End If
             MyLog.Info("LastSelRecording.Savingfilename: {0}", lastSelRecording.SavingFilename)
 
-            GUIWindowManager.ActivateWindow(1209)
-
+            GUIWindowManager.ActivateWindow(enumWindows.GUIMain)
         End Sub
 
 #End Region
 
         Protected Overrides Sub OnPageDestroy(ByVal new_windowId As Integer)
             MyBase.OnPageDestroy(new_windowId)
-            If new_windowId < 1208 Or new_windowId > 1211 Then 'Wenn kein Fenster vom Plugin
+            If new_windowId < 1208 Or new_windowId > 1212 Then 'Wenn kein Fenster vom Plugin
                 MyLog.DebugM("Startseite wird geschlossen...")
                 'System.Diagnostics.Process.GetProcessesByName("VRDQuickstreamfix")(0).Kill()
                 If VRD IsNot Nothing Then
                     MyLog.DebugM("VRD.CutMarkerList.count = {0} ; VRD is Nothing = {1}", VRD.CutMarkerList.Count, IIf(VRD Is Nothing, "True", "False").ToString)
 
                     'Dialog ob man wirklich beenden will
-                    If HelpConfig.GetConfigString(ConfigKey.AlwaysKeepCuts) = False Then
+                    If (HelpConfig.GetConfigString(ConfigKey.AlwaysKeepCuts) = False) And (VRD.AdScanInProgress = False) And (VRD.OutputInProgress = False) Then
                         MyLog.DebugM("Zeige Dialog ob VRD gelöscht werden sollen...")
                         If ShowYesNoDialog(GetID, Translation.CloseVRD, Translation.CloseVRD1, Translation.CloseVRD2, Translation.CloseVRD3) = True Then
                             MyLog.DebugM("Dialog wurde bestätigt... VRD-Objekte werden zerstört.")
@@ -795,9 +800,7 @@ Namespace MyVideoRedo
                     AktRecToCut = lastSelRecording
                 End If
                 MyLog.Info("LastSelRecording.Savingfilename: {0}", lastSelRecording.SavingFilename)
-
-                GUIWindowManager.ActivateWindow(1211)
-
+                GUIWindowManager.ActivateWindow(enumWindows.GUISave)
             End If
 
         End Sub

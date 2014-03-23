@@ -16,35 +16,28 @@ Namespace MyVideoRedo
         Inherits GUIWindow
 
 #Region "SkinControls"
-        <SkinControlAttribute(44)> _
-        Protected VideoWindow As GUIVideoControl = Nothing
-        <SkinControlAttribute(45)> _
-        Protected lblAudioResync As GUILabelControl = Nothing
-        <SkinControlAttribute(46)> _
-        Protected sliderAudioSync As GUISliderControl = Nothing
-        <SkinControlAttribute(23)> _
-        Protected btnCutNow As GUIButtonControl = Nothing
-        <SkinControlAttribute(24)> _
-        Protected btnHelp As GUIButtonControl = Nothing
-        <SkinControlAttribute(4)> _
-        Protected btnCut As GUIButtonControl = Nothing
-        <SkinControlAttribute(51)> _
-        Protected CutList As GUIListControl = Nothing
-        <SkinControlAttribute(71)> _
-        Protected CutBarImage As GUIImage = Nothing
-        <SkinControlAttribute(13)> _
-        Protected AnimWaiting As GUIAnimation = Nothing
-        <SkinControlAttribute(25)> _
-        Protected HelpBackgroundImage As GUIImage = Nothing
-        <SkinControlAttribute(26)> _
-        Protected btnExitHelp As GUIButtonControl = Nothing
+        <SkinControlAttribute(44)> Protected VideoWindow As GUIVideoControl = Nothing
+        <SkinControlAttribute(45)> Protected lblAudioResync As GUILabelControl = Nothing
+        <SkinControlAttribute(46)> Protected sliderAudioSync As GUISliderControl = Nothing
+        <SkinControlAttribute(23)> Protected btnCutNow As GUIButtonControl = Nothing
+        <SkinControlAttribute(24)> Protected btnHelp As GUIButtonControl = Nothing
+        <SkinControlAttribute(4)> Protected btnCut As GUIButtonControl = Nothing
+        <SkinControlAttribute(51)> Protected CutList As GUIListControl = Nothing
+        <SkinControlAttribute(71)> Protected CutBarImage As GUIImage = Nothing
+        <SkinControlAttribute(13)> Protected AnimWaiting As GUIAnimation = Nothing
+        <SkinControlAttribute(25)> Protected HelpBackgroundImage As GUIImage = Nothing
+        <SkinControlAttribute(26)> Protected btnExitHelp As GUIButtonControl = Nothing
+        <SkinControlAttribute(29)> Protected ctlStillImage As GUIImage = Nothing
 #End Region
 
 #Region "Variablen"
         Private TempStartValue As Single
         Private TempEndValue As Single
-        Friend tmr As New Timer
-        Friend tmrAd As New Timer
+        Private position As Long
+        Friend tmrDelayRefreshOnSkip As New Timer
+        Friend tmrCheckplayback As New Timer
+        Friend tmrAdScan As New Timer
+        Friend tmrRefresh As New Timer
         Private IsLoadingHDContent As Boolean = False
 #End Region
 
@@ -52,7 +45,7 @@ Namespace MyVideoRedo
 
         Public Overloads Overrides Property GetID() As Integer
             Get
-                Return 1209
+                Return enumWindows.GUIMain
             End Get
             Set(ByVal value As Integer)
             End Set
@@ -78,49 +71,82 @@ Namespace MyVideoRedo
             MyBase.OnPageLoad()
             If GUIWindowManager.ActiveWindow = GetID Then
                 If VRD.OutputInProgress = True Then
-                    GUIWindowManager.ActivateWindow(1208, True)
+                    GUIWindowManager.ActivateWindow(enumWindows.GUIstart, True)
                     Exit Sub
                 End If
+                If VRD.AdScanInProgress = True Then
+                    LoadCuts()
+                End If
                 MyLog.DebugM("Set Playerhandler PlayBackStarted, PlayBackChanged, PlayBackEnded and PlayBackStopped")
+                tmrDelayRefreshOnSkip.Interval = 1000
+                tmrDelayRefreshOnSkip.Enabled = False
+                tmrCheckplayback.Interval = 250
+                tmrCheckplayback.Enabled = False
+                tmrRefresh.Interval = HelpConfig.GetConfigString(ConfigKey.AlwaysRefreshMoviestripThumbsDelay) * 1000
+                tmrRefresh.Enabled = False
                 AddHandler g_Player.PlayBackStarted, AddressOf VideoStarted
                 AddHandler g_Player.PlayBackChanged, AddressOf VideoChange
                 AddHandler g_Player.PlayBackEnded, AddressOf VideoEnded
                 AddHandler g_Player.PlayBackStopped, AddressOf VideoStopped
+                AddHandler tmrDelayRefreshOnSkip.Tick, AddressOf RefreshTimerTick
+                AddHandler tmrCheckplayback.Tick, AddressOf CheckPlaybackTick
+                AddHandler tmrRefresh.Tick, AddressOf RefreshTimerTick
                 MyLog.DebugM("Handler set")
-
-                'sliderAudioSync.Visible = False
                 LoadRecordVideoToScreen()
-                ''Workaround um das Fenster von MP wieder in den Fordergrund zu bringen
+                MyLog.DebugM("Ermittle aktuelle Videoformat...")
+                Dim CurrFormat As MediaPortal.Player.VideoStreamFormat = g_Player.GetVideoFormat
+                MyLog.DebugM("Aktuelles Videoformat des g_players ist {0} mit einer Auflösung von {1} * {2} und einer Bitrate von {3} .", _
+                             CurrFormat.streamType.ToString, CurrFormat.width, CurrFormat.height, CurrFormat.bitrate)
+                If CurrFormat.streamType = VideoStreamType.H264 Then
+                    If Left(VRD.ReDoVersion, 1) < 4 Then
+                        UnloadCutbar()
+                        UnloadFilmstripbar()
+                        ShowErrorDialog(GetID, Translation.VideoRedoCanNotHD)
+                        LoadFilmstripbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml", True), VideoWindow)
+                        LoadCutbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml"), VideoWindow)
+                        g_Player.Stop()
+                        GUIWindowManager.ActivateWindow(GetGUIWindow(enumWindows.GUIstart), True)
+                        Exit Sub
+                    Else
+                        IsLoadingHDContent = True
+                        VRD.AktSavingProfile = HelpConfig.GetConfigString(ConfigKey.TVsuiteProfileH264)
+                    End If
+                Else
+                    VRD.AktSavingProfile = HelpConfig.GetConfigString(ConfigKey.TVsuiteProfile)
+                End If
+                GetProfileDetail(HelpConfig.GetConfigString(ConfigKey.TVsuiteProfile))
+                GetFilmstripThumbnails(0)
+                'Workaround um das Fenster von MP wieder in den Fordergrund zu bringen
                 SetMPtoForeground(HelpConfig.GetConfigString(ConfigKey.ModuleName) & " - " & Translation.ModuleMain)
-                'If VRD.AdScanInProgress Then AddHandler tmrAd.Tick, AddressOf AdScanTimerTick
+                tmrCheckplayback.Enabled = True
+                If (HelpConfig.GetConfigString(ConfigKey.AlwaysRefreshMoviestripThumbs) = True) Then
+                    tmrRefresh.Enabled = True
+                End If
             End If
         End Sub
 
         Protected Overrides Sub OnPageDestroy(ByVal new_windowId As Integer)
-            'If btnExitHelp.Visible = True Then
-            '    Exit Sub
-            'End If
             If VRD IsNot Nothing Then
                 If VRD.OutputInProgress Then Exit Sub
-                If GUIWindowManager.ActiveWindow = 1209 Then ' My Window
+                If GUIWindowManager.ActiveWindow = enumWindows.GUIMain Then ' My Window
                     UnloadCutbar()
                     UnloadFilmstripbar()
                     If VRD.AdScanInProgress Then
                         MyLog.DebugM("Showing YES/NO Dialog for Aborting the AdDetective Scan...")
                         If ShowYesNoDialog(GetID, Translation.ContinueScan, Translation.ContinueScan1) = True Then
-                            MyLog.DebugM("Dialog was confirmed. Continuing with scanning!")
+                            MyLog.DebugM("Dialog was confirmed. Continuing with AdScanning in background!")
+                            'zum Ausgangschirm vor dem Aufruf von MyVideoRedo zürckkehren
+                            'ToDo
                         Else
-                            MyLog.DebugM("Scan shoul be aborted.")
+                            MyLog.DebugM("Scan should be aborted.")
                             VRD.AbortScan()
                             Do While VRD.AdScanInProgress
                             Loop
-                            MyLog.DebugM("Scan was aborted")
+                            MyLog.DebugM("Scan was aborted!")
                         End If
                     End If
-                    'tmrAd.Stop()
-                    'RemoveHandler tmrAd.Tick, AddressOf AdScanTimerTick
-                    tmr.Stop()
-                    'VRD.AbortVideoSaving()
+                    tmrCheckplayback.Enabled = False
+                    tmrRefresh.Enabled = False
                     g_Player.Stop()
                     If new_windowId < GetID Then
                         If VRD.AdScanInProgress = False And VRD.CutMarkerList.Count > 0 Then
@@ -136,8 +162,6 @@ Namespace MyVideoRedo
                             End If
                         End If
                     End If
-
-
                     If VRD IsNot Nothing Then
                         'Do While VRD.VRDobj.IsOutputInProgress
                         '    Threading.Thread.CurrentThread.Sleep(100)
@@ -149,7 +173,9 @@ Namespace MyVideoRedo
                     RemoveHandler g_Player.PlayBackChanged, AddressOf VideoChange
                     RemoveHandler g_Player.PlayBackEnded, AddressOf VideoEnded
                     RemoveHandler g_Player.PlayBackStopped, AddressOf VideoStopped
-                    RemoveHandler tmr.Tick, AddressOf VideoTimerTick
+                    RemoveHandler tmrDelayRefreshOnSkip.Tick, AddressOf RefreshTimerTick
+                    RemoveHandler tmrCheckplayback.Tick, AddressOf CheckplaybackTick
+                    RemoveHandler tmrRefresh.Tick, AddressOf RefreshTimerTick
                     'GUIWindowManager.Clear()
                 End If
             End If
@@ -157,30 +183,30 @@ Namespace MyVideoRedo
             'GUIWindow.Clear()
             'GUIWindowManager.CloseCurrentWindow()
             MyBase.OnPageDestroy(new_windowId)
-            'GUIWindowManager.ActivateWindow(1208, True)
+            'GUIWindowManager.ActivateWindow(enumWindows.GUIStart, True)
         End Sub
 
-        Public Overrides Sub OnAction(ByVal Maction As MediaPortal.GUI.Library.Action)
+        Public Overrides Sub OnAction(ByVal action As MediaPortal.GUI.Library.Action)
             Dim AktWinId As Integer = GUIWindowManager.ActiveWindow
+            Dim skipOnPlay As Integer
+            Dim skipOnPause As Long
             If AktWinId = GetID Then
                 Try
-                    MyLog.DebugM("Keypress on VideoReDo Screen. KeyChar={0} ; KeyCode={1} ; Actiontype={2}", Maction.m_key.KeyChar, Maction.m_key.KeyCode, Maction.wID.ToString)
+                    MyLog.DebugM("Keypress on VideoReDo Screen. KeyChar={0} ; KeyCode={1} ; Actiontype={2}", action.m_key.KeyChar, action.m_key.KeyCode, action.wID.ToString)
                 Catch
-                    MyLog.DebugM("Action on VideoReDo Screen. Action={0}", Maction.wID.ToString)
+                    MyLog.DebugM("Action on VideoReDo Screen. Action={0}", action.wID.ToString)
                 End Try
-                If Maction.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_KEY_PRESSED Then
+                If action.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_KEY_PRESSED Then
 
-                    If Maction.m_key IsNot Nothing Then
+                    If action.m_key IsNot Nothing Then
                         'Button 1
-                        If Maction.m_key.KeyChar = 49 Then
-                            If g_Player.Paused Then
-                                GetFilmThumbnails((VRD.GetCursorTime - ((VRD.GetFramerate / 100)) * GetConfigString(ConfigKey.SeekStepOnPause1)))
-                            Else
-                                g_Player.SeekRelative(GetNegativeInt(GetConfigString(ConfigKey.SeekStepOnPlay1)))
-                            End If
+                        If action.m_key.KeyChar = 49 Then
+                            skipOnPause = -1 * GetConfigString(ConfigKey.SeekStepOnPause1)
+                            skipOnPlay = -1 * GetConfigString(ConfigKey.SeekStepOnPlay1)
+                            SkipTo(skipOnPause, skipOnPlay)
                         End If
                         'Button 2
-                        If Maction.m_key.KeyChar = 50 Then
+                        If action.m_key.KeyChar = 50 Then
                             If VRD.AdScanInProgress Then
                                 VRD.AbortScan()
                                 VRD.SeekToTime(0)
@@ -189,50 +215,55 @@ Namespace MyVideoRedo
                             End If
                         End If
                         'Button 3
-                        If Maction.m_key.KeyChar = 51 Then
-                            If g_Player.Paused Then
-                                GetFilmThumbnails(VRD.GetCursorTime + (((VRD.GetFramerate / 100) + (VRD.GetFramerate / 100)) * GetConfigString(ConfigKey.SeekStepOnPause3)))
-                            Else
-                                g_Player.SeekRelative(GetConfigString(ConfigKey.SeekStepOnPlay3))
-                            End If
+                        If action.m_key.KeyChar = 51 Then
+                            skipOnPause = GetConfigString(ConfigKey.SeekStepOnPause3)
+                            skipOnPlay = GetConfigString(ConfigKey.SeekStepOnPlay3)
+                            SkipTo(skipOnPause, skipOnPlay)
                         End If
                         'Button 4
-                        If Maction.m_key.KeyChar = 52 Then
-                            If g_Player.Paused Then
-                                GetFilmThumbnails((VRD.GetCursorTime - ((VRD.GetFramerate / 100) * 1.6) * GetConfigString(ConfigKey.SeekStepOnPause4)))
-                            Else
-                                g_Player.SeekRelative(GetNegativeInt(GetConfigString(ConfigKey.SeekStepOnPlay3)))
-                            End If
+                        If action.m_key.KeyChar = 52 Then
+                            skipOnPause = -1 * GetConfigString(ConfigKey.SeekStepOnPause4)
+                            skipOnPlay = -1 * GetConfigString(ConfigKey.SeekStepOnPlay4)
+                            SkipTo(skipOnPause, skipOnPlay)
                         End If
                         'Button 5
-                        If Maction.m_key.KeyChar = 53 Then
+                        If action.m_key.KeyChar = 53 Then
                             MakeCut()
                         End If
                         'Button 6
-                        If Maction.m_key.KeyChar = 54 Then
-                            If g_Player.Paused Then
-                                GetFilmThumbnails((VRD.GetCursorTime + ((VRD.GetFramerate / 100) * 0.4) * GetConfigString(ConfigKey.SeekStepOnPause6)))
-                            Else
-                                g_Player.SeekRelative(GetConfigString(ConfigKey.SeekStepOnPlay6))
-                            End If
+                        If action.m_key.KeyChar = 54 Then
+                            skipOnPause = GetConfigString(ConfigKey.SeekStepOnPause6)
+                            skipOnPlay = GetConfigString(ConfigKey.SeekStepOnPlay6)
+                            SkipTo(skipOnPause, skipOnPlay)
                         End If
                         'Button 7
-                        If Maction.m_key.KeyChar = 55 Then
-                            If g_Player.Paused Then
-                                GetFilmThumbnails((VRD.GetCursorTime - ((VRD.GetFramerate / 100) * 1.6) * GetConfigString(ConfigKey.SeekStepOnPause7)))
-                            Else
-                                g_Player.SeekRelative(GetNegativeInt(GetConfigString(ConfigKey.SeekStepOnPlay7)))
+                        If action.m_key.KeyChar = 55 Then
+                            skipOnPause = -1 * GetConfigString(ConfigKey.SeekStepOnPause7)
+                            skipOnPlay = -1 * GetConfigString(ConfigKey.SeekStepOnPlay7)
+                            SkipTo(skipOnPause, skipOnPlay)
+                        End If
+                        'Button 8
+                        If action.m_key.KeyChar = 56 Then
+                            If CutList.Count > 0 Then
+                                DeleteSelCutFromList(JumpToMarker(-1, True))
                             End If
                         End If
                         'Button 9
-                        If Maction.m_key.KeyChar = 57 Then
-                            If g_Player.Paused Then
-                                GetFilmThumbnails((VRD.GetCursorTime + ((VRD.GetFramerate / 100) * 0.4) * GetConfigString(ConfigKey.SeekStepOnPause9)))
-                            Else
-                                g_Player.SeekRelative(GetConfigString(ConfigKey.SeekStepOnPlay9))
-                            End If
+                        If action.m_key.KeyChar = 57 Then
+                            skipOnPause = GetConfigString(ConfigKey.SeekStepOnPause9)
+                            skipOnPlay = GetConfigString(ConfigKey.SeekStepOnPlay9)
+                            SkipTo(skipOnPause, skipOnPlay)
+                        End If
+                        'Button *
+                        If action.m_key.KeyChar = 42 Then
+                            JumpToMarker(-1, True)
+                        End If
+                        'Button #
+                        If action.m_key.KeyChar = 35 Then
+                            JumpToMarker(-1, False)
                         End If
                     End If 'aktion.m_key is not nothing
+
                 End If 'Key pressed
 
                 ''ESC
@@ -241,7 +272,7 @@ Namespace MyVideoRedo
                 '        Exit Sub
                 '    End If
                 'End If
-                If Maction.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_PREVIOUS_MENU Then
+                If action.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_PREVIOUS_MENU Then
 
                     If btnExitHelp IsNot Nothing AndAlso btnExitHelp.Visible = True Then
                         HelpBackgroundImage.Visible = False
@@ -252,11 +283,11 @@ Namespace MyVideoRedo
                     End If
                 End If
                 'Wenn in der Cutlist was selektiert wird
-                If Maction.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_SELECT_ITEM And CutList.IsFocused Then
+                If action.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_SELECT_ITEM And CutList.IsFocused Then
                     ShowCutListDialog()
                 End If
 
-                If Maction.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_SELECT_ITEM And sliderAudioSync.IsFocused Then
+                If action.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_SELECT_ITEM And sliderAudioSync.IsFocused Then
                     VRD.AudioSyncValue = sliderAudioSync.IntValue
                     GUIControl.FocusControl(Me.GetID, btnCut.GetID)
                     sliderAudioSync.Visible = False
@@ -264,11 +295,11 @@ Namespace MyVideoRedo
                     LoadCutbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml"), VideoWindow)
                 End If
                 ' ContexMenu
-                If Maction.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_CONTEXT_MENU Then
+                If action.wID = MediaPortal.GUI.Library.Action.ActionType.ACTION_CONTEXT_MENU Then
                     ShowContextMenu()
                 End If
             End If
-            MyBase.OnAction(Maction)
+            MyBase.OnAction(action)
         End Sub
 
         Protected Overrides Sub OnClicked(ByVal controlId As Integer, ByVal control As MediaPortal.GUI.Library.GUIControl, ByVal actionType As MediaPortal.GUI.Library.Action.ActionType)
@@ -310,16 +341,16 @@ Namespace MyVideoRedo
                     ShowTextDialog(Translation.ErrorOccured, Translation.NoEndmarker)
                     Exit Sub
                 Else
-                    MyLog.DebugM(String.Format("Automatically adding Cutmarker at the end of the movie at Position {0}.", g_Player.Duration * 1000))
+                    MyLog.DebugM(String.Format("Automatically adding Cutmarker at the end of the movie at Position {0}.", VRD.LoadedVideoDuration))
                     g_Player.Pause()
                     IsPlayerPaused = True
-                    VRD.SeekToTime(g_Player.Duration * 1000)
+                    VRD.SeekToTime(VRD.LoadedVideoDuration)
                     MakeCut()
                 End If
             End If
             If CutList.ListItems.Count = 2 Then
-                If CutList.ListItems(0).Label2 = GetPlayerTimeString(0) And Mid(CutList.ListItems(1).Label2, 1, 8) = Mid(GetPlayerTimeString(g_Player.Duration * 1000), 1, 8) Then
-                    MyLog.Warn("Es wurde durch das automatische setzten von Start und Endmarker quasi das ganze video geschnitten, dies ist nicht zulässig")
+                If CutList.ListItems(0).Label2 = GetPlayerTimeString(0) And CutList.ListItems(1).Label2 = GetPlayerTimeString(VRD.LoadedVideoDuration) Then
+                    MyLog.Warn("Es wurde durch das automatische setzten von Start und Endmarker quasi das ganze Video geschnitten, dies ist nicht zulässig")
                     ShowTextDialog(Translation.ErrorOccured, Translation.ForbiddenCutCompleteVideo)
                     Exit Sub
                 End If
@@ -336,8 +367,8 @@ Namespace MyVideoRedo
             MyLog.DebugM("Creating Cutmarker - TempStartValue={0};TempEndValue={1};Playerposition={2};VRD.GetCursortime={3}", TempStartValue, TempEndValue, g_Player.CurrentPosition, VRD.GetCursorTime)
             If VideoStartCut Then
                 TempStartValue = Convert.ToSingle(0)
-                Dim lItem As New GUIListItem("StartCut: ")
-                VRD.MakeScreenshot(0, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuali.Thumbnail)
+                Dim lItem As New GUIListItem("Start: ")
+                VRD.MakeScreenshot(0, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuality.Thumbnail)
                 lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
                 lItem.Label2 = GetPlayerTimeString(0)
                 'CutList.ListItems.Add(lItem)
@@ -348,10 +379,10 @@ Namespace MyVideoRedo
                 Exit Sub
             End If
             If CutList.ListItems.Count Mod 2 = 0 Then
-                Dim lItem As New GUIListItem("StartCut: ")
+                Dim lItem As New GUIListItem("Start: ")
                 If IsPlayerPaused Then
                     TempStartValue = Convert.ToSingle((VRD.GetCursorTime / 1000) * 100 / g_Player.Duration)
-                    VRD.MakeScreenshot(VRD.GetCursorTime, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuali.Thumbnail)
+                    VRD.MakeScreenshot(VRD.GetCursorTime, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuality.Thumbnail)
                     lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
                     lItem.Label2 = GetPlayerTimeString(VRD.GetCursorTime)
                     'CutList.ListItems.Add(lItem)
@@ -361,7 +392,7 @@ Namespace MyVideoRedo
                     MyLog.DebugM("TempStartValue={0};TempEndValue={1};Playerposition={2};VRD.GetCursortime={3}", TempStartValue, TempEndValue, g_Player.CurrentPosition, VRD.GetCursorTime)
                 Else
                     TempStartValue = Convert.ToSingle(g_Player.CurrentPosition * 100 / g_Player.Duration)
-                    VRD.MakeScreenshot(g_Player.CurrentPosition * 1000, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuali.Thumbnail)
+                    VRD.MakeScreenshot(g_Player.CurrentPosition * 1000, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuality.Thumbnail)
                     lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
                     lItem.Label2 = GetPlayerTimeString(g_Player.CurrentPosition * 1000)
                     'CutList.ListItems.Add(lItem)
@@ -371,11 +402,11 @@ Namespace MyVideoRedo
                     MyLog.DebugM("TempStartValue={0};TempEndValue={1};Playerposition={2};VRD.GetCursortime={3}", TempStartValue, TempEndValue, g_Player.CurrentPosition, VRD.GetCursorTime)
                 End If
             Else
-                Dim lItem As New GUIListItem("EndCut: ")
+                Dim lItem As New GUIListItem("Stop: ")
                 If IsPlayerPaused Then
                     TempEndValue = Convert.ToSingle((VRD.GetCursorTime / 1000) * 100 / g_Player.Duration)
                     lItem.Label2 = GetPlayerTimeString(VRD.GetCursorTime)
-                    VRD.MakeScreenshot(VRD.GetCursorTime, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuali.Thumbnail)
+                    VRD.MakeScreenshot(VRD.GetCursorTime, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuality.Thumbnail)
                     lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
                     'CutList.ListItems.Add(lItem)
                     GUIControl.AddListItemControl(GetID, CutList.GetID, lItem)
@@ -386,7 +417,7 @@ Namespace MyVideoRedo
                 Else
                     TempEndValue = Convert.ToSingle(g_Player.CurrentPosition * 100 / g_Player.Duration)
                     lItem.Label2 = GetPlayerTimeString(g_Player.CurrentPosition * 1000)
-                    VRD.MakeScreenshot(g_Player.CurrentPosition * 1000, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuali.Thumbnail)
+                    VRD.MakeScreenshot(g_Player.CurrentPosition * 1000, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuality.Thumbnail)
                     lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
 
                     'CutList.ListItems.Add(lItem)
@@ -396,97 +427,92 @@ Namespace MyVideoRedo
                     MyLog.DebugM("Endcut wurde erstellt - VRD.GetCursorTime={0} VRD.CutCount={1} CutterbarCutCount={2}:{3}", VRD.GetCursorTime, VRD.CutMarkerList.Count, myFilmstripBar.StartCutValues.Count, myFilmstripBar.EndCutValues.Count)
                     MyLog.DebugM("TempStartValue={0};TempEndValue={1};Playerposition={2};VRD.GetCursortime={3}", TempStartValue, TempEndValue, g_Player.CurrentPosition, VRD.GetCursorTime)
                 End If
+                LoadCuts()
             End If
             MyCutbar.Invalidate()
             GUIPropertyManager.SetProperty("#itemcount", CutList.ListItems.Count)
         End Sub
 
-
-        Dim dlgPrgrs As GUIDialogProgress
-
 #Region "g_Player Events"
         Friend Sub VideoChange(ByVal type As MediaPortal.Player.g_Player.MediaType, ByVal stoptime As Integer, ByVal filename As String)
-            'SetPlayerLabels(VRD) 'mypic.Image = VRD.MakeScreenshotToClipboard(VRD.GetCursorTime, VideoReDo.ScreenshotQuali.Schlecht)
+
         End Sub
+
         Friend Sub VideoStarted(ByVal type As g_Player.MediaType, ByVal filename As String)
-            AddHandler g_Player.PlayBackChanged, AddressOf VideoChange
-            tmr.Enabled = True
-            tmr.Interval = 200
-            AddHandler tmr.Tick, AddressOf VideoTimerTick
-            tmr.Start()
-
-            MyLog.DebugM("Ermittle aktuelle Videoformat...")
-            Dim CurrFormat As MediaPortal.Player.VideoStreamFormat = g_Player.GetVideoFormat
-            MyLog.DebugM("Aktuelles Videoformat des g_players ist {0} mit einer Auflösung von {1} * {2} und einer Bitrate von {3} .", _
-                         CurrFormat.streamType.ToString, CurrFormat.width, CurrFormat.height, CurrFormat.bitrate)
-
-            If CurrFormat.streamType = VideoStreamType.H264 Then
-                If Microsoft.VisualBasic.Strings.Left(VRD.ReDoVersion, 1) < 4 Then
-                    UnloadCutbar()
-                    UnloadFilmstripbar()
-                    ShowErrorDialog(GetID, Translation.VideoRedoCanNotHD)
-                    LoadFilmstripbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml", True), VideoWindow)
-                    LoadCutbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml"), VideoWindow)
-                    g_Player.Stop()
-                    GUIWindowManager.ActivateWindow(GetGUIWindow(enumWindows.GUIstart), True)
-                    Exit Sub
-                Else
-                    IsLoadingHDContent = True
-                    VRD.AktSavingProfile = HelpConfig.GetConfigString(ConfigKey.TVsuiteProfileH264)
-                End If
-            Else
-                VRD.AktSavingProfile = HelpConfig.GetConfigString(ConfigKey.TVsuiteProfile)
-            End If
-            GetProfileDetail(HelpConfig.GetConfigString(ConfigKey.TVsuiteProfile))
-            GetFilmThumbnails(g_Player.CurrentPosition * 1000)
-
 
         End Sub
+
         Friend Sub VideoStopped(ByVal type As MediaPortal.Player.g_Player.MediaType, ByVal stoptime As Integer, ByVal filename As String)
-            'RemoveHandler g_Player.PlayBackChanged, AddressOf VideoChange
-            RemoveHandler tmr.Tick, AddressOf VideoTimerTick
             MyCutbar.Filmbitmaps.Clear()
             MyCutbar.Invalidate()
         End Sub
+
         Friend Sub VideoEnded(ByVal type As MediaPortal.Player.g_Player.MediaType, ByVal filename As String)
-            'RemoveHandler g_Player.PlayBackChanged, AddressOf VideoChange
-            RemoveHandler tmr.Tick, AddressOf VideoTimerTick
-
-
+            MyLog.DebugM("Video Ended. That should not happen!!!")
+            g_Player.Play(AktRecToCut.VideoFilename, g_Player.MediaType.Video)
+            position = (VRD.LoadedVideoDuration - 1000)
+            g_Player.SeekAbsolute(position / 1000)
+            g_Player.Pause()
         End Sub
-        Private IsPlayerPaused As Boolean = False
-        Friend Sub VideoTimerTick(ByVal sender As Object, ByVal e As System.EventArgs)
-            If VRD.AdScanInProgress Then Exit Sub
-            SetPlayerLabels(VRD)
 
+        Friend Sub RefreshTimerTick(ByVal sender As Object, ByVal e As System.EventArgs)
+            GetFilmstripThumbnails(position) '(g_Player.CurrentPosition * 1000)
+            If IsPlayerPaused Then
+                RefreshStillImage()
+            End If
+            If tmrDelayRefreshOnSkip.Enabled Then
+                tmrDelayRefreshOnSkip.Enabled = False
+            End If
+            If (HelpConfig.GetConfigString(ConfigKey.AlwaysRefreshMoviestripThumbs) = True) And (tmrRefresh.Enabled = False) And (IsPlayerPaused = False) Then
+                tmrRefresh.Enabled = True
+            End If
+        End Sub
+
+        Private IsPlayerPaused As Boolean = False
+        Friend Sub CheckPlaybackTick(ByVal sender As Object, ByVal e As System.EventArgs)
+            If VRD.AdScanInProgress Then Exit Sub
             If IsPlayerPaused = False Then
                 If g_Player.Paused Then
+                    IsPlayerPaused = True
+                    tmrRefresh.Enabled = False
                     MyLog.DebugM("Player angehalten auf Position: {0} / {1}", g_Player.CurrentPosition, PlayerHelper.GetPlayerTimeString(g_Player.CurrentPosition * 1000))
                     MyLog.DebugM("Gehe für bessere Benutzerführung für die Thumbnailgenerierung eine halbe Sekunde zurück (500ms).")
-
-                    GetFilmThumbnails((g_Player.CurrentPosition * 1000) - 500)
-                    IsPlayerPaused = True
+                    position = position - 500
+                    GetFilmstripThumbnails(position)
+                    RefreshStillImage()
+                    g_Player.SeekAbsolute(position / 1000) ' + (100 / VRD.GetFramerate))
+                    g_Player.Pause()
+                Else
+                    position = Int(g_Player.CurrentPosition * 1000)
+                    If (position) > (VRD.LoadedVideoDuration - 1000) Then
+                        position = (VRD.LoadedVideoDuration - 500)
+                        g_Player.SeekAbsolute(position / 1000)
+                        g_Player.Pause()
+                        tmrRefresh.Enabled = False
+                    End If
                 End If
             Else
                 If g_Player.Paused = False Then
+                    tmrRefresh.Enabled = True
                     IsPlayerPaused = False
                 End If
             End If
+            SetPlayerLabels(VRD, position)
         End Sub
 #End Region
 
 #Region "AdDetectiveSubs und Handler"
-        Private Sub StarteAdScan()
+        Private Sub AdScanStart()
             AddHandler VRD.AdScanStarted, AddressOf AdScanStarted
             VRD.StartAdScan(True, True, False)
         End Sub
 
         Private Sub AdScanFinished(ByVal sender As Object, ByVal e As AdDetectiveEventArgs)
             RemoveHandler VRD.AdScanAborted, AddressOf AdScanAborted
-            RemoveHandler VRD.AdScanCutAdded, AddressOf AdScanCutFinded
+            RemoveHandler VRD.AdScanCutAdded, AddressOf AdScanCutFound
             RemoveHandler VRD.AdScanFinished, AddressOf AdScanFinished
-            tmrAd.Stop()
-            RemoveHandler tmrAd.Tick, AddressOf AdScanTimerTick
+            tmrAdScan.Enabled = False
+            RemoveHandler tmrAdScan.Tick, AddressOf AdScanTimerTick
             AnimWaiting.Visible = False
             UnloadCutbar()
             UnloadFilmstripbar()
@@ -502,64 +528,49 @@ Namespace MyVideoRedo
             LoadCutbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml"), VideoWindow)
             If GUIWindowManager.ActiveWindow = GetID Then
                 MyLog.DebugM("Lade die gespeicherten Cuts...")
-                VRD.CutMarkerList.Clear()
-                For i = 0 To VRD.CutMarkerList.Count - 1
-                    If CutList.ListItems.Count Mod 2 = 0 Then
-                        Dim lItem As New GUIListItem("StartCut: ")
-                        lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
-                        lItem.Label2 = GetPlayerTimeString(VRD.CutMarkerList(i))
-                        GUIControl.AddListItemControl(GetID, CutList.GetID, lItem)
-                    Else
-                        Dim lItem As New GUIListItem("EndCut: ")
-                        lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
-                        lItem.Label2 = GetPlayerTimeString(VRD.CutMarkerList(i))
-                        GUIControl.AddListItemControl(GetID, CutList.GetID, lItem)
-                    End If
-                Next i
+                LoadCuts()
+                GUIWindowManager.NeedRefresh()
                 MyLog.DebugM("alle Cuts geladen.")
             End If
 
         End Sub
 
         Private Sub AdScanStarted(ByVal sender As Object, ByVal e As AdDetectiveEventArgs)
-            AddHandler VRD.AdScanCutAdded, AddressOf AdScanCutFinded
+            AddHandler VRD.AdScanCutAdded, AddressOf AdScanCutFound
             AddHandler VRD.AdScanAborted, AddressOf AdScanAborted
             AnimWaiting.Visible = True
             btnCut.Visible = False
             btnCutNow.Visible = False
         End Sub
 
-        Private Sub AdScanCutFinded(ByVal sender As Object, ByVal e As AdDetectiveEventArgs)
-            Dim startCut As Integer = (e.LastStartCut / 1000) * 100 / VRD.LoadedVideoDuration
-            Dim endCut As Integer = (e.LastEndCut / 1000) * 100 / VRD.LoadedVideoDuration
+        Private Sub AdScanCutFound(ByVal sender As Object, ByVal e As AdDetectiveEventArgs)
+            Dim startCut As Integer = (e.LastStartCut / VRD.LoadedVideoDuration) * 100
+            Dim endCut As Integer = (e.LastEndCut / VRD.LoadedVideoDuration) * 100
             'MyCutbar.AddValues(startCut, endCut)
             MyLog.DebugM("AdDetective find a Cut: e.LastStartCut:{0},e.LastEndCut:{1}", e.LastStartCut, e.LastEndCut)
-            TempStartValue = Convert.ToSingle((e.LastStartCut / 1000) * 100 / VRD.LoadedVideoDuration)
-            TempEndValue = Convert.ToSingle((e.LastEndCut / 1000) * 100 / VRD.LoadedVideoDuration)
+            TempStartValue = Convert.ToSingle((e.LastStartCut / VRD.LoadedVideoDuration) * 100)
+            TempEndValue = Convert.ToSingle((e.LastEndCut / VRD.LoadedVideoDuration) * 100)
             myFilmstripBar.AddValues(TempStartValue, TempEndValue)
             myFilmstripBar.Invalidate()
+            LoadCuts()
         End Sub
 
         Private Sub AdScanAborted(ByVal sender As Object, ByVal e As AdDetectiveEventArgs)
             AnimWaiting.Visible = False
+            tmrAdScan.Enabled = False
             RemoveHandler VRD.AdScanAborted, AddressOf AdScanAborted
-            RemoveHandler VRD.AdScanCutAdded, AddressOf AdScanCutFinded
-
-            tmrAd.Stop()
-            RemoveHandler tmrAd.Tick, AddressOf AdScanTimerTick
+            RemoveHandler VRD.AdScanCutAdded, AddressOf AdScanCutFound
+            RemoveHandler tmrAdScan.Tick, AddressOf AdScanTimerTick
             myFilmstripBar.Text = ""
             btnCut.Visible = True
             btnCutNow.Visible = True
         End Sub
 
         Private Sub AdScanTimerTick(ByVal sender As Object, ByVal e As EventArgs)
-
-            Dim proz As Integer = (VRD.GetCursorTime / 1000) * 100 / VRD.LoadedVideoDuration
+            Dim proz As Integer = (VRD.GetCursorTime / VRD.LoadedVideoDuration) * 100
             myFilmstripBar.LineMarkerPosition = proz
-
             myFilmstripBar.Text = Translation.AdDetectiveRunning & " - " & proz.ToString & "%"
             myFilmstripBar.Invalidate()
-
         End Sub
 #End Region
 
@@ -571,19 +582,7 @@ Namespace MyVideoRedo
                     'Me.CutList.ListItems = Translation.TempCutListItems
                     If VRD.AdScanInProgress = False Then
                         MyLog.DebugM("Lade die gespeicherten Cuts...")
-                        For i = 0 To VRD.CutMarkerList.Count - 1
-                            If CutList.ListItems.Count Mod 2 = 0 Then
-                                Dim lItem As New GUIListItem("StartCut: ")
-                                lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
-                                lItem.Label2 = GetPlayerTimeString(VRD.CutMarkerList(i))
-                                GUIControl.AddListItemControl(GetID, CutList.GetID, lItem)
-                            Else
-                                Dim lItem As New GUIListItem("EndCut: ")
-                                lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
-                                lItem.Label2 = GetPlayerTimeString(VRD.CutMarkerList(i))
-                                GUIControl.AddListItemControl(GetID, CutList.GetID, lItem)
-                            End If
-                        Next i
+                        LoadCuts()
                         MyLog.DebugM("alle Cuts geladen.")
                     End If
                 Else
@@ -592,27 +591,28 @@ Namespace MyVideoRedo
                     VRD.LoadMediaToCut(AktRecToCut.VideoFilename)
                     Application.DoEvents()
                     'Die CutOnPlay aus der Config laden und evtl. den Cut erstellen
-
-                    Dim configCutOnPlay As Boolean = HelpConfig.GetConfigString(ConfigKey.CutOnPlay)
-                    If Convert.ToBoolean(configCutOnPlay) = True Then
-                        MyLog.Info("In den Einstellungen ist 'CutOnPlay' auf '{0}' deshalb wird ein erster Marker gesetzt.", configCutOnPlay.ToString)
-                        MakeCut(True)
-                    End If
                 End If
+                If (HelpConfig.GetConfigString(ConfigKey.CutOnPlay) = True) And (CutList.Count = 0) Then
+                    MyLog.Info("In den Einstellungen ist 'CutOnPlay' auf '{0}' deshalb wird ein erster Marker gesetzt.", GetConfigString(ConfigKey.CutOnPlay))
+                    MakeCut(True)
+                End If
+
 
                 GUIPropertyManager.SetProperty("#itemcount", CutList.ListItems.Count)
 
                 'Die Cutbar mit den ersten Bilder füllen
-                If VRD.AdScanInProgress = False Then MyCutbar.FilmImages = CreateFilmImageList()
-                If VRD.AdScanInProgress = False Then g_Player.Play(AktRecToCut.VideoFilename, g_Player.MediaType.Video)
-                SetPlayerLabels(VRD)
+                If VRD.AdScanInProgress = False Then
+                    MyCutbar.FilmImages = CreateFilmImageList()
+                    g_Player.Play(AktRecToCut.VideoFilename, g_Player.MediaType.Video)
+                End If
+                SetPlayerLabels(VRD, position)
                 LoadFilmstripbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml", True), VideoWindow)
                 LoadCutbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml"), VideoWindow)
                 btnCut.Visible = True
                 btnCutNow.Visible = True
             Else
                 MyLog.Warn("Error to load the Video {0}", AktRecToCut.VideoFilename)
-                GUIWindowManager.GetWindow(1208)
+                GUIWindowManager.GetWindow(enumWindows.GUIstart)
             End If
             AnimWaiting.Visible = False
             myFilmstripBar.Invalidate()
@@ -649,18 +649,20 @@ Namespace MyVideoRedo
             UnloadFilmstripbar()
             Dim dlgContext As GUIDialogMenu = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_MENU, Integer)), GUIDialogMenu)
             dlgContext.Reset()
-            dlgContext.SetHeading("Cut")
-            dlgContext.Add(Translation.DeleteCutDialog)
-            dlgContext.Add(Translation.SeekToCutDialog)
+            dlgContext.SetHeading(Translation.CutContextMenu)
+            dlgContext.Add(Translation.CutContextChange)
+            dlgContext.Add(Translation.CutContextDelete)
+            dlgContext.Add(Translation.CutContextJumpTo)
             dlgContext.DoModal(GetID)
 
             If dlgContext.SelectedLabel = 0 Then
-                DeleteSelCutFromList()
+                ChangeCutFromList()
             End If
             If dlgContext.SelectedLabel = 1 Then
-                g_Player.SeekAbsolute(VRD.CutMarkerList(CutList.SelectedListItemIndex) / 1000)
-                'g_Player.Pause()
-                If IsPlayerPaused Then GetFilmThumbnails(VRD.CutMarkerList(CutList.SelectedListItemIndex))
+                DeleteSelCutFromList(CutList.SelectedListItemIndex)
+            End If
+            If dlgContext.SelectedLabel = 2 Then
+                JumpToMarker(CutList.SelectedListItemIndex)
             End If
             LoadFilmstripbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml", True), VideoWindow)
             LoadCutbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml"), VideoWindow)
@@ -670,19 +672,23 @@ Namespace MyVideoRedo
             dlgContext = Nothing
         End Sub
 
-        Private Sub DeleteSelCutFromList()
+        Private Sub ChangeCutFromList()
+
+        End Sub
+
+        Private Sub DeleteSelCutFromList(ByVal SelectedMarker As Integer)
             Dim savedPosition As Long = VRD.GetCursorTime
 
             Dim oldList As List(Of Long) = VRD.CutMarkerList
-            If CutList.SelectedListItemIndex Mod 2 = 0 Then
-                oldList.RemoveAt(CutList.SelectedListItemIndex)
+            If SelectedMarker Mod 2 = 0 Then
+                oldList.RemoveAt(SelectedMarker)
                 Try
-                    oldList.RemoveAt(CutList.SelectedListItemIndex)
+                    oldList.RemoveAt(SelectedMarker)
                 Catch
                 End Try
             Else
-                oldList.RemoveAt(CutList.SelectedListItemIndex - 1)
-                oldList.RemoveAt(CutList.SelectedListItemIndex - 1)
+                oldList.RemoveAt(SelectedMarker - 1)
+                oldList.RemoveAt(SelectedMarker - 1)
             End If
             VRD.ClearAllSelections()
             CutList.Clear()
@@ -691,28 +697,26 @@ Namespace MyVideoRedo
             newCutlist.AddRange(oldList)
             For Each item In newCutlist
                 If CutList.ListItems.Count Mod 2 = 0 Then
-                    Dim lItem As New GUIListItem("StartCut: ")
+                    Dim lItem As New GUIListItem("Start: ")
                     TempStartValue = Convert.ToSingle((item / 1000) * 100 / g_Player.Duration)
-                    VRD.MakeScreenshot(VRD.GetCursorTime, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuali.Thumbnail)
+                    VRD.MakeScreenshot(VRD.GetCursorTime, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuality.Thumbnail)
                     lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
                     lItem.Label2 = GetPlayerTimeString(item)
                     'CutList.ListItems.Add(lItem)
                     GUIControl.AddListItemControl(GetID, CutList.GetID, lItem)
                     VRD.AddMarker(item)
                 Else
-                    Dim lItem As New GUIListItem("EndCut: ")
+                    Dim lItem As New GUIListItem("Stop: ")
                     TempEndValue = Convert.ToSingle((item / 1000) * 100 / g_Player.Duration)
                     lItem.Label2 = GetPlayerTimeString(item)
-                    VRD.MakeScreenshot(item, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuali.Thumbnail)
+                    VRD.MakeScreenshot(item, Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp", VideoReDo.ScreenshotQuality.Thumbnail)
                     lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
-
-
                     GUIControl.AddListItemControl(GetID, CutList.GetID, lItem)
                     myFilmstripBar.AddValues(TempStartValue, TempEndValue)
                     VRD.AddMarker(item)
                 End If
-                MyCutbar.Invalidate()
             Next
+            MyCutbar.Invalidate()
             VRD.CutMarkerList = newCutlist
             VRD.SeekToTime(savedPosition)
         End Sub
@@ -720,41 +724,44 @@ Namespace MyVideoRedo
         Private Sub ShowContextMenu()
             If VRD.AdScanInProgress Then Exit Sub
             If IsPlayerPaused = False Then g_Player.Pause()
+            sliderAudioSync.Visible = False
             UnloadCutbar()
             UnloadFilmstripbar()
             Dim dlgContext As GUIDialogMenu = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_MENU, Integer)), GUIDialogMenu)
             dlgContext.Reset()
+            dlgContext.SetHeading(GetConfigString(ConfigKey.ModuleName))
             dlgContext.Add(Translation.StartAdDetectiveScan)
             dlgContext.Add(Translation.ClearCutlist)
             dlgContext.Add(Translation.EditEndFilename)
-            If Left(VRD.ReDoVersion, 1) = 4 Then : dlgContext.Add(Translation.SavingProfile & ": " & VRD.AktSavingProfile) : End If
+            If Left(VRD.ReDoVersion, 1) = 4 Then
+                dlgContext.Add(Translation.SavingProfile & ": " & VRD.AktSavingProfile)
+            End If
             dlgContext.Add(Translation.AudioSyncLabelContext)
             dlgContext.DoModal(GetID)
             If dlgContext.SelectedLabel = 0 Then
-                CutList.Clear()
-                Dim adScan As New Threading.Thread(AddressOf StarteAdScan)
+                Dim adScan As New Threading.Thread(AddressOf AdScanStart)
                 adScan.IsBackground = True
                 adScan.Priority = Threading.ThreadPriority.BelowNormal
-                AddHandler tmrAd.Tick, AddressOf AdScanTimerTick
-                AddHandler VRD.AdScanCutAdded, AddressOf AdScanCutFinded
+                AddHandler tmrAdScan.Tick, AddressOf AdScanTimerTick
+                AddHandler VRD.AdScanCutAdded, AddressOf AdScanCutFound
                 AddHandler VRD.AdScanAborted, AddressOf AdScanAborted
                 AddHandler VRD.AdScanFinished, AddressOf AdScanFinished
-                tmrAd.Interval = 1000
-                tmrAd.Enabled = True
-                tmrAd.Start()
-                'StarteAdScan()
+                tmrAdScan.Interval = 1000
+                tmrAdScan.Enabled = True
+                tmrAdScan.Start()
                 adScan.Start()
             End If
             If dlgContext.SelectedLabel = 1 Then
                 CutList.Clear()
                 myFilmstripBar.CutValues = ""
                 myFilmstripBar.Invalidate()
+                VRD.CutMarkerList.Clear()
                 VRD.ClearAllSelections()
             End If
             If dlgContext.SelectedLabel = 2 Then
                 Dim SavingFilename As String
                 If Left(VRD.ReDoVersion, 1) = 4 Then
-                    SavingFilename = Replace(AktRecToCut.SavingFilename, "%ext%", VRD.GetProfileInfo(VRD.AktSavingProfile).DateiType.ToLower)
+                    SavingFilename = Replace(AktRecToCut.SavingFilename, "%ext%", VRD.GetProfileInfo(VRD.AktSavingProfile).Filetype.ToLower)
                 Else
                     SavingFilename = Replace(AktRecToCut.SavingFilename, "%ext%", "mpeg")
                 End If
@@ -765,7 +772,11 @@ Namespace MyVideoRedo
                 End If
             End If
             If dlgContext.SelectedLabel = 3 Then
-                ShowProfileDialog()
+                UnloadCutbar()
+                UnloadFilmstripbar()
+                ShowProfileDialog(GetID)
+                LoadFilmstripbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml", True), VideoWindow)
+                LoadCutbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml"), VideoWindow)
             End If
             If dlgContext.SelectedLabel = 4 Then
                 sliderAudioSync.Visible = True
@@ -783,38 +794,111 @@ Namespace MyVideoRedo
             dlgContext = Nothing
         End Sub
 
-        Private Sub ShowProfileDialog()
-            UnloadCutbar()
-            UnloadFilmstripbar()
-            Dim dlgProfiles As GUIDialogMenu = CType(GUIWindowManager.GetWindow(CType(GUIWindow.Window.WINDOW_DIALOG_MENU, Integer)), GUIDialogMenu)
-            dlgProfiles.Reset()
-            dlgProfiles.SetHeading("Profile")
-            For Each item In VRD.GetProfileList
-                dlgProfiles.Add(item)
-            Next
-            dlgProfiles.DoModal(GetID)
-            If HelpConfig.GetConfigString(ConfigKey.ProfileDetails) = False Then
-                Dim newprofilename As String = "Nothing"
-                Do
-                    If dlgProfiles.SelectedLabel > -1 Then
-                        Dim dlgProfileDetail As GUIProfileDetail = CType(GUIWindowManager.GetWindow(1210), GUIProfileDetail)
-                        dlgProfileDetail.Reset()
-                        dlgProfileDetail.SetHeading(dlgProfiles.SelectedLabelText)
-                        dlgProfileDetail.DoModal(GetID)
-                        'MsgBox(dlgProfileDetail.SelectedLabelText)
-                        newprofilename = dlgProfileDetail.SelectedLabelText
-                        dlgProfileDetail = Nothing
-                    End If
-                Loop While newprofilename = "Nothing"
-                VRD.AktSavingProfile = newprofilename
+        Private Sub LoadCuts()
+            CutList.Clear()
+            Dim VRDList As New List(Of Long)
+            VRDList = VRD.LoadCutMarkerList()
+            For i = 0 To VRDList.Count - 1
+                If CutList.ListItems.Count Mod 2 = 0 Then
+                    Dim lItem As New GUIListItem("Start: ")
+                    lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
+                    lItem.Label2 = GetPlayerTimeString(VRDList(i))
+                    GUIControl.AddListItemControl(GetID, CutList.GetID, lItem)
+                Else
+                    Dim lItem As New GUIListItem("Stop: ")
+                    lItem.IconImage = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache) & "\" & CutList.ListItems.Count & ".bmp"
+                    lItem.Label2 = GetPlayerTimeString(VRDList(i))
+                    GUIControl.AddListItemControl(GetID, CutList.GetID, lItem)
+                End If
+            Next i
+        End Sub
+
+        Private Function SkipTo(ByVal skipOnPause As Long, ByVal skipOnPlay As Long) As Boolean
+            Dim EndReached As Boolean = False
+            tmrRefresh.Enabled = False
+            tmrDelayRefreshOnSkip.Enabled = False
+            If IsPlayerPaused Then
+                skipOnPause = VRD.GetCursorTime + ((100000 / VRD.GetFramerate) * skipOnPause)
+                If skipOnPause < 0 Then
+                    skipOnPause = 0
+                ElseIf skipOnPause >= (VRD.LoadedVideoDuration) Then
+                    skipOnPause = (VRD.LoadedVideoDuration) '- (100000 / VRD.GetFramerate)
+                    EndReached = True
+                    g_Player.SeekAbsolute((skipOnPause - 1000) / 1000)
+                    g_Player.Pause()
+                Else
+                    tmrDelayRefreshOnSkip.Enabled = True
+                    g_Player.SeekAbsolute(skipOnPause / 1000)
+                    g_Player.Pause()
+                End If
+                VRD.SeekToTime(skipOnPause)
+                position = skipOnPause
             Else
-                VRD.AktSavingProfile = dlgProfiles.SelectedLabelText
-                GetProfileDetail(dlgProfiles.SelectedLabelText)
+                skipOnPlay = Int((g_Player.CurrentPosition * 1000)) + (skipOnPlay * 1000)
+                If skipOnPlay < 0 Then
+                    skipOnPlay = 0
+                ElseIf skipOnPlay >= (VRD.LoadedVideoDuration - 500) Then
+                    EndReached = True
+                    skipOnPlay = VRD.LoadedVideoDuration - 5000
+                End If
+                If (HelpConfig.GetConfigString(ConfigKey.AlwaysRefreshMoviestripThumbs) = True) Then
+                    tmrDelayRefreshOnSkip.Enabled = True
+                End If
+                g_Player.SeekAbsolute(skipOnPlay / 1000)
+                If EndReached Then
+                    g_Player.Pause()
+                Else
+                End If
+                position = skipOnPlay
             End If
+            Return EndReached
+        End Function
 
-            LoadFilmstripbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml", True), VideoWindow)
-            LoadCutbar(GetCutbarProperties(GUIGraphicsContext.Skin + "\MyVideoRedo.xml"), VideoWindow)
+        Private Function JumpToMarker(Optional ByVal JumpMarker As Integer = -1, Optional ByVal Backwards As Boolean = False) As Integer
+            Dim VRDList As New List(Of Long)
+            Dim marker As Integer = -1
+            VRDList = VRD.LoadCutMarkerList()
+            If (JumpMarker = -1) And (VRDList.Count > 0) Then
+                If Backwards = True Then
+                    For i = 0 To VRDList.Count - 1
+                        If VRDList(i) + 1000 >= (g_Player.CurrentPosition * 1000) Then
+                            marker = i
+                            Exit For
+                        End If
+                    Next i
+                    marker = marker - 1
+                    If marker < 0 Then
+                        marker = VRDList.Count - 1
+                    End If
+                Else
+                    For i = 0 To VRDList.Count - 1
+                        If (VRDList(i) - 1) > (g_Player.CurrentPosition * 1000) Then
+                            marker = i
+                            Exit For
+                        End If
+                    Next i
+                    If marker = -1 Then
+                        marker = 0
+                    End If
+                End If
+                JumpMarker = marker
+            End If
+            If JumpMarker < VRDList.Count Then
+                If IsPlayerPaused Or (HelpConfig.GetConfigString(ConfigKey.AlwaysRefreshMoviestripThumbs) = True) Then
+                    GetFilmstripThumbnails(VRDList(JumpMarker))
+                End If
+                g_Player.SeekAbsolute(VRDList(JumpMarker) / 1000)
+                If IsPlayerPaused Then
+                    g_Player.Pause()
+                    RefreshStillImage()
+                End If
+            End If
+            Return marker
+        End Function
 
+        Private Sub RefreshStillImage()
+            ctlStillImage.RemoveMemoryImageTexture()
+            ctlStillImage.FileName = Config.GetFolder(Config.Dir.Thumbs) & "\VideoRedo\StillImage.png"
         End Sub
     End Class
 End Namespace

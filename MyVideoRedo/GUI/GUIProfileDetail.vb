@@ -8,26 +8,22 @@ Namespace MyVideoRedo
     Public Class GUIProfileDetail
         Inherits GUIDialogWindow
         Implements MediaPortal.GUI.Library.IDialogbox
-
         <SkinControlAttribute(12)> Protected btnExit As GUIButtonControl = Nothing
         <SkinControlAttribute(13)> Protected btnUseIt As GUIButtonControl = Nothing
         <SkinControlAttribute(14)> Protected btnCancel As GUILabelControl = Nothing
-
-        Private DoExit As Boolean = -1
         Private AktProfile As VideoReDo.VRDProfileInfo
 
 
 #Region "MP EventSubs"
         Public Overloads Overrides Property GetID() As Integer
             Get
-                Return 1210
+                Return enumWindows.GUIProfileDetails
             End Get
             Set(ByVal value As Integer)
             End Set
         End Property
 
         Public Overloads Overrides Function Init() As Boolean
-
             Return Load(GUIGraphicsContext.Skin + "\MyVideoRedoProfileDetail.xml")
         End Function
 
@@ -35,7 +31,7 @@ Namespace MyVideoRedo
 
         Protected Overrides Sub OnPageLoad()
             MyBase.OnPageLoad()
-            ' If GUIWindowManager.ActiveWindow = 1210 Then
+            ' If GUIWindowManager.ActiveWindow = enumWindows.GUIProfileDetails Then
             'Translator.TranslateSkin()
             'Translator.SetProperty("#Profile.Name", "Hallo Du")
             'End If
@@ -49,9 +45,6 @@ Namespace MyVideoRedo
         End Sub
 
         Public Overrides Sub OnAction(ByVal action As MediaPortal.GUI.Library.Action)
-
-            Dim AktWinId As Integer = GUIWindowManager.ActiveWindow
-
             MyBase.OnAction(action)
         End Sub
 
@@ -59,7 +52,6 @@ Namespace MyVideoRedo
 
         Protected Overrides Sub OnClicked(ByVal controlId As Integer, ByVal control As MediaPortal.GUI.Library.GUIControl, ByVal actionType As MediaPortal.GUI.Library.Action.ActionType)
             If control Is btnUseIt Then
-                'VRD.AktSavingProfile = AktProfile.DateiType.ToLower
                 GetProfileDetail(AktProfile.Profilename)
                 PageDestroy()
             Else
@@ -117,7 +109,7 @@ Namespace MyVideoRedo
             AktProfile = VRD.GetProfileInfo(strLine)
             AktProfile.Profilename = strLine
             Translator.SetProperty("#ProfileTmp.Encodingtype", AktProfile.Encodingtype)
-            Translator.SetProperty("#ProfileTmp.Filetype", AktProfile.DateiType)
+            Translator.SetProperty("#ProfileTmp.Filetype", AktProfile.Filetype)
             Translator.SetProperty("#ProfileTmp.Resolution", AktProfile.Resolution)
             Translator.SetProperty("#ProfileTmp.Ratio", AktProfile.Ratio)
             Translator.SetProperty("#ProfileTmp.Deinterlacemode", AktProfile.DeintarlaceModus)
