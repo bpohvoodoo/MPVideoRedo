@@ -1,4 +1,26 @@
-﻿
+﻿----- Version 9.1.2 -----
+22.03.2014
+* Bug beseitigt:
+* in MP 1.6  wurde bei Pause immer wieder Play gesetzt
+*
+* Bekannte Probleme:
+* interner ThumbnailsCreator.vb arbeitet nicht korrekt bei SD Material.
+* Textlänge in der Virtuellen Tastatur ist zu begrenzt.
+* 
+*
+* ToDo:
+* Automatische Erkennung einer Aufnahme als Serienfolge, wenn Episodeninformationen verfügbar.
+* TVServer wachhalten (wichtig für Clientbetrieb)
+* Exception abfangen, falls TV Server nicht verfügbar
+* Löschen der Aufnahmen auch aus der TV Server Datenbak
+* Ändern der Cutmarker einer Szene
+* Speichen mit Originalname (Speichen mit temporärem Namen und dann Löschen der Orginaldatei und Umbenennen der temporären Datei)
+* internen Thumbnailer möglicher Weise gegen ffmpeg tauschen (s.o, mal sehen)
+* laden von Cutlists (ComSkip) (mal sehen)
+* Speichern in Cutlists (mal sehen)
+
+
+
 ----- Version 9.1.1 -----
 22.03.2014
 * Speicherfortschritt umgestellt auf DialogMenu

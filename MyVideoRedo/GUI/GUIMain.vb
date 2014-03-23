@@ -211,7 +211,9 @@ Namespace MyVideoRedo
                                 VRD.AbortScan()
                                 VRD.SeekToTime(0)
                                 g_Player.SeekAbsolute(0)
-                                g_Player.Pause()
+                                If IsPlayerPaused = False Then
+                                    g_Player.Pause()
+                                End If
                             End If
                         End If
                         'Button 3
@@ -334,7 +336,7 @@ Namespace MyVideoRedo
         Private Sub CutTheVideo()
             MyLog.DebugM("There are {0} Markers in the VideoReDo-Cutmarkers-List", VRD.CutMarkerList.Count)
 
-            If VRD.CutMarkerList.Count Mod 2 = 0 Then 'And HelpConfig.GetConfigString(ConfigKey.CutOnEnd) = False Then
+            If VRD.CutMarkerList.Count Mod 2 = 0 Then
             Else
                 If HelpConfig.GetConfigString(ConfigKey.CutOnEnd) = False Then
                     MyLog.DebugM("NoEndmarker Dialog wird erstellt")
@@ -342,8 +344,10 @@ Namespace MyVideoRedo
                     Exit Sub
                 Else
                     MyLog.DebugM(String.Format("Automatically adding Cutmarker at the end of the movie at Position {0}.", VRD.LoadedVideoDuration))
-                    g_Player.Pause()
-                    IsPlayerPaused = True
+                    If IsPlayerPaused = False Then
+                        IsPlayerPaused = True
+                        g_Player.Pause()
+                    End If
                     VRD.SeekToTime(VRD.LoadedVideoDuration)
                     MakeCut()
                 End If
@@ -452,7 +456,9 @@ Namespace MyVideoRedo
             g_Player.Play(AktRecToCut.VideoFilename, g_Player.MediaType.Video)
             position = (VRD.LoadedVideoDuration - 1000)
             g_Player.SeekAbsolute(position / 1000)
-            g_Player.Pause()
+            If IsPlayerPaused = False Then
+                g_Player.Pause()
+            End If
         End Sub
 
         Friend Sub RefreshTimerTick(ByVal sender As Object, ByVal e As System.EventArgs)
@@ -481,7 +487,6 @@ Namespace MyVideoRedo
                     GetFilmstripThumbnails(position)
                     RefreshStillImage()
                     g_Player.SeekAbsolute(position / 1000) ' + (100 / VRD.GetFramerate))
-                    g_Player.Pause()
                 Else
                     position = Int(g_Player.CurrentPosition * 1000)
                     If (position) > (VRD.LoadedVideoDuration - 1000) Then
@@ -723,7 +728,9 @@ Namespace MyVideoRedo
 
         Private Sub ShowContextMenu()
             If VRD.AdScanInProgress Then Exit Sub
-            If IsPlayerPaused = False Then g_Player.Pause()
+            If IsPlayerPaused = False Then
+                g_Player.Pause()
+            End If
             sliderAudioSync.Visible = False
             UnloadCutbar()
             UnloadFilmstripbar()
@@ -825,11 +832,9 @@ Namespace MyVideoRedo
                     skipOnPause = (VRD.LoadedVideoDuration) '- (100000 / VRD.GetFramerate)
                     EndReached = True
                     g_Player.SeekAbsolute((skipOnPause - 1000) / 1000)
-                    g_Player.Pause()
                 Else
                     tmrDelayRefreshOnSkip.Enabled = True
                     g_Player.SeekAbsolute(skipOnPause / 1000)
-                    g_Player.Pause()
                 End If
                 VRD.SeekToTime(skipOnPause)
                 position = skipOnPause
@@ -888,8 +893,7 @@ Namespace MyVideoRedo
                     GetFilmstripThumbnails(VRDList(JumpMarker))
                 End If
                 g_Player.SeekAbsolute(VRDList(JumpMarker) / 1000)
-                If IsPlayerPaused Then
-                    g_Player.Pause()
+                If IsPlayerPaused = True Then
                     RefreshStillImage()
                 End If
             End If

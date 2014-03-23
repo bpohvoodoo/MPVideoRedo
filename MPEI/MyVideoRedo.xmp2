@@ -511,11 +511,11 @@ Please make sure you have "VideoRedo" installed and you have run it once at Admi
       <Major>0</Major>
       <Minor>9</Minor>
       <Build>1</Build>
-      <Revision>1</Revision>
+      <Revision>2</Revision>
     </Version>
     <ExtensionDescription>With this plugin you are able to cut your recordings with the application VideoRedo from within MediaPortal.
 It is able to cut  frameaccurate.</ExtensionDescription>
-    <VersionDescription>----- Version 9.1.1 -----
+    <VersionDescription>----- Version 9.1.2 -----
 22.03.2014
 * Speicherfortschritt umgestellt auf DialogMenu
 * Schnitte werden nun auch wärend des laufenden AdScans aktualisiert
@@ -527,6 +527,7 @@ It is able to cut  frameaccurate.</ExtensionDescription>
 * #CurrentFrame (Standbilder) Funktionalität gefixed und in die Skins eingefügt
 *
 * Bug beseitigt:
+* in MP 1.6  wurde bei Pause immer wieder Play gesetzt
 * g_player wurde am Ende des Videos beeendet. Nun geht er 1 Sekunde vor Ende in Pause.
 * wenn der Abstand zum Anfang/Ende kleiner als die Sprungmarke, dann sprang das Plugin in die andere Richtung
 * Fehler in der Frame/Milisekunden Umrechnung behoben.
@@ -550,7 +551,7 @@ It is able to cut  frameaccurate.</ExtensionDescription>
 * laden von Cutlists (ComSkip) (mal sehen)
 * Speichern in Cutlists (mal sehen)</VersionDescription>
     <DevelopmentStatus>Beta</DevelopmentStatus>
-    <OnlineLocation>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_0.9.1.1_Beta.mpe1 </OnlineLocation>
+    <OnlineLocation>https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/MyVideoRedo_0.9.1.2_Beta.mpe1 </OnlineLocation>
     <ReleaseDate>2014-03-03T08:25:57</ReleaseDate>
     <Tags>filme,videos,
 cut,
@@ -877,7 +878,7 @@ https://raw.github.com/bpohvoodoo/MPVideoRedo/master/MPEI/Plugin_GUI011.png</Val
         <Param1 />
         <UpdateOption>OverwriteIfOlder</UpdateOption>
         <LocalFileName>myVideoReDo.png</LocalFileName>
-        <ZipFileName>Installer{CopyFile}\{609addb9-0800-4ae8-a41a-15af3bd03526}-myVideoReDo.png</ZipFileName>
+        <ZipFileName>Installer{CopyFile}\{f267f8d0-f96e-49d0-aa50-8836fc8b2290}-myVideoReDo.png</ZipFileName>
         <DestinationFilename />
       </FileItem>
     </Items>
