@@ -7,10 +7,10 @@
   <controls>
     <import>common.time.xml</import>
     <!--!!!!!! The Bar-Properties are Case-Sensitive and proportional to the Videowindow !!!!!!-->
-    <!--Start Filmstripbar-Properties
+    <!--Start MoviestripBar-Properties
     Left=-100;Top=50;Height=118;Width=693;LineMarkerForeground=True;LinemarkerColor=Red;LineMarkerThickness=6;
     DarkBackColor=Green;LightFillColor=Gray;DarkFillColor=Black;LightBackColor=Green;ThumbnailsCount=6
-    End Filmstripbar-Properties-->
+    End MoviestripBar-Properties-->
     <!--Start Cutbar-Properties
     Left=-100;Top=13;Height=25;Width=693;LineMarkerForeground=True;LinemarkerColor=Black;LineMarkerThickness=3;
     DarkBackColor=DarkGreen;LightFillColor=Red;DarkFillColor=DarkRed;LightBackColor=Green

@@ -124,7 +124,7 @@ Namespace MyVideoRedo
 
         End Sub
 #Region "SaveVideoSubs"
-        Private Sub SaveVideoProgressChanged(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
+        Private Sub SaveVideoProgressChanged(ByVal sender As Object, ByVal e As SaveVideoEventArgs)
             MyLog.DebugM("Saving of the file is {0}% complete.", e.PercentageComplete)
             If ctlSavingProgress IsNot Nothing Then
                 ctlSavingProgress.Percentage = e.PercentageComplete
@@ -132,7 +132,7 @@ Namespace MyVideoRedo
                 Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedTimeLeft & e.TimeLeft)
             End If
         End Sub
-        Private Sub SaveVideoProgressFinish(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
+        Private Sub SaveVideoProgressFinish(ByVal sender As Object, ByVal e As SaveVideoEventArgs)
             If ctlSavingProgress IsNot Nothing Then
                 ctlSavingProgress.Percentage = 100
                 Translator.SetProperty("#Saving.Progress.Label1", Translation.Complete & ": 100 %")
@@ -141,12 +141,12 @@ Namespace MyVideoRedo
             isCanceled = False
             PageDestroy()
         End Sub
-        Private Sub SaveVideoProgressStart(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
+        Private Sub SaveVideoProgressStart(ByVal sender As Object, ByVal e As SaveVideoEventArgs)
             ctlSavingProgress.Percentage = 0
             Translator.SetProperty("#Saving.Progress.Label1", Translation.Complete & ": 0 %")
             Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedTimeLeft & Translation.CalculateTimeLeft)
         End Sub
-        Private Sub SaveVideoAborted(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
+        Private Sub SaveVideoAborted(ByVal sender As Object, ByVal e As SaveVideoEventArgs)
             ctlSavingProgress.Percentage = 0
             Translator.SetProperty("#Saving.Progress.Label1", Translation.Complete & ": 0 %")
             Translator.SetProperty("#Saving.Progress.Label2", Translation.CalculatedTimeLeft & Translation.Abort)

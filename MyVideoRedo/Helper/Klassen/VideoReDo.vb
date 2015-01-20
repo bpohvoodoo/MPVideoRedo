@@ -16,10 +16,10 @@ Public Class VideoReDo
     Public Event AdScanFinished(ByVal sender As Object, ByVal e As AdDetectiveEventArgs)
     Public Event AdScanCutAdded(ByVal sender As Object, ByVal e As AdDetectiveEventArgs)
     Public Event AdScanAborted(ByVal sender As Object, ByVal e As AdDetectiveEventArgs)
-    Public Event SaveVideoStart(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
-    Public Event SaveVideoProgressCanged(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
-    Public Event SaveVideoFinished(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
-    Public Event SaveVideoAborted(ByVal sender As Object, ByVal e As SaveVideoEvenArgs)
+    Public Event SaveVideoStart(ByVal sender As Object, ByVal e As SaveVideoEventArgs)
+    Public Event SaveVideoProgressCanged(ByVal sender As Object, ByVal e As SaveVideoEventArgs)
+    Public Event SaveVideoFinished(ByVal sender As Object, ByVal e As SaveVideoEventArgs)
+    Public Event SaveVideoAborted(ByVal sender As Object, ByVal e As SaveVideoEventArgs)
     Public Event QuickStreamFixNeeded(sender As Object, e As EventArgs)
 
 
@@ -468,7 +468,7 @@ Public Class VideoReDo
 
     Public Sub StartVideoSave(ByVal Filename As String)
         If SaveFileAsEx(Filename, VideoSaveFormat.MPEGtivo) Then
-            Dim e As New SaveVideoEvenArgs
+            Dim e As New SaveVideoEventArgs
             RaiseEvent SaveVideoStart(Me, e)
             Threading.Thread.Sleep(2000)
             Do While VRD.IsOutputInProgress
@@ -476,7 +476,7 @@ Public Class VideoReDo
                 RaiseEvent SaveVideoProgressCanged(Me, e)
                 Threading.Thread.Sleep(500)
                 If AbortSaving = True Then
-                    RaiseEvent SaveVideoAborted(Me, New SaveVideoEvenArgs)
+                    RaiseEvent SaveVideoAborted(Me, New SaveVideoEventArgs)
                     AbortSaving = False
                     e.PercentageComplete = 0
                     Exit Sub
@@ -760,7 +760,7 @@ Public Class AdDetectiveEventArgs
 
 End Class
 
-Public Class SaveVideoEvenArgs
+Public Class SaveVideoEventArgs
     Inherits EventArgs
 
     Dim SaveStartTime As New Stopwatch

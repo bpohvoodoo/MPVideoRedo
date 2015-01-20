@@ -60,7 +60,7 @@ Public Module Helper
 
     Public Function GetSaveImagePath(ByVal img As Drawing.Image, SeriesID As Integer) As String
         Try
-            Dim mFolder As String = Config.GetFolder(Config.Dir.Thumbs) & "\VideoRedo\SeriesBanners"
+            Dim mFolder As String = Config.GetFolder(Config.Dir.Cache) & "\VideoRedo\SeriesBanners"
             If IO.Directory.Exists(mFolder) Then
             Else
                 IO.Directory.CreateDirectory(mFolder)
@@ -109,7 +109,7 @@ Public Module Helper
             Try
                 MyLog.DebugM("GetSaveThumbnailPath for recording: {0}", Record.VideoFilename)
                 Dim mFolder As String = ""
-                mFolder = Config.GetFolder(Config.Dir.Thumbs) & "\VideoRedo"
+                mFolder = Config.GetFolder(Config.Dir.Cache) & "\VideoRedo"
                 MyLog.DebugM("Thumbsfolder: " & mFolder)
                 If IO.Directory.Exists(mFolder) Then
                 Else

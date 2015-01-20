@@ -8,14 +8,14 @@ Imports MediaPortal.Common.Utils
 
 ' Die Werte der Assemblyattribute überprüfen
 
-<Assembly: CompatibleVersion("1.4.000.0", "1.2.000.0")> 
+<Assembly: CompatibleVersion("1.10.000.0", "1.4.000.0")> 
 <Assembly: UsesSubsystem("MP.SkinEngine")> 
 <Assembly: UsesSubsystem("MP.Config")> 
 <Assembly: AssemblyTitle("MyVideoRedo")> 
 <Assembly: AssemblyDescription("Cut Recordings with VideoRedo frameaccurate")> 
 <Assembly: AssemblyCompany("")> 
 <Assembly: AssemblyProduct("MyVideoRedo")> 
-<Assembly: AssemblyCopyright("Copyright ©  2010-2014")> 
+<Assembly: AssemblyCopyright("Copyright ©  2010-2015")> 
 <Assembly: AssemblyTrademark("")> 
 
 <Assembly: ComVisible(False)>
@@ -34,5 +34,5 @@ Imports MediaPortal.Common.Utils
 ' übernehmen, indem Sie "*" eingeben:
 ' <Assembly: AssemblyVersion("1.0.*")> 
 
-<Assembly: AssemblyVersion("0.9.1.2")> 
-<Assembly: AssemblyFileVersion("0.9.1.2")> 
+<Assembly: AssemblyVersion("0.9.1.3")> 
+<Assembly: AssemblyFileVersion("0.9.1.3")> 

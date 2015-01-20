@@ -5,72 +5,72 @@ Imports System.Drawing
 
 Module CutBarhelper
 
-    Friend MyCutbar As New CutBars.FilmStripBar
-    Friend myFilmstripBar As New CutBars.StandardCutBar
+    Friend MyMovieStripBar As New CutBars.MovieStripBar
+    Friend MyCutBar As New CutBars.StandardCutBar
 
-    Friend Sub LoadCutbar(ByVal BarProperties As PropertyCollection, ByVal VideoWindow As GUIVideoControl)
+    Friend Sub LoadMoviestripBar(ByVal BarProperties As PropertyCollection, ByVal VideoWindow As GUIVideoControl)
         MyLog.DebugM("Loading the Filmstripbar with properties of: ")
         For i As Integer = 0 To BarProperties.Count - 1
             MyLog.DebugM("{0}-Property: {1}", BarProperties.Keys(i), BarProperties.Values(i))
         Next
-        MyCutbar.Top = VideoWindow.Location.Y + VideoWindow.Size.Height + BarProperties("Top")
-        MyCutbar.Left = VideoWindow.Location.X + BarProperties("Left")
-        MyCutbar.Width = BarProperties("Width")
-        MyCutbar.Height = BarProperties("Height")
-        MyCutbar.StartCutValues.Clear()
-        MyCutbar.EndCutValues.Clear()
-        MyCutbar.LineMarkerForeground = BarProperties("LineMarkerForeground")
-        MyCutbar.LineMakerColor = Drawing.Color.FromName(BarProperties("LinemarkerColor"))
-        MyCutbar.LineMarkerThickness = BarProperties("LineMarkerThickness")
-        MyCutbar.DarkBackColor = Drawing.Color.FromName(BarProperties("DarkBackColor"))
-        MyCutbar.LightFillColor = Drawing.Color.FromName(BarProperties("LightFillColor"))
-        MyCutbar.LightBackColor = Drawing.Color.FromName(BarProperties("LightBackColor"))
-        MyCutbar.DarkFillColor = Drawing.Color.FromName(BarProperties("DarkFillColor"))
-        MyCutbar.Enabled = False
-        GUIGraphicsContext.form.Controls.Add(MyCutbar)
+        MyMovieStripBar.Top = VideoWindow.Location.Y + VideoWindow.Size.Height + BarProperties("Top")
+        MyMovieStripBar.Left = VideoWindow.Location.X + BarProperties("Left")
+        MyMovieStripBar.Width = BarProperties("Width")
+        MyMovieStripBar.Height = BarProperties("Height")
+        MyMovieStripBar.StartCutValues.Clear()
+        MyMovieStripBar.EndCutValues.Clear()
+        MyMovieStripBar.LineMarkerForeground = BarProperties("LineMarkerForeground")
+        MyMovieStripBar.LineMakerColor = Drawing.Color.FromName(BarProperties("LinemarkerColor"))
+        MyMovieStripBar.LineMarkerThickness = BarProperties("LineMarkerThickness")
+        MyMovieStripBar.DarkBackColor = Drawing.Color.FromName(BarProperties("DarkBackColor"))
+        MyMovieStripBar.LightFillColor = Drawing.Color.FromName(BarProperties("LightFillColor"))
+        MyMovieStripBar.LightBackColor = Drawing.Color.FromName(BarProperties("LightBackColor"))
+        MyMovieStripBar.DarkFillColor = Drawing.Color.FromName(BarProperties("DarkFillColor"))
+        MyMovieStripBar.Enabled = False
+        GUIGraphicsContext.form.Controls.Add(MyMovieStripBar)
         GUIGraphicsContext.form.Focus()
         'GUIGraphicsContext.form.Focus()
         MyLog.DebugM("Filmstripbar successfully loaded.")
     End Sub
-    Friend Sub UnloadCutbar()
-        MyLog.DebugM("Removing Filmstripbar...")
-        GUIGraphicsContext.form.Controls.Remove(MyCutbar)
-        MyLog.DebugM("Filmstripbar was removed.")
+    Friend Sub UnloadMoviestripBar()
+        MyLog.DebugM("Removing the Moviestripbar...")
+        GUIGraphicsContext.form.Controls.Remove(MyMovieStripBar)
+        MyLog.DebugM("Moviestripbar was removed.")
     End Sub
 
-    Friend Sub LoadFilmstripbar(ByVal BarProperties As PropertyCollection, ByVal VideoWindow As GUIVideoControl)
+    Friend Sub LoadCutbar(ByVal BarProperties As PropertyCollection, ByVal VideoWindow As GUIVideoControl)
         MyLog.DebugM("Loading the Cutbar with properties of: ")
         For i As Integer = 0 To BarProperties.Count - 1
             MyLog.DebugM("{0}-Property: {1}", BarProperties.Keys(i), BarProperties.Values(i))
         Next
-        myFilmstripBar.Top = VideoWindow.Location.Y + VideoWindow.Size.Height + BarProperties("Top")
-        myFilmstripBar.Left = VideoWindow.Location.X + BarProperties("Left")
-        myFilmstripBar.Width = BarProperties("Width")
-        myFilmstripBar.Height = BarProperties("Height")
+        MyCutBar.Top = VideoWindow.Location.Y + VideoWindow.Size.Height + BarProperties("Top")
+        MyCutBar.Left = VideoWindow.Location.X + BarProperties("Left")
+        MyCutBar.Width = BarProperties("Width")
+        MyCutBar.Height = BarProperties("Height")
         'myFilmstripBar.StartCutValues.Clear()
         'myFilmstripBar.EndCutValues.Clear()
         'myFilmstripBar.LineMarkerForeground = True
-        myFilmstripBar.LineMarkerThickness = BarProperties("LineMarkerThickness")
-        myFilmstripBar.LineMakerColor = Drawing.Color.FromName(BarProperties("LinemarkerColor"))
-        myFilmstripBar.LineMarkerThickness = BarProperties("LineMarkerThickness")
-        myFilmstripBar.DarkBackColor = Drawing.Color.FromName(BarProperties("DarkBackColor"))
-        myFilmstripBar.LightFillColor = Drawing.Color.FromName(BarProperties("LightFillColor"))
-        myFilmstripBar.LightBackColor = Drawing.Color.FromName(BarProperties("LightBackColor"))
-        myFilmstripBar.DarkFillColor = Drawing.Color.FromName(BarProperties("DarkFillColor"))
-        myFilmstripBar.Enabled = False
-        GUIGraphicsContext.form.Controls.Add(myFilmstripBar)
+        MyCutBar.LineMarkerThickness = BarProperties("LineMarkerThickness")
+        MyCutBar.LineMakerColor = Drawing.Color.FromName(BarProperties("LinemarkerColor"))
+        MyCutBar.LineMarkerThickness = BarProperties("LineMarkerThickness")
+        MyCutBar.DarkBackColor = Drawing.Color.FromName(BarProperties("DarkBackColor"))
+        MyCutBar.LightFillColor = Drawing.Color.FromName(BarProperties("LightFillColor"))
+        MyCutBar.LightBackColor = Drawing.Color.FromName(BarProperties("LightBackColor"))
+        MyCutBar.DarkFillColor = Drawing.Color.FromName(BarProperties("DarkFillColor"))
+        MyCutBar.Enabled = False
+        GUIGraphicsContext.form.Controls.Add(MyCutBar)
         GUIGraphicsContext.form.Focus()
         'GUIGraphicsContext.form.Focus()
         MyLog.DebugM("Cutbar successfully loaded.")
     End Sub
 
-    Friend Sub UnloadFilmstripbar()
+    Friend Sub UnloadCutBar()
         MyLog.DebugM("Removing the Cutbar...")
-        GUIGraphicsContext.form.Controls.Remove(myFilmstripBar)
+        GUIGraphicsContext.form.Controls.Remove(MyCutBar)
         MyLog.DebugM("Cutbar was removed.")
     End Sub
 
-    Friend Function GetCutbarProperties(ByVal XMLfile As String, Optional ByVal Cutbar As Boolean = False) As PropertyCollection
+    Friend Function GetCutBarProperties(ByVal XMLfile As String, Optional ByVal Cutbar As Boolean = False) As PropertyCollection
         GetCutbarProperties = New PropertyCollection
         Dim objDateiLeser As New StreamReader(XMLfile)
         Dim XmlText As String = objDateiLeser.ReadToEnd()
@@ -83,8 +83,8 @@ Module CutBarhelper
                 propStart = InStr(XmlText, "Start Cutbar-Properties") + 29
                 propCount = InStrRev(XmlText, "End Cutbar-Properties") - propStart
             Else
-                propStart = InStr(XmlText, "Start Filmstripbar-Properties") + 29
-                propCount = InStrRev(XmlText, "End Filmstripbar-Properties") - propStart
+                propStart = InStr(XmlText, "Start MoviestripBar-Properties") + 29
+                propCount = InStrRev(XmlText, "End MoviestripBar-Properties") - propStart
             End If
             Dim newText As String = Mid(XmlText, propStart, propCount)
 

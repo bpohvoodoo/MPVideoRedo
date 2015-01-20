@@ -68,14 +68,17 @@
     <Reference Include="Common.Utils, Version=1.1.7.0, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Common\Common.Utils.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Core, Version=1.1.5.16142, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Common\Core.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Dialogs, Version=1.1.5.16148, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Common\Dialogs.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="redo, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -98,14 +101,12 @@
     </Reference>
     <Reference Include="TvControl">
       <HintPath>bin\Common\TvControl.dll</HintPath>
+      <Private>False</Private>
     </Reference>
     <Reference Include="Utils, Version=1.1.5.16136, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Common\Utils.dll</HintPath>
-    </Reference>
-    <Reference Include="WindowPlugins, Version=1.1.5.16160, Culture=neutral, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Common\WindowPlugins.dll</HintPath>
+      <Private>False</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -195,295 +196,129 @@
     <None Include="Resources\help.png" />
     <None Include="Resources\negativ.png" />
     <Content Include="Changelog.txt" />
-    <Content Include="language\de.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="language\de.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="language\en-GB.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="language\en-GB.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="language\en-US.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="language\en.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="language\en-US.xml" />
+    <None Include="language\en.xml">
       <SubType>Designer</SubType>
-    </Content>
+    </None>
     <EmbeddedResource Include="Resources\myVideoReDo.png" />
     <EmbeddedResource Include="Resources\myVideoReDo_disabled.png" />
-    <Content Include="skin\Avalon 1080p\Media\redoCheck.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 1080p\Media\redoRemote.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 1080p\Media\redoSelectedEpisode.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 1080p\MyVideoRedo.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 1080p\MyVideoReDoProfileDetail.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 1080p\MyVideoRedoSave.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 1080p\MyVideoReDoStart.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    <None Include="skin\Avalon 1080p\Media\redoCheck.png" />
+    <None Include="skin\Avalon 1080p\Media\RedoEmptyThumb.png" />
+    <None Include="skin\Avalon 1080p\Media\redoRemote.png" />
+    <None Include="skin\Avalon 1080p\Media\redoSelectedEpisode.png" />
+    <None Include="skin\Avalon 1080p\MyVideoRedo.xml" />
+    <None Include="skin\Avalon 1080p\MyVideoReDoProfileDetail.xml" />
+    <None Include="skin\Avalon 1080p\MyVideoRedoSave.xml" />
+    <None Include="skin\Avalon 1080p\MyVideoReDoStart.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="skin\Avalon 720p\Media\redoCheck.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 720p\Media\redoRemote.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 720p\Media\redoSelectedEpisode.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 720p\MyVideoRedo.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="skin\Avalon 720p\Media\redoCheck.png" />
+    <None Include="skin\Avalon 720p\Media\RedoEmptyThumb.png" />
+    <None Include="skin\Avalon 720p\Media\redoRemote.png" />
+    <None Include="skin\Avalon 720p\Media\redoSelectedEpisode.png" />
+    <None Include="skin\Avalon 720p\MyVideoRedo.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="skin\Avalon 720p\MyVideoReDoProfileDetail.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 720p\MyVideoRedoSave.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Avalon 720p\MyVideoReDoStart.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\hover_myVideoReDo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\icon_myvideoredo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\redoCheck.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\redoHelp_focus.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\redoHelp_nofocus.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\redoKeyboard.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\redoRemote.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\redoSelectedEpisode.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\VideoRedoBackground.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\VideoRedoIconGray.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\Media\ViedoRedoFrame.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\MyVideoRedo.window.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\MyVideoRedo.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\MyVideoReDoProfileDetail.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\MyVideoRedoSave.xml">
+    </None>
+    <None Include="skin\Avalon 720p\MyVideoReDoProfileDetail.xml" />
+    <None Include="skin\Avalon 720p\MyVideoRedoSave.xml" />
+    <None Include="skin\Avalon 720p\MyVideoReDoStart.xml" />
+    <None Include="skin\StreamedMP 1080p\Media\RedoEmptyThumb.png" />
+    <None Include="skin\StreamedMP 1080p\Media\VideoRedoFrame.png" />
+    <None Include="skin\StreamedMP 720p\Media\hover_myVideoReDo.png" />
+    <None Include="skin\StreamedMP 720p\Media\icon_myvideoredo.png" />
+    <None Include="skin\StreamedMP 720p\Media\redoCheck.png" />
+    <None Include="skin\StreamedMP 720p\Media\RedoEmptyThumb.png" />
+    <None Include="skin\StreamedMP 720p\Media\redoHelp_focus.png" />
+    <None Include="skin\StreamedMP 720p\Media\redoHelp_nofocus.png" />
+    <None Include="skin\StreamedMP 720p\Media\redoKeyboard.png" />
+    <None Include="skin\StreamedMP 720p\Media\redoRemote.png" />
+    <None Include="skin\StreamedMP 720p\Media\redoSelectedEpisode.png" />
+    <None Include="skin\StreamedMP 720p\Media\VideoRedoBackground.png" />
+    <None Include="skin\StreamedMP 720p\Media\VideoRedoFrame.png" />
+    <None Include="skin\StreamedMP 720p\Media\VideoRedoIconGray.png" />
+    <None Include="skin\StreamedMP 720p\MyVideoRedo.window.xml" />
+    <None Include="skin\StreamedMP 720p\MyVideoRedo.xml" />
+    <None Include="skin\StreamedMP 720p\MyVideoReDoProfileDetail.xml" />
+    <None Include="skin\StreamedMP 720p\MyVideoRedoSave.xml">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\MyVideoReDoSaveProgress.xml">
+    </None>
+    <None Include="skin\StreamedMP 720p\MyVideoReDoSaveProgress.xml">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\myVideoRedoStart.TVRecords.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 720p\MyVideoReDoStart.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\hover_myVideoReDo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\icon_myvideoredo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\redoCheck.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\redoHelp_focus.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\redoHelp_nofocus.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\redoKeyboard.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\redoRemote.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\redoSelectedEpisode.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\VideoRedoBackground.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\VideoRedoIconGray.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\Media\ViedoRedoFrame.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\MyVideoRedo.window.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\MyVideoRedo.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\MyVideoReDoProfileDetail.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\MyVideoRedoSave.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="skin\StreamedMP 720p\myVideoRedoStart.TVRecords.xml" />
+    <None Include="skin\StreamedMP 720p\MyVideoReDoStart.xml" />
+    <None Include="skin\StreamedMP 1080p\Media\hover_myVideoReDo.png" />
+    <None Include="skin\StreamedMP 1080p\Media\icon_myvideoredo.png" />
+    <None Include="skin\StreamedMP 1080p\Media\redoCheck.png" />
+    <None Include="skin\StreamedMP 1080p\Media\redoHelp_focus.png" />
+    <None Include="skin\StreamedMP 1080p\Media\redoHelp_nofocus.png" />
+    <None Include="skin\StreamedMP 1080p\Media\redoKeyboard.png" />
+    <None Include="skin\StreamedMP 1080p\Media\redoRemote.png" />
+    <None Include="skin\StreamedMP 1080p\Media\redoSelectedEpisode.png" />
+    <None Include="skin\StreamedMP 1080p\Media\VideoRedoBackground.png" />
+    <None Include="skin\StreamedMP 1080p\Media\VideoRedoIconGray.png" />
+    <None Include="skin\StreamedMP 1080p\MyVideoRedo.window.xml" />
+    <None Include="skin\StreamedMP 1080p\MyVideoRedo.xml" />
+    <None Include="skin\StreamedMP 1080p\MyVideoReDoProfileDetail.xml" />
+    <None Include="skin\StreamedMP 1080p\MyVideoRedoSave.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\MyVideoReDoSaveProgress.xml">
+    </None>
+    <None Include="skin\StreamedMP 1080p\MyVideoReDoSaveProgress.xml">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\myVideoRedoStart.TVRecords.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\StreamedMP 1080p\MyVideoReDoStart.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\Media\hover_myVideoReDo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\Media\icon_myvideoredo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\MyVideoReDoSaveProgress.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\Media\redoCheck.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\Media\redoHelp_focus.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\Media\redoHelp_nofocus.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\Media\redoRemote.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\Media\redoSelectedEpisode.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\MyVideoRedo.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\MyVideoReDoProfileDetail.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 1080p\MyVideoRedoSave.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="skin\StreamedMP 1080p\myVideoRedoStart.TVRecords.xml" />
+    <None Include="skin\StreamedMP 1080p\MyVideoReDoStart.xml" />
+    <None Include="skin\Titan 1080p\Media\hover_myVideoReDo.png" />
+    <None Include="skin\Titan 1080p\Media\icon_myvideoredo.png" />
+    <None Include="skin\Titan 1080p\Media\RedoEmptyThumb.png" />
+    <None Include="skin\Titan 1080p\MyVideoReDoSaveProgress.xml" />
+    <None Include="skin\Titan 1080p\Media\redoCheck.png" />
+    <None Include="skin\Titan 1080p\Media\redoHelp_focus.png" />
+    <None Include="skin\Titan 1080p\Media\redoHelp_nofocus.png" />
+    <None Include="skin\Titan 1080p\Media\redoRemote.png" />
+    <None Include="skin\Titan 1080p\Media\redoSelectedEpisode.png" />
+    <None Include="skin\Titan 1080p\MyVideoRedo.xml" />
+    <None Include="skin\Titan 1080p\MyVideoReDoProfileDetail.xml" />
+    <None Include="skin\Titan 1080p\MyVideoRedoSave.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="skin\Titan 1080p\MyVideoReDoStart.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\Media\hover_myVideoReDo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\Media\icon_myvideoredo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\Media\redoCheck.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\Media\redoHelp_focus.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\Media\redoHelp_nofocus.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\Media\redoRemote.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\Media\redoSelectedEpisode.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\MyVideoRedo.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\MyVideoReDoProfileDetail.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\MyVideoRedoSave.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="skin\Titan 1080p\MyVideoReDoStart.xml" />
+    <None Include="skin\Titan 720p\Media\hover_myVideoReDo.png" />
+    <None Include="skin\Titan 720p\Media\icon_myvideoredo.png" />
+    <None Include="skin\Titan 720p\Media\redoCheck.png" />
+    <None Include="skin\Titan 720p\Media\RedoEmptyThumb.png" />
+    <None Include="skin\Titan 720p\Media\redoHelp_focus.png" />
+    <None Include="skin\Titan 720p\Media\redoHelp_nofocus.png" />
+    <None Include="skin\Titan 720p\Media\redoRemote.png" />
+    <None Include="skin\Titan 720p\Media\redoSelectedEpisode.png" />
+    <None Include="skin\Titan 720p\MyVideoRedo.xml" />
+    <None Include="skin\Titan 720p\MyVideoReDoProfileDetail.xml" />
+    <None Include="skin\Titan 720p\MyVideoRedoSave.xml">
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="skin\Titan 720p\MyVideoReDoSaveProgress.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan 720p\MyVideoReDoStart.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\Media\hover_myVideoReDo.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\Media\redoCheck.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\Media\redoHelp_focus.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\Media\redoHelp_nofocus.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\Media\redoKeyboard.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\Media\redoRemote.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\Media\redoSelectedEpisode.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\Media\VideoRedoBackground.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\Media\VideoRedoIconGray.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\MyVideoRedo.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\MyVideoReDoProfileDetail.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\MyVideoRedoSave.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\MyVideoReDoSaveProgress.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="skin\Titan\MyVideoReDoStart.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </None>
+    <None Include="skin\Titan 720p\MyVideoReDoSaveProgress.xml" />
+    <None Include="skin\Titan 720p\MyVideoReDoStart.xml" />
+    <None Include="skin\Titan\Media\hover_myVideoReDo.png" />
+    <None Include="skin\Titan\Media\redoCheck.png" />
+    <None Include="skin\Titan\Media\RedoEmptyThumb.png" />
+    <None Include="skin\Titan\Media\redoHelp_focus.png" />
+    <None Include="skin\Titan\Media\redoHelp_nofocus.png" />
+    <None Include="skin\Titan\Media\redoKeyboard.png" />
+    <None Include="skin\Titan\Media\redoRemote.png" />
+    <None Include="skin\Titan\Media\redoSelectedEpisode.png" />
+    <None Include="skin\Titan\Media\VideoRedoBackground.png" />
+    <None Include="skin\Titan\Media\VideoRedoIconGray.png" />
+    <None Include="skin\Titan\MyVideoRedo.xml" />
+    <None Include="skin\Titan\MyVideoReDoProfileDetail.xml" />
+    <None Include="skin\Titan\MyVideoRedoSave.xml" />
+    <None Include="skin\Titan\MyVideoReDoSaveProgress.xml" />
+    <None Include="skin\Titan\MyVideoReDoStart.xml" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -528,6 +363,6 @@
     <PostBuildEvent>xcopy "$(TargetPath)" "C:\Program Files (x86)\Team MediaPortal\MediaPortal\plugins\Windows" /d /y
 xcopy "$(TargetDir)TvdbLib.dll" "C:\Program Files (x86)\Team MediaPortal\MediaPortal\plugins\Windows" /d /y
 xcopy "$(TargetDir)CutBars.dll" "C:\Program Files (x86)\Team MediaPortal\MediaPortal\plugins\Windows" /d /y
-xcopy "$(ProjectDir)\Screenfiles\Titan" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Titan" /d /y</PostBuildEvent>
+xcopy "$(ProjectDir)Skin\Titan" "C:\ProgramData\Team MediaPortal\MediaPortal\skin\Titan" /d /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

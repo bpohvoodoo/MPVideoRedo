@@ -55,7 +55,7 @@
     Private Sub TrackBar1_MouseUp(sender As Object, e As MouseEventArgs) Handles TrackBar1.MouseUp
         If myVRD IsNot Nothing Then
             myVRD.SeekToTime(Me.TrackBar1.Value)
-            Me.FilmStripBar1.Filmbitmaps.Add(myVRD.MakeScreenshotImage(Me.TrackBar1.Value, "C:\Screen.jpg"))
+            Me.MovieStripBar1.MovieStripThumbs.Add(myVRD.MakeScreenshotImage(Me.TrackBar1.Value, "C:\Screen.jpg"))
         Else
             MessageBox.Show("VideoRedo ist nicht offen")
         End If

@@ -7,14 +7,14 @@
   <controls>
     <import>common.time.xml</import>
     <!--!!!!!! The Bar-Properties are Case-Sensitive and proportional to the Videowindow !!!!!!-->
-    <!--Start Filmstripbar-Properties
-    Left=-140;Top=80;Height=172;Width=1018;LineMarkerForeground=True;LinemarkerColor=Red;LineMarkerThickness=10;
-    DarkBackColor=Green;LightFillColor=Gray;DarkFillColor=Black;LightBackColor=Green;ThumbnailsCount=6
-    End Filmstripbar-Properties-->
     <!--Start Cutbar-Properties
     Left=-140;Top=25;Height=45;Width=1018;LineMarkerForeground=True;LinemarkerColor=Black;LineMarkerThickness=4;
     DarkBackColor=DarkGreen;LightFillColor=Red;DarkFillColor=DarkRed;LightBackColor=Green
     End Cutbar-Properties-->
+    <!--Start MoviestripBar-Properties
+    Left=-140;Top=80;Height=172;Width=1018;LineMarkerForeground=True;LinemarkerColor=Red;LineMarkerThickness=10;
+    DarkBackColor=Green;LightFillColor=Gray;DarkFillColor=Black;LightBackColor=Green;ThumbnailsCount=6
+    End MoviestripBar-Properties-->
 
     <control>
       <description>BG</description>
@@ -61,7 +61,7 @@
       <height>412</height>
       <colordiffuse>ffffffff</colordiffuse>
       <keepaspectratio>yes</keepaspectratio>
-      <visible>!control.hasfocus(999)+!player.paused</visible>
+      <visible>!control.hasfocus(999)+!control.isvisible(29)</visible>
       <animation effect="Fade" time="250">WindowOpen</animation>
       <animation effect="Fade" time="250">WindowClose</animation>
     </control>

@@ -84,7 +84,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CProgressValueProperty.vb" />
-    <Compile Include="FilmStripBar.vb">
+    <Compile Include="MovieStripBar.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="ProgressBase.vb">

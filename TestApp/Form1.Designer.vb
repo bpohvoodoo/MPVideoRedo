@@ -34,7 +34,7 @@ Partial Class Form1
         Me.Button2 = New System.Windows.Forms.Button()
         Me.TrackBar1 = New System.Windows.Forms.TrackBar()
         Me.Button3 = New System.Windows.Forms.Button()
-        Me.FilmStripBar1 = New CutBars.FilmStripBar()
+        Me.MovieStripBar1 = New CutBars.MovieStripBar()
         CType(Me.TrackBar1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -132,24 +132,24 @@ Partial Class Form1
         Me.Button3.Text = "Plugin schliessen"
         Me.Button3.UseVisualStyleBackColor = True
         '
-        'FilmStripBar1
+        'MovieStripBar1
         '
-        Me.FilmStripBar1.EndCutValues = CType(resources.GetObject("FilmStripBar1.EndCutValues"), System.Collections.Generic.List(Of Single))
-        Me.FilmStripBar1.Filmbitmaps = CType(resources.GetObject("FilmStripBar1.Filmbitmaps"), System.Collections.Generic.List(Of System.Drawing.Bitmap))
-        Me.FilmStripBar1.LineMarkerPosition = 0.0!
-        Me.FilmStripBar1.Location = New System.Drawing.Point(26, 160)
-        Me.FilmStripBar1.Name = "FilmStripBar1"
-        Me.FilmStripBar1.Size = New System.Drawing.Size(662, 135)
-        Me.FilmStripBar1.StartCutValues = CType(resources.GetObject("FilmStripBar1.StartCutValues"), System.Collections.Generic.List(Of Single))
-        Me.FilmStripBar1.TabIndex = 9
-        Me.FilmStripBar1.Text = "FilmStripBar1"
+        Me.MovieStripBar1.EndCutValues = CType(resources.GetObject("MovieStripBar1.EndCutValues"), System.Collections.Generic.List(Of Single))
+        Me.MovieStripBar1.MovieStripThumbs = CType(resources.GetObject("MovieStripBar1.Filmbitmaps"), System.Collections.Generic.List(Of System.Drawing.Bitmap))
+        Me.MovieStripBar1.LineMarkerPosition = 0.0!
+        Me.MovieStripBar1.Location = New System.Drawing.Point(26, 160)
+        Me.MovieStripBar1.Name = "MovieStripBar1"
+        Me.MovieStripBar1.Size = New System.Drawing.Size(662, 135)
+        Me.MovieStripBar1.StartCutValues = CType(resources.GetObject("MovieStripBar1.StartCutValues"), System.Collections.Generic.List(Of Single))
+        Me.MovieStripBar1.TabIndex = 9
+        Me.MovieStripBar1.Text = "MovieStripBar1"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1135, 422)
-        Me.Controls.Add(Me.FilmStripBar1)
+        Me.Controls.Add(Me.MovieStripBar1)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.TrackBar1)
         Me.Controls.Add(Me.Button2)
@@ -176,5 +176,5 @@ Partial Class Form1
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents TrackBar1 As System.Windows.Forms.TrackBar
     Friend WithEvents Button3 As System.Windows.Forms.Button
-    Friend WithEvents FilmStripBar1 As CutBars.FilmStripBar
+    Friend WithEvents MovieStripBar1 As CutBars.MovieStripBar
 End Class

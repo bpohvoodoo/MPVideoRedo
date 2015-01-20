@@ -7,10 +7,10 @@
   <controls>
 
     <!--!!!!!! The Bar-Properties are Case-Sensitive and proportional to the Videowindow !!!!!!-->
-    <!--Start Filmstripbar-Properties
+    <!--Start MoviestripBar-Properties
     Left=-327;Top=80;Height=169;Width=1000;LineMarkerForeground=True;LinemarkerColor=Red;LineMarkerThickness=10;
     DarkBackColor=Green;LightFillColor=Gray;DarkFillColor=Black;LightBackColor=Green;ThumbnailsCount=6
-    End Filmstripbar-Properties-->
+    End MoviestripBar-Properties-->
     <!--Start Cutbar-Properties
     Left=-327;Top=25;Height=45;Width=1000;LineMarkerForeground=True;LinemarkerColor=Black;LineMarkerThickness=4;
     DarkBackColor=DarkGreen;LightFillColor=Red;DarkFillColor=DarkRed;LightBackColor=Green

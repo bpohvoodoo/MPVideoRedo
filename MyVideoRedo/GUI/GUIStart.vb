@@ -116,9 +116,10 @@ Namespace MyVideoRedo
 
         Protected Overrides Sub OnPageLoad()
             MyBase.OnPageLoad()
-
+            If Directory.Exists(Config.GetFolder(Config.Dir.Cache) & "\VideoRedo") = False Then
+                Directory.CreateDirectory(Config.GetFolder(Config.Dir.Cache) & "\VideoRedo")
+            End If
             GUIWindowManager.NeedRefresh()
-
             If GUIWindowManager.ActiveWindow = GetID Then
                 'Erstmal irgendwas in die Labels schreiben damit es beim laden nicht so doof aussieht.
                 Translator.SetProperty("#RecordingTitle", " ")
@@ -789,8 +790,8 @@ Namespace MyVideoRedo
                     End If
                 Next
             End If
-            UnloadFilmstripbar()
-            UnloadCutbar()
+            UnloadMovieStripBar()
+            UnLoadCutBar()
             If ShowYesNoDialog(GUIWindowManager.ActiveWindow, Title, Text) = True Then
                 If oldMedia IsNot Nothing Then
                     VRD = New VideoReDo(False)
